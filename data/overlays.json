@@ -1,0 +1,3874 @@
+{
+  "overlays": [
+    {
+      "tmdbId": 62126,
+      "predictedRating": 3,
+      "predictedRatingReason": "Based on your Marvel Netflix ratings (Echo 3, similar street-level hero content)",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/6R62oGGufhsf6DiMknCi047N0b7.jpg",
+      "overview": "Given superstrength and durability by a sabotaged experiment, a wrongly accused man escapes prison to become a superhero for hire.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Crime"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:28.915Z",
+      "streamingFetchedAt": "2026-01-09T08:35:41.866Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.350Z"
+    },
+    {
+      "tmdbId": 62285,
+      "predictedRating": 3,
+      "predictedRatingReason": "Marvel ensemble crossover - similar pattern to other Marvel Netflix ratings",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/49XzINhH4LFsgz7cx6TOPcHUJUL.jpg",
+      "overview": "Daredevil, Jessica Jones, Luke Cage and Iron Fist join forces to take on common enemies as a sinister conspiracy threatens New York City.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Crime"
+      ],
+      "rtCriticsScore": 78,
+      "rtAudienceScore": 70,
+      "rtFetchedAt": "2026-01-09T08:04:24.681Z",
+      "streamingFetchedAt": "2026-01-09T09:46:03.293Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 99940,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Australian Cold War drama - unique historical setting you'd likely appreciate",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/tL3YiXGRK8b0ylhrDaoYyIqrQHY.jpg",
+      "overview": "A captivating drama set in Maralinga, South Australia, at the height of the Cold War. At a remote army base carrying out British nuclear testing, paranoia runs rife and nuclear bombs are not the only things being tested, as loyalty, love, and betrayal are pitted against each other.",
+      "genres": [
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:30.610Z",
+      "streamingFetchedAt": "2026-01-09T08:35:41.354Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 79788,
+      "predictedRating": 4.5,
+      "predictedRatingReason": "Complex alt-history sci-fi with social commentary - similar to Black Mirror/Severance quality",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/m8rWq3j73ZGhDuSCZWMMoE9ePH1.jpg",
+      "overview": "Set in an alternate history where 'superheroes' are treated as outlaws, 'Watchmen' embraces the nostalgia of the original groundbreaking graphic novel while attempting to break new ground of its own.",
+      "genres": [
+        "Drama",
+        "Crime",
+        "Sci-Fi & Fantasy",
+        "Mystery",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 57,
+      "rtFetchedAt": "2026-01-09T08:04:27.913Z",
+      "streamingFetchedAt": "2026-01-09T09:46:03.811Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 80752,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Post-apocalyptic world-building like Fallout - visually ambitious but may lack depth",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/lKDIhc9FQibDiBQ57n3ELfZCyZg.jpg",
+      "overview": "A virus has decimated humankind. Those who survived emerged blind. Centuries later when twins are born with the mythic ability to see, their father must protect his tribe against a threatened queen.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 63,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:04:30.279Z",
+      "streamingFetchedAt": "2026-01-09T09:46:04.413Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 88166,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Prestige HBO drama with Mark Ruffalo - heavy emotional content, quality acting",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/y6bjZiYZa1U8UJ2KxgJuU0B8M5K.jpg",
+      "overview": "The parallel lives of identical twin brothers Dominick and Thomas Birdsey in an epic story of betrayal, sacrifice and forgiveness set against the backdrop of 20th century America.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 74,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T08:04:32.449Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-09T09:46:04.959Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/nailed-it-mexico",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 1920,
+      "predictedRating": 4,
+      "predictedRatingReason": "Cult classic mystery with surreal elements - unique storytelling you'd appreciate",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/lA9CNSdo50iQPZ8A2fyVpMvJZAf.jpg",
+      "overview": "The body of Laura Palmer is washed up on a beach near the small Washington state town of Twin Peaks. FBI Special Agent Dale Cooper is called in to investigate her strange demise only to uncover a web of mystery that ultimately leads him deep into the heart of the surrounding woodland and his very own soul.",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 78,
+      "rtAudienceScore": 92,
+      "rtFetchedAt": "2026-01-09T08:04:33.870Z",
+      "streamingFetchedAt": "2026-01-09T09:46:05.542Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 71446,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Clever heist thriller - engaging but may feel drawn out across seasons",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
+      "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 81,
+      "rtFetchedAt": "2026-01-09T08:04:35.213Z",
+      "streamingFetchedAt": "2026-01-09T09:46:06.054Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 111141,
+      "predictedRating": 4,
+      "predictedRatingReason": "Critically acclaimed limited series - emotional depth like Baby Reindeer",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/4brWcSXdH31BZUTtRTHj2BYFe6M.jpg",
+      "overview": "After fleeing an abusive relationship, a young mother finds a job cleaning houses as she fights to provide for her child and build them a better future.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T08:04:37.644Z",
+      "streamingFetchedAt": "2026-01-09T09:46:06.669Z",
+      "createdAt": "2026-01-09T06:32:48.963Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 81290,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Witty comedy-drama with Michael Douglas - lighter fare but well-crafted",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/vnK8b6bNl1koSthTGbzgMPnh7Ky.jpg",
+      "overview": "An aging actor, who long ago enjoyed a brush with fame, makes his living as an acting coach.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T08:03:54.310Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 215995,
+      "predictedRating": 3,
+      "predictedRatingReason": "Procedural crime drama - solid but may lack the depth you prefer",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/c6xRvQCL07MVNamjfVU2an600q9.jpg",
+      "overview": "When an arson investigator begrudgingly teams up with a police detective, their race to stop two arsonists ignites a twisted game of secrets and suspicions.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 74,
+      "rtAudienceScore": 49,
+      "rtFetchedAt": "2026-01-09T08:03:55.689Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 98178,
+      "predictedRating": 2.5,
+      "predictedRatingReason": "Anthology sci-fi but lacks Black Mirror's edge - too wholesome/light",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/3R5V6R3t1ZVtU2ZpTQT21GNgceb.jpg",
+      "overview": "This reimagining of the classic anthology series transports everyday characters into worlds of wonder, possibility, and imagination.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 41,
+      "rtAudienceScore": 52,
+      "rtFetchedAt": "2026-01-09T08:03:58.659Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.351Z"
+    },
+    {
+      "tmdbId": 122196,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/jiAcdCyf1UbWYBImcNtVeLW0pRj.jpg",
+      "overview": "An exploration of the life of Michael Peterson, his sprawling North Carolina family, and the suspicious death of his wife, Kathleen Peterson.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T08:04:00.645Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 95665,
+      "predictedRating": 3,
+      "predictedRatingReason": "Shonda Rhimes true-crime drama - entertaining but potentially style over substance",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/aZraQSnS9Dbvipv4WLJQ5xrhG3g.jpg",
+      "overview": "Audacious entrepreneur or con artist? A journalist chases down the story of Anna Delvey, who convinced New York's elite she was a German heiress.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 64,
+      "rtAudienceScore": 38,
+      "rtFetchedAt": "2026-01-09T08:04:05.231Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 200908,
+      "predictedRating": 4,
+      "predictedRatingReason": "Prestige WWII drama - similar emotional weight to Pachinko which you rated 4",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/rRv6Lji53tXnP1h6UGYDQVx4FGg.jpg",
+      "overview": "The true story of one Jewish family separated at the start of World War II, determined to survive—and to reunite.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T08:04:06.812Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 69740,
+      "predictedRating": 4.5,
+      "predictedRatingReason": "Dark crime drama similar to The Americans - complex characters and moral ambiguity",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/m73bD8VjibSKuTWg597GQVyVhSb.jpg",
+      "overview": "A financial adviser drags his family from Chicago to the Missouri Ozarks, where he must launder $500 million in five years to appease a drug boss.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 82,
+      "rtAudienceScore": 86,
+      "rtFetchedAt": "2026-01-09T08:04:08.240Z",
+      "streamingFetchedAt": "2026-01-09T09:45:59.592Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 108664,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "True-crime hospital drama - intense and well-made but emotionally heavy",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/yLx44hdSpt9GhP67JafP5sMEoMB.jpg",
+      "overview": "When the floodwaters rose, power failed, and heat soared, exhausted caregivers at a New Orleans hospital were forced to make profound, heart-wrenching decisions.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 86,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T08:04:10.061Z",
+      "streamingFetchedAt": "2026-01-09T09:46:00.131Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 85552,
+      "predictedRating": 3,
+      "predictedRatingReason": "Teen drama with style - visually stunning but subject matter may not resonate",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/3Q0hd3heuWwDWpwcDkhQOA6TYWI.jpg",
+      "overview": "A group of high school students navigate love and friendships in a world of drugs, sex, trauma, and social media.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:04:11.457Z",
+      "streamingFetchedAt": "2026-01-09T09:46:00.646Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 46619,
+      "predictedRating": 4,
+      "predictedRatingReason": "Critically acclaimed slow-burn drama - thoughtful character study you'd likely appreciate",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/tm9nQe9165cyjnTz8NB50izwcpJ.jpg",
+      "overview": "After 19 years on Death Row for the rape and murder of his teenage girlfriend, Daniel Holden is going home. His conviction has been vacated due to new DNA evidence. Now he has to return to a world he no longer knows and his reentry into the outside world may be as unforgiving as prison. Daniel is haunted by the past, dogged by the present, and uncertain of the future. As he struggles to adapt to his new life, his homecoming reignites the fears of a small town and threatens to shatter his family's fragile peace. Daniel's alleged crime divided a community. Will his freedom tear it in half?",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 92,
+      "rtFetchedAt": "2026-01-09T08:04:12.903Z",
+      "streamingFetchedAt": "2026-01-09T09:46:01.180Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 68248,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Australian comedy gem - charming small-town humor like Somebody Somewhere",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/dQpsurcTmqPr64bVMEbzmTzmV4r.jpg",
+      "overview": "When Daniel returns to his hometown, Rosehaven, to take over his family's troubled real estate business, he's surprisingly joined by his best (city) friend Emma - who's on the run from a marriage that didn't last the honeymoon. Between Daniel's crippling anxiety and Emma's exuberant irresponsibility will they be able to save the business? It seems unlikely, but it will be fun to watch them try. And might their friendship mean more than they realise?",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 100,
+      "rtFetchedAt": "2026-01-09T08:04:15.217Z",
+      "streamingFetchedAt": "2026-01-09T09:46:01.699Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 106116,
+      "predictedRating": 3,
+      "predictedRatingReason": "Military action thriller - competent but generic action fare",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/ssIqH4ijlQrrereS45hcoBdvZTU.jpg",
+      "overview": "When brilliant scientist Amber Chesborough vanishes along the Colombia-Venezuela border, her brother and her husband—both elite U.S. Army commandos—struggle to find her amid a guerilla war, discovering that the woman they love might have a secret.",
+      "genres": [
+        "Drama",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 68,
+      "rtAudienceScore": 54,
+      "rtFetchedAt": "2026-01-09T08:04:16.933Z",
+      "streamingFetchedAt": "2026-01-09T09:46:02.266Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 71912,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Fantasy action like Wheel of Time - fun world-building but uneven execution",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/AoGsDM02UVt0npBA8OvpDcZbaMi.jpg",
+      "overview": "Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.",
+      "genres": [
+        "Drama",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 75,
+      "rtAudienceScore": 46,
+      "rtFetchedAt": "2026-01-09T08:04:18.493Z",
+      "streamingFetchedAt": "2026-01-09T09:46:02.781Z",
+      "createdAt": "2026-01-09T06:32:48.964Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 79744,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/70kTz0OmjjZe7zHvIDrq2iKW7PJ.jpg",
+      "overview": "Starting over isn't easy, especially for small-town guy John Nolan who, after a life-altering incident, is pursuing his dream of being an LAPD officer. As the force's oldest rookie, he’s met with skepticism from some higher-ups who see him as just a walking midlife crisis.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 68,
+      "rtAudienceScore": 78,
+      "rtFetchedAt": "2026-01-09T08:03:06.875Z",
+      "streamingFetchedAt": "2026-01-09T09:45:22.530Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1416,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/hjJkrLXhWvGHpLeLBDFznpBTY1S.jpg",
+      "overview": "Follows the personal and professional lives of a group of doctors at Seattle's Grey Sloan Memorial Hospital.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 71,
+      "rtFetchedAt": "2026-01-09T08:03:08.302Z",
+      "streamingFetchedAt": "2026-01-09T09:44:57.625Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 14658,
+      "rating": 4,
+      "posterPath": "/1usR1nanbDvnc0LJlWd5TOylT9M.jpg",
+      "overview": "A reality show contest where sixteen or more castaways split between two or more “Tribes” are taken to a remote isolated location and are forced to live off the land with meager supplies for roughly 39 days. Frequent physical challenges are used to pit the tribes against each other for rewards, such as food or luxuries, or for “Immunity”, forcing the other tribe to attend “Tribal Council”, where they must vote off one of their players.",
+      "genres": [
+        "Reality"
+      ],
+      "rtCriticsScore": 56,
+      "rtAudienceScore": 70,
+      "rtFetchedAt": "2026-01-09T08:17:18.471Z",
+      "streamingFetchedAt": "2026-01-09T08:35:42.385Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 253941,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/ySA5MvhoxTdezNUMe0ifPmhxH4w.jpg",
+      "overview": "The documentary crew that immortalized Dunder Mifflin's Scranton branch is in search of a new subject when they discover a historic Toledo newspaper, The Truth Teller, and the eager publisher trying to revive it.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:32.193Z",
+      "streamingFetchedAt": "2026-01-09T08:35:21.747Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 107113,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/1yjFVQZuW8aofZ5Cgol8iImsVFp.jpg",
+      "overview": "Three strangers share an obsession with true crime and suddenly find themselves wrapped up in one.",
+      "genres": [
+        "Comedy",
+        "Mystery",
+        "Crime"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T08:03:16.687Z",
+      "streamingFetchedAt": "2026-01-09T09:44:57.061Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 83867,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "sci fi",
+      "rating": 4,
+      "posterPath": "/khZqmwHQicTYoS7Flreb9EddFZC.jpg",
+      "overview": "In an era filled with danger, deception and intrigue, Cassian Andor will discover the difference he can make in the struggle against the tyrannical Galactic Empire. He embarks on a path that is destined to turn him into a rebel hero.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:34.484Z",
+      "streamingFetchedAt": "2026-01-09T09:45:13.331Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 205715,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/tEv842Nd5uMSavURG4aQO1pNtst.jpg",
+      "overview": "At America's only college for superheroes, gifted students put their moral boundaries to the test, competing for the university's top ranking, and a chance to join The Seven, Vought International's elite superhero team. When the school's dark secrets come to light, they must decide what kind of heroes they want to become.",
+      "genres": [
+        "Action & Adventure",
+        "Drama",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 74,
+      "rtFetchedAt": "2026-01-09T08:03:20.866Z",
+      "streamingFetchedAt": "2026-01-09T09:45:56.433Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 62717,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/Aq6aqgHo3nzRTT84kV7DrJ8Ifyc.jpg",
+      "overview": "With magic long since lost to England, two men are destined to bring it back; the reclusive Mr. Norrell and daring novice Jonathan Strange. So begins a dangerous battle between two great minds.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T08:03:22.867Z",
+      "streamingFetchedAt": "2026-01-09T09:44:54.373Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 73000,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/bO57OA7pR4dXBQLTshuDEpkPyHF.jpg",
+      "overview": "Nella Oortman's life changes drastically when she marries a wealthy merchant and moves to Amsterdam. As she struggles to win her husband's affection, she discovers dark secrets along the way.",
+      "genres": [
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 76,
+      "rtAudienceScore": 57,
+      "rtFetchedAt": "2026-01-09T08:03:24.886Z",
+      "streamingFetchedAt": "2026-01-09T09:44:56.474Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 86248,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/6TPGDrU9MyWbn2TpggJphVAVXiq.jpg",
+      "overview": "In 2033, people who are near death can be “uploaded” into virtual reality hotels run by 6 tech firms. Cash-strapped Nora lives in Brooklyn and works customer service for the luxurious “Lakeview” digital afterlife. When L.A. party-boy/coder Nathan’s self-driving car crashes, his high-maintenance girlfriend uploads him permanently into Nora’s VR world.",
+      "genres": [
+        "Comedy",
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 88,
+      "rtAudienceScore": 72,
+      "rtFetchedAt": "2026-01-09T08:03:26.330Z",
+      "streamingFetchedAt": "2026-01-09T09:44:51.168Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 103516,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "sci fi",
+      "rating": 4,
+      "posterPath": "/w6KapI2JvrCkOPmQhkwYPJNjqeo.jpg",
+      "overview": "Follow Captain Christopher Pike, Science Officer Spock and Number One in the years before Captain Kirk boarded the U.S.S. Enterprise, as they explore new worlds around the galaxy.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 70,
+      "rtFetchedAt": "2026-01-09T08:03:28.874Z",
+      "streamingFetchedAt": "2026-01-09T09:46:10.150Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 81723,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/4zXlBCc1rNTDtrfMCBFIGKWlwnC.jpg",
+      "overview": "It’s 1882 and the Gilded Age is in full swing when Marian Brook, a young orphaned daughter of a Southern general, moves in with her rigidly conventional aunts in New York City. With the help of Peggy Scott, an African-American woman masquerading as her maid, Marian gets caught up in the dazzling lives of her rich neighbors as she struggles to decide between adhering to the rules or forging her own path.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 69,
+      "rtFetchedAt": "2026-01-09T08:03:31.561Z",
+      "streamingFetchedAt": "2026-01-09T09:44:47.496Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 136315,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/eKfVzzEazSIjJMrw9ADa2x8ksLz.jpg",
+      "overview": "Carmy, a young fine-dining chef, comes home to Chicago to run his family sandwich shop. As he fights to transform the shop and himself, he works alongside a rough-around-the-edges crew that ultimately reveal themselves as his chosen family.",
+      "genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 77,
+      "rtFetchedAt": "2026-01-09T08:03:32.886Z",
+      "streamingFetchedAt": "2026-01-09T09:45:57.555Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 93740,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/tg9I5pOY4M9CKj8U0cxVBTsm5eh.jpg",
+      "overview": "Follow a band of exiles on their monumental journey to save humanity and rebuild civilization amid the fall of the Galactic Empire.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 73,
+      "rtFetchedAt": "2026-01-09T08:03:34.313Z",
+      "streamingFetchedAt": "2026-01-09T09:44:45.433Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 248830,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/y8EWrf5Ry1WmYksWT7MOPWexvr5.jpg",
+      "overview": "Pryce Cahill was headed for golf greatness when an on-course meltdown derailed his career. Now struggling to stay afloat, he goes all in to mentor Santi—a teenage phenom with immense potential—and maybe save himself.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 82,
+      "rtAudienceScore": 72,
+      "rtFetchedAt": "2026-01-09T08:03:35.728Z",
+      "streamingFetchedAt": "2026-01-09T09:45:24.196Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 226285,
+      "watchPreference": "together",
+      "rating": 3,
+      "reviewNote": "Nothing was happening in season 2 it was always the same thing and got boring",
+      "posterPath": "/7lnNSbT90qwtrn1h9TvEkVFMz2P.jpg",
+      "overview": "After her successful career in Chicago, Elsbeth Tascioni, an astute but unconventional attorney, utilizes her singular point of view to make unique observations and corner brilliant criminals alongside the NYPD.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Comedy",
+        "Mystery"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 75,
+      "rtFetchedAt": "2026-01-09T08:03:37.084Z",
+      "streamingFetchedAt": "2026-01-09T09:45:15.554Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 85948,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/i7Em3r7KCyNfkOwMkyqN8UMvK8S.jpg",
+      "overview": "The lives of the support crew serving on one of Starfleet's least important ships, the U.S.S. Cerritos, in 2380. Ensigns Mariner, Boimler, Rutherford and Tendi have to keep up with their duties and their social lives, often while the ship is being rocked by a multitude of sci-fi anomalies.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Animation",
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 72,
+      "rtFetchedAt": "2026-01-09T08:03:38.416Z",
+      "streamingFetchedAt": "2026-01-09T08:35:20.648Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 127641,
+      "watchPreference": "together",
+      "rating": 3,
+      "reviewNote": "easy mystery",
+      "posterPath": "/5wPNto4AHCczZ62QRWycUuBOuyT.jpg",
+      "overview": "A traumatic head injury leaves Sophie with extreme memory loss. In her quest to put the pieces of her life back together—with help from her husband and friends—Sophie begins to question the truth behind her picture-perfect life.",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 20,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T08:03:40.094Z",
+      "streamingFetchedAt": "2026-01-09T09:45:14.973Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 241554,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "reviewNote": "great pacing, acting, love sci fi",
+      "posterPath": "/mIKfKo2uDk3itzAPYIcSeYr4KtF.jpg",
+      "overview": "In a high-tech future, a rogue security robot secretly gains free will. To stay hidden, it reluctantly joins a new mission protecting scientists on a dangerous planet... even though it just wants to binge soap operas.",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T08:03:41.741Z",
+      "streamingFetchedAt": "2026-01-09T08:35:42.903Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 114461,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/eiJeWeCAEZAmRppnXHiTWDcCd3Q.jpg",
+      "overview": "Former Jedi Knight Ahsoka Tano investigates an emerging threat to a vulnerable galaxy.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:36.735Z",
+      "streamingFetchedAt": "2026-01-09T08:35:16.079Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 199318,
+      "posterPath": "/z63D1Y8udrrFOhLFCT9YElcTr0w.jpg",
+      "overview": "The tight-knit Garvey sisters have always looked out for one another. But when the toxic brother-in-law they all wanted dead actually dies, it turns their lives upside down and tests their bond like nothing before.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 88,
+      "rtAudienceScore": 72,
+      "rtFetchedAt": "2026-01-09T08:03:45.462Z",
+      "streamingFetchedAt": "2026-01-09T09:45:58.819Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 147050,
+      "watchPreference": "together",
+      "rating": 2.5,
+      "reviewNote": "Didn't really like anyone in this show",
+      "posterPath": "/6TdW4T2EsnhXrPQccB8szK93UhF.jpg",
+      "overview": "When an intriguing novel appears at the bedside of a journalist whose career has been built on revealing transgressions, she is horrified to realize she's a key character in a long-buried story—one that exposes her darkest secret.",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 76,
+      "rtAudienceScore": 65,
+      "rtFetchedAt": "2026-01-09T08:03:46.811Z",
+      "streamingFetchedAt": "2026-01-09T09:45:00.313Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 106379,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/c15BtJxCXMrISLVmysdsnZUPQft.jpg",
+      "overview": "The story of haves and have-nots in a world in which there's almost nothing left to have. 200 years after the apocalypse, the gentle denizens of luxury fallout shelters are forced to return to the irradiated hellscape their ancestors left behind — and are shocked to discover an incredibly complex, gleefully weird, and highly violent universe waiting for them.",
+      "genres": [
+        "Action & Adventure",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 95,
+      "rtFetchedAt": "2026-01-09T08:03:48.515Z",
+      "streamingFetchedAt": "2026-01-09T08:35:21.162Z",
+      "createdAt": "2026-01-09T06:32:49.467Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 222023,
+      "watchPreference": "solo",
+      "rating": 4,
+      "reviewNote": "laughed out loud",
+      "posterPath": "/ipiqT5uHeJudWy9ICSvuCby7NeI.jpg",
+      "overview": "The inner workings of an American jury trial through the eyes of one particular juror, Ronald Gladden. Gladden is unaware the entire case is fake, everyone except him is an actor and everything that happens — inside the courtroom and out — is carefully planned.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 96,
+      "rtFetchedAt": "2026-01-09T08:00:08.074Z",
+      "streamingFetchedAt": "2026-01-09T09:45:10.144Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 256480,
+      "posterPath": "/wVS8a4sJmD9sP4NOo6qr4PTnlF9.jpg",
+      "overview": "Hannah Howard is the managing director of packaging company Flinley Craddick. When she gets news from Head Office that her branch will be shut down and everyone will go remote, she goes into survival mode, making promises she can't keep in order to keep her \"work family\" together.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 81,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T08:00:09.199Z",
+      "streamingFetchedAt": "2026-01-09T09:45:49.054Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 71915,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/omgCpyBV5sUT8AkeIcEwdPPgKZC.jpg",
+      "overview": "Aziraphale, an angel, and Crowley, a demon, join forces in order to prevent Armageddon. They attempt to raise the Antichrist in a balanced and human way, but are they focusing their efforts in the right direction?",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 86,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T08:00:12.839Z",
+      "streamingFetchedAt": "2026-01-09T09:45:17.122Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 92830,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/4Lok3HBSfbQxibQZBygoVCwKKrZ.jpg",
+      "overview": "During the reign of the Galactic Empire, former Jedi Master, Obi-Wan Kenobi, embarks on a crucial mission to confront allies turned enemies and face the wrath of the Empire.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:38.472Z",
+      "streamingFetchedAt": "2026-01-09T08:35:16.633Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 4194,
+      "hidden": true,
+      "posterPath": "/e1nWfnnCVqxS2LeTO3dwGyAsG2V.jpg",
+      "overview": "Yoda, Obi-Wan Kenobi, Anakin Skywalker, Mace Windu and other Jedi Knights lead the Grand Army of the Republic against the droid army of the Separatists.",
+      "genres": [
+        "Action & Adventure",
+        "Sci-Fi & Fantasy",
+        "Animation"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 91,
+      "rtFetchedAt": "2026-01-09T08:00:18.791Z",
+      "streamingFetchedAt": "2026-01-09T09:45:49.669Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/balls-of-steel-australia",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 122226,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/vFyJH630cF68LohVYjQW49074Sy.jpg",
+      "overview": "Pursued by Wilson Fisk's criminal empire, Maya's journey brings her home and she must confront her own family and legacy.",
+      "genres": [
+        "Drama",
+        "Crime",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 71,
+      "rtAudienceScore": 57,
+      "rtFetchedAt": "2026-01-09T08:00:20.891Z",
+      "streamingFetchedAt": "2026-01-09T09:45:29.775Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 125935,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/nBe1e3JJEZ6veGrVXNF0fRoLu56.jpg",
+      "overview": "In this workplace comedy, a group of dedicated, passionate teachers — and a slightly tone-deaf principal — are brought together in a Philadelphia public school where, despite the odds stacked against them, they are determined to help their students succeed in life. Though these incredible public servants may be outnumbered and underfunded, they love what they do — even if they don’t love the school district’s less-than-stellar attitude toward educating children.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 99,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T08:00:25.423Z",
+      "streamingFetchedAt": "2026-01-09T09:45:35.849Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 99652,
+      "posterPath": "/wW8j4xiU27ZClUpkSP6si3x8BHA.jpg",
+      "overview": "Explore the secret life of a woman we all grew up watching: the sitcom wife. The series looks to break television convention and ask what the world looks like through her eyes. Alternating between single-camera realism and multi-camera zaniness, the formats will inform one another as we imagine what happens when the sitcom wife escapes her confines, and takes the lead in her own life.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 91,
+      "rtAudienceScore": 62,
+      "rtFetchedAt": "2026-01-09T08:00:28.167Z",
+      "streamingFetchedAt": "2026-01-09T09:45:50.185Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 213338,
+      "watchPreference": "together",
+      "rating": 2.5,
+      "posterPath": "/vbbZRlzz41JQjBOT9OEKHgonhZ3.jpg",
+      "overview": "A group of fun-loving American girls burst onto the scene in tightly corseted 1870s London, kicking off an Anglo-American culture clash. Sent to secure husbands and status, the buccaneers' hearts are set on much more than that.",
+      "genres": [
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:40.184Z",
+      "streamingFetchedAt": "2026-01-09T08:35:48.717Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 247767,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/2c6ofLTa5CRfeQjVA1bWiYBdxQN.jpg",
+      "overview": "Desperate for celebrity approval, the newly appointed head of a movie studio and his executive team at Continental Studios must juggle corporate demands with creative ambitions as they try to keep movies alive and relevant.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 76,
+      "rtFetchedAt": "2026-01-09T08:00:31.263Z",
+      "streamingFetchedAt": "2026-01-09T09:45:21.879Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 196322,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/c6MRUtPk0nEPQ9FBD9RdRKt2rIm.jpg",
+      "overview": "Jason Dessen is abducted into an alternate version of his life. To get back to his true family, he embarks on a harrowing journey to save them from the most terrifying foe imaginable: himself.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T08:00:35.348Z",
+      "streamingFetchedAt": "2026-01-09T09:45:11.726Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 204490,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/xUj3YCz3exVDV2iLZus0nUV6HNw.jpg",
+      "overview": "In the heart of London, an anonymous phone call draws two brilliant detectives—a young woman in the early stages of her career and a well-connected man determined to protect his legacy—into a fight to correct an old miscarriage of justice.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 65,
+      "rtFetchedAt": "2026-01-09T08:00:37.022Z",
+      "streamingFetchedAt": "2026-01-09T09:44:59.194Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 125988,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/c2OijvbFEXBW1onbzuvENr4CGQB.jpg",
+      "overview": "In a ruined and toxic future, thousands live in a giant silo deep underground. After its sheriff breaks a cardinal rule and residents die mysteriously, engineer Juliette starts to uncover shocking secrets and the truth about the silo.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 68,
+      "rtFetchedAt": "2026-01-09T08:00:38.369Z",
+      "streamingFetchedAt": "2026-01-09T09:46:11.219Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 69478,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/eGUT7j3n3rn5yGihlCgwUnD70HV.jpg",
+      "overview": "Set in a dystopian future, a woman is forced to live as a concubine under a fundamentalist theocratic dictatorship.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 83,
+      "rtAudienceScore": 57,
+      "rtFetchedAt": "2026-01-09T08:00:42.016Z",
+      "streamingFetchedAt": "2026-01-09T08:35:24.468Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 129552,
+      "watchPreference": "together",
+      "rating": 3,
+      "reviewNote": "this got so boring in the 2nd season",
+      "posterPath": "/4c5yUNcaff4W4aPrkXE6zr7papX.jpg",
+      "overview": "Brought together by a midnight phone call, an FBI agent and a cybersecurity expert must unravel an ever-growing web of political conspiracies.",
+      "genres": [
+        "Action & Adventure",
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 80,
+      "rtAudienceScore": 58,
+      "rtFetchedAt": "2026-01-09T08:00:43.538Z",
+      "streamingFetchedAt": "2026-01-09T09:44:58.679Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 95396,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "too slow for helen",
+      "rating": 5,
+      "posterPath": "/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
+      "overview": "Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives. When a mysterious colleague appears outside of work, it begins a journey to discover the truth about their jobs.",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T08:00:44.989Z",
+      "streamingFetchedAt": "2026-01-09T09:45:38.919Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 94951,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/7QxQlpqEjx3vRpEtuh6Y0R6eY9O.jpg",
+      "overview": "Meet the team behind the biggest multiplayer video game of all time. But in a workplace focused on building worlds, molding heroes, and creating legends, the most hard-fought battles don’t occur in the game—they happen in the office.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T08:00:46.415Z",
+      "streamingFetchedAt": "2026-01-09T09:45:50.797Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 42009,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg",
+      "overview": "Twisted tales run wild in this mind-bending anthology series that reveals humanity's worst traits, greatest innovations and more.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 83,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T08:00:49.519Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-09T08:35:26.657Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/jealousy-incarnate",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 241259,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/tN9OcbkAOPwHSr1sgMornZtQZBx.jpg",
+      "overview": "When a struggling comedian shows one act of kindness to a vulnerable woman, it sparks a suffocating obsession which threatens to wreck both their lives.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 99,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T08:00:51.593Z",
+      "streamingFetchedAt": "2026-01-09T09:45:25.250Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 108545,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/ykZ7hlShkdRQaL2aiieXdEMmrLb.jpg",
+      "overview": "Across continents and decades, five brilliant friends make earth-shattering discoveries as the laws of science unravel and an existential threat emerges.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 78,
+      "rtAudienceScore": 76,
+      "rtFetchedAt": "2026-01-09T08:00:53.426Z",
+      "streamingFetchedAt": "2026-01-09T09:45:08.364Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 93405,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/1QdXdRYfktUSONkl1oD5gc6Be0s.jpg",
+      "overview": "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits — with deadly high stakes.",
+      "genres": [
+        "Action & Adventure",
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 85,
+      "rtAudienceScore": 67,
+      "rtFetchedAt": "2026-01-09T08:00:56.109Z",
+      "streamingFetchedAt": "2026-01-09T09:45:20.846Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 71914,
+      "watchPreference": "solo",
+      "rating": 4,
+      "reviewNote": "So gutted this was cancelled i loved the book and also this interpretation",
+      "posterPath": "/ihBi24EIr5kwAeY2PqmsgAcCj4n.jpg",
+      "overview": "The lives of five young villagers change forever when a strange and powerful woman arrives, claiming one of them is the child of an ancient prophecy with the power to tip the balance between Light and Dark forever. They must choose whether to trust this stranger – and each other – with the fate of the world before the Dark One breaks out of His prison, and the Last Battle begins.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 88,
+      "rtAudienceScore": 76,
+      "rtFetchedAt": "2026-01-09T08:00:57.794Z",
+      "streamingFetchedAt": "2026-01-09T09:45:20.312Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 203857,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/cOKXV0FalCYixNmZYCfHXgyQ0VX.jpg",
+      "overview": "Amid an international crisis, a US diplomat contends with her high-profile job as ambassador to the UK and her strained marriage to a political star.",
+      "genres": [
+        "Drama",
+        "War & Politics"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 73,
+      "rtFetchedAt": "2026-01-09T08:00:59.158Z",
+      "streamingFetchedAt": "2026-01-09T08:35:27.855Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 216082,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/odIyR46aAX59dvQ1ON4P53ow1aE.jpg",
+      "overview": "A former U.S. President is called out of retirement to find the source of a deadly cyberattack, only to discover a vast web of lies and conspiracies.",
+      "genres": [
+        "Drama",
+        "War & Politics"
+      ],
+      "rtCriticsScore": 54,
+      "rtAudienceScore": 53,
+      "rtFetchedAt": "2026-01-09T08:01:00.874Z",
+      "streamingFetchedAt": "2026-01-09T08:35:22.795Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/the-oval",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 117488,
+      "posterPath": "/xRnGrn7Z7SC0KIBodocoU1QgDZF.jpg",
+      "overview": "This equal parts survival epic, psychological horror story and coming-of-age drama tells the saga of a team of wildly talented high school girls soccer players who become the (un)lucky survivors of a plane crash deep in the remote northern wilderness. The series chronicles their descent from a complicated but thriving team to savage clans, while also tracking the lives they’ve attempted to piece back together nearly 25 years later.",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 64,
+      "rtFetchedAt": "2026-01-09T08:01:02.195Z",
+      "streamingFetchedAt": "2026-01-09T09:45:00.830Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 130842,
+      "rating": 3.5,
+      "reviewNote": "great acting and love australian stuff. excellent drama too.",
+      "posterPath": "/aHl6HgHcFLfe68E7uiq8NRDCXOv.jpg",
+      "overview": "An unconventional relationship in a world on the cusp of change; a star newsreader and an ambitious bisexual reporter join forces in a ruthless 1986 newsroom, as events unfold that will change their lives.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 91,
+      "rtFetchedAt": "2026-01-09T08:01:03.819Z",
+      "streamingFetchedAt": "2026-01-09T08:35:28.373Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 91363,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/lztz5XBMG1x6Y5ubz7CxfPFsAcW.jpg",
+      "overview": "Taking inspiration from the comic books of the same name, each episode of this animated anthology series questions, revisits and twists classic Marvel Cinematic moments.",
+      "genres": [
+        "Animation",
+        "Action & Adventure",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 44,
+      "rtAudienceScore": 53,
+      "rtFetchedAt": "2026-01-09T08:01:06.096Z",
+      "streamingFetchedAt": "2026-01-09T09:45:24.734Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 126308,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg",
+      "overview": "In Japan in the year 1600, at the dawn of a century-defining civil war, Lord Yoshii Toranaga is fighting for his life as his enemies on the Council of Regents unite against him, when a mysterious European ship is found marooned in a nearby fishing village.",
+      "genres": [
+        "Drama",
+        "War & Politics"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:41.859Z",
+      "streamingFetchedAt": "2026-01-09T08:35:23.315Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 110382,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/wUTXdmL6oNjhiStGveOaPeuFOYQ.jpg",
+      "overview": "This sweeping saga chronicles the hopes and dreams of a Korean immigrant family across four generations as they leave their homeland in an indomitable quest to survive and thrive.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 92,
+      "rtFetchedAt": "2026-01-09T08:01:12.679Z",
+      "streamingFetchedAt": "2026-01-09T09:45:51.925Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 136311,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/cVmrNYgm5wcEexbXg4laNn3u4vq.jpg",
+      "overview": "Jimmy is struggling to grieve the loss of his wife while being a dad, friend, and therapist. He decides to try a new approach with everyone in his path: unfiltered, brutal honesty. Will it make things better—or unleash uproarious chaos?",
+      "genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T08:01:14.327Z",
+      "streamingFetchedAt": "2026-01-09T09:45:52.481Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 138501,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/mGsxKwXUjojitRv2E9qMTbxbBRd.jpg",
+      "overview": "Agatha Harkness gathers a coven of witches and sets off down, down, down The Witches' Road.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Mystery"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T08:01:16.652Z",
+      "streamingFetchedAt": "2026-01-09T09:45:17.637Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 194704,
+      "watchPreference": "solo",
+      "rating": 2.5,
+      "reviewNote": "I hate when a show is cancelled without being resolved",
+      "posterPath": "/w9iG3waL71PGlabP8kZe5Io6Igj.jpg",
+      "overview": "A small town is forever changed when a mysterious machine appears, promising to reveal everyone's true potential. Soon residents start changing jobs, rethinking relationships, and questioning long-held beliefs—all in pursuit of a better future.",
+      "genres": [
+        "Comedy",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 74,
+      "rtFetchedAt": "2026-01-09T08:01:18.965Z",
+      "streamingFetchedAt": "2026-01-09T08:35:30.556Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 95480,
+      "watchPreference": "together",
+      "watchPreferenceNote": "spy comedy",
+      "rating": 4.5,
+      "posterPath": "/dnpatlJrEPiDSn5fzgzvxtiSnMo.jpg",
+      "overview": "Follow a dysfunctional team of MI5 agents—and their obnoxious boss, the notorious Jackson Lamb—as they navigate the espionage world's smoke and mirrors to defend England from sinister forces.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T08:01:20.342Z",
+      "streamingFetchedAt": "2026-01-09T08:35:28.888Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 124101,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/ulBzMy5DZjBeUo6wHqn8ao0Zn6j.jpg",
+      "overview": "Explore a dark mentorship that forms between Deborah Vance, a legendary Las Vegas comedian, and an entitled, outcast 25-year-old.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 99,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:01:21.749Z",
+      "streamingFetchedAt": "2026-01-09T08:35:23.949Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 84773,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/kf5Hz70tjNAHg4swGDzOr9BfoZ1.jpg",
+      "overview": "Beginning in a time of relative peace, we follow an ensemble cast of characters as they confront the re-emergence of evil to Middle-earth. From the darkest depths of the Misty Mountains, to the majestic forests of Lindon, to the breathtaking island kingdom of Númenor, to the furthest reaches of the map, these kingdoms and characters will carve out legacies that live on long after they are gone.",
+      "genres": [
+        "Action & Adventure",
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 49,
+      "rtFetchedAt": "2026-01-09T08:01:23.186Z",
+      "streamingFetchedAt": "2026-01-09T08:35:25.564Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 46533,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/w1UBlxEXhbKe8sp0fxFZh7MqTce.jpg",
+      "overview": "Set during the Cold War period in the 1980s, The Americans is the story of Elizabeth and Philip Jennings, two Soviet KGB officers posing as an American married couple in the suburbs of Washington D.C. and their neighbor, Stan Beeman, an FBI Counterintelligence agent.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T08:01:28.150Z",
+      "streamingFetchedAt": "2026-01-09T09:45:19.787Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 118642,
+      "watchPreference": "together",
+      "rating": 2,
+      "reviewNote": "slow pacing and not really funny like it was supposed to be",
+      "posterPath": "/kvJvGxsDLi3MmHzc9nregyJtOWY.jpg",
+      "overview": "Meet the Smiths: two lonely strangers, John and Jane, who have given up their lives and identities to be thrown together as partners – both in espionage and in marriage.",
+      "genres": [
+        "Action & Adventure",
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 13,
+      "rtFetchedAt": "2026-01-09T08:01:30.204Z",
+      "streamingFetchedAt": "2026-01-09T08:35:31.681Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 126116,
+      "posterPath": "/mhi7oohUBIufTjF9u41uMXYHsw2.jpg",
+      "overview": "Guilt, violence and impossible choices – what does it take to survive? Tense, gritty and heartbreaking – Jimmy McGovern's award-winning prison drama, with an all-star cast.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T08:01:31.890Z",
+      "streamingFetchedAt": "2026-01-09T09:45:53.014Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 76479,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "too crude for Helen",
+      "rating": 4,
+      "posterPath": "/2zmTngn1tYC1AvfnrFLhxeD82hz.jpg",
+      "overview": "A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 70,
+      "rtAudienceScore": 44,
+      "rtFetchedAt": "2026-01-09T08:01:34.167Z",
+      "streamingFetchedAt": "2026-01-09T09:46:08.478Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 91239,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/zCEm0xrRMa5fLCQ9d0nvcw6tvcr.jpg",
+      "overview": "Wealth, lust, and betrayal set in the backdrop of Regency era England, seen through the eyes of the powerful Bridgerton family.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 74,
+      "rtFetchedAt": "2026-01-09T08:01:37.019Z",
+      "streamingFetchedAt": "2026-01-09T09:46:07.299Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/the-benefits-of-gusbandry",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 81224,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/vD5gUfFYEuYXwfOVJQjLIQTGs0s.jpg",
+      "overview": "France, 1815. Jean Valjean, a common thief, is released from prison after having lived a hell in life for 19 years, but a small mistake puts the law again on his trail. Ruthless Inspector Javert pursues him thorough years, driven by a twisted sense of justice, while Valjean reforms himself, thrives and dedicates his life to good deeds. In 1832, while the revolution ravages the streets of Paris, Valjean and Javert cross their paths for the last time.",
+      "genres": [
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:43.933Z",
+      "streamingFetchedAt": "2026-01-09T08:35:49.411Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 197242,
+      "watchPreference": "together",
+      "watchPreferenceNote": "detective show",
+      "rating": 3.5,
+      "posterPath": "/r5lbLfjfFZYhr2TfuvKpf7b0HpQ.jpg",
+      "overview": "Chief Inspector Armand Gamache and his team investigate a series of perplexing murders, in the seemingly idyllic village of Three Pines and uncover the buried secrets of its eccentric residents. In the process, Gamache is forced to confront buried secrets of his own. Based on the novels by Louise Penny.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 72,
+      "rtAudienceScore": 74,
+      "rtFetchedAt": "2026-01-09T08:01:40.272Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 120911,
+      "watchPreference": "together",
+      "watchPreferenceNote": "helen loves a spy show",
+      "rating": 3,
+      "posterPath": "/jbyaKYNexl1poKZnEmB6Qobn60s.jpg",
+      "overview": "Navy SEAL Commander James Reece turns to vengeance as he investigates the mysterious forces behind the murder of his entire platoon. Free from the military’s command structure, Reece applies the lessons he’s learned from nearly two decades of warfare to hunt down the people responsible.",
+      "genres": [
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtCriticsScore": 41,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T08:01:43.334Z",
+      "streamingFetchedAt": "2026-01-09T09:45:58.272Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 208942,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/aBU2mlyZT5BzvCkXXUewH7wfhkK.jpg",
+      "overview": "Count Alexander Rostov finds himself going from riches to rags following the Russian revolution. A Soviet tribunal banishes him to the attic room of an opulent hotel, where, oblivious to the world outside, he discovers the true value of friendship, family and love.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T08:01:45.234Z",
+      "streamingFetchedAt": "2026-01-09T09:46:07.897Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 67198,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/xwpOHgym48Ftz7fbJq5te5xoiwu.jpg",
+      "overview": "Follow the voyages of Starfleet on their missions to discover new worlds and new life forms, and one Starfleet officer who must learn that to truly understand all things alien, you must first understand yourself.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 34,
+      "rtFetchedAt": "2026-01-09T08:01:48.740Z",
+      "streamingFetchedAt": "2026-01-09T09:45:26.832Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 67487,
+      "reviewNote": "got a bit bored of this after a couple of episodes",
+      "posterPath": "/8sngJVF54bugHfCkjJOsY4wx8Hk.jpg",
+      "overview": "In a world where superheroes have been real for decades, an accountant with zero powers comes to realize his city is owned by a super villain. As he struggles to uncover this conspiracy, he falls in league with a strange blue superhero.",
+      "genres": [
+        "Comedy",
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 93,
+      "rtFetchedAt": "2026-01-09T08:01:51.085Z",
+      "streamingFetchedAt": "2026-01-09T09:45:55.917Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 208596,
+      "posterPath": "/8hRXZ57tykJs4NXjmub7u1PQuB6.jpg",
+      "overview": "This seven-episode anthology features a cast of leading actors and depicts various forms of \"love,\" such as love almost forgotten, love between sons and mothers, and love that transcends borders.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 100,
+      "rtFetchedAt": "2026-01-09T08:01:53.394Z",
+      "streamingFetchedAt": "2026-01-09T09:45:54.688Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 82728,
+      "rating": 4,
+      "posterPath": "/b9mY0X5T20ZM073hoa5n0dgmbfN.jpg",
+      "overview": "Bluey is an inexhaustible six year-old Blue Heeler dog, who loves to play and turns everyday family life into extraordinary adventures, developing her imagination as well as her mental, physical and emotional resilience.",
+      "genres": [
+        "Animation",
+        "Comedy",
+        "Kids"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T08:01:57.332Z",
+      "streamingFetchedAt": "2026-01-09T09:45:56.970Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 225780,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/hwcgXey9qgpoz6GIcLRG8Eshwpk.jpg",
+      "overview": "Two vastly different female detectives are thrown together to solve the murder of a local man in the sleepy seaside hamlet of Deadloch.",
+      "genres": [
+        "Comedy",
+        "Crime"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T08:01:59.075Z",
+      "streamingFetchedAt": "2026-01-09T09:45:54.082Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 96677,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/h6Z2oogE4mJk2uffdtIlLhb0EHx.jpg",
+      "overview": "Inspired by the adventures of Arsène Lupin, gentleman thief Assane Diop sets out to avenge his father for an injustice inflicted by a wealthy family.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 79,
+      "rtFetchedAt": "2026-01-09T08:02:02.765Z",
+      "streamingFetchedAt": "2026-01-09T09:45:07.849Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 92388,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/sfWVQRIoDrfIcY2cmhpLgSZoLia.jpg",
+      "overview": "A local Indigenous politician is recruited to the senate by the Australian Prime Minister after a contentious video goes viral.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T08:02:05.130Z",
+      "streamingFetchedAt": "2026-01-09T09:45:07.254Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 117303,
+      "watchPreference": "together",
+      "rating": 4.5,
+      "posterPath": "/tCPIf5f6jUIr8KDMWsfaXwXW0kl.jpg",
+      "overview": "In the 1950s, Elizabeth Zott's dream of being a scientist is challenged by a society that says women belong in the domestic sphere. She accepts a job on a TV cooking show and sets out to teach a nation of overlooked housewives way more than recipes.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 83,
+      "rtAudienceScore": 83,
+      "rtFetchedAt": "2026-01-09T08:02:07.726Z",
+      "streamingFetchedAt": "2026-01-09T09:45:06.165Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 87917,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/mNXT1QjRCEasXGH3rHCTQm0A0Su.jpg",
+      "overview": "Explore an aspirational world where NASA and the space program remained a priority and a focal point of our hopes and dreams as told through the lives of NASA astronauts, engineers, and their families.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy",
+        "War & Politics"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T08:02:10.448Z",
+      "streamingFetchedAt": "2026-01-09T08:35:38.085Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 90282,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/y9x2R87yt2U616736NJrP0d56dt.jpg",
+      "overview": "A behind-the-scenes look at the lives of the people who help America wake up in the morning, exploring the unique challenges faced by the men and women who carry out this daily televised ritual.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 69,
+      "rtAudienceScore": 42,
+      "rtFetchedAt": "2026-01-09T08:02:11.827Z",
+      "streamingFetchedAt": "2026-01-09T09:45:06.682Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/best-room-wins",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 65494,
+      "watchPreference": "together",
+      "rating": 4.5,
+      "posterPath": "/1DDE0Z2Y805rqfkEjPbZsMLyPwa.jpg",
+      "overview": "The gripping, decades-spanning inside story of Her Majesty Queen Elizabeth II and the Prime Ministers who shaped Britain's post-war destiny. \n\nThe Crown tells the inside story of two of the most famous addresses in the world – Buckingham Palace and 10 Downing Street – and the intrigues, love lives and machinations behind the great events that shaped the second half of the 20th century. Two houses, two courts, one Crown.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 81,
+      "rtAudienceScore": 92,
+      "rtFetchedAt": "2026-01-09T08:02:14.802Z",
+      "streamingFetchedAt": "2026-01-09T09:45:02.981Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 202208,
+      "watchPreference": "together",
+      "rating": 2.5,
+      "posterPath": "/lcyax0pIH6vZWbho2hxsMTt9KpN.jpg",
+      "overview": "It's a tale of reinvention, betrayal, redemption, and love with a twist. Jack Dawkins is The Artful Dodger, whose pickpocketing fingers have become the skilled hands of a surgeon. He is torn between an impossible love and the criminal underworld he secretly craves. This will require Artfulness.",
+      "genres": [
+        "Drama",
+        "Crime",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 96,
+      "rtFetchedAt": "2026-01-09T08:02:16.494Z",
+      "streamingFetchedAt": "2026-01-09T09:45:36.362Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 114472,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/f5ZMzzCvt2IzVDxr54gHPv9jlC9.jpg",
+      "overview": "Nick Fury and Talos discover a faction of shapeshifting Skrulls who have been infiltrating Earth for years.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 53,
+      "rtAudienceScore": 43,
+      "rtFetchedAt": "2026-01-09T08:02:18.661Z",
+      "streamingFetchedAt": "2026-01-09T09:45:04.526Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 156507,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/3sHAsDMik5CyJCwrfb0KS6EaBdR.jpg",
+      "overview": "Outsider Becky obsesses over influencer Chloe – until tragedy pulls her in deeper than she ever dreamed possible.",
+      "genres": [
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 56,
+      "rtFetchedAt": "2026-01-09T08:02:20.278Z",
+      "streamingFetchedAt": "2026-01-09T09:45:05.629Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 84958,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/oJdVHUYrjdS2IqiNztVIP4GPB1p.jpg",
+      "overview": "After stealing the Tesseract during the events of “Avengers: Endgame,” an alternate version of Loki is brought to the mysterious Time Variance Authority, a bureaucratic organization that exists outside of time and space and monitors the timeline. They give Loki a choice: face being erased from existence due to being a “time variant” or help fix the timeline and stop a greater threat.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T08:02:22.440Z",
+      "streamingFetchedAt": "2026-01-09T09:45:05.062Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 83631,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "too crude for helen",
+      "rating": 3,
+      "posterPath": "/wa3ZQE9kLnqwN3vQ0NNjg1NPsCa.jpg",
+      "overview": "A documentary-style look into the daily (or rather, nightly) lives of a group of vampires in Staten Island who have “lived” together for hundreds and hundreds of years.",
+      "genres": [
+        "Comedy",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 92,
+      "rtFetchedAt": "2026-01-09T08:02:23.902Z",
+      "streamingFetchedAt": "2026-01-09T09:46:09.024Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 155537,
+      "rating": 3,
+      "posterPath": "/qu312pwM61NPTr7nexvovCClDNP.jpg",
+      "overview": "As Jimmy Keene begins a 10-year prison sentence, he gets an incredible offer: If he can elicit a confession from suspected killer Larry Hall, Jimmy will be freed. Completing this mission becomes the challenge of a lifetime.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 95,
+      "rtFetchedAt": "2026-01-09T08:02:25.347Z",
+      "streamingFetchedAt": "2026-01-09T08:35:25.023Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 73375,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/cO4py3L3q5GNPrA0qr1wVDrosK1.jpg",
+      "overview": "When CIA analyst Jack Ryan stumbles upon a suspicious series of bank transfers his search for answers pulls him from the safety of his desk job and catapults him into a deadly game of cat and mouse throughout Europe and the Middle East, with a rising terrorist figurehead preparing for a massive attack against the US and her allies.",
+      "genres": [
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:45.493Z",
+      "streamingFetchedAt": "2026-01-09T08:35:43.968Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 63247,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/8MfgyFHf7XEboZJPZXCIDqqiz6e.jpg",
+      "overview": "A dark odyssey about the dawn of artificial consciousness and the evolution of sin. Set at the intersection of the near future and the reimagined past, it explores a world in which every human appetite, no matter how noble or depraved, can be indulged.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Western"
+      ],
+      "rtCriticsScore": 80,
+      "rtAudienceScore": 75,
+      "rtFetchedAt": "2026-01-09T08:02:30.859Z",
+      "streamingFetchedAt": "2026-01-09T08:35:26.135Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 93812,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/tpz9UQ3hUwYufNcKWVW00FCjWyc.jpg",
+      "overview": "A genre-bending, anti-historical ride through 18th century Russia following the rise of Catherine the Nothing to Catherine the Great and her explosive relationship with husband Peter, the emperor of Russia.",
+      "genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:02:33.756Z",
+      "streamingFetchedAt": "2026-01-09T08:35:27.338Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 88055,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/plsSSobmPSSz4hm8vYMXeIVkJJP.jpg",
+      "overview": "A Philadelphia couple are in mourning after an unspeakable tragedy creates a rift in their marriage and opens the door for a mysterious force to enter their home.",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 79,
+      "rtFetchedAt": "2026-01-09T08:02:35.086Z",
+      "streamingFetchedAt": "2026-01-09T09:45:04.013Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 80054,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/3T2TJ61ems7ArVGwb6kiVuKcdUk.jpg",
+      "overview": "Descend into the world of true-crime podcasts with Poppy Parnell, who risks everything—including her life—to pursue truth and justice.",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 15,
+      "rtAudienceScore": 54,
+      "rtFetchedAt": "2026-01-09T08:02:42.038Z",
+      "streamingFetchedAt": "2026-01-09T09:45:02.447Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 98892,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/s2Z5Rm7H0DFHX8cF0CQjIFOd6Am.jpg",
+      "overview": "Josh and Melissa are a struggling couple whose lives are transformed when they get trapped in a magical musical town—with a mission they must complete.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:02:44.853Z",
+      "streamingFetchedAt": "2026-01-09T09:45:23.063Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 97546,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/5fhZdwP1DVJ0FyVH6vrFdHwpXIn.jpg",
+      "overview": "Ted Lasso, an American football coach, moves to England when he's hired to manage a soccer team—despite having no experience. With cynical players and a doubtful town, will he get them to see the Ted Lasso Way?",
+      "genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 86,
+      "rtFetchedAt": "2026-01-09T08:02:46.255Z",
+      "streamingFetchedAt": "2026-01-09T09:45:21.364Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 195819,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/9TN1ZA6VMz1hBGiIHVj2F3dR69R.jpg",
+      "overview": "A London talent agency’s employees must scramble to keep their star clients happy and their business afloat after the sudden death of their founder.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 75,
+      "rtAudienceScore": 64,
+      "rtFetchedAt": "2026-01-09T08:02:48.065Z",
+      "streamingFetchedAt": "2026-01-09T09:45:23.621Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 85052,
+      "posterPath": "/nLjUC3ze3WxCFhg4GDbcwLRSgvJ.jpg",
+      "overview": "The true story of London Metropolitan police detective Colin Sutton's manhunt for serial criminals.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:47.145Z",
+      "streamingFetchedAt": "2026-01-09T08:35:43.455Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 73107,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/j1XpwD11f0BAEI7pX6UdMhUVX2F.jpg",
+      "overview": "A listless hitman is enthralled by theatre acting and becomes eager to leave his old life behind in pursuit of a new career.",
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T08:02:53.479Z",
+      "streamingFetchedAt": "2026-01-09T09:45:03.502Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 70796,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/zS7fQiOZiKCVH2vlYSiIsFWW8hh.jpg",
+      "overview": "It’s 1958 Manhattan and Miriam “Midge” Maisel has everything she’s ever wanted - the perfect husband, kids, and Upper West Side apartment. But when her life suddenly takes a turn and Midge must start over, she discovers a previously unknown talent - one that will take her all the way from the comedy clubs of Greenwich Village to a spot on Johnny Carson’s couch.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:02:55.168Z",
+      "streamingFetchedAt": "2026-01-09T09:45:01.886Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 82856,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg",
+      "overview": "After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 78,
+      "rtFetchedAt": "2026-01-09T08:02:59.059Z",
+      "streamingFetchedAt": "2026-01-09T09:45:01.346Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 115036,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/gNbdjDi1HamTCrfvM9JeA94bNi2.jpg",
+      "overview": "Legendary bounty hunter Boba Fett and mercenary Fennec Shand must navigate the galaxy’s underworld when they return to the sands of Tatooine to stake their claim on the territory once ruled by Jabba the Hutt and his crime syndicate.",
+      "genres": [
+        "Action & Adventure",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 66,
+      "rtAudienceScore": 48,
+      "rtFetchedAt": "2026-01-09T08:03:01.426Z",
+      "streamingFetchedAt": "2026-01-09T09:44:58.145Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 106393,
+      "predictedRating": 4,
+      "predictedRatingReason": "Trek animation like Lower Decks (4.5) - fun, kid-friendly but still appeals to fans",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/eUFD446HtoayV4FsXGmECXZdm7x.jpg",
+      "overview": "A motley crew of young rebellious aliens commandeer an old Starfleet ship and must figure out how to work together while navigating a greater galaxy, in search for a better future. These six young outcasts know nothing about the ship they have commandeered, but over the course of their adventures together, they will each be introduced to Starfleet and the ideals it represents.",
+      "genres": [
+        "Animation",
+        "Sci-Fi & Fantasy",
+        "Kids"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T08:03:03.933Z",
+      "streamingFetchedAt": "2026-01-09T09:45:55.303Z",
+      "createdAt": "2026-01-09T06:32:49.468Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 80039,
+      "watchPreference": "together",
+      "rating": 2.5,
+      "reviewNote": "seemed okay but there are too many other shows to watch so i ditched after a few episodes",
+      "posterPath": "/CrrTqw7LHafnbdH9UcK60aOZSm.jpg",
+      "overview": "Follow young Cora’s journey as she makes a desperate bid for freedom in the antebellum South. After escaping her Georgia plantation for the rumored Underground Railroad, Cora discovers no mere metaphor, but an actual railroad full of engineers and conductors, and a secret network of tracks and tunnels beneath the Southern soil.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 76,
+      "rtFetchedAt": "2026-01-09T07:58:25.921Z",
+      "streamingFetchedAt": "2026-01-09T09:45:45.677Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 65495,
+      "posterPath": "/8HZyGMnPLVVb00rmrh6A2SbK9NX.jpg",
+      "overview": "Two cousins work through the Atlanta music scene in order to better their lives and the lives of their families.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T07:58:27.347Z",
+      "streamingFetchedAt": "2026-01-09T09:45:46.291Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 85949,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "Sci fi = me",
+      "rating": 3.5,
+      "reviewNote": "Love Star Trek always but the first couple of seasons were not as good as other shows.",
+      "posterPath": "/bONYUEn7iMFCebhDuqNG7hqqwoO.jpg",
+      "overview": "Set twenty years after the events of Star Trek Nemesis, we follow the now-retired Admiral Picard into the next chapter of his life.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 57,
+      "rtFetchedAt": "2026-01-09T07:57:50.497Z",
+      "streamingFetchedAt": "2026-01-09T09:45:41.172Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 107005,
+      "watchPreference": "together",
+      "reviewNote": "this fizzled after the first few episodes didn't go anywhere we dropped it",
+      "posterPath": "/3sqXMRpidT15QylW6GlQFuGpGCc.jpg",
+      "overview": "In 1943, Carson Shaw travels to Chicago to try out for the All-American Girls Professional Baseball League. There, she meets other women who also dream of playing pro baseball and makes connections that open up her world. Rockford local Max Chapman also comes to the tryouts but is turned away. With the support of her best friend Clance, she must forge a new path to pursue her dream.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:48.889Z",
+      "streamingFetchedAt": "2026-01-09T08:35:18.288Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 104674,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/biZctcKYktjxP6CP2JzaJDoxs5p.jpg",
+      "overview": "David Tennant and Michael Sheen (playing themselves) were due to star in a production of 'Six Characters in Search of an Author' in the West End. The pandemic has put an end to that, but their director (Simon Evans) is determined not to let the opportunity pass them by.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 98,
+      "rtFetchedAt": "2026-01-09T07:58:30.118Z",
+      "streamingFetchedAt": "2026-01-09T08:35:22.284Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 71738,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/78xnHh9H5wYcUeZoB0bt1UgInAW.jpg",
+      "overview": "Follow the crew of the not-so-functional exploratory ship in the Earth's interstellar fleet, 400 years in the future.",
+      "genres": [
+        "Drama",
+        "Comedy",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 77,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T07:58:32.677Z",
+      "streamingFetchedAt": "2026-01-09T09:45:34.212Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/wife-mom-bounty-hunter",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 122066,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/9SkOJF92FE0H1UXeOgLz7lAnoMb.jpg",
+      "overview": "The story of Elizabeth Holmes, the enigmatic Stanford dropout who founded medical testing start-up Theranos. Lauded as a Steve Jobs for the next tech generation and once worth billions of dollars, the myth crumbled when it was revealed that none of the tech actually worked, putting thousands of people's health in grave danger.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T07:58:34.050Z",
+      "streamingFetchedAt": "2026-01-09T08:35:32.777Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 69158,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/8qoOHOfbUbrCcHZnDVxGcwOWinV.jpg",
+      "overview": "Picking up one year after the events of the final broadcast episode of \"The Good Wife\", an enormous financial scam has destroyed the reputation of a young lawyer, Maia Rindell, while simultaneously wiping out her mentor and godmother Diane Lockhart's savings. Forced out of her law firm, now called \"Lockhart, Deckler, Gussman, Lee, Lyman, Gilbert, Lurie, Kagan, Tannebaum & Associates\", they join Lucca Quinn at one of Chicago's preeminent law firms.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 66,
+      "rtFetchedAt": "2026-01-09T07:58:36.782Z",
+      "streamingFetchedAt": "2026-01-09T08:35:39.661Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 8592,
+      "watchPreference": "solo",
+      "rating": 5,
+      "reviewNote": "One of my fav shows of all time rewatched many times",
+      "posterPath": "/dFs6yHxheEGoZSoA0Fdkgy6Jxh0.jpg",
+      "overview": "In an attempt to beautify her town — and advance her career — Leslie Knope, a mid-level bureaucrat in the Parks and Recreation Department of Pawnee, Indiana, takes on bureaucrats, cranky neighbors, and single-issue fanatics whose weapons are lawsuits, the jumble of city codes, and the democratic process she loves so much.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T07:57:49.055Z",
+      "streamingFetchedAt": "2026-01-09T09:45:40.495Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 92783,
+      "watchPreference": "solo",
+      "rating": 3,
+      "reviewNote": "an averge marvel show but i watch them all (mostly) it wasn't the worst ever",
+      "posterPath": "/hJfI6AGrmr4uSHRccfJuSsapvOb.jpg",
+      "overview": "Jennifer Walters navigates the complicated life of a single, 30-something attorney who also happens to be a green 6-foot-7-inch superpowered hulk.",
+      "genres": [
+        "Comedy",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:50.456Z",
+      "streamingFetchedAt": "2026-01-09T08:35:45.526Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 66732,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg",
+      "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Mystery",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 83,
+      "rtFetchedAt": "2026-01-09T07:58:40.707Z",
+      "streamingFetchedAt": "2026-01-09T08:35:35.898Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 60059,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/fC2HDm5t0kHl7mTm7jxMR31b7by.jpg",
+      "overview": "Six years before Saul Goodman meets Walter White. We meet him when the man who will become Saul Goodman is known as Jimmy McGill, a small-time lawyer searching for his destiny, and, more immediately, hustling to make ends meet. Working alongside, and, often, against Jimmy, is “fixer” Mike Ehrmantraut. The series tracks Jimmy’s transformation into Saul Goodman, the man who puts “criminal” in “criminal lawyer\".",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 96,
+      "rtFetchedAt": "2026-01-09T07:58:42.031Z",
+      "streamingFetchedAt": "2026-01-09T08:35:35.383Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 100414,
+      "watchPreference": "together",
+      "rating": 3,
+      "reviewNote": "fun show but sadly a bit of a rubbish payoff",
+      "posterPath": "/vY02Rbk8ZUgiQgziGMuYKNT9IBO.jpg",
+      "overview": "Four ordinary Brits are accused of kidnapping the son of a prominent U.S. media mogul. They embark on a desperate race against time to prove their innocence, but will anyone believe them—and are they telling the truth?",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 48,
+      "rtAudienceScore": 23,
+      "rtFetchedAt": "2026-01-09T07:58:43.381Z",
+      "streamingFetchedAt": "2026-01-09T08:35:20.132Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 70523,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",
+      "overview": "A missing child sets four families on a frantic hunt for answers as they unearth a mind-bending mystery that spans three generations.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Sci-Fi & Fantasy",
+        "Mystery"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T07:58:45.068Z",
+      "streamingFetchedAt": "2026-01-09T08:35:19.497Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 92782,
+      "watchPreference": "solo",
+      "rating": 2.5,
+      "reviewNote": "i try to watch all the marvel shows but this was just not that great",
+      "posterPath": "/3HWWh92kZbD7odwJX7nKmXNZsYo.jpg",
+      "overview": "A great student, avid gamer, and voracious fan-fic scribe, Kamala Khan has a special affinity for superheroes, particularly Captain Marvel. However, she struggles to fit in at home and at school — that is, until she gets superpowers like the heroes she’s always looked up to. Life is easier with superpowers, right?",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Action & Adventure",
+        "Comedy"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T07:58:46.391Z",
+      "streamingFetchedAt": "2026-01-09T08:35:17.770Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 128095,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "critical of lds religion",
+      "rating": 3.5,
+      "posterPath": "/gKyXUkyKRg9LdZzZWRzk0eKD5HJ.jpg",
+      "overview": "A devout detective's faith is tested as he investigates a brutal murder that seems to be connected to an esteemed Utah family's spiral into LDS fundamentalism and their distrust in the government.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 81,
+      "rtFetchedAt": "2026-01-09T07:58:47.752Z",
+      "streamingFetchedAt": "2026-01-09T08:35:40.799Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 98161,
+      "reviewNote": "kind of didn't go anywhere so we dropped after a few episodes",
+      "posterPath": "/mt4P2epJrSaqrlkMP9fTUKLP9OE.jpg",
+      "overview": "Young investigative journalist Hilde Lisko moves with her family to the small town her father left behind, only to unearth shocking secrets in her pursuit of the truth.",
+      "genres": [
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 81,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T07:58:49.264Z",
+      "streamingFetchedAt": "2026-01-09T08:35:36.967Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 117821,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/rFlYeo84b5YtzNkN0IonN6ZCPic.jpg",
+      "overview": "Inspired by actual events—and the love story at the center of it all. WeWork grew from a single coworking space into a global brand worth $47 billion in under a decade. Then, in less than a year, its valuation dropped $40 billion. What happened?",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 65,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T07:58:50.703Z",
+      "streamingFetchedAt": "2026-01-09T08:35:18.882Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 67136,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "reviewNote": "Good family drama that is an easy watch",
+      "posterPath": "/huxmY6Dmzwpv5Q2hnNft0UMK7vf.jpg",
+      "overview": "Follows the lives and families of three adults living and growing up in the United States of America in present and past times. As their paths cross and their life stories intertwine in curious ways, we find that several of them share the same birthday - and so much more than anyone would expect.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T07:58:52.081Z",
+      "streamingFetchedAt": "2026-01-09T08:35:34.344Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 84977,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/1ju4vQ1EwlIkQxEgWiYmxOs3iBG.jpg",
+      "overview": "Nadia keeps dying and reliving her 36th birthday party. She's trapped in a surreal time loop -- and staring down the barrel of her own mortality.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 76,
+      "rtFetchedAt": "2026-01-09T07:58:53.428Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-09T09:45:38.198Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/terrorism-close-calls",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 92749,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/vKDUmKO6F9bSKKyHhg7YGbgcEeF.jpg",
+      "overview": "When Steven Grant, a mild-mannered gift-shop employee, becomes plagued with blackouts and memories of another life, he discovers he has dissociative identity disorder and shares a body with mercenary Marc Spector. As Steven/Marc’s enemies converge upon them, they must navigate their complex identities while thrust into a deadly mystery among the powerful gods of Egypt.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Mystery",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 86,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T07:58:54.750Z",
+      "streamingFetchedAt": "2026-01-09T09:45:37.588Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 110695,
+      "watchPreference": "solo",
+      "rating": 4,
+      "reviewNote": "great acting, love based on true stories",
+      "posterPath": "/qW8Gpddy29faTcD7VuyKjwLXbKU.jpg",
+      "overview": "The story of how one company triggered the worst drug epidemic in American history. Look into the epicenter of America's struggle with opioid addiction, from a distressed Virginia mining community, to the hallways of the DEA, and to the opulence of \"one percenter\" Big Pharma Manhattan.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T07:58:56.536Z",
+      "streamingFetchedAt": "2026-01-09T08:35:39.145Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 79410,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/6eJf4h9XcvqK64vbx27EFlLVURm.jpg",
+      "overview": "Tony had a perfect life. But after his wife Lisa suddenly dies, Tony changes. After contemplating taking his own life, he decides instead to live long enough to punish the world by saying and doing whatever he likes from now on.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 72,
+      "rtAudienceScore": 86,
+      "rtFetchedAt": "2026-01-09T07:58:57.895Z",
+      "streamingFetchedAt": "2026-01-09T08:35:33.807Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 91602,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/cP9CJ9nvPT3cnnBSlGFgwq7odIR.jpg",
+      "overview": "An unlikely friendship. A lost love resurfaced. A marriage at its turning point. A date that might not have been a date. An unconventional new family. These are unique stories about the joys and tribulations of love, each inspired by true events.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 69,
+      "rtAudienceScore": 66,
+      "rtFetchedAt": "2026-01-09T07:58:59.259Z",
+      "streamingFetchedAt": "2026-01-09T09:45:29.194Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 88329,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/ct5pNE5dDHryHLDnxyZPYcqO1sz.jpg",
+      "overview": "Former Avenger Clint Barton has a seemingly simple mission: get back to his family for Christmas. Possible? Maybe with the help of Kate Bishop, a 22-year-old archer with dreams of becoming a superhero. The two are forced to work together when a presence from Barton’s past threatens to derail far more than the festive spirit.",
+      "genres": [
+        "Drama",
+        "Comedy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T07:59:00.687Z",
+      "streamingFetchedAt": "2026-01-09T09:45:28.678Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 64254,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/AcJM86PhgHAfbrF4dMKBaqO3cHV.jpg",
+      "overview": "30-year-old New York actor Dev takes on such pillars of maturity as the first big job, a serious relationship, and busting sex offenders on the subway.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 71,
+      "rtFetchedAt": "2026-01-09T07:59:02.270Z",
+      "streamingFetchedAt": "2026-01-09T09:45:11.192Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 64513,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/51Gihm701NoaXSzR7Zb7flVtbu0.jpg",
+      "overview": "An anthology series centered around some of history's most famous criminal investigations.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T07:59:03.637Z",
+      "streamingFetchedAt": "2026-01-09T08:35:34.865Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 48891,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/A3SymGlOHefSKbz1bCOz56moupS.jpg",
+      "overview": "A single-camera ensemble comedy following the lives of an eclectic group of detectives in a New York precinct, including one slacker who is forced to shape up when he gets a new boss.",
+      "genres": [
+        "Comedy",
+        "Crime"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:52.531Z",
+      "streamingFetchedAt": "2026-01-09T08:35:17.244Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 93287,
+      "watchPreference": "together",
+      "posterPath": "/oCK0o8CWV46Z0PUdh7CKXnjD2Po.jpg",
+      "overview": "Flight attendant Cassandra Bowden wakes in her hotel room hungover from the night before in Dubai with a dead body lying next to her. Afraid to call the police, she continues her morning as if nothing happened. In New York, she is met by FBI agents who question her about her recent layover in Bangkok. Still unable to piece the night together, she begins to wonder if she could be the killer.",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Comedy"
+      ],
+      "rtCriticsScore": 91,
+      "rtAudienceScore": 62,
+      "rtFetchedAt": "2026-01-09T07:59:06.443Z",
+      "streamingFetchedAt": "2026-01-09T09:45:12.769Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 81355,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/oPv3nNtkuc6EPEql5lgdOuQNHuG.jpg",
+      "overview": "Five teens from Harlem become trapped in a nightmare when they're falsely accused of a brutal attack in Central Park.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T07:59:07.906Z",
+      "streamingFetchedAt": "2026-01-09T09:45:26.310Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 62649,
+      "watchPreference": "solo",
+      "rating": 4,
+      "reviewNote": "easy watch comedy",
+      "posterPath": "/2tpY5qIYwH85njvjI5BnH4VNA6p.jpg",
+      "overview": "A hilarious workplace comedy about a unique family of employees at a super-sized mega store. From the bright-eyed newbies and the seen-it-all veterans to the clueless summer hires and the in-it-for-life managers, together they hilariously tackle the day-to-day grind of rabid bargain hunters, riot-causing sales and nap-worthy training sessions.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 81,
+      "rtFetchedAt": "2026-01-09T07:59:09.293Z",
+      "streamingFetchedAt": "2026-01-09T08:35:38.605Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 85271,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "superheros",
+      "rating": 4,
+      "posterPath": "/frobUz2X5Pc8OiVZU8Oo5K3NKMM.jpg",
+      "overview": "Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T07:59:10.768Z",
+      "streamingFetchedAt": "2026-01-09T09:46:09.634Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/louis-therouxs-altered-states",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 103913,
+      "watchPreference": "together",
+      "reviewNote": "pacing didn't go anywhere so we fizzled out",
+      "posterPath": "/pXV1fcIQIbpTNYRJ47rfUvG6hq4.jpg",
+      "overview": "Tamar is a Mossad hacker-agent who infiltrates Tehran under a false identity to help destroy Iran's nuclear reactor. But when her mission fails, Tamar must plan an operation that will place everyone dear to her in jeopardy.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 88,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T07:59:15.337Z",
+      "streamingFetchedAt": "2026-01-09T08:35:33.292Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 87739,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
+      "overview": "In a 1950s orphanage, a young girl reveals an astonishing talent for chess and begins an unlikely journey to stardom while grappling with addiction.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T07:59:16.793Z",
+      "streamingFetchedAt": "2026-01-09T09:45:36.969Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 83851,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/3tDbJxobPN3EI2bBebL6zmusmw5.jpg",
+      "overview": "Grace and Jonathan Fraser are living the only lives they ever wanted. Overnight a chasm opens in their lives: a violent death and a chain of terrible revelations. Left behind in the wake of a spreading and very public disaster, Grace must dismantle one life and create another for her child and her family.",
+      "genres": [
+        "Drama",
+        "Crime",
+        "Mystery"
+      ],
+      "rtCriticsScore": 75,
+      "rtAudienceScore": 66,
+      "rtFetchedAt": "2026-01-09T07:59:18.264Z",
+      "streamingFetchedAt": "2026-01-09T09:45:10.678Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 80336,
+      "rating": 3,
+      "reviewNote": "this was okay",
+      "posterPath": "/8lAMdxL8uirqyavsD6H3QGQmTkA.jpg",
+      "overview": "Observe the funny, romantic, heartfelt, inspiring, and surprising stories of immigrants in America.",
+      "genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 86,
+      "rtFetchedAt": "2026-01-09T07:59:19.663Z",
+      "streamingFetchedAt": "2026-01-09T09:45:46.905Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 89905,
+      "watchPreference": "together",
+      "posterPath": "/tbKSsFd4ImzUgbYolttkq4pmOPQ.jpg",
+      "overview": "Marianne and Connell weave in and out of each other's lives in this exploration of sex, power and the desire to love and be loved.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 91,
+      "rtAudienceScore": 92,
+      "rtFetchedAt": "2026-01-09T07:59:21.054Z",
+      "streamingFetchedAt": "2026-01-09T09:45:25.777Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 81131,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "reviewNote": "i do like an historical drama and this was well acted, artistic and informative if not a little slow",
+      "posterPath": "/rbHkfnaFBcMx90GRBzjCL8MPozo.jpg",
+      "overview": "The story of the romantic and creative partnership between Bob Fosse and Gwen Verdon. He was a filmmaker and one of theater's most influential choreographers and directors; she was the greatest Broadway dancer of all time. Together, they changed the face of American entertainment — at a perilous cost.",
+      "genres": [
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:54.114Z",
+      "streamingFetchedAt": "2026-01-09T08:35:46.561Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 75297,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/kTG4W8IzKvsJshBVaN2aYfhGrfB.jpg",
+      "overview": "Audrey is determined not to be defined by motherhood. In theory, this seems fairly easy. In practice, her career-focused husband, self-obsessed mother & fancy-free best friend, make it damn near impossible.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T07:59:23.984Z",
+      "streamingServices": [
+        "abc-iview",
+        "binge"
+      ],
+      "streamingFetchedAt": "2026-01-09T09:45:19.272Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/la-mante",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 61662,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/iRfSzrPS5VYWQv7KVSEg2BZZL6C.jpg",
+      "overview": "Formerly filthy rich video store magnate Johnny Rose, his soap star wife Moira, and their two kids, über-hipster son David and socialite daughter Alexis, suddenly find themselves broke and forced to live in Schitt's Creek, a small depressing town they once bought as a joke.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 93,
+      "rtFetchedAt": "2026-01-09T07:59:25.421Z",
+      "streamingFetchedAt": "2026-01-09T09:45:16.071Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1398,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "Helen wasn't a fan of this after a couple of episodes",
+      "predictedRating": 4.5,
+      "predictedRatingReason": "The GOAT crime drama - similar to The Americans (4) but deeper character study",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/rTc7ZXdroqjkKivFPvCPX0Ru7uw.jpg",
+      "overview": "The story of New Jersey-based Italian-American mobster Tony Soprano and the difficulties he faces as he tries to balance the conflicting requirements of his home life and the criminal organization he heads. Those difficulties are often highlighted through his ongoing professional relationship with psychiatrist Jennifer Melfi. The show features Tony's family members and Mafia associates in prominent roles and story arcs, most notably his wife Carmela and his cousin and protégé Christopher Moltisanti.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 96,
+      "rtFetchedAt": "2026-01-09T07:59:26.951Z",
+      "streamingFetchedAt": "2026-01-09T09:45:53.562Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/cross-of-fire",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 83605,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/82OxxE93DG0ArPj7JvOeNEBW8iT.jpg",
+      "overview": "The true story of the movement to ratify the Equal Rights Amendment, and the unexpected backlash led by a conservative woman named Phyllis Schlafly, aka “the sweetheart of the silent majority.”",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 69,
+      "rtFetchedAt": "2026-01-09T07:59:28.350Z",
+      "streamingFetchedAt": "2026-01-09T09:45:27.449Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 100698,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/dXQCEjVth8P8L47XIsoRt0oL8Gw.jpg",
+      "overview": "A zoo owner spirals out of control amid a cast of eccentric characters in this true murder-for-hire story from the underworld of big cat breeding.",
+      "genres": [
+        "Documentary",
+        "Crime"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:55.667Z",
+      "streamingFetchedAt": "2026-01-09T08:35:48.123Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 85922,
+      "posterPath": "/zgu3p4NvisS8CI68cUfBKbvAvu8.jpg",
+      "overview": "A four-star general begrudgingly teams up with an eccentric scientist to get the U.S. military's newest agency — Space Force — ready for lift-off.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 59,
+      "rtAudienceScore": 77,
+      "rtFetchedAt": "2026-01-09T07:59:31.296Z",
+      "streamingFetchedAt": "2026-01-09T09:45:16.606Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 87784,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/JTmkzwSDRiS9nvSPwpDB9fmZj2.jpg",
+      "overview": "A family's lives are irreparably disrupted when the 14-year-old son is accused of murdering a fellow classmate.",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Crime"
+      ],
+      "rtCriticsScore": 70,
+      "rtAudienceScore": 86,
+      "rtFetchedAt": "2026-01-09T07:59:32.639Z",
+      "streamingFetchedAt": "2026-01-09T09:45:51.327Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 91275,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/jHOrNJNM03Lsjdw7nsw7TlqBOhd.jpg",
+      "overview": "A teenager is charged with lying about her rape allegation, but two determined investigative female detectives discover a far more sinister truth.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T07:59:34.136Z",
+      "streamingFetchedAt": "2026-01-09T08:35:31.073Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1407,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/6GAvS2e6VIRsms9FpVt33PsCoEW.jpg",
+      "overview": "CIA officer Carrie Mathison is tops in her field despite being bipolar, which makes her volatile and unpredictable. With the help of her long-time mentor Saul Berenson, Carrie fearlessly risks everything, including her personal well-being and even sanity, at every turn.",
+      "genres": [
+        "Drama",
+        "War & Politics",
+        "Crime"
+      ],
+      "rtCriticsScore": 85,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T07:59:35.694Z",
+      "streamingFetchedAt": "2026-01-09T09:45:47.420Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 99581,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/tzCcYBtiyTkKQwsVyZuNE4F9oUw.jpg",
+      "overview": "A Hasidic Jewish woman in Brooklyn flees to Berlin from an arranged marriage and is taken in by a group of musicians -- until her past comes calling.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T07:59:37.000Z",
+      "streamingFetchedAt": "2026-01-09T08:35:32.208Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1421,
+      "rating": 3.5,
+      "reviewNote": "It's a fun easy watch",
+      "posterPath": "/k5Qg5rgPoKdh3yTJJrLtyoyYGwC.jpg",
+      "overview": "The Pritchett-Dunphy-Tucker clan is a wonderfully large and blended family. They give us an honest and often hilarious look into the sometimes warm, sometimes twisted, embrace of the modern family.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 85,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T07:59:39.488Z",
+      "streamingFetchedAt": "2026-01-09T09:45:18.719Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 67744,
+      "posterPath": "/fbKE87mojpIETWepSbD5Qt741fp.jpg",
+      "overview": "An agent in the FBI's Elite Serial Crime Unit develops profiling techniques as he pursues notorious serial killers and rapists.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 95,
+      "rtFetchedAt": "2026-01-09T07:59:41.024Z",
+      "streamingFetchedAt": "2026-01-09T09:45:32.059Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 4589,
+      "watchPreference": "solo",
+      "rating": 4,
+      "reviewNote": "although s05 was rubbish",
+      "posterPath": "/p4r4RD7RsNcJVoz0H6z3dBoTBtW.jpg",
+      "overview": "The story of a wealthy family that lost everything, and the one son who had no choice but to keep them all together.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 75,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T07:59:42.512Z",
+      "streamingFetchedAt": "2026-01-09T09:45:12.238Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 66573,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/qIhsuhoIYR5yTnDta0IL4senbeN.jpg",
+      "overview": "Eleanor Shellstrop, an ordinary woman who, through an extraordinary string of events, enters the afterlife where she comes to realize that she hasn't been a very good person. With the help of her wise afterlife mentor, she's determined to shed her old way of living and discover the awesome (or at least the pretty good) person within.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Comedy"
+      ],
+      "rtCriticsScore": 97,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T07:59:44.575Z",
+      "streamingFetchedAt": "2026-01-09T09:45:34.750Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 67070,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/27vEYsRKa3eAniwmoccOoluEXQ1.jpg",
+      "overview": "A portrait into the mind of a dry-witted, sexual, angry, porn-watching, grief-riddled woman, trying to make sense of the world. As she hurls herself headlong at modern living, Fleabag is thrown roughly up against the walls of contemporary London, with all its frenetic energy, late nights, and bright lights.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 93,
+      "rtFetchedAt": "2026-01-09T07:59:45.910Z",
+      "streamingFetchedAt": "2026-01-09T09:45:32.592Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 60573,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/4ptpmWBVD9HY9hMh8Cbs6SMiy7p.jpg",
+      "overview": "In the high-tech gold rush of modern Silicon Valley, the people most qualified to succeed are the least capable of handling success. Partially inspired by Mike Judge’s own experiences as a Silicon Valley engineer in the late ‘80s, Silicon Valley is an American sitcom that centers around six programmers who are living together and trying to make it big in the Silicon Valley.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 93,
+      "rtFetchedAt": "2026-01-09T07:59:47.280Z",
+      "streamingFetchedAt": "2026-01-09T08:35:29.403Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 80475,
+      "posterPath": "/eaGpAP4bKMjVlMIoGqKzMRJ2OIG.jpg",
+      "overview": "New Zealand's capital is a hotbed of supernatural activity... so Officers Minogue and O'Leary, who featured in the vampire documentary What We Do In The Shadows, take to the streets to investigate all manner of paranormal phenomena.",
+      "genres": [
+        "Comedy",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T07:59:48.661Z",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-09T09:45:47.952Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/rich-kids-go-skint",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 62084,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/fTJZHMzlIGSJVPSe7Xz4p5SRwYP.jpg",
+      "overview": "Britain is in the grip of a chilling recession... falling wages, rising prices, civil unrest - only the bankers are smiling. It's 1783 and Ross Poldark returns from the American War of Independence to his beloved Cornwall to find his world in ruins: his father dead, the family mine long since closed, his house wrecked and his sweetheart pledged to marry his cousin. But Ross finds that hope and love can be found when you are least expecting it in the wild but beautiful Cornish landscape.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 79,
+      "rtFetchedAt": "2026-01-09T07:59:50.131Z",
+      "streamingFetchedAt": "2026-01-09T09:45:18.173Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 69061,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/rueY4slMeKtTGitm0raFUJvgaa5.jpg",
+      "overview": "Seven years after vanishing from her home, a young woman returns with mysterious new abilities and recruits five strangers for a secret mission.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Mystery",
+        "Drama"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 83,
+      "rtFetchedAt": "2026-01-09T07:59:51.468Z",
+      "streamingFetchedAt": "2026-01-09T08:35:37.484Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 87108,
+      "watchPreference": "together",
+      "rating": 5,
+      "posterPath": "/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg",
+      "overview": "The true story of one of the worst man-made catastrophes in history: the catastrophic nuclear accident at Chernobyl. A tale of the brave men and women who sacrificed to save Europe from unimaginable disaster.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 97,
+      "rtFetchedAt": "2026-01-09T07:59:52.959Z",
+      "streamingFetchedAt": "2026-01-09T09:46:10.706Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1432,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/vOdJETEueGgUqJR4UvwTdUoJhvO.jpg",
+      "overview": "In the fictional town of Neptune, California, student Veronica Mars progresses from high school to college while moonlighting as a private investigator under the tutelage of her detective father.",
+      "genres": [
+        "Mystery",
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 79,
+      "rtFetchedAt": "2026-01-09T07:59:54.864Z",
+      "streamingFetchedAt": "2026-01-09T09:45:33.688Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1424,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "too crude for helen",
+      "rating": 3.5,
+      "posterPath": "/ekaa7YjGPTkFLcPhwWXTnARuCEU.jpg",
+      "overview": "A crime she committed in her youthful past sends Piper Chapman to a women's prison, where she trades her comfortable New York life for one of unexpected camaraderie and conflict in an eccentric group of fellow inmates.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 82,
+      "rtFetchedAt": "2026-01-09T07:59:55.972Z",
+      "streamingFetchedAt": "2026-01-09T08:35:29.959Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 66292,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/b4HNJOc2N6SGyEhf2RagdpAKBK6.jpg",
+      "overview": "The tale of three mothers of first graders whose apparently perfect lives unravel to the point of murder.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T07:59:57.130Z",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-09T09:45:30.864Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/lucky-fred",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 2996,
+      "watchPreference": "solo",
+      "rating": 4.5,
+      "posterPath": "/oX2JKE1RzAONMbYlujHx0hRAJo1.jpg",
+      "overview": "Nightmare boss. Tedious colleagues. Pointless tasks. Welcome to Wernham Hogg. Fancy a tea break with David Brent? Classic comedy from the archive.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 81,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T07:59:58.248Z",
+      "streamingServices": [
+        "paramount-plus"
+      ],
+      "streamingFetchedAt": "2026-01-09T09:45:31.444Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/beverly-hills-90210",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1425,
+      "rating": 3.5,
+      "reviewNote": "good for most of it but the last season fizzled",
+      "posterPath": "/hKWxWjFwnMvkWQawbhvC0Y7ygQ8.jpg",
+      "overview": "Set in present day Washington, D.C., House of Cards is the story of Frank Underwood, a ruthless and cunning politician, and his wife Claire who will stop at nothing to conquer everything. This wicked political drama penetrates the shadowy world of greed, sex and corruption in modern D.C.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 77,
+      "rtAudienceScore": 76,
+      "rtFetchedAt": "2026-01-09T07:59:59.470Z",
+      "streamingFetchedAt": "2026-01-09T09:45:48.472Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1399,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
+      "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T08:00:00.892Z",
+      "streamingFetchedAt": "2026-01-09T09:45:33.173Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 1418,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/ooBGRQBdbGzBxAVfExiO8r7kloA.jpg",
+      "overview": "Physicists Leonard and Sheldon find their nerd-centric social circle with pals Howard and Raj expanding when aspiring actress Penny moves in next door.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 81,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T08:00:01.989Z",
+      "streamingFetchedAt": "2026-01-09T09:45:09.017Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.352Z"
+    },
+    {
+      "tmdbId": 2947,
+      "rating": 4,
+      "posterPath": "/cdd78fGdaA3EbK2ToZRWcaaB1fx.jpg",
+      "overview": "A look into American politics, revolving around former Senator Selina Meyer who finds being Vice President of the United States is nothing like she expected and everything everyone ever warned her about.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T08:00:03.104Z",
+      "streamingFetchedAt": "2026-01-09T09:45:09.558Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 72750,
+      "watchPreference": "together",
+      "rating": 3,
+      "reviewNote": "was good to start but this fizzled out",
+      "posterPath": "/4wKhTVw8aGq5AZMa0Q1spERdi7n.jpg",
+      "overview": "A security consultant hunts for a ruthless assassin. Equally obsessed with each other, they go head to head in an epic game of cat-and-mouse.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 80,
+      "rtAudienceScore": 73,
+      "rtFetchedAt": "2026-01-09T08:00:04.202Z",
+      "streamingFetchedAt": "2026-01-09T09:45:35.329Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 80335,
+      "watchPreference": "together",
+      "rating": 2.5,
+      "posterPath": "/6GTzd7ZeivgBOrIn45720nsq0TU.jpg",
+      "overview": "Heidi Bergman is a caseworker at Homecoming, a Geist Group facility helping soldiers transition to civilian life. Years later she has started a new life, living with her mother and working as a waitress, when a Department of Defense auditor questions why she left the Homecoming facility. Heidi quickly realizes that there's a whole other story behind the story she's been telling herself.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 79,
+      "rtAudienceScore": 65,
+      "rtFetchedAt": "2026-01-09T08:00:05.338Z",
+      "streamingFetchedAt": "2026-01-09T09:45:30.293Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 67419,
+      "watchPreference": "together",
+      "rating": 3,
+      "posterPath": "/wtu2oxkUuP8bQu8YY7slIlvvvpX.jpg",
+      "overview": "The story of Queen Victoria, who came to the throne at a time of great economic turbulence and resurgent republicanism – and died 64 years later the head of the largest empire the world had ever seen, having revitalised the throne’s public image and become “grandmother of Europe”.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T08:00:06.451Z",
+      "streamingFetchedAt": "2026-01-09T09:45:28.064Z",
+      "createdAt": "2026-01-09T06:32:49.469Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 60574,
+      "posterPath": "/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
+      "overview": "A gangster family epic set in 1919 Birmingham, England and centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby, who means to move up in the world.",
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T07:58:13.334Z",
+      "streamingFetchedAt": "2026-01-09T09:44:59.711Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 61350,
+      "watchPreference": "solo",
+      "rating": 3,
+      "reviewNote": "Enjoyed the acting and also I like when I can watch Australian shows because it gives me something to chat about with casting directors and I can see their work.",
+      "posterPath": "/dgzpboEMxpHVI3Isy5lZOCP2e6X.jpg",
+      "overview": "After breaking up with his girlfriend, Josh comes to the realization that he is homosexual. With the support of his now ex girlfriend Claire, and his best friend and house mate Tom, Josh must help his mother with her battle with depression and the rest of his family embrace his new found lifestyle.",
+      "genres": [
+        "Drama",
+        "Comedy"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 95,
+      "rtFetchedAt": "2026-01-09T07:58:10.161Z",
+      "streamingFetchedAt": "2026-01-09T09:45:43.928Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 67683,
+      "rating": 3,
+      "reviewNote": "was really good for a few seasons but fizzled out towards the end",
+      "posterPath": "/aUVeyeyTrQrSFuUkqLCT8FtV7pp.jpg",
+      "overview": "Hundreds of years from now, the last surviving humans discover the means of sending consciousness back through time, directly into people in the 21st century. These \"travelers\" assume the lives of seemingly random people, while secretly working as teams to perform missions in order to save humanity from a terrible future.",
+      "genres": [
+        "Drama",
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 97,
+      "rtFetchedAt": "2026-01-09T07:58:15.597Z",
+      "streamingFetchedAt": "2026-01-09T08:35:36.415Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 60622,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "Bit slow paced for Helen",
+      "rating": 3.5,
+      "reviewNote": "Acting is excellent",
+      "posterPath": "/6U9CPeD8obHzweikFhiLhpc7YBT.jpg",
+      "overview": "A close-knit anthology series dealing with stories involving malice, violence and murder based in and around Minnesota.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 85,
+      "rtFetchedAt": "2026-01-09T07:57:54.182Z",
+      "streamingFetchedAt": "2026-01-09T09:45:41.701Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 80307,
+      "watchPreference": "together",
+      "watchPreferenceNote": "Helen loves spy shows",
+      "rating": 4,
+      "posterPath": "/5DUJTrHTRLHLCKWriPhdusQogAv.jpg",
+      "overview": "A troubled war veteran is assigned to protect a controversial politician who may be the target of a terror plot.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "War & Politics",
+        "Mystery"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 84,
+      "rtFetchedAt": "2026-01-09T07:58:07.500Z",
+      "streamingFetchedAt": "2026-01-09T09:45:43.410Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 61889,
+      "watchPreference": "solo",
+      "watchPreferenceNote": "helen doesn't like superhero shows",
+      "rating": 3,
+      "reviewNote": "I enjoyed but I guess I kind of dropped off the episodes dragged a little but I feel like I could get back into it.",
+      "posterPath": "/u6tICVagGwukuFPr0qBUwOqCKSn.jpg",
+      "overview": "Lawyer-by-day Matt Murdock uses his heightened senses from being blinded as a young boy to fight crime at night on the streets of Hell’s Kitchen as Daredevil.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Action & Adventure"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:57.394Z",
+      "streamingFetchedAt": "2026-01-09T08:35:44.488Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 38472,
+      "watchPreference": "solo",
+      "rating": 4,
+      "reviewNote": "I really like this one but I haven't finished it because i feel like i need to watch the other marvel shows that I haven't seen.",
+      "posterPath": "/paf9wL3mOW9LT3ZjRxXqJcjeMEv.jpg",
+      "overview": "After a tragic ending to her short-lived super hero stint, Jessica Jones is rebuilding her personal life and career as a detective who gets pulled into cases involving people with extraordinary abilities in New York City.",
+      "genres": [
+        "Sci-Fi & Fantasy",
+        "Drama"
+      ],
+      "rtCriticsScore": 83,
+      "rtAudienceScore": 80,
+      "rtFetchedAt": "2026-01-09T07:58:17.017Z",
+      "streamingFetchedAt": "2026-01-09T09:45:45.062Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/beowulf-return-to-the-shieldlands",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 46638,
+      "reviewNote": "nothing hugely wrong with this but we kind of got bored and it fell off our radar",
+      "posterPath": "/AdJGimYaqSXINsa6pfx1L7yBsvr.jpg",
+      "overview": "A woman haunted by her past, Detective Robin Griffin, investigates complex and unsettling cases.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "rtCriticsScore": 83,
+      "rtAudienceScore": 63,
+      "rtFetchedAt": "2026-01-09T07:58:05.748Z",
+      "streamingFetchedAt": "2026-01-09T09:45:42.886Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 64099,
+      "reviewNote": "We got kind of bored of this one after a couple of episodes",
+      "posterPath": "/e9uqJMuJXTlqgHrzmMjzhUsw7nI.jpg",
+      "overview": "The love story of young Countess Natasha Rostova and Count Pierre Bezukhov is interwoven with the Great Patriotic War of 1812 against Napoleon's invading army.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 88,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T07:58:11.893Z",
+      "streamingFetchedAt": "2026-01-09T09:45:44.447Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 62560,
+      "watchPreference": "solo",
+      "predictedRating": 4.5,
+      "predictedRatingReason": "Complex tech thriller with unreliable narrator - like Severance (5) meets hacking",
+      "recommendedWatchPreference": "solo",
+      "posterPath": "/kv1nRqgebSsREnd7vdC2pSGjpLo.jpg",
+      "overview": "A young programmer, Elliot, suffers from a debilitating anti-social disorder and decides that he can only connect to people by hacking them. He wields his skills as a weapon to protect the people that he cares about. Elliot finds himself in the intersection between a cybersecurity firm he works for and the underworld organizations that are recruiting him to bring down corporate America.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 93,
+      "rtFetchedAt": "2026-01-09T07:57:47.692Z",
+      "streamingFetchedAt": "2026-01-09T09:45:39.976Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 90257,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/7EQQMl0mp8L0hMxAUZNfoCh1Tkb.jpg",
+      "overview": "The intertwined fates of the picture-perfect Richardson family and an enigmatic mother and daughter who upend their lives. Explore the weight of secrets, the nature of art and identity, the ferocious pull of motherhood – and the danger in believing that following the rules can avert disaster.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 79,
+      "rtAudienceScore": 61,
+      "rtFetchedAt": "2026-01-09T07:58:01.856Z",
+      "streamingFetchedAt": "2026-01-09T09:45:42.337Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 18347,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/3KUjDt8XY7w2Ku70UE0SECmv1zP.jpg",
+      "overview": "Follow the lives of a group of students at what is possibly the world’s worst community college in the fictional locale of Greendale, Colorado.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 88,
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T07:58:23.379Z",
+      "streamingFetchedAt": "2026-01-09T08:35:40.171Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 2316,
+      "watchPreference": "solo",
+      "rating": 5,
+      "reviewNote": "rewatched so many times and always go back to it",
+      "posterPath": "/dg9e5fPRRId8PoBE0F6jl5y85Eu.jpg",
+      "overview": "The everyday lives of office employees in the Scranton, Pennsylvania branch of the fictional Dunder Mifflin Paper Company.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 81,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T07:58:24.482Z",
+      "streamingFetchedAt": "2026-01-09T09:45:39.442Z",
+      "createdAt": "2026-01-09T06:32:49.470Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 75219,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/6njUqsd3By2mJsdZm1P0moPLzs3.jpg",
+      "overview": "Explore the high-pressure experiences of police officers, paramedics and firefighters who are thrust into the most frightening, shocking and heart-stopping situations. These emergency responders must try to balance saving those who are at their most vulnerable with solving the problems in their own lives.",
+      "genres": [
+        "Drama",
+        "Crime",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 89,
+      "rtFetchedAt": "2026-01-09T09:06:44.216Z",
+      "streamingFetchedAt": "2026-01-09T09:45:13.862Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/worlds-busiest-cities",
+      "createdAt": "2026-01-09T09:01:42.586Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 100088,
+      "watchPreference": "solo",
+      "rating": 4,
+      "posterPath": "/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg",
+      "overview": "Twenty years after modern civilization has been destroyed, Joel, a hardened survivor, is hired to smuggle Ellie, a 14-year-old girl, out of an oppressive quarantine zone. What starts as a small job soon becomes a brutal, heartbreaking journey, as they both must traverse the United States and depend on each other for survival.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 62,
+      "rtFetchedAt": "2026-01-09T09:06:42.803Z",
+      "streamingFetchedAt": "2026-01-09T09:45:14.443Z",
+      "createdAt": "2026-01-09T09:01:51.025Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 101600,
+      "watchPreference": "together",
+      "rating": 4,
+      "genres": [
+        "Animation"
+      ],
+      "rtCriticsScore": 89,
+      "rtAudienceScore": 69,
+      "rtFetchedAt": "2026-01-09T09:29:40.036Z",
+      "streamingFetchedAt": "2026-01-09T09:44:44.350Z",
+      "createdAt": "2026-01-09T09:06:59.800Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 4546,
+      "posterPath": "/mZqWmSq1M61Jlre3furVDSXvdrN.jpg",
+      "overview": "The off-kilter, unscripted comic vision of Larry David, who plays himself in a parallel universe in which he can't seem to do anything right, and, by his standards, neither can anyone else.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 92,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T09:30:19.543Z",
+      "streamingFetchedAt": "2026-01-09T09:44:55.950Z",
+      "createdAt": "2026-01-09T09:15:16.433Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 250307,
+      "posterPath": "/yfaIbd8dqaafUKYaXMnQokpyAkd.jpg",
+      "overview": "The staff of Pittsburgh's Trauma Medical Center work around the clock to save lives in an overcrowded and underfunded emergency department.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 96,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T09:30:15.704Z",
+      "streamingFetchedAt": "2026-01-09T09:44:55.439Z",
+      "createdAt": "2026-01-09T09:15:18.061Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 106308,
+      "posterPath": "/1GkoExnlnyTcyGWIoHA4YG8mysc.jpg",
+      "overview": "Sam is a true Kansan on the surface but beneath it all struggles to fit the hometown mold. As she grapples with loss and acceptance, singing is Sam’s saving grace and leads her on a journey to discover herself and a community of outsiders that don’t fit in but don’t give up, showing that finding your people, and finding your voice, is possible. Anywhere. Somewhere.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 94,
+      "rtFetchedAt": "2026-01-09T09:30:14.354Z",
+      "streamingFetchedAt": "2026-01-09T09:44:54.908Z",
+      "createdAt": "2026-01-09T09:15:18.853Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 231751,
+      "posterPath": "/yHmGO337Fsx9JxWwaiyL7oen3AI.jpg",
+      "overview": "The sweeping rags to riches story of the Hardacres, a working-class family in 1890s Yorkshire who strike it rich and move from a grimy fish dock to a vast estate.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 100,
+      "rtFetchedAt": "2026-01-09T09:30:12.123Z",
+      "streamingFetchedAt": "2026-01-09T09:44:53.840Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/outside-beyond-the-lens",
+      "createdAt": "2026-01-09T09:15:19.903Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 97085,
+      "watchPreference": "together",
+      "posterPath": "/hXhLu31ro2O8C5vRBzLjFP4yACO.jpg",
+      "overview": "Set against the backdrop of the city of Amsterdam, Piet Van der Valk and his team investigate a series of high-profile cases immersed in the worlds of art, politics, addiction, mysticism and the fashion industry.",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "rtCriticsScore": 74,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T09:30:10.302Z",
+      "streamingFetchedAt": "2026-01-09T09:44:53.324Z",
+      "createdAt": "2026-01-09T09:15:20.696Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 74016,
+      "posterPath": "/2IkYQJlT26yXef2iot7dhRtavSC.jpg",
+      "overview": "A tough, brilliant senior resident guides an idealistic young doctor through his first day, pulling back the curtain on what really happens, both good and bad, in modern-day medicine.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 59,
+      "rtAudienceScore": 75,
+      "rtFetchedAt": "2026-01-09T09:30:08.643Z",
+      "streamingFetchedAt": "2026-01-09T09:44:52.803Z",
+      "createdAt": "2026-01-09T09:15:21.485Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 3452,
+      "rating": 4,
+      "posterPath": "/gYAb6GCVEFsU9hzMCG5rxaxoIv3.jpg",
+      "overview": "After many years spent at the “Cheers” bar, Frasier moves back home to Seattle to work as a radio psychiatrist after his policeman father gets shot in the hip on duty.",
+      "genres": [
+        "Comedy",
+        "Family"
+      ],
+      "rtCriticsScore": 95,
+      "rtAudienceScore": 95,
+      "rtFetchedAt": "2026-01-09T09:30:05.496Z",
+      "streamingFetchedAt": "2026-01-09T09:44:52.253Z",
+      "createdAt": "2026-01-09T09:15:22.277Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 2710,
+      "watchPreference": "solo",
+      "rating": 3.5,
+      "posterPath": "/o0tMMK33JqmtpcWw0H41cEr9xQB.jpg",
+      "overview": "Four egocentric friends run a neighborhood Irish pub in Philadelphia and try to find their way through the adult world of work and relationships. Unfortunately, their warped views and precarious judgments often lead them to trouble, creating a myriad of uncomfortable situations that usually only get worse before they get better.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 94,
+      "rtAudienceScore": 90,
+      "rtFetchedAt": "2026-01-09T09:29:29.331Z",
+      "streamingFetchedAt": "2026-01-09T09:44:51.741Z",
+      "justWatchUrl": "https://www.justwatch.com/au/tv-show/ai-football-ggo",
+      "createdAt": "2026-01-09T09:15:23.063Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 68106,
+      "rating": 3,
+      "posterPath": "/82Vue6MPuYZzlpggR65cvWdBdy.jpg",
+      "overview": "The funny, heartfelt story of The Kims, a Korean-Canadian family, running a convenience store in downtown Toronto. Mr. and Mrs. Kim ('Appa' and 'Umma') immigrated to Toronto in the '80s to set up shop near Regent Park and had two kids, Jung and Janet who are now young adults. However, when Jung was 16, he and Appa had a major falling out involving a physical fight, stolen money and Jung leaving home. Father and son have been estranged since.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 100,
+      "rtAudienceScore": 86,
+      "rtFetchedAt": "2026-01-09T09:30:02.627Z",
+      "streamingFetchedAt": "2026-01-09T09:44:50.624Z",
+      "createdAt": "2026-01-09T09:15:25.310Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 250923,
+      "watchPreference": "together",
+      "rating": 4,
+      "posterPath": "/cUpIceeJJoRqUHSCzh6jRSmlpkA.jpg",
+      "overview": "An agnostic sex podcaster and a newly single rabbi fall in love, but can their relationship survive their wildly different lives and meddling families?",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 72,
+      "rtFetchedAt": "2026-01-09T09:29:26.606Z",
+      "streamingFetchedAt": "2026-01-09T09:44:50.094Z",
+      "createdAt": "2026-01-09T09:15:26.889Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 219788,
+      "watchPreference": "solo",
+      "rating": 3,
+      "posterPath": "/yiMhsbuMYygbWnsrPbdp7PiMvvP.jpg",
+      "overview": "He's an eccentric biotech genius. His son's a pragmatist living in his shadow. To save the family business, they'll have to work through some issues.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rtCriticsScore": 68,
+      "rtAudienceScore": 62,
+      "rtFetchedAt": "2026-01-09T09:29:25.271Z",
+      "streamingFetchedAt": "2026-01-09T09:44:49.577Z",
+      "createdAt": "2026-01-09T09:15:27.670Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 213337,
+      "posterPath": "/zuLPqkFVDKwbtLobpHzJTCGP13B.jpg",
+      "overview": "Bonded by insomnia, best friends Lisa and Danny stay connected to each other late into the night and find their way through a world of wonderfully weird surprises as their relationship deepens.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 76,
+      "rtAudienceScore": 79,
+      "rtFetchedAt": "2026-01-09T09:29:55.935Z",
+      "streamingFetchedAt": "2026-01-09T09:44:49.062Z",
+      "createdAt": "2026-01-09T09:15:28.453Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 94245,
+      "posterPath": "/nASkt8izgpR4toMYgiAnxfjWcE2.jpg",
+      "overview": "A basketball prodigy must navigate a maze of pressure if he's going to overcome the odds against him and learn what it truly means to have swagger.",
+      "genres": [
+        "Drama"
+      ],
+      "rtCriticsScore": 93,
+      "rtAudienceScore": 96,
+      "rtFetchedAt": "2026-01-09T09:29:54.149Z",
+      "streamingFetchedAt": "2026-01-09T09:44:48.527Z",
+      "createdAt": "2026-01-09T09:15:29.240Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 157368,
+      "posterPath": "/aQBpF8VmEIgow41OL9h4nU4WN6v.jpg",
+      "overview": "The shocking story of how fashion icon Christian Dior and his contemporaries including Coco Chanel, Pierre Balmain, and Cristóbal Balenciaga navigated the horrors of World War Il and launched modern fashion.",
+      "genres": [
+        "Drama",
+        "War & Politics"
+      ],
+      "rtCriticsScore": 59,
+      "rtAudienceScore": 69,
+      "rtFetchedAt": "2026-01-09T09:29:52.484Z",
+      "streamingFetchedAt": "2026-01-09T09:44:48.013Z",
+      "createdAt": "2026-01-09T09:15:30.307Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 2799,
+      "posterPath": "/tz0k6pu7zwIPx7x87nKrWbOaGAk.jpg",
+      "overview": "Comedy legend Catherine Tate plays all her best-loved characters in this riotous sketch show. Expect sulky teens, offensive nans and the most tactless women in the world.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtAudienceScore": 88,
+      "rtFetchedAt": "2026-01-09T09:29:49.742Z",
+      "streamingFetchedAt": "2026-01-09T09:44:46.796Z",
+      "createdAt": "2026-01-09T09:15:31.629Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 239388,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/2a0T4JDzGfmtRbVkbDrOqTrxFUd.jpg",
+      "overview": "Sydney, 1961. The women who work in Goodes ladieswear face tumultuous lives navigating societal shifts and personal challenges amidst the fashion transformation of the sixties.",
+      "genres": [
+        "Drama"
+      ],
+      "rtFetchedAt": "2026-01-09T11:05:59.162Z",
+      "streamingFetchedAt": "2026-01-09T09:44:46.256Z",
+      "createdAt": "2026-01-09T09:15:32.416Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 31500,
+      "watchPreference": "together",
+      "rating": 3.5,
+      "posterPath": "/uaqKf7WehmY40HgomvWUpEzrj1s.jpg",
+      "overview": "Socially inept Miranda always gets into awkward situations; working in her joke shop with best friend Stevie, being hounded by her pushy mother, and especially when she's around her crush Gary.",
+      "genres": [
+        "Comedy"
+      ],
+      "rtCriticsScore": 75,
+      "rtAudienceScore": 91,
+      "rtFetchedAt": "2026-01-09T09:29:31.123Z",
+      "createdAt": "2026-01-09T09:15:33.997Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 231963,
+      "posterPath": "/4530J8Q1tiQQbMgg7EdHw146SmS.jpg",
+      "overview": "In the '80s, Naomi Campbell, Cindy Crawford, Linda Evangelista, and Christy Turlington became fashion icons—then transcended their industry by uniting. This is the story of how they claimed their power and shaped the world that followed.",
+      "genres": [
+        "Documentary"
+      ],
+      "rtCriticsScore": 84,
+      "rtAudienceScore": 68,
+      "rtFetchedAt": "2026-01-09T09:29:48.056Z",
+      "createdAt": "2026-01-09T09:15:34.791Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 1973,
+      "posterPath": "/iq6yrZ5LEDXf1ArCOYLq8PIUBpV.jpg",
+      "overview": "Counterterrorism agent Jack Bauer fights the bad guys of the world, a day at a time. With each week's episode unfolding in real-time, \"24\" covers a single day in the life of Bauer each season.",
+      "genres": [
+        "Action & Adventure",
+        "Drama",
+        "Crime"
+      ],
+      "rtCriticsScore": 87,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T09:29:46.343Z",
+      "createdAt": "2026-01-09T09:15:35.866Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 46511,
+      "posterPath": "/snOU6W5CU7aGVSVu29wBWzdzNzi.jpg",
+      "overview": "The  Utopia Experiments is a legendary graphic novel shrouded in mystery.  When a group of strangers find themselves in possession of an original  manuscript, their lives suddenly and brutally implode.",
+      "genres": [
+        "Mystery",
+        "Drama",
+        "Comedy",
+        "Sci-Fi & Fantasy",
+        "Action & Adventure"
+      ],
+      "rtCriticsScore": 29,
+      "rtAudienceScore": 65,
+      "rtFetchedAt": "2026-01-09T09:29:43.350Z",
+      "createdAt": "2026-01-09T09:15:37.732Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 285310,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Hollywood documentary - interesting interviews but may lack narrative depth",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/AtsvZq4sJ0pRSCiZFcBmWR3mVQq.jpg",
+      "overview": "Some of Hollywood's biggest stars reveal their journeys to game-changing leading roles. In candid interviews, they shine a light on the highs and lows of their craft, breakthrough moments, blueprints for success, and the next generation's huge potential.",
+      "genres": [
+        "Documentary"
+      ],
+      "rtCriticsScore": 100,
+      "rtFetchedAt": "2026-01-09T09:29:41.769Z",
+      "createdAt": "2026-01-09T09:15:39.569Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 96580,
+      "predictedRating": 4,
+      "predictedRatingReason": "Sci-fi comedy like Murderbot (4.5) - alien fish-out-of-water humor you'd enjoy",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/5van3ktOTqWr5lcixh5aR8NlqqW.jpg",
+      "overview": "Crash-landed alien Harry takes on the identity of a small-town Colorado doctor. Arriving with a secret mission, he starts off living a simple life…but things get a bit rocky when he's roped into solving a local murder and realizes he needs to assimilate into his new world. As he does, he begins to wrestle with the moral dilemma of his mission and asking the big life questions like: 'Are human beings worth saving?' and 'Why do they fold their pizza before eating it?'",
+      "genres": [
+        "Sci-Fi & Fantasy"
+      ],
+      "rtCriticsScore": 98,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-09T09:29:37.398Z",
+      "streamingFetchedAt": "2026-01-09T09:44:43.816Z",
+      "createdAt": "2026-01-09T09:15:41.181Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 239045,
+      "posterPath": "/9LcTK7S4Xy3Bp9BCHoPvXXPnWJL.jpg",
+      "overview": "A musical extravaganza that breathes new life into some of the country's most defining stories, by giving them the full musical treatment they've always deserved.",
+      "genres": [
+        "Comedy",
+        "Documentary"
+      ],
+      "rtFetchedAt": "2026-01-09T11:06:00.963Z",
+      "streamingFetchedAt": "2026-01-09T09:44:44.914Z",
+      "createdAt": "2026-01-09T09:15:45.372Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    },
+    {
+      "tmdbId": 220564,
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Murder mystery limited series - polished but may feel formulaic",
+      "recommendedWatchPreference": "together",
+      "posterPath": "/weyR73iYr1lWg17Q2r4sc7aEr2p.jpg",
+      "overview": "Amelia is about to marry into one of the wealthiest families on Nantucket, until a shocking death derails the wedding — and turns everyone into a suspect.",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Crime"
+      ],
+      "rtCriticsScore": 66,
+      "rtAudienceScore": 63,
+      "rtFetchedAt": "2026-01-09T11:01:03.095Z",
+      "createdAt": "2026-01-09T09:27:01.710Z",
+      "updatedAt": "2026-01-09T12:22:37.353Z"
+    }
+  ]
+}

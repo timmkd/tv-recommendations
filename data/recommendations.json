@@ -1,0 +1,210 @@
+{
+  "generatedAt": "2026-01-09T12:00:00.000Z",
+  "subscribedServices": ["stan", "hbo-max"],
+  "soloProfile": {
+    "summary": "You're a sci-fi enthusiast who values psychological depth, excellent acting, and clever writing. Your 5-star shows (Severance, Parks & Rec, The Office) reveal two sides: complex mind-bending narratives and comfort workplace comedies you rewatch endlessly. You're a Marvel completionist and love Star Trek. You appreciate Australian content for industry connections. Pacing matters - you drop shows that fizzle or drag.",
+    "loves": [
+      "Psychological sci-fi (Severance 5★, Black Mirror 4.5★, Dark 4.5★, Silo 4.5★)",
+      "Comfort workplace comedies (Parks & Rec 5★, The Office 5★, Brooklyn Nine-Nine 4.5★)",
+      "Star Trek universe (Lower Decks 4.5★, Strange New Worlds 4★, Discovery 4★)",
+      "Shows with 'great pacing, acting' (Murderbot review)",
+      "True story dramas (Dopesick 4★ - 'love based on true stories')",
+      "Australian content (The Newsreader 3.5★, Please Like Me 3★ - 'chat with casting directors')"
+    ],
+    "avoids": [
+      "Shows cancelled without resolution (Big Door Prize 2.5★ - 'I hate when cancelled unresolved')",
+      "Declining quality (Arrested Development 4★ - 's05 was rubbish', House of Cards 3.5★ - 'last season fizzled')",
+      "Dragging episodes (Daredevil 3★ - 'episodes dragged a little')",
+      "Weak Marvel entries (Ms. Marvel 2.5★, Secret Invasion 3★)"
+    ],
+    "topShows": ["Severance 5★", "Parks and Recreation 5★", "The Office 5★", "Silo 4.5★", "Black Mirror 4.5★", "Dark 4.5★", "Foundation 4.5★", "Murderbot 4.5★"]
+  },
+  "togetherProfile": {
+    "summary": "With Helen, spy thrillers are the sweet spot (Slow Horses, Bodyguard, The Americans, Homeland). Period dramas work well (The Crown, Bridgerton). Prestige limited series with true stories land perfectly (Chernobyl 5★). Light mystery-comedy is great for easy watching (Only Murders). Helen doesn't enjoy superhero content, crude humor, or slow pacing - you've noted Severance was 'too slow for Helen'.",
+    "loves": [
+      "Spy thrillers ('Helen loves spy shows' - Bodyguard 4★, Slow Horses 4.5★, The Americans 4★, Homeland 4★)",
+      "Period dramas (The Crown 4.5★, Bridgerton 4★, The Gilded Age 4★, A Gentleman in Moscow 4★)",
+      "Prestige true stories (Chernobyl 5★, Unorthodox 4★, Unbelievable 4★, Mrs. America 4★)",
+      "Light mystery-comedy (Only Murders in the Building 4★, Shrinking 4★)",
+      "Strong female leads (Lessons in Chemistry 4.5★, The Diplomat 4★, The Morning Show 4★)",
+      "Detective shows (Three Pines 3.5★ - 'detective show', Criminal Record 3.5★)"
+    ],
+    "avoids": [
+      "Superhero content ('helen doesn't like superhero shows' - Daredevil note)",
+      "Crude humor (The Boys 4★, Orange Is the New Black 3.5★, What We Do in the Shadows 3★ - all 'too crude for Helen')",
+      "Slow pacing (Severance 'too slow for helen', Fargo 'bit slow paced for Helen')",
+      "Shows that get boring (Elsbeth 3★ - 'got boring', Night Agent 3★ - 'so boring in 2nd season')",
+      "Poor endings (Mr. & Mrs. Smith 2★ - 'slow pacing', Killing Eve 3★ - 'fizzled out')"
+    ],
+    "topShows": ["Chernobyl 5★", "Slow Horses 4.5★", "Lessons in Chemistry 4.5★", "The Crown 4.5★", "Only Murders in the Building 4★", "Bodyguard 4★", "The Americans 4★"]
+  },
+  "solo": [
+    {
+      "title": "Mr. Robot",
+      "year": 2015,
+      "tmdbId": 62560,
+      "posterPath": "/oKIBhzZzDX07SoE2bOLhq2EE8rf.jpg",
+      "reason": "FROM YOUR WATCHLIST (94% RT): Psychological hacker thriller with Severance-level mind games. Rami Malek's performance is extraordinary. Complete series - no cancellation risk. This should be your next solo watch.",
+      "streamingServices": ["stan"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "Rectify",
+      "year": 2013,
+      "tmdbId": 46619,
+      "posterPath": "/tm9nQe9165cyjnTz8NB50izwcpJ.jpg",
+      "reason": "FROM YOUR WATCHLIST (96% RT): Critically adored slow-burn about a man released from death row. You value 'great acting' (Murderbot review) - this delivers. Complete 4-season run with satisfying conclusion.",
+      "streamingServices": ["stan"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "Watchmen",
+      "year": 2019,
+      "tmdbId": 79788,
+      "posterPath": "/m8rWq3j73ZGhDuSCZWMMoE9ePH1.jpg",
+      "reason": "FROM YOUR WATCHLIST (96% RT): HBO's superhero deconstruction with Dark/Severance complexity. You're a Marvel completionist who appreciates prestige - this is the best superhero TV ever made. Limited series, complete story.",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 5
+    },
+    {
+      "title": "The Sopranos",
+      "year": 1999,
+      "tmdbId": 1398,
+      "posterPath": "/6jCGFhF4GkwKBJLbFPXMz8vIlJZ.jpg",
+      "reason": "FROM YOUR WATCHLIST (92% RT): The prestige TV pioneer. You loved Better Call Saul (4★) and appreciate excellent acting/complex characters. This invented the genre - essential viewing.",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "Rosehaven",
+      "year": 2016,
+      "tmdbId": 68248,
+      "posterPath": "/dQpsurcTmqPr64bVMEbzmTzmV4r.jpg",
+      "reason": "FROM YOUR WATCHLIST (100% RT!): Australian workplace comedy. You noted watching Australian shows helps 'chat with casting directors'. Parks & Rec energy with Tasmanian charm. Perfect comfort watch.",
+      "streamingServices": ["abc-iview"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 4
+    },
+    {
+      "title": "Station Eleven",
+      "year": 2021,
+      "tmdbId": 106541,
+      "posterPath": "/zDJBqPJo62Prf2Js0qT5jPq3HaV.jpg",
+      "reason": "Post-apocalyptic drama with stunning cinematography. Shares DNA with Severance and Dark - thoughtful sci-fi that rewards patience. Limited series, complete story, no cancellation worries.",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "new",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "Succession",
+      "year": 2018,
+      "tmdbId": 76331,
+      "posterPath": "/7HW47XbkNQ5fiwQFYGWdw9gs144.jpg",
+      "reason": "Prestige family drama about a media dynasty. Emmy-sweeping acting and razor-sharp writing. Complete 4-season run with acclaimed ending - no fizzle-out risk. If you loved complex characters in Better Call Saul (4★).",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "new",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "Maid",
+      "year": 2021,
+      "tmdbId": 111141,
+      "posterPath": "/4brWcSXdH31BZUTtRTHj8BYFe6M.jpg",
+      "reason": "FROM YOUR WATCHLIST (94% RT): Limited series about escaping poverty. You said you 'love based on true stories' (Dopesick review). Margaret Qualley gives an Emmy-worthy performance.",
+      "streamingServices": ["netflix"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 4
+    }
+  ],
+  "together": [
+    {
+      "title": "We Were the Lucky Ones",
+      "year": 2024,
+      "tmdbId": 200908,
+      "posterPath": "/rRv6Lji53tXnP1h6UGYDQVx4FGg.jpg",
+      "reason": "FROM YOUR WATCHLIST (94% RT): WWII family true story. Fits your Chernobyl (5★) + Unorthodox (4★) pattern perfectly. Prestige limited series with historical weight - ideal together viewing.",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "watchlist",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "The White Lotus",
+      "year": 2021,
+      "tmdbId": 111803,
+      "posterPath": "/gbSaK9v1CbcYH1ISgbM7XObD2dW.jpg",
+      "reason": "Dark social satire at luxury resorts - endless discussion material. Each season is self-contained. Sharper than Big Little Lies (3.5★) with similar 'who did it' energy. Emmy-winning ensemble.",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "new",
+      "predictedRating": 4
+    },
+    {
+      "title": "Slow Horses",
+      "year": 2022,
+      "tmdbId": 113988,
+      "posterPath": "/qAevPVrgzODZF7IoOeXjUGXwTYv.jpg",
+      "reason": "CONTINUE WATCHING: Already rated 4.5★ as 'spy comedy' - your highest-rated together show after Chernobyl. Gary Oldman is perfect. New seasons keep coming - stay current!",
+      "streamingServices": ["apple-tv-plus"],
+      "confidence": "high",
+      "source": "watching",
+      "predictedRating": 4.5
+    },
+    {
+      "title": "Somebody Somewhere",
+      "year": 2022,
+      "tmdbId": 106308,
+      "posterPath": "/1GkoExnlnyTcyGWIoHA4YG8mysc.jpg",
+      "reason": "Warm small-town comedy about finding your people. Ted Lasso (4★) heart with more grounded humor. Perfect low-stakes easy watch - no intensity, no crudeness, just warmth.",
+      "streamingServices": ["hbo-max"],
+      "confidence": "high",
+      "source": "new",
+      "predictedRating": 4
+    },
+    {
+      "title": "Colin from Accounts",
+      "year": 2022,
+      "tmdbId": 210864,
+      "posterPath": "/6iSQYXQM3TdKxDqVzHMgkLTjfAx.jpg",
+      "reason": "Australian rom-com about two people who accidentally adopt a dog. Hits your Australian content interest AND works for together viewing. Light, funny, charming - no crude humor.",
+      "streamingServices": ["binge", "paramount-plus"],
+      "confidence": "high",
+      "source": "new",
+      "predictedRating": 4
+    },
+    {
+      "title": "The Tourist",
+      "year": 2022,
+      "tmdbId": 137698,
+      "posterPath": "/lL6W6qTmDn8rYC9pQRdp2Bel30V.jpg",
+      "reason": "British-Australian thriller in the Outback. Helen loves spy/action (Bodyguard 4★, Jack Ryan 3.5★) + you love Australian content. Jamie Dornan with amnesia - engaging mystery.",
+      "streamingServices": ["stan"],
+      "confidence": "high",
+      "source": "new",
+      "predictedRating": 3.5
+    },
+    {
+      "title": "Reacher",
+      "year": 2022,
+      "tmdbId": 108978,
+      "posterPath": "/cMKuGjYsKq3sxJtQvJ1A6Wk1gUx.jpg",
+      "reason": "Action thriller with Alan Ritchson as the massive ex-military investigator. Good pacing, satisfying action. Similar appeal to Jack Ryan (3.5★) and Terminal List (3★) but better executed.",
+      "streamingServices": ["prime-video"],
+      "confidence": "medium",
+      "source": "new",
+      "predictedRating": 3.5
+    }
+  ]
+}
