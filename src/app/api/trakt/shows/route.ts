@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlaysMap, saveOverlay, getOverlayByTmdbId, isShowDeleted } from '@/lib/data';
 import { getUserShows, searchShows as traktSearch, TraktUserShow } from '@/lib/trakt';
-import { enrichShowWithTMDB } from '@/lib/tmdb';
 import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
 
 // Merge Trakt data with local overlay to create a Show object
@@ -94,32 +93,8 @@ export async function GET(request: NextRequest) {
       shows = shows.filter(s => s.streamingServices.includes(streaming));
     }
 
-    // Enrich shows that are missing poster/overview data
-    // IMPORTANT: Must be sequential to avoid race conditions with file writes
-    const showsToEnrich = shows
-      .filter(s => !s.posterPath && s.tmdbId)
-      .slice(0, 10); // Limit enrichment per request
-
-    for (const show of showsToEnrich) {
-      try {
-        const tmdbData = await enrichShowWithTMDB(show.tmdbId);
-        show.posterPath = tmdbData.posterPath;
-        show.overview = tmdbData.overview;
-        show.genres = tmdbData.genres;
-
-        // Cache in overlay - must read fresh to avoid race condition
-        const existingOverlay = await getOverlayByTmdbId(show.tmdbId);
-        await saveOverlay({
-          tmdbId: show.tmdbId,
-          ...existingOverlay,
-          posterPath: tmdbData.posterPath,
-          overview: tmdbData.overview,
-          genres: tmdbData.genres
-        });
-      } catch {
-        // Ignore enrichment errors
-      }
-    }
+    // NOTE: Auto-enrichment disabled to prevent race conditions with concurrent requests
+    // Use POST /api/trakt/posters to manually fetch missing poster data
 
     return NextResponse.json(shows);
   } catch (error) {
