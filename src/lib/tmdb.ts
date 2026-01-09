@@ -140,9 +140,9 @@ const PROVIDER_MAP: Record<number, string> = {
   1796: 'netflix', // Netflix standard with ads
 
   // Amazon Prime Video
-  119: 'amazon-prime-video',
-  2100: 'amazon-prime-video', // Prime Video with ads
-  9: 'amazon-prime-video', // Amazon Prime Video legacy
+  119: 'prime-video',
+  2100: 'prime-video', // Prime Video with ads
+  9: 'prime-video', // Amazon Prime Video legacy
 
   // Disney
   337: 'disney-plus',

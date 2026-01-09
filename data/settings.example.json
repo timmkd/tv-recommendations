@@ -4,7 +4,7 @@
     { "slug": "stan", "name": "Stan", "isSubscribed": false },
     { "slug": "binge", "name": "Binge", "isSubscribed": false },
     { "slug": "disney-plus", "name": "Disney+", "isSubscribed": false },
-    { "slug": "amazon-prime-video", "name": "Prime Video", "isSubscribed": false },
+    { "slug": "prime-video", "name": "Prime Video", "isSubscribed": false },
     { "slug": "paramount-plus", "name": "Paramount+", "isSubscribed": false },
     { "slug": "apple-tv-plus", "name": "Apple TV+", "isSubscribed": false },
     { "slug": "max", "name": "Max", "isSubscribed": false },
