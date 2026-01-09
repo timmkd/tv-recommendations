@@ -81,8 +81,8 @@ const TRAKT_SOURCE_MAP: Record<string, string> = {
   'britbox': 'britbox',
   'abc iview': 'abc-iview',
   'sbs on demand': 'sbs-on-demand',
-  'hbo max': 'hbo-max',
-  'max': 'hbo-max',
+  'hbo max': 'max',
+  'max': 'max',
 };
 
 function getClientId(): string {
@@ -440,10 +440,16 @@ export async function getShowStreaming(slug: string, country: string = 'au'): Pr
     if (Array.isArray(data)) {
       for (const item of data) {
         const sourceName = (item.source || '').toLowerCase();
-        // Use Trakt's source name directly as slug, normalized
-        const slug = sourceName.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        if (slug) {
-          services.push(slug);
+        // First try to map using our known mappings
+        const mappedSlug = TRAKT_SOURCE_MAP[sourceName];
+        if (mappedSlug) {
+          services.push(mappedSlug);
+        } else {
+          // Fallback: normalize the name as a slug
+          const slug = sourceName.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          if (slug) {
+            services.push(slug);
+          }
         }
       }
     }

@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlayByTmdbId, saveOverlay, getOverlaysMap } from '@/lib/data';
-import { getUserShows } from '@/lib/trakt';
-import { getWatchProviders } from '@/lib/tmdb';
+import { getUserShows, getShowStreaming } from '@/lib/trakt';
 
-// POST to fetch streaming availability from TMDB
+// POST to fetch streaming availability from Trakt
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -25,7 +24,7 @@ export async function POST(request: NextRequest) {
     const overlaysMap = await getOverlaysMap();
 
     // Filter to shows that need streaming data
-    let showsToFetch: { tmdbId: number; title: string }[] = [];
+    let showsToFetch: { tmdbId: number; slug: string; title: string }[] = [];
 
     for (const show of traktShows) {
       // If specific IDs provided, only fetch those
@@ -44,7 +43,7 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      showsToFetch.push({ tmdbId: show.tmdbId, title: show.title });
+      showsToFetch.push({ tmdbId: show.tmdbId, slug: show.slug, title: show.title });
     }
 
     if (showsToFetch.length === 0) {
@@ -56,13 +55,13 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Fetch streaming data from TMDB
+    // Fetch streaming data from Trakt
     let updated = 0;
     const results: Record<number, string[]> = {};
 
     for (const show of showsToFetch) {
       try {
-        const services = await getWatchProviders(show.tmdbId);
+        const services = await getShowStreaming(show.slug, 'au');
 
         // Get existing overlay and update streaming data
         const existing = await getOverlayByTmdbId(show.tmdbId);
@@ -78,7 +77,7 @@ export async function POST(request: NextRequest) {
         updated++;
 
         // Rate limit - small delay between requests
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 100));
       } catch (error) {
         console.error(`Failed to fetch streaming for ${show.title}:`, error);
       }
