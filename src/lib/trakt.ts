@@ -1,0 +1,590 @@
+import type { Show, ShowStatus, WatchPreference, TraktAuth } from '@/types';
+import { v4 as uuidv4 } from 'uuid';
+import { getStreamingAvailability } from './justwatch';
+import { getSettings, saveSettings } from './data';
+
+const TRAKT_API_URL = 'https://api.trakt.tv';
+const TRAKT_TOKEN_URL = 'https://api.trakt.tv/oauth/token';
+
+// Trakt API response types
+export interface TraktShowInfo {
+  title: string;
+  year: number;
+  ids: {
+    trakt: number;
+    slug: string;
+    imdb: string;
+    tmdb: number;
+  };
+  overview?: string;
+  runtime?: number;
+  status?: string;
+  network?: string;
+  genres?: string[];
+}
+
+export interface TraktShow {
+  show: TraktShowInfo;
+  rating?: number;
+  rated_at?: string;
+  plays?: number;
+  last_watched_at?: string;
+  listed_at?: string;
+}
+
+export interface TraktSearchResult {
+  type: 'show';
+  score: number;
+  show: TraktShowInfo;
+}
+
+// Combined user data from Trakt
+export interface TraktUserShow {
+  tmdbId: number;
+  traktId: number;
+  slug: string;
+  title: string;
+  year: number;
+  status: ShowStatus;
+  traktRating?: number; // 1-10 scale
+  plays?: number;
+  lastWatchedAt?: string;
+  listedAt?: string;
+}
+
+// Trakt streaming/watch provider types
+export interface TraktWatchProvider {
+  source: string;
+  link: string;
+}
+
+export interface TraktWatchNow {
+  sources: TraktWatchProvider[];
+}
+
+// Map Trakt source names to our slug format
+const TRAKT_SOURCE_MAP: Record<string, string> = {
+  'netflix': 'netflix',
+  'amazon_prime': 'prime-video',
+  'amazon prime': 'prime-video',
+  'prime video': 'prime-video',
+  'disney_plus': 'disney-plus',
+  'disney+': 'disney-plus',
+  'stan': 'stan',
+  'binge': 'binge',
+  'foxtel': 'foxtel-now',
+  'foxtel now': 'foxtel-now',
+  'apple_tv_plus': 'apple-tv-plus',
+  'apple tv+': 'apple-tv-plus',
+  'paramount_plus': 'paramount-plus',
+  'paramount+': 'paramount-plus',
+  'britbox': 'britbox',
+  'abc iview': 'abc-iview',
+  'sbs on demand': 'sbs-on-demand',
+  'hbo max': 'hbo-max',
+  'max': 'hbo-max',
+};
+
+function getClientId(): string {
+  const clientId = process.env.TRAKT_CLIENT_ID;
+  if (!clientId) {
+    throw new Error('TRAKT_CLIENT_ID environment variable is not set. Get one free at trakt.tv/oauth/applications');
+  }
+  return clientId;
+}
+
+function getClientSecret(): string {
+  const clientSecret = process.env.TRAKT_CLIENT_SECRET;
+  if (!clientSecret) {
+    throw new Error('TRAKT_CLIENT_SECRET environment variable is not set');
+  }
+  return clientSecret;
+}
+
+// Refresh access token if expired
+async function refreshTokenIfNeeded(auth: TraktAuth): Promise<TraktAuth | null> {
+  // Check if token is expired (with 5 minute buffer)
+  const now = Math.floor(Date.now() / 1000);
+  if (auth.expiresAt > now + 300) {
+    return auth; // Still valid
+  }
+
+  try {
+    const response = await fetch(TRAKT_TOKEN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        refresh_token: auth.refreshToken,
+        client_id: getClientId(),
+        client_secret: getClientSecret(),
+        redirect_uri: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/auth/trakt/callback`,
+        grant_type: 'refresh_token',
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Token refresh failed:', await response.text());
+      return null;
+    }
+
+    const data = await response.json();
+    const newAuth: TraktAuth = {
+      accessToken: data.access_token,
+      refreshToken: data.refresh_token,
+      expiresAt: Math.floor(Date.now() / 1000) + data.expires_in,
+      createdAt: data.created_at || Math.floor(Date.now() / 1000),
+    };
+
+    // Save updated tokens
+    const settings = await getSettings();
+    settings.traktAuth = newAuth;
+    await saveSettings(settings);
+
+    return newAuth;
+  } catch (err) {
+    console.error('Token refresh error:', err);
+    return null;
+  }
+}
+
+// Get auth headers for authenticated requests
+async function getAuthHeaders(): Promise<Record<string, string> | null> {
+  const settings = await getSettings();
+  if (!settings.traktAuth) {
+    return null;
+  }
+
+  const auth = await refreshTokenIfNeeded(settings.traktAuth);
+  if (!auth) {
+    return null;
+  }
+
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${auth.accessToken}`,
+    'trakt-api-version': '2',
+    'trakt-api-key': getClientId(),
+  };
+}
+
+// Check if we have valid authentication
+export async function isAuthenticated(): Promise<boolean> {
+  const headers = await getAuthHeaders();
+  return headers !== null;
+}
+
+// Fetch user's watchlist via Trakt API
+async function fetchWatchlist(username: string): Promise<TraktShow[]> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/users/${username}/watchlist/shows`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'trakt-api-version': '2',
+      'trakt-api-key': clientId
+    }
+  });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error(`User "${username}" not found or profile is private`);
+    }
+    throw new Error(`Failed to fetch Trakt watchlist: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+// Fetch user's watched shows via Trakt API
+async function fetchWatched(username: string): Promise<TraktShow[]> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/users/${username}/watched/shows`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'trakt-api-version': '2',
+      'trakt-api-key': clientId
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch Trakt watched: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+// Fetch user's ratings via Trakt API
+async function fetchRatings(username: string): Promise<TraktShow[]> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/users/${username}/ratings/shows`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'trakt-api-version': '2',
+      'trakt-api-key': clientId
+    }
+  });
+
+  if (!response.ok) {
+    return [];
+  }
+
+  return response.json();
+}
+
+// Search for shows via Trakt API
+export async function searchShows(query: string): Promise<TraktSearchResult[]> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/search/show?query=${encodeURIComponent(query)}&extended=full`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'trakt-api-version': '2',
+      'trakt-api-key': clientId
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to search Trakt: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+// Get show details by Trakt ID or TMDB ID
+export async function getShowByTmdbId(tmdbId: number): Promise<TraktShowInfo | null> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/search/tmdb/${tmdbId}?type=show&extended=full`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'trakt-api-version': '2',
+      'trakt-api-key': clientId
+    }
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const results = await response.json();
+  if (results.length > 0 && results[0].show) {
+    return results[0].show;
+  }
+  return null;
+}
+
+// Progress response type
+interface TraktProgressShow {
+  show: TraktShowInfo;
+  aired: number;
+  completed: number;
+  last_watched_at?: string;
+  seasons: {
+    number: number;
+    aired: number;
+    completed: number;
+  }[];
+}
+
+// Fetch watch progress (authenticated) - shows which shows are in progress vs completed
+async function fetchWatchProgress(): Promise<TraktProgressShow[]> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) {
+    return [];
+  }
+
+  const url = `${TRAKT_API_URL}/sync/watched/shows?extended=full`;
+
+  try {
+    const response = await fetch(url, { headers: authHeaders });
+    if (!response.ok) {
+      return [];
+    }
+    return response.json();
+  } catch {
+    return [];
+  }
+}
+
+// Get all user shows combined (watchlist + watched + ratings)
+// Uses authenticated progress endpoint when available for accurate status
+export async function getUserShows(username: string): Promise<TraktUserShow[]> {
+  const showsMap = new Map<number, TraktUserShow>();
+
+  // Try to get authenticated progress data
+  const hasAuth = await isAuthenticated();
+  const progressData = hasAuth ? await fetchWatchProgress() : [];
+  const progressMap = new Map<number, TraktProgressShow>();
+
+  for (const p of progressData) {
+    if (p.show.ids.tmdb) {
+      progressMap.set(p.show.ids.tmdb, p);
+    }
+  }
+
+  // Fetch all data in parallel
+  const [watchlist, watched, ratings] = await Promise.all([
+    fetchWatchlist(username).catch(() => []),
+    fetchWatched(username).catch(() => []),
+    fetchRatings(username).catch(() => [])
+  ]);
+
+  // Process watchlist - status: watchlist
+  for (const item of watchlist) {
+    const tmdbId = item.show.ids.tmdb;
+    if (!tmdbId) continue;
+
+    showsMap.set(tmdbId, {
+      tmdbId,
+      traktId: item.show.ids.trakt,
+      slug: item.show.ids.slug,
+      title: item.show.title,
+      year: item.show.year,
+      status: 'watchlist',
+      listedAt: item.listed_at
+    });
+  }
+
+  // Process watched - use progress data if available for accurate status
+  for (const item of watched) {
+    const tmdbId = item.show.ids.tmdb;
+    if (!tmdbId) continue;
+
+    const existing = showsMap.get(tmdbId);
+    const progress = progressMap.get(tmdbId);
+
+    // Determine status based on progress if available
+    let status: ShowStatus = 'completed';
+    if (progress) {
+      // If they've watched some but not all aired episodes, it's "watching"
+      // completed < aired means still in progress
+      if (progress.completed < progress.aired && progress.completed > 0) {
+        status = 'watching';
+      }
+    }
+
+    if (existing) {
+      existing.status = status;
+      existing.plays = item.plays;
+      existing.lastWatchedAt = item.last_watched_at;
+    } else {
+      showsMap.set(tmdbId, {
+        tmdbId,
+        traktId: item.show.ids.trakt,
+        slug: item.show.ids.slug,
+        title: item.show.title,
+        year: item.show.year,
+        status,
+        plays: item.plays,
+        lastWatchedAt: item.last_watched_at
+      });
+    }
+  }
+
+  // Process ratings - add rating to existing entries
+  for (const item of ratings) {
+    const tmdbId = item.show.ids.tmdb;
+    if (!tmdbId) continue;
+
+    const existing = showsMap.get(tmdbId);
+    if (existing) {
+      existing.traktRating = item.rating;
+    } else {
+      // Show has rating but not in watchlist or watched - mark as completed
+      showsMap.set(tmdbId, {
+        tmdbId,
+        traktId: item.show.ids.trakt,
+        slug: item.show.ids.slug,
+        title: item.show.title,
+        year: item.show.year,
+        status: 'completed',
+        traktRating: item.rating
+      });
+    }
+  }
+
+  return Array.from(showsMap.values());
+}
+
+// Fetch streaming availability from Trakt for a show
+export async function getShowStreaming(slug: string, country: string = 'au'): Promise<string[]> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/shows/${slug}/watchnow/${country}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'trakt-api-version': '2',
+        'trakt-api-key': clientId
+      }
+    });
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const data = await response.json();
+
+    // Trakt returns an array of sources
+    // Each source has: source (name), link, etc.
+    const services: string[] = [];
+
+    if (Array.isArray(data)) {
+      for (const item of data) {
+        const sourceName = (item.source || '').toLowerCase();
+        // Use Trakt's source name directly as slug, normalized
+        const slug = sourceName.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        if (slug) {
+          services.push(slug);
+        }
+      }
+    }
+
+    return [...new Set(services)]; // Dedupe
+  } catch (error) {
+    console.error(`Failed to fetch streaming for ${slug}:`, error);
+    return [];
+  }
+}
+
+// Batch fetch streaming for multiple shows
+export async function batchGetStreaming(
+  shows: { slug: string; tmdbId: number }[],
+  country: string = 'au'
+): Promise<Map<number, string[]>> {
+  const results = new Map<number, string[]>();
+
+  for (const show of shows) {
+    try {
+      const services = await getShowStreaming(show.slug, country);
+      results.set(show.tmdbId, services);
+      // Rate limit - be respectful to Trakt API
+      await new Promise(resolve => setTimeout(resolve, 100));
+    } catch {
+      results.set(show.tmdbId, []);
+    }
+  }
+
+  return results;
+}
+
+// Import all shows from a Trakt user
+export async function importFromTrakt(
+  username: string,
+  defaultPreference?: WatchPreference,
+  options?: { fetchStreaming?: boolean; onProgress?: (msg: string) => void }
+): Promise<{ shows: Show[]; errors: string[] }> {
+  const errors: string[] = [];
+  const showsMap = new Map<number, Show>();
+  const { fetchStreaming = true, onProgress } = options || {};
+
+  try {
+    // Fetch watchlist
+    const watchlist = await fetchWatchlist(username);
+    for (const item of watchlist) {
+      const tmdbId = item.show.ids.tmdb;
+      if (!tmdbId) continue;
+
+      showsMap.set(tmdbId, {
+        id: uuidv4(),
+        tmdbId,
+        title: item.show.title,
+        year: item.show.year,
+        status: 'watchlist',
+        watchPreference: defaultPreference,
+        genres: [],
+        streamingServices: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
+    }
+  } catch (e) {
+    errors.push(`Failed to fetch watchlist: ${e instanceof Error ? e.message : 'Unknown error'}`);
+  }
+
+  try {
+    // Fetch watched shows
+    const watched = await fetchWatched(username);
+    for (const item of watched) {
+      const tmdbId = item.show.ids.tmdb;
+      if (!tmdbId) continue;
+
+      if (!showsMap.has(tmdbId)) {
+        showsMap.set(tmdbId, {
+          id: uuidv4(),
+          tmdbId,
+          title: item.show.title,
+          year: item.show.year,
+          status: 'completed',
+          watchPreference: defaultPreference,
+          genres: [],
+          streamingServices: [],
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      } else {
+        // Update status if already in watchlist
+        const existing = showsMap.get(tmdbId)!;
+        existing.status = 'completed';
+      }
+    }
+  } catch (e) {
+    errors.push(`Failed to fetch watched shows: ${e instanceof Error ? e.message : 'Unknown error'}`);
+  }
+
+  try {
+    // Fetch ratings and apply them (convert Trakt 1-10 to our 0.5-5 scale)
+    const ratings = await fetchRatings(username);
+    for (const item of ratings) {
+      const tmdbId = item.show.ids.tmdb;
+      if (!tmdbId) continue;
+
+      const show = showsMap.get(tmdbId);
+      if (show && item.rating) {
+        // Convert Trakt's 1-10 scale to our 0.5-5 scale
+        show.rating = Math.round(item.rating / 2 * 2) / 2; // Round to nearest 0.5
+      }
+    }
+  } catch (e) {
+    errors.push(`Failed to fetch ratings: ${e instanceof Error ? e.message : 'Unknown error'}`);
+  }
+
+  // Fetch streaming availability for each show
+  if (fetchStreaming) {
+    const shows = Array.from(showsMap.values());
+    onProgress?.(`Fetching streaming info for ${shows.length} shows...`);
+
+    for (let i = 0; i < shows.length; i++) {
+      const show = shows[i];
+      if (show.tmdbId) {
+        try {
+          onProgress?.(`Streaming: ${show.title} (${i + 1}/${shows.length})`);
+          const result = await getStreamingAvailability(show.tmdbId);
+          show.streamingServices = result.services;
+          show.streamingFetchedAt = new Date().toISOString();
+          if (result.justWatchUrl) {
+            show.justWatchUrl = result.justWatchUrl;
+          }
+          // Rate limit - 200ms between requests
+          await new Promise(resolve => setTimeout(resolve, 200));
+        } catch (e) {
+          // Silently continue if streaming fetch fails for a show
+          errors.push(`Streaming fetch failed for ${show.title}: ${e instanceof Error ? e.message : 'Unknown error'}`);
+        }
+      }
+    }
+  }
+
+  return {
+    shows: Array.from(showsMap.values()),
+    errors
+  };
+}
