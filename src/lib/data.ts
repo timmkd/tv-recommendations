@@ -47,7 +47,12 @@ export async function saveOverlay(overlay: ShowOverlay): Promise<void> {
   const existingIndex = data.overlays.findIndex(o => o.tmdbId === overlay.tmdbId);
 
   if (existingIndex >= 0) {
-    data.overlays[existingIndex] = { ...overlay, updatedAt: new Date().toISOString() };
+    // MERGE with existing data instead of replacing - preserves fields not in the update
+    data.overlays[existingIndex] = {
+      ...data.overlays[existingIndex],
+      ...overlay,
+      updatedAt: new Date().toISOString()
+    };
   } else {
     data.overlays.push({ ...overlay, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
   }
