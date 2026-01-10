@@ -280,9 +280,8 @@ export async function getShowByTmdbId(tmdbId: number): Promise<TraktShowInfo | n
   return null;
 }
 
-// Progress response type
-interface TraktProgressShow {
-  show: TraktShowInfo;
+// Progress response type from /shows/{id}/progress/watched
+interface TraktShowProgress {
   aired: number;
   completed: number;
   last_watched_at?: string;
@@ -293,41 +292,98 @@ interface TraktProgressShow {
   }[];
 }
 
-// Fetch watch progress (authenticated) - shows which shows are in progress vs completed
-async function fetchWatchProgress(): Promise<TraktProgressShow[]> {
+// Fetch progress for a single show (authenticated)
+async function fetchShowProgress(slug: string): Promise<TraktShowProgress | null> {
   const authHeaders = await getAuthHeaders();
   if (!authHeaders) {
-    return [];
+    return null;
   }
 
-  const url = `${TRAKT_API_URL}/sync/watched/shows?extended=full`;
+  const url = `${TRAKT_API_URL}/shows/${slug}/progress/watched`;
 
   try {
     const response = await fetch(url, { headers: authHeaders });
     if (!response.ok) {
-      return [];
+      return null;
     }
     return response.json();
   } catch {
-    return [];
+    return null;
   }
+}
+
+// In-memory cache for progress data to avoid rate limiting
+let progressCache: Map<string, TraktShowProgress> = new Map();
+let progressCacheTime: number = 0;
+const PROGRESS_CACHE_TTL = 30 * 60 * 1000; // 30 minutes - longer to avoid rate limits
+
+// Flag to enable/disable progress fetching (can be toggled via API)
+let progressFetchEnabled = true;
+
+// Export function to manually trigger progress refresh
+export async function refreshProgressCache(slugs: string[]): Promise<number> {
+  progressFetchEnabled = true;
+  const results = await fetchProgressForShowsInternal(slugs);
+  return results.size;
+}
+
+// Internal function that does the actual fetching
+async function fetchProgressForShowsInternal(slugs: string[]): Promise<Map<string, TraktShowProgress>> {
+  const results = new Map<string, TraktShowProgress>();
+
+  // Process in batches of 2 with longer delays to avoid rate limiting
+  const batchSize = 2;
+  for (let i = 0; i < slugs.length; i += batchSize) {
+    const batch = slugs.slice(i, i + batchSize);
+    const promises = batch.map(async (slug) => {
+      try {
+        const progress = await fetchShowProgress(slug);
+        if (progress) {
+          results.set(slug, progress);
+        }
+      } catch (err) {
+        // If we hit rate limit, stop fetching
+        console.error(`Progress fetch failed for ${slug}:`, err);
+        progressFetchEnabled = false;
+      }
+    });
+    await Promise.all(promises);
+
+    // Longer delay between batches to avoid rate limiting (500ms)
+    if (i + batchSize < slugs.length) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+  }
+
+  // Update cache
+  progressCache = results;
+  progressCacheTime = Date.now();
+
+  return results;
+}
+
+// Fetch progress for multiple shows (with caching to avoid rate limits)
+async function fetchProgressForShows(slugs: string[]): Promise<Map<string, TraktShowProgress>> {
+  const now = Date.now();
+
+  // Return cached data if still fresh
+  if (progressCache.size > 0 && (now - progressCacheTime) < PROGRESS_CACHE_TTL) {
+    return progressCache;
+  }
+
+  // If progress fetching is disabled (due to rate limits), return empty
+  if (!progressFetchEnabled) {
+    console.log('Progress fetching disabled due to rate limits, using cached data');
+    return progressCache;
+  }
+
+  return fetchProgressForShowsInternal(slugs);
 }
 
 // Get all user shows combined (watchlist + watched + ratings)
 // Uses authenticated progress endpoint when available for accurate status
 export async function getUserShows(username: string): Promise<TraktUserShow[]> {
   const showsMap = new Map<number, TraktUserShow>();
-
-  // Try to get authenticated progress data
-  const hasAuth = await isAuthenticated();
-  const progressData = hasAuth ? await fetchWatchProgress() : [];
-  const progressMap = new Map<number, TraktProgressShow>();
-
-  for (const p of progressData) {
-    if (p.show.ids.tmdb) {
-      progressMap.set(p.show.ids.tmdb, p);
-    }
-  }
 
   // Fetch all data in parallel
   const [watchlist, watched, ratings] = await Promise.all([
@@ -352,19 +408,33 @@ export async function getUserShows(username: string): Promise<TraktUserShow[]> {
     });
   }
 
-  // Process watched - use progress data if available for accurate status
+  // Fetch progress for all watched shows to determine watching vs completed
+  // Wrapped in try-catch to handle rate limiting gracefully
+  let progressMap = new Map<string, TraktShowProgress>();
+  try {
+    const hasAuth = await isAuthenticated();
+    const watchedSlugs = watched.map(w => w.show.ids.slug).filter(Boolean);
+    if (hasAuth && watchedSlugs.length > 0) {
+      progressMap = await fetchProgressForShows(watchedSlugs);
+    }
+  } catch (err) {
+    console.error('Failed to fetch progress (rate limited?):', err);
+    // Continue without progress - shows will default to "completed"
+  }
+
+  // Process watched - use progress data for accurate status
   for (const item of watched) {
     const tmdbId = item.show.ids.tmdb;
+    const slug = item.show.ids.slug;
     if (!tmdbId) continue;
 
     const existing = showsMap.get(tmdbId);
-    const progress = progressMap.get(tmdbId);
+    const progress = progressMap.get(slug);
 
     // Determine status based on progress if available
     let status: ShowStatus = 'completed';
     if (progress) {
       // If they've watched some but not all aired episodes, it's "watching"
-      // completed < aired means still in progress
       if (progress.completed < progress.aired && progress.completed > 0) {
         status = 'watching';
       }

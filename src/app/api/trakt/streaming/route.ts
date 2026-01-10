@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlayByTmdbId, saveOverlay, getOverlaysMap } from '@/lib/data';
-import { getUserShows, getShowStreaming } from '@/lib/trakt';
+import { getUserShows } from '@/lib/trakt';
+import { getWatchProviders } from '@/lib/tmdb';
 
-// POST to fetch streaming availability from Trakt
+// POST to fetch streaming availability from TMDB
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
     const overlaysMap = await getOverlaysMap();
 
     // Filter to shows that need streaming data
-    let showsToFetch: { tmdbId: number; slug: string; title: string }[] = [];
+    const showsToFetch: { tmdbId: number; title: string }[] = [];
 
     for (const show of traktShows) {
       // If specific IDs provided, only fetch those
@@ -43,7 +44,7 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      showsToFetch.push({ tmdbId: show.tmdbId, slug: show.slug, title: show.title });
+      showsToFetch.push({ tmdbId: show.tmdbId, title: show.title });
     }
 
     if (showsToFetch.length === 0) {
@@ -55,13 +56,13 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Fetch streaming data from Trakt
+    // Fetch streaming data from TMDB
     let updated = 0;
     const results: Record<number, string[]> = {};
 
     for (const show of showsToFetch) {
       try {
-        const services = await getShowStreaming(show.slug, 'au');
+        const services = await getWatchProviders(show.tmdbId);
 
         // Get existing overlay and update streaming data
         const existing = await getOverlayByTmdbId(show.tmdbId);
@@ -69,6 +70,7 @@ export async function POST(request: NextRequest) {
         await saveOverlay({
           tmdbId: show.tmdbId,
           ...existing,
+          title: show.title,
           streamingServices: services,
           streamingFetchedAt: new Date().toISOString()
         });

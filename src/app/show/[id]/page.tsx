@@ -7,8 +7,7 @@ import type { Show, ShowStatus, WatchPreference } from '@/types';
 const STATUS_OPTIONS: { value: ShowStatus; label: string }[] = [
   { value: 'watching', label: 'Watching' },
   { value: 'completed', label: 'Completed' },
-  { value: 'watchlist', label: 'Watchlist' },
-  { value: 'dropped', label: 'Dropped' }
+  { value: 'watchlist', label: 'Watchlist' }
 ];
 
 const PREFERENCE_OPTIONS: { value: WatchPreference; label: string }[] = [

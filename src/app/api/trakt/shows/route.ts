@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSettings, getOverlaysMap, saveOverlay, getOverlayByTmdbId, isShowDeleted } from '@/lib/data';
+import { getSettings, getOverlaysMap, getOverlays, saveOverlay, getOverlayByTmdbId, isShowDeleted } from '@/lib/data';
 import { getUserShows, searchShows as traktSearch, TraktUserShow } from '@/lib/trakt';
+import { enrichShowWithTMDB } from '@/lib/tmdb';
 import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
 
 // Merge Trakt data with local overlay to create a Show object
@@ -24,6 +25,7 @@ function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show
     recommendedWatchPreference: overlay?.recommendedWatchPreference,
     notes: overlay?.notes,
     hidden: overlay?.hidden,
+    dropped: overlay?.dropped,
 
     // External data from overlay cache
     genres: overlay?.genres || [],
@@ -33,6 +35,8 @@ function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show
     streamingServices: overlay?.streamingServices || [],
     streamingFetchedAt: overlay?.streamingFetchedAt,
     justWatchUrl: overlay?.justWatchUrl,
+    numberOfSeasons: overlay?.numberOfSeasons,
+    showStatus: overlay?.showStatus,
 
     // Metadata
     createdAt: overlay?.createdAt || new Date().toISOString(),
@@ -40,42 +44,163 @@ function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show
   };
 }
 
+// Convert overlay to Show (fallback when Trakt is unavailable)
+function overlayToShow(overlay: ShowOverlay): Show {
+  return {
+    id: `overlay-${overlay.tmdbId}`,
+    tmdbId: overlay.tmdbId,
+    title: overlay.title || `Show ${overlay.tmdbId}`,
+    year: overlay.year,
+    status: overlay.rating ? 'completed' : 'watchlist', // Best guess without Trakt
+    posterPath: overlay.posterPath,
+    overview: overlay.overview,
+    watchPreference: overlay.watchPreference,
+    watchPreferenceNote: overlay.watchPreferenceNote,
+    rating: overlay.rating,
+    reviewNote: overlay.reviewNote,
+    predictedRating: overlay.predictedRating,
+    predictedRatingReason: overlay.predictedRatingReason,
+    recommendedWatchPreference: overlay.recommendedWatchPreference,
+    notes: overlay.notes,
+    hidden: overlay.hidden,
+    dropped: overlay.dropped,
+    genres: overlay.genres || [],
+    rtCriticsScore: overlay.rtCriticsScore,
+    rtAudienceScore: overlay.rtAudienceScore,
+    rtFetchedAt: overlay.rtFetchedAt,
+    streamingServices: overlay.streamingServices || [],
+    streamingFetchedAt: overlay.streamingFetchedAt,
+    justWatchUrl: overlay.justWatchUrl,
+    numberOfSeasons: overlay.numberOfSeasons,
+    showStatus: overlay.showStatus,
+    createdAt: overlay.createdAt || new Date().toISOString(),
+    updatedAt: overlay.updatedAt || new Date().toISOString()
+  };
+}
+
 // GET shows from Trakt, merged with local overlays
+// Falls back to overlays-only mode if Trakt is rate limited
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const settings = await getSettings();
+    const fallbackOnly = searchParams.get('fallback') === 'true';
 
-    if (!settings.traktUsername) {
-      return NextResponse.json(
-        { error: 'Trakt username not configured. Set it in Settings.' },
-        { status: 400 }
-      );
+    let shows: Show[] = [];
+    let usedFallback = false;
+
+    // Try Trakt first (unless fallback-only mode)
+    if (!fallbackOnly && settings.traktUsername) {
+      try {
+        const traktShows = await getUserShows(settings.traktUsername);
+
+        if (traktShows.length > 0) {
+          // Get local overlays
+          const overlaysMap = await getOverlaysMap();
+
+          // Merge and filter deleted shows
+          const traktTmdbIds = new Set<number>();
+          const newOverlaysToSave: ShowOverlay[] = [];
+
+          for (const traktShow of traktShows) {
+            if (await isShowDeleted(traktShow.tmdbId)) {
+              continue;
+            }
+
+            traktTmdbIds.add(traktShow.tmdbId);
+            let overlay = overlaysMap.get(traktShow.tmdbId);
+
+            // Create overlay for new shows so they're available in fallback mode
+            if (!overlay) {
+              overlay = {
+                tmdbId: traktShow.tmdbId,
+                title: traktShow.title,
+                year: traktShow.year,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+              };
+              newOverlaysToSave.push(overlay);
+            }
+
+            const show = mergeWithOverlay(traktShow, overlay);
+
+            if (show.hidden && !searchParams.get('includeHidden')) {
+              continue;
+            }
+
+            shows.push(show);
+          }
+
+          // Save new overlays and enrich with TMDB data in background (don't block response)
+          if (newOverlaysToSave.length > 0) {
+            (async () => {
+              for (const overlay of newOverlaysToSave) {
+                try {
+                  // First save basic overlay
+                  await saveOverlay(overlay);
+
+                  // Then enrich with TMDB data (poster, genres, etc.)
+                  const tmdbData = await enrichShowWithTMDB(overlay.tmdbId);
+                  if (tmdbData.posterPath || tmdbData.genres.length > 0) {
+                    await saveOverlay({
+                      ...overlay,
+                      posterPath: tmdbData.posterPath,
+                      overview: tmdbData.overview,
+                      genres: tmdbData.genres,
+                      numberOfSeasons: tmdbData.numberOfSeasons,
+                      showStatus: tmdbData.showStatus,
+                      updatedAt: new Date().toISOString()
+                    });
+                  }
+                } catch (err) {
+                  console.error(`Failed to enrich show ${overlay.tmdbId}:`, err);
+                }
+              }
+            })();
+          }
+
+          // Also include overlay-only shows (not in Trakt but in overlays)
+          for (const [tmdbId, overlay] of overlaysMap) {
+            if (traktTmdbIds.has(tmdbId)) continue; // Already included from Trakt
+            if (await isShowDeleted(tmdbId)) continue;
+            if (!overlay.title) continue; // Skip unenriched overlays
+
+            const show = overlayToShow(overlay);
+            if (show.hidden && !searchParams.get('includeHidden')) {
+              continue;
+            }
+            shows.push(show);
+          }
+        }
+      } catch (traktError) {
+        console.error('Trakt fetch failed, using fallback:', traktError);
+      }
     }
 
-    // Get user shows from Trakt
-    const traktShows = await getUserShows(settings.traktUsername);
+    // Fallback to overlays-only if Trakt returned nothing
+    if (shows.length === 0) {
+      console.log('Using overlays fallback mode');
+      usedFallback = true;
+      const overlays = await getOverlays();
 
-    // Get local overlays
-    const overlaysMap = await getOverlaysMap();
+      for (const overlay of overlays) {
+        if (await isShowDeleted(overlay.tmdbId)) {
+          continue;
+        }
 
-    // Merge and filter deleted shows
-    let shows: Show[] = [];
-    for (const traktShow of traktShows) {
-      // Skip deleted shows
-      if (await isShowDeleted(traktShow.tmdbId)) {
-        continue;
+        // Only include overlays that have title (enriched ones)
+        if (!overlay.title) {
+          continue;
+        }
+
+        const show = overlayToShow(overlay);
+
+        if (show.hidden && !searchParams.get('includeHidden')) {
+          continue;
+        }
+
+        shows.push(show);
       }
-
-      const overlay = overlaysMap.get(traktShow.tmdbId);
-      const show = mergeWithOverlay(traktShow, overlay);
-
-      // Skip hidden shows unless specifically requested
-      if (show.hidden && !searchParams.get('includeHidden')) {
-        continue;
-      }
-
-      shows.push(show);
     }
 
     // Apply filters
@@ -93,10 +218,12 @@ export async function GET(request: NextRequest) {
       shows = shows.filter(s => s.streamingServices.includes(streaming));
     }
 
-    // NOTE: Auto-enrichment disabled to prevent race conditions with concurrent requests
-    // Use POST /api/trakt/posters to manually fetch missing poster data
-
-    return NextResponse.json(shows);
+    // Add header to indicate fallback mode
+    const response = NextResponse.json(shows);
+    if (usedFallback) {
+      response.headers.set('X-Fallback-Mode', 'true');
+    }
+    return response;
   } catch (error) {
     console.error('Trakt shows error:', error);
     return NextResponse.json(

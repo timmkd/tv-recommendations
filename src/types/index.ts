@@ -1,5 +1,5 @@
 export type WatchPreference = 'solo' | 'together';
-export type ShowStatus = 'watching' | 'completed' | 'watchlist' | 'dropped';
+export type ShowStatus = 'watching' | 'completed' | 'watchlist';
 
 export interface Show {
   id: string;
@@ -28,6 +28,7 @@ export interface Show {
 
   // Visibility
   hidden?: boolean;
+  dropped?: boolean; // Show was dropped - hidden from views but kept for taste analysis
 
   // External data
   rtCriticsScore?: number;
@@ -37,6 +38,8 @@ export interface Show {
   streamingServices: string[];
   streamingFetchedAt?: string;  // ISO date - when streaming was last fetched
   justWatchUrl?: string;
+  numberOfSeasons?: number;
+  showStatus?: string; // e.g. "Ended", "Returning Series", "Canceled"
 
   // Metadata
   createdAt: string;
@@ -88,6 +91,7 @@ export interface ShowsData {
 // Overlay data - custom fields stored locally, keyed by tmdbId
 export interface ShowOverlay {
   tmdbId: number;
+  title?: string; // Stored for easier review/debugging
 
   // Watch preference (binary choice)
   watchPreference?: WatchPreference;
@@ -107,11 +111,15 @@ export interface ShowOverlay {
 
   // Visibility
   hidden?: boolean;
+  dropped?: boolean; // Show was dropped - hidden from views but kept for taste analysis
 
   // Cached external data
   posterPath?: string;
   overview?: string;
   genres?: string[];
+  year?: number;
+  numberOfSeasons?: number;
+  showStatus?: string; // e.g. "Ended", "Returning Series", "Canceled"
   rtCriticsScore?: number;
   rtAudienceScore?: number;
   rtFetchedAt?: string;

@@ -6,8 +6,7 @@ import type { Show, ShowStatus, WatchPreference } from '@/types';
 const STATUS_OPTIONS: { value: ShowStatus; label: string }[] = [
   { value: 'watching', label: 'Watching' },
   { value: 'completed', label: 'Completed' },
-  { value: 'watchlist', label: 'Watchlist' },
-  { value: 'dropped', label: 'Dropped' }
+  { value: 'watchlist', label: 'Watchlist' }
 ];
 
 const PREFERENCE_OPTIONS: { value: WatchPreference; label: string }[] = [
@@ -89,6 +88,7 @@ function StarRating({
 
 interface ShowEditModalProps {
   showId: string;
+  initialShow?: Show; // Pass the show directly to avoid re-fetching
   isOpen: boolean;
   onClose: () => void;
   onSaved?: (show: Show) => void;
@@ -97,6 +97,7 @@ interface ShowEditModalProps {
 
 export default function ShowEditModal({
   showId,
+  initialShow,
   isOpen,
   onClose,
   onSaved,
@@ -105,6 +106,8 @@ export default function ShowEditModal({
   const [show, setShow] = useState<Show | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [syncing, setSyncing] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // Editable fields
@@ -115,37 +118,76 @@ export default function ShowEditModal({
   const [reviewNote, setReviewNote] = useState('');
   const [notes, setNotes] = useState('');
   const [hidden, setHidden] = useState(false);
+  const [dropped, setDropped] = useState(false);
 
   useEffect(() => {
     if (!isOpen || !showId) return;
+
+    // If initialShow is provided, use it directly (no fetch needed)
+    if (initialShow) {
+      setShow(initialShow);
+      setStatus(initialShow.status);
+      setWatchPreference(initialShow.watchPreference);
+      setWatchPreferenceNote(initialShow.watchPreferenceNote || '');
+      setRating(initialShow.rating);
+      setReviewNote(initialShow.reviewNote || '');
+      setNotes(initialShow.notes || '');
+      setHidden(initialShow.hidden || false);
+      setDropped(initialShow.dropped || false);
+      setLoading(false);
+      setError(null);
+      return;
+    }
 
     async function fetchShow() {
       setLoading(true);
       setError(null);
       try {
-        // Try local API first, then handle Trakt-style IDs
-        let response = await fetch(`/api/shows?id=${showId}`);
-        if (!response.ok && showId.startsWith('trakt-')) {
-          // For Trakt shows, fetch from the shows list and find by ID
-          response = await fetch('/api/trakt/shows');
-          if (response.ok) {
-            const shows = await response.json();
-            const found = shows.find((s: Show) => s.id === showId);
-            if (found) {
-              setShow(found);
-              setStatus(found.status);
-              setWatchPreference(found.watchPreference);
-              setWatchPreferenceNote(found.watchPreferenceNote || '');
-              setRating(found.rating);
-              setReviewNote(found.reviewNote || '');
-              setNotes(found.notes || '');
-              setHidden(found.hidden || false);
-              setLoading(false);
-              return;
+        // For Trakt/overlay shows, find from the shows list
+        if (showId.startsWith('trakt-') || showId.startsWith('overlay-')) {
+          const tmdbId = showId.replace(/^(trakt-|overlay-)/, '');
+
+          // Try main Trakt endpoint first (includes new imports), then fallback to overlays
+          let found: Show | undefined;
+
+          // First try the full Trakt endpoint
+          try {
+            const response = await fetch('/api/trakt/shows');
+            if (response.ok) {
+              const shows = await response.json();
+              found = shows.find((s: Show) => s.id === showId || s.tmdbId?.toString() === tmdbId);
             }
+          } catch {
+            // Trakt failed, try fallback
+          }
+
+          // If not found, try fallback (overlays only)
+          if (!found) {
+            const fallbackResponse = await fetch('/api/trakt/shows?fallback=true');
+            if (fallbackResponse.ok) {
+              const shows = await fallbackResponse.json();
+              found = shows.find((s: Show) => s.id === showId || s.tmdbId?.toString() === tmdbId);
+            }
+          }
+
+          if (found) {
+            setShow(found);
+            setStatus(found.status);
+            setWatchPreference(found.watchPreference);
+            setWatchPreferenceNote(found.watchPreferenceNote || '');
+            setRating(found.rating);
+            setReviewNote(found.reviewNote || '');
+            setNotes(found.notes || '');
+            setHidden(found.hidden || false);
+            setDropped(found.dropped || false);
+            setLoading(false);
+            return;
           }
           throw new Error('Show not found');
         }
+
+        // For local shows, try local API
+        const response = await fetch(`/api/shows?id=${showId}`);
         if (!response.ok) {
           throw new Error('Show not found');
         }
@@ -158,6 +200,7 @@ export default function ShowEditModal({
         setReviewNote(data.reviewNote || '');
         setNotes(data.notes || '');
         setHidden(data.hidden || false);
+        setDropped(data.dropped || false);
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Failed to load show');
       } finally {
@@ -166,17 +209,17 @@ export default function ShowEditModal({
     }
 
     fetchShow();
-  }, [showId, isOpen]);
+  }, [showId, isOpen, initialShow]);
 
   const saveChanges = async () => {
     if (!show) return;
 
     setSaving(true);
     try {
-      // For Trakt shows, save to overlay; for local shows, save to shows API
-      const isTrakt = show.id.startsWith('trakt-');
-      const url = isTrakt ? '/api/trakt/shows' : '/api/shows';
-      const body = isTrakt
+      // For Trakt/overlay shows, save to overlay; for local shows, save to shows API
+      const isTraktOrOverlay = show.id.startsWith('trakt-') || show.id.startsWith('overlay-');
+      const url = isTraktOrOverlay ? '/api/trakt/shows' : '/api/shows';
+      const body = isTraktOrOverlay
         ? {
             tmdbId: show.tmdbId,
             watchPreference: watchPreference || null,
@@ -184,7 +227,8 @@ export default function ShowEditModal({
             rating: rating || null,
             reviewNote: reviewNote || null,
             notes: notes || null,
-            hidden
+            hidden,
+            dropped
           }
         : {
             id: show.id,
@@ -194,7 +238,8 @@ export default function ShowEditModal({
             rating: rating || null,
             reviewNote: reviewNote || null,
             notes: notes || null,
-            hidden
+            hidden,
+            dropped
           };
 
       const response = await fetch(url, {
@@ -216,7 +261,8 @@ export default function ShowEditModal({
         rating,
         reviewNote,
         notes,
-        hidden
+        hidden,
+        dropped
       };
       setShow(updated);
       onSaved?.(updated);
@@ -239,6 +285,73 @@ export default function ShowEditModal({
       onClose();
     } catch {
       setError('Failed to delete show');
+    }
+  };
+
+  const syncShow = async () => {
+    if (!show?.tmdbId) return;
+
+    setSyncing(true);
+    setSyncStatus('Syncing with Trakt...');
+    setError(null);
+
+    try {
+      const response = await fetch('/api/trakt/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tmdbId: show.tmdbId })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Sync failed');
+      }
+
+      // Build status message
+      const messages: string[] = [];
+      if (data.results.trakt?.success) {
+        const t = data.results.trakt;
+        messages.push(`Trakt: ${t.completed}/${t.aired} episodes`);
+        if (t.addedToWatchlist) messages.push('Added to watchlist');
+      }
+      if (data.results.tmdb?.success) {
+        messages.push('TMDB metadata updated');
+      }
+      if (data.results.rt?.success && data.results.rt.criticsScore) {
+        messages.push(`RT: ${data.results.rt.criticsScore}%`);
+      }
+      if (data.results.streaming?.success && data.results.streaming.services?.length) {
+        messages.push(`Streaming: ${data.results.streaming.services.length} services`);
+      }
+
+      setSyncStatus(messages.length > 0 ? messages.join(' • ') : 'Synced successfully');
+
+      // Update status from Trakt progress result
+      if (data.results.trakt?.success && data.results.trakt.status) {
+        setStatus(data.results.trakt.status);
+      }
+
+      // Refresh the show data from Trakt (not fallback, to get fresh data)
+      const refreshResponse = await fetch('/api/trakt/shows');
+      if (refreshResponse.ok) {
+        const shows = await refreshResponse.json();
+        const tmdbId = show.tmdbId.toString();
+        const updated = shows.find((s: Show) => s.id === show.id || s.tmdbId?.toString() === tmdbId);
+        if (updated) {
+          setShow(updated);
+          setStatus(updated.status);
+          onSaved?.(updated);
+        }
+      }
+
+      // Clear status after a few seconds
+      setTimeout(() => setSyncStatus(null), 5000);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Sync failed');
+      setSyncStatus(null);
+    } finally {
+      setSyncing(false);
     }
   };
 
@@ -268,7 +381,7 @@ export default function ShowEditModal({
       />
 
       {/* Modal */}
-      <div className="relative bg-gray-900 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-gray-900 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -308,10 +421,42 @@ export default function ShowEditModal({
                 <h2 className="text-xl font-bold mb-1 pr-8">{show.title}</h2>
                 <div className="text-gray-400 text-sm">
                   {show.year && <span>{show.year}</span>}
-                  {show.genres.length > 0 && (
-                    <span className="ml-2">• {show.genres.slice(0, 3).join(', ')}</span>
+                  {show.numberOfSeasons && (
+                    <span className="ml-2">• {show.numberOfSeasons} season{show.numberOfSeasons > 1 ? 's' : ''}</span>
+                  )}
+                  {show.showStatus && (
+                    <span className={`ml-2 px-1.5 py-0.5 rounded text-xs ${
+                      show.showStatus === 'Ended' ? 'bg-green-900/50 text-green-300' :
+                      show.showStatus === 'Returning Series' ? 'bg-blue-900/50 text-blue-300' :
+                      show.showStatus === 'Canceled' ? 'bg-red-900/50 text-red-300' :
+                      'bg-gray-700 text-gray-300'
+                    }`}>
+                      {show.showStatus}
+                    </span>
                   )}
                 </div>
+                {show.genres.length > 0 && (
+                  <div className="text-gray-500 text-xs mt-1">
+                    {show.genres.slice(0, 4).join(' • ')}
+                  </div>
+                )}
+                {/* RT Scores */}
+                {(show.rtCriticsScore || show.rtAudienceScore) && (
+                  <div className="flex items-center gap-3 mt-2 text-xs">
+                    {show.rtCriticsScore && (
+                      <span className="flex items-center gap-1">
+                        <span className={show.rtCriticsScore >= 60 ? 'text-red-400' : 'text-green-400'}>🍅</span>
+                        <span className="text-gray-300">{show.rtCriticsScore}%</span>
+                      </span>
+                    )}
+                    {show.rtAudienceScore && (
+                      <span className="flex items-center gap-1">
+                        <span>🍿</span>
+                        <span className="text-gray-300">{show.rtAudienceScore}%</span>
+                      </span>
+                    )}
+                  </div>
+                )}
                 {show.streamingServices.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">
                     {show.streamingServices.map((service) => (
@@ -324,127 +469,215 @@ export default function ShowEditModal({
               </div>
             </div>
 
-            {/* Editable Fields */}
-            <div className="space-y-5">
-              {/* Status */}
-              <div>
-                <label className="block text-sm text-gray-400 mb-1">Status</label>
-                <select
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value as ShowStatus)}
-                  className="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm"
-                >
-                  {STATUS_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
+            {/* Overview */}
+            {show.overview && (
+              <div className="mb-5 p-3 bg-gray-800/50 rounded-lg">
+                <p className="text-sm text-gray-300 leading-relaxed">{show.overview}</p>
               </div>
+            )}
 
-              {/* Watch Preference */}
-              <div>
-                <label className="block text-sm text-gray-400 mb-1">Watch Preference</label>
-                <div className="flex gap-2 mb-2">
-                  {PREFERENCE_OPTIONS.map((opt) => (
-                    <button
-                      key={opt.value}
-                      onClick={() => setWatchPreference(
-                        watchPreference === opt.value ? undefined : opt.value
-                      )}
-                      className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
-                        watchPreference === opt.value
-                          ? opt.value === 'solo'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-pink-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      }`}
+            {/* AI Predictions (only show if no user rating/preference set) */}
+            {(!rating && show.predictedRating) || (!watchPreference && show.recommendedWatchPreference) ? (
+              <div className="mb-5 p-3 bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-700/50 rounded-lg">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-purple-400 text-sm font-medium">🤖 AI Predictions</span>
+                </div>
+                <div className="space-y-2 text-sm">
+                  {!rating && show.predictedRating && (
+                    <div>
+                      <span className="text-yellow-500">~{show.predictedRating}★</span>
+                      <span className="text-gray-400 ml-2">predicted rating</span>
+                    </div>
+                  )}
+                  {!watchPreference && show.recommendedWatchPreference && (
+                    <div>
+                      <span className={show.recommendedWatchPreference === 'solo' ? 'text-blue-400' : 'text-pink-400'}>
+                        {show.recommendedWatchPreference === 'solo' ? 'Solo' : 'Together'}
+                      </span>
+                      <span className="text-gray-400 ml-2">recommended</span>
+                    </div>
+                  )}
+                  {show.predictedRatingReason && (
+                    <p className="text-gray-400 text-xs mt-2 italic">
+                      &quot;{show.predictedRatingReason}&quot;
+                    </p>
+                  )}
+                </div>
+              </div>
+            ) : null}
+
+            {/* Editable Fields - Two Column Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {/* Left Column - Your Rating */}
+              <div className="bg-gray-800/50 rounded-lg p-4 space-y-4">
+                <h3 className="text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Your Rating</h3>
+
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="block text-xs text-gray-500 mb-1">Status</label>
+                    <select
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value as ShowStatus)}
+                      className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-1.5 text-sm"
                     >
-                      {opt.label}
-                    </button>
-                  ))}
+                      {STATUS_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">Rating</label>
+                    <div className="flex items-center gap-2">
+                      <StarRating value={rating} onChange={setRating} />
+                      {rating && (
+                        <button
+                          onClick={() => setRating(undefined)}
+                          className="text-xs text-gray-500 hover:text-red-400"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <textarea
-                  value={watchPreferenceNote}
-                  onChange={(e) => setWatchPreferenceNote(e.target.value)}
-                  placeholder="Why this preference? (helps AI learn your taste)"
-                  rows={2}
-                  className="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm"
-                />
-              </div>
 
-              {/* Rating */}
-              <div>
-                <label className="block text-sm text-gray-400 mb-1">Your Rating</label>
-                <StarRating value={rating} onChange={setRating} />
-              </div>
-
-              {/* Review Note */}
-              <div>
-                <label className="block text-sm text-gray-400 mb-1">
-                  Review Note
-                  <span className="text-gray-500 ml-1 font-normal">
-                    (what you liked/disliked)
-                  </span>
-                </label>
-                <textarea
-                  value={reviewNote}
-                  onChange={(e) => setReviewNote(e.target.value)}
-                  placeholder="Great pacing, loved the character development..."
-                  rows={2}
-                  className="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm"
-                />
-              </div>
-
-              {/* General Notes */}
-              <div>
-                <label className="block text-sm text-gray-400 mb-1">General Notes</label>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Any other notes..."
-                  rows={2}
-                  className="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm"
-                />
-              </div>
-
-              {/* Hidden Toggle */}
-              <div className="flex items-center justify-between">
                 <div>
-                  <label className="text-sm text-gray-400">Hide from list</label>
-                  <p className="text-xs text-gray-500">Hidden shows won&apos;t appear in your main list</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setHidden(!hidden)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    hidden ? 'bg-yellow-600' : 'bg-gray-600'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      hidden ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                  <label className="block text-xs text-gray-500 mb-1">What did you think? (likes/dislikes)</label>
+                  <textarea
+                    value={reviewNote}
+                    onChange={(e) => setReviewNote(e.target.value)}
+                    placeholder="Great pacing, loved the characters..."
+                    rows={2}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
                   />
-                </button>
+                </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex justify-between pt-4 border-t border-gray-700">
-                <button
-                  onClick={saveChanges}
-                  disabled={saving}
-                  className="bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 px-5 py-2 rounded font-medium text-sm"
-                >
-                  {saving ? 'Saving...' : 'Save Changes'}
-                </button>
+              {/* Right Column - Watch Context */}
+              <div className="bg-gray-800/50 rounded-lg p-4 space-y-4">
+                <h3 className="text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Watch Context</h3>
 
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Who do you watch this with?</label>
+                  <div className="flex gap-2">
+                    {PREFERENCE_OPTIONS.map((opt) => (
+                      <button
+                        key={opt.value}
+                        onClick={() => setWatchPreference(
+                          watchPreference === opt.value ? undefined : opt.value
+                        )}
+                        className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${
+                          watchPreference === opt.value
+                            ? opt.value === 'solo'
+                              ? 'bg-blue-600 text-white'
+                              : 'bg-pink-600 text-white'
+                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Why? (helps AI learn)</label>
+                  <textarea
+                    value={watchPreferenceNote}
+                    onChange={(e) => setWatchPreferenceNote(e.target.value)}
+                    placeholder="Too intense for together watching..."
+                    rows={2}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs text-gray-500 mb-1">Notes</label>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Any other notes..."
+                    rows={2}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-4 pt-4 border-t border-gray-700 space-y-3">
+              {/* Toggles Row */}
+              <div className="flex items-center gap-6 text-sm">
+                <label className="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
+                  <button
+                    type="button"
+                    onClick={() => setHidden(!hidden)}
+                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                      hidden ? 'bg-yellow-600' : 'bg-gray-600'
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                        hidden ? 'translate-x-5' : 'translate-x-1'
+                      }`}
+                    />
+                  </button>
+                  Hidden
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
+                  <button
+                    type="button"
+                    onClick={() => setDropped(!dropped)}
+                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                      dropped ? 'bg-red-600' : 'bg-gray-600'
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
+                        dropped ? 'translate-x-5' : 'translate-x-1'
+                      }`}
+                    />
+                  </button>
+                  Dropped
+                </label>
+              </div>
+
+              {/* Sync Status */}
+              {syncStatus && (
+                <div className="text-sm text-green-400 bg-green-900/30 px-3 py-2 rounded">
+                  {syncStatus}
+                </div>
+              )}
+
+              {/* Actions Row */}
+              <div className="flex items-center justify-between">
                 <button
                   onClick={deleteShowHandler}
-                  className="text-red-400 hover:text-red-300 px-3 py-2 text-sm"
+                  className="text-gray-500 hover:text-red-400 text-sm transition-colors"
                 >
                   Delete
                 </button>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={syncShow}
+                    disabled={syncing || saving}
+                    className="text-gray-400 hover:text-white disabled:text-gray-600 px-3 py-2 text-sm border border-gray-600 hover:border-gray-500 disabled:border-gray-700 rounded transition-colors"
+                    title="Sync with Trakt, refresh TMDB, RT scores, and streaming"
+                  >
+                    {syncing ? 'Syncing...' : 'Sync'}
+                  </button>
+                  <button
+                    onClick={saveChanges}
+                    disabled={saving || syncing}
+                    className="bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 px-5 py-2 rounded font-medium text-sm"
+                  >
+                    {saving ? 'Saving...' : 'Save'}
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -11,8 +11,23 @@ import Tooltip from '@/components/Tooltip';
 const STATUS_LABELS: Record<ShowStatus, { label: string; color: string }> = {
   watching: { label: 'Watching', color: 'bg-blue-600' },
   completed: { label: 'Completed', color: 'bg-green-600' },
-  watchlist: { label: 'Watchlist', color: 'bg-yellow-600' },
-  dropped: { label: 'Dropped', color: 'bg-gray-600' }
+  watchlist: { label: 'Watchlist', color: 'bg-yellow-600' }
+};
+
+// Streaming service brand colors and TMDB logo paths
+const STREAMING_BRANDS: Record<string, { bg: string; activeBg: string; logo: string }> = {
+  'netflix': { bg: 'bg-red-900/60', activeBg: 'bg-red-600', logo: '/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg' },
+  'stan': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-500', logo: '/sSfxJXq7s8oHf3XWd0FtqagPDsF.jpg' },
+  'binge': { bg: 'bg-orange-900/60', activeBg: 'bg-orange-500', logo: '/7QX5OdsQZrXGNBKq9SPzoPV9OYQ.jpg' },
+  'disney-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-600', logo: '/7rwgEs15tFwyR9NPQ5vpzxTj19Q.jpg' },
+  'prime-video': { bg: 'bg-cyan-900/60', activeBg: 'bg-cyan-600', logo: '/emthp39XA2YScoYL1p0sdbAH2WA.jpg' },
+  'paramount-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-700', logo: '/xbhHHa1YgtpwhC8lb1NQ3ACVcLd.jpg' },
+  'apple-tv-plus': { bg: 'bg-gray-800', activeBg: 'bg-gray-600', logo: '/6uhKBfmtzFqOcLousHwZuzcrScK.jpg' },
+  'max': { bg: 'bg-indigo-900/60', activeBg: 'bg-indigo-600', logo: '/6Q3ZYUNA9Hsgj6iWnVsw2gR5V6z.jpg' },
+  'britbox': { bg: 'bg-red-900/60', activeBg: 'bg-red-700', logo: '/aGIS8maihUm60A3moKYD9gfYHYT.jpg' },
+  'abc-iview': { bg: 'bg-green-900/60', activeBg: 'bg-green-600', logo: '/zR1TJmEwssf0ZThB2iByNtZi2Oo.jpg' },
+  'sbs-on-demand': { bg: 'bg-red-900/60', activeBg: 'bg-red-600', logo: '/cR4okiAS0zcXb4ufs3mi4PImXPB.jpg' },
+  'amc-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-600', logo: '/ovmu6uot1XVvsemM2dDySXLiX57.jpg' },
 };
 
 type SortOption = 'updated' | 'title' | 'title-desc' | 'year' | 'year-asc' | 'rating' | 'predicted' | 'rt-critics' | 'rt-audience';
@@ -25,8 +40,8 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'year-asc', label: 'Year (Oldest)' },
   { value: 'rating', label: 'Your Rating' },
   { value: 'predicted', label: 'Predicted Rating' },
-  { value: 'rt-critics', label: 'RT Critics' },
-  { value: 'rt-audience', label: 'RT Audience' },
+  { value: 'rt-critics', label: '🍅 Tomatometer' },
+  { value: 'rt-audience', label: '🍿 Popcornmeter' },
 ];
 
 function ShowsContent() {
@@ -34,7 +49,9 @@ function ShowsContent() {
   const statusFilter = searchParams.get('status');
   const unratedFilter = searchParams.get('unrated') === 'true';
   const streamingFilter = searchParams.get('streaming');
+  const watchPrefFilter = searchParams.get('watchpref') as 'solo' | 'together' | null;
   const showHidden = searchParams.get('hidden') === 'true';
+  const showDropped = searchParams.get('dropped') === 'true';
   const sortParam = (searchParams.get('sort') as SortOption) || 'updated';
 
   const [shows, setShows] = useState<Show[]>([]);
@@ -44,25 +61,112 @@ function ShowsContent() {
   const [fetchingRT, setFetchingRT] = useState(false);
   const [rtProgress, setRtProgress] = useState<string | null>(null);
   const [fetchingPosters, setFetchingPosters] = useState(false);
+  const [posterProgress, setPosterProgress] = useState<string | null>(null);
   const [fetchingStreaming, setFetchingStreaming] = useState(false);
   const [streamingProgress, setStreamingProgress] = useState<string | null>(null);
+  const [refreshingTrakt, setRefreshingTrakt] = useState(false);
+  const [traktStatus, setTraktStatus] = useState<string | null>(null);
+  const [syncingTrakt, setSyncingTrakt] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
+  // Load shows - first from cache (fast), then sync Trakt in background
   const fetchShows = async () => {
     try {
-      // Try Trakt API first, fall back to local shows
-      let response = await fetch('/api/trakt/shows');
-      if (!response.ok) {
-        // Fall back to local shows if Trakt fails
-        response = await fetch('/api/shows');
-      }
-      if (response.ok) {
-        const data = await response.json();
-        setShows(data);
+      // Step 1: Load cached data immediately (fast)
+      const cacheResponse = await fetch('/api/trakt/shows?fallback=true');
+      if (cacheResponse.ok) {
+        const cachedData = await cacheResponse.json();
+        setShows(cachedData);
+        setLoading(false); // Show UI immediately with cached data
+
+        // Step 2: Sync from Trakt in background
+        setSyncingTrakt(true);
+        try {
+          const traktResponse = await fetch('/api/trakt/shows');
+          if (traktResponse.ok) {
+            const traktData = await traktResponse.json();
+            if (traktData.length > 0) {
+              // Merge with existing state to preserve any local updates
+              setShows(prev => {
+                const prevMap = new Map(prev.map(s => [s.tmdbId, s]));
+                return traktData.map((show: Show) => {
+                  const existing = prevMap.get(show.tmdbId);
+                  if (existing) {
+                    // Prefer local data if it exists and server doesn't have it
+                    return {
+                      ...show,
+                      rtCriticsScore: show.rtCriticsScore ?? existing.rtCriticsScore,
+                      rtAudienceScore: show.rtAudienceScore ?? existing.rtAudienceScore,
+                      rtFetchedAt: show.rtFetchedAt ?? existing.rtFetchedAt,
+                      streamingServices: show.streamingServices?.length ? show.streamingServices : existing.streamingServices,
+                      streamingFetchedAt: show.streamingFetchedAt ?? existing.streamingFetchedAt,
+                      posterPath: show.posterPath ?? existing.posterPath,
+                    };
+                  }
+                  return show;
+                });
+              });
+            }
+          }
+        } catch {
+          // Trakt sync failed, keep using cached data
+        } finally {
+          setSyncingTrakt(false);
+        }
+      } else {
+        // Cache failed, try Trakt directly
+        const response = await fetch('/api/trakt/shows');
+        if (response.ok) {
+          const data = await response.json();
+          setShows(data);
+        }
+        setLoading(false);
       }
     } catch {
-      // Handle error silently
-    } finally {
       setLoading(false);
+    }
+  };
+
+  const refreshFromTrakt = async () => {
+    setRefreshingTrakt(true);
+    setTraktStatus('Refreshing from Trakt...');
+    try {
+      // Force fresh fetch from Trakt (no fallback)
+      const response = await fetch('/api/trakt/shows');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.length > 0) {
+          // Merge with existing state to preserve local updates
+          setShows(prev => {
+            const prevMap = new Map(prev.map(s => [s.tmdbId, s]));
+            return data.map((show: Show) => {
+              const existing = prevMap.get(show.tmdbId);
+              if (existing) {
+                return {
+                  ...show,
+                  rtCriticsScore: show.rtCriticsScore ?? existing.rtCriticsScore,
+                  rtAudienceScore: show.rtAudienceScore ?? existing.rtAudienceScore,
+                  rtFetchedAt: show.rtFetchedAt ?? existing.rtFetchedAt,
+                  streamingServices: show.streamingServices?.length ? show.streamingServices : existing.streamingServices,
+                  streamingFetchedAt: show.streamingFetchedAt ?? existing.streamingFetchedAt,
+                  posterPath: show.posterPath ?? existing.posterPath,
+                };
+              }
+              return show;
+            });
+          });
+          setTraktStatus(`Synced ${data.length} shows from Trakt`);
+          setTimeout(() => setTraktStatus(null), 3000);
+        } else {
+          setTraktStatus('Trakt returned no data - may be rate limited');
+        }
+      } else {
+        setTraktStatus('Failed to fetch from Trakt - may be rate limited');
+      }
+    } catch {
+      setTraktStatus('Error connecting to Trakt');
+    } finally {
+      setRefreshingTrakt(false);
     }
   };
 
@@ -100,6 +204,10 @@ function ShowsContent() {
 
   // Apply filters
   let filtered = shows;
+  // Hide dropped shows unless showDropped is true
+  if (!showDropped) {
+    filtered = filtered.filter(s => !s.dropped);
+  }
   // Hide hidden shows unless showHidden is true
   if (!showHidden) {
     filtered = filtered.filter(s => !s.hidden);
@@ -113,9 +221,21 @@ function ShowsContent() {
   if (streamingFilter) {
     filtered = filtered.filter(s => s.streamingServices?.includes(streamingFilter));
   }
+  if (watchPrefFilter) {
+    // Filter by actual preference or recommended preference
+    filtered = filtered.filter(s =>
+      s.watchPreference === watchPrefFilter ||
+      (!s.watchPreference && s.recommendedWatchPreference === watchPrefFilter)
+    );
+  }
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase().trim();
+    filtered = filtered.filter(s => s.title.toLowerCase().includes(query));
+  }
 
-  // Count hidden shows for the badge
+  // Count hidden and dropped shows for the badges
   const hiddenCount = shows.filter(s => s.hidden).length;
+  const droppedCount = shows.filter(s => s.dropped).length;
 
   // Apply sorting
   filtered.sort((a, b) => {
@@ -195,17 +315,23 @@ function ShowsContent() {
         const response = await fetch('/api/ratings', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ showIds: batch.map(s => s.id) })
+          body: JSON.stringify({
+            shows: batch.map(s => ({
+              tmdbId: s.tmdbId,
+              title: s.title,
+              year: s.year
+            }))
+          })
         });
 
         if (response.ok) {
           const data = await response.json();
           totalUpdated += data.updated || 0;
 
-          // Update local state with new scores
+          // Update local state with new scores (keyed by tmdbId)
           if (data.results) {
             setShows(prev => prev.map(s => {
-              const result = data.results[s.id];
+              const result = data.results[s.tmdbId];
               if (result && (result.criticsScore || result.audienceScore)) {
                 return {
                   ...s,
@@ -231,59 +357,56 @@ function ShowsContent() {
     (!s.rtCriticsScore && !s.rtAudienceScore) || isRTStale(s)
   ).length;
 
-  const showsNeedingPosters = shows.filter(s => !s.posterPath);
+  const showsNeedingPostersCount = shows.filter(s => !s.posterPath).length;
 
-  // Auto-fetch posters on page load (TMDB is fast, no rate limit issues)
-  useEffect(() => {
-    if (loading || fetchingPosters || shows.length === 0) return;
-
+  const fetchMissingPosters = async () => {
     const needPosters = shows.filter(s => !s.posterPath);
-    if (needPosters.length > 0) {
-      fetchPosters(needPosters.map(s => s.id));
+    if (needPosters.length === 0) {
+      setPosterProgress('All posters are up to date');
+      setTimeout(() => setPosterProgress(null), 3000);
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, shows.length]);
-
-  const fetchPosters = async (showIds: string[]) => {
-    if (showIds.length === 0) return;
 
     setFetchingPosters(true);
-    const BATCH_SIZE = 20; // TMDB is fast, can do larger batches
+    setPosterProgress(`Fetching posters for ${needPosters.length} shows...`);
 
-    for (let i = 0; i < showIds.length; i += BATCH_SIZE) {
-      const batch = showIds.slice(i, i + BATCH_SIZE);
+    try {
+      // Use enrichment API which fetches posters + metadata
+      const tmdbIds = needPosters.map(s => s.tmdbId).filter(Boolean);
+      const response = await fetch('/api/trakt/enrich', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tmdbIds })
+      });
 
-      try {
-        const response = await fetch('/api/posters', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ showIds: batch })
-        });
+      if (response.ok) {
+        const data = await response.json();
 
-        if (response.ok) {
-          const data = await response.json();
-
-          // Update local state with new posters and tmdbId
-          if (data.results) {
-            setShows(prev => prev.map(s => {
-              const result = data.results[s.id];
-              if (result?.posterPath || result?.tmdbId) {
-                return {
-                  ...s,
-                  posterPath: result.posterPath || s.posterPath,
-                  tmdbId: result.tmdbId || s.tmdbId
-                };
-              }
-              return s;
-            }));
-          }
+        // Update local state with new posters
+        if (data.results) {
+          setShows(prev => prev.map(s => {
+            const result = data.results[s.tmdbId];
+            if (result?.posterPath) {
+              return {
+                ...s,
+                posterPath: result.posterPath,
+                genres: result.genres || s.genres
+              };
+            }
+            return s;
+          }));
         }
-      } catch {
-        // Continue with next batch
+
+        setPosterProgress(`Done! Updated ${data.updated} shows with posters`);
+      } else {
+        setPosterProgress('Failed to fetch posters');
       }
+    } catch {
+      setPosterProgress('Error fetching posters');
     }
 
     setFetchingPosters(false);
+    setTimeout(() => setPosterProgress(null), 5000);
   };
 
   // Check if streaming data is stale (older than 7 days)
@@ -346,12 +469,14 @@ function ShowsContent() {
   };
 
   // Helper to build filter URLs
-  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; streaming?: string | null; hidden?: boolean; sort?: SortOption }) => {
+  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; streaming?: string | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; sort?: SortOption }) => {
     const searchParams = new URLSearchParams();
     if (params.status) searchParams.set('status', params.status);
     if (params.unrated) searchParams.set('unrated', 'true');
     if (params.streaming) searchParams.set('streaming', params.streaming);
+    if (params.watchpref) searchParams.set('watchpref', params.watchpref);
     if (params.hidden) searchParams.set('hidden', 'true');
+    if (params.dropped) searchParams.set('dropped', 'true');
     if (params.sort && params.sort !== 'updated') searchParams.set('sort', params.sort);
     const query = searchParams.toString();
     return query ? `/shows?${query}` : '/shows';
@@ -396,6 +521,14 @@ function ShowsContent() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8">
+      {/* Background sync indicator */}
+      {syncingTrakt && (
+        <div className="fixed top-4 right-4 bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 flex items-center gap-2 shadow-lg z-50">
+          <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-sm text-gray-300">Syncing Trakt...</span>
+        </div>
+      )}
+
       <div className="max-w-6xl mx-auto">
         <header className="flex justify-between items-center mb-8">
           <div>
@@ -403,6 +536,15 @@ function ShowsContent() {
             <p className="text-gray-400">{filtered.length} shows</p>
           </div>
           <div className="flex items-center gap-3">
+            {showsNeedingPostersCount > 0 && (
+              <button
+                onClick={fetchMissingPosters}
+                disabled={fetchingPosters}
+                className="bg-cyan-700 hover:bg-cyan-600 disabled:bg-gray-700 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
+              >
+                🖼️ {fetchingPosters ? 'Fetching...' : `Posters (${showsNeedingPostersCount})`}
+              </button>
+            )}
             {showsNeedingStreaming > 0 && (
               <button
                 onClick={fetchStreaming}
@@ -421,6 +563,14 @@ function ShowsContent() {
                 🍅 {fetchingRT ? 'Fetching...' : `Fetch RT (${showsNeedingRTCount})`}
               </button>
             )}
+            <button
+              onClick={refreshFromTrakt}
+              disabled={refreshingTrakt}
+              className="bg-green-700 hover:bg-green-600 disabled:bg-gray-700 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
+              title="Refresh shows and watch progress from Trakt"
+            >
+              🔄 {refreshingTrakt ? 'Syncing...' : 'Sync Trakt'}
+            </button>
             <Link
               href="/add"
               className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-medium"
@@ -429,6 +579,24 @@ function ShowsContent() {
             </Link>
           </div>
         </header>
+
+        {traktStatus && (
+          <div className={`mb-4 rounded-lg px-4 py-3 text-sm ${
+            traktStatus.includes('rate limited') || traktStatus.includes('Failed') || traktStatus.includes('Error')
+              ? 'bg-yellow-900/50 border border-yellow-700 text-yellow-200'
+              : traktStatus.includes('Synced')
+              ? 'bg-green-900/50 border border-green-700 text-green-200'
+              : 'bg-gray-800 border border-gray-700'
+          }`}>
+            {traktStatus}
+          </div>
+        )}
+
+        {posterProgress && (
+          <div className="mb-4 bg-gray-800 border border-cyan-700 rounded-lg px-4 py-3 text-sm">
+            {posterProgress}
+          </div>
+        )}
 
         {rtProgress && (
           <div className="mb-4 bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-sm">
@@ -442,11 +610,40 @@ function ShowsContent() {
           </div>
         )}
 
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search shows..."
+              className="w-full md:w-80 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 pl-10 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+            />
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        </div>
+
         {/* Status Filter */}
         <div className="mb-4">
           <div className="flex gap-2 flex-wrap">
             <Link
-              href={buildFilterUrl({ streaming: streamingFilter, hidden: showHidden, sort: sortParam })}
+              href={buildFilterUrl({ streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
               className={`px-3 py-1 rounded text-sm ${
                 !statusFilter && !unratedFilter ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -456,7 +653,7 @@ function ShowsContent() {
             {(Object.keys(STATUS_LABELS) as ShowStatus[]).map(status => (
               <Link
                 key={status}
-                href={buildFilterUrl({ status, unrated: unratedFilter, streaming: streamingFilter, hidden: showHidden, sort: sortParam })}
+                href={buildFilterUrl({ status, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
                 className={`px-3 py-1 rounded text-sm ${
                   statusFilter === status ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -466,7 +663,7 @@ function ShowsContent() {
             ))}
             <span className="border-l border-gray-600 mx-1"></span>
             <Link
-              href={buildFilterUrl({ status: statusFilter, unrated: !unratedFilter, streaming: streamingFilter, hidden: showHidden, sort: sortParam })}
+              href={buildFilterUrl({ status: statusFilter, unrated: !unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
               className={`px-3 py-1 rounded text-sm ${
                 unratedFilter ? 'bg-yellow-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -475,12 +672,22 @@ function ShowsContent() {
             </Link>
             {hiddenCount > 0 && (
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, hidden: !showHidden, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: !showHidden, dropped: showDropped, sort: sortParam })}
                 className={`px-3 py-1 rounded text-sm ${
                   showHidden ? 'bg-orange-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
               >
                 Hidden ({hiddenCount})
+              </Link>
+            )}
+            {droppedCount > 0 && (
+              <Link
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: !showDropped, sort: sortParam })}
+                className={`px-3 py-1 rounded text-sm ${
+                  showDropped ? 'bg-gray-600' : 'bg-gray-700 hover:bg-gray-600'
+                }`}
+              >
+                Dropped ({droppedCount})
               </Link>
             )}
           </div>
@@ -492,32 +699,76 @@ function ShowsContent() {
             <div className="flex gap-2 flex-wrap items-center">
               <span className="text-sm text-gray-400 mr-1">Streaming:</span>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, hidden: showHidden, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
                 className={`px-3 py-1 rounded text-sm ${
                   !streamingFilter ? 'bg-purple-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
               >
                 All
               </Link>
-              {allServices.map(service => (
-                <Link
-                  key={service.slug}
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter === service.slug ? null : service.slug, hidden: showHidden, sort: sortParam })}
-                  className={`px-3 py-1 rounded text-sm ${
-                    streamingFilter === service.slug
-                      ? 'bg-purple-600'
-                      : service.isSubscribed
-                        ? 'bg-gray-600 hover:bg-gray-500'
-                        : 'bg-gray-700 hover:bg-gray-600'
-                  }`}
-                >
-                  {service.name}{service.isSubscribed ? ' *' : ''}
-                </Link>
-              ))}
+              {allServices.map(service => {
+                const brand = STREAMING_BRANDS[service.slug];
+                const isActive = streamingFilter === service.slug;
+                return (
+                  <Link
+                    key={service.slug}
+                    href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: isActive ? null : service.slug, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                    className={`px-2 py-1.5 rounded-lg flex items-center gap-2 transition-all ${
+                      isActive
+                        ? 'ring-2 ring-white bg-gray-700'
+                        : service.isSubscribed
+                          ? 'bg-gray-800 hover:bg-gray-700'
+                          : 'bg-gray-800/50 hover:bg-gray-700 opacity-50'
+                    }`}
+                  >
+                    {brand?.logo ? (
+                      <img
+                        src={`https://image.tmdb.org/t/p/w45${brand.logo}`}
+                        alt={service.name}
+                        className="h-5 w-auto rounded"
+                      />
+                    ) : (
+                      <span className="text-sm">{service.name}</span>
+                    )}
+                    {service.isSubscribed && <span className="text-yellow-400 text-xs">★</span>}
+                  </Link>
+                );
+              })}
             </div>
-            <p className="text-xs text-gray-500 mt-2">* = subscribed</p>
+            <p className="text-xs text-gray-500 mt-2"><span className="text-yellow-400">★</span> = subscribed</p>
           </div>
         )}
+
+        {/* Watch Preference Filter */}
+        <div className="mb-4">
+          <div className="flex gap-2 flex-wrap items-center">
+            <span className="text-sm text-gray-400 mr-1">Watch with:</span>
+            <Link
+              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: null, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+              className={`px-3 py-1 rounded text-sm ${
+                !watchPrefFilter ? 'bg-teal-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+            >
+              All
+            </Link>
+            <Link
+              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter === 'solo' ? null : 'solo', hidden: showHidden, dropped: showDropped, sort: sortParam })}
+              className={`px-3 py-1 rounded text-sm ${
+                watchPrefFilter === 'solo' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+            >
+              Solo
+            </Link>
+            <Link
+              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter === 'together' ? null : 'together', hidden: showHidden, dropped: showDropped, sort: sortParam })}
+              className={`px-3 py-1 rounded text-sm ${
+                watchPrefFilter === 'together' ? 'bg-pink-600' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+            >
+              Together
+            </Link>
+          </div>
+        </div>
 
         {/* Sort Options */}
         <div className="mb-8">
@@ -526,7 +777,7 @@ function ShowsContent() {
             {SORT_OPTIONS.map(option => (
               <Link
                 key={option.value}
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, hidden: showHidden, sort: option.value })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: option.value })}
                 className={`px-3 py-1 rounded text-sm ${
                   sortParam === option.value ? 'bg-green-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -608,27 +859,30 @@ function ShowsContent() {
                   {/* Streaming services */}
                   {show.streamingServices && show.streamingServices.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1.5">
-                      {show.streamingServices.slice(0, 4).map(service => (
-                        <Tooltip key={service} content={service}>
-                          <span className="px-1.5 py-0.5 bg-gray-700/80 rounded text-[10px] text-gray-300">
-                            {service === 'netflix' ? 'NF' :
-                             service === 'stan' ? 'Stan' :
-                             service === 'disney-plus' ? 'D+' :
-                             service === 'amazon-prime-video' ? 'Prime' :
-                             service === 'apple-tv-plus' ? 'ATV+' :
-                             service === 'paramount-plus' ? 'P+' :
-                             service === 'binge' ? 'Binge' :
-                             service === 'foxtel-now' ? 'Fox' :
-                             service === 'max' ? 'Max' :
-                             service === 'britbox' ? 'Brit' :
-                             service === 'abc-iview' ? 'ABC' :
-                             service === 'sbs-on-demand' ? 'SBS' :
-                             service.slice(0, 4)}
-                          </span>
-                        </Tooltip>
-                      ))}
-                      {show.streamingServices.length > 4 && (
-                        <span className="text-[10px] text-gray-500">+{show.streamingServices.length - 4}</span>
+                      {show.streamingServices.slice(0, 5).map(service => {
+                        const brand = STREAMING_BRANDS[service];
+                        if (brand?.logo) {
+                          return (
+                            <Tooltip key={service} content={service}>
+                              <img
+                                src={`https://image.tmdb.org/t/p/w45${brand.logo}`}
+                                alt={service}
+                                className="h-4 w-4 rounded object-cover"
+                              />
+                            </Tooltip>
+                          );
+                        }
+                        // Fallback for services without logos
+                        return (
+                          <Tooltip key={service} content={service}>
+                            <span className="px-1 py-0.5 bg-gray-700/80 rounded text-[9px] text-gray-300">
+                              {service.slice(0, 3)}
+                            </span>
+                          </Tooltip>
+                        );
+                      })}
+                      {show.streamingServices.length > 5 && (
+                        <span className="text-[10px] text-gray-500">+{show.streamingServices.length - 5}</span>
                       )}
                     </div>
                   )}
@@ -653,6 +907,7 @@ function ShowsContent() {
       {editingShowId && (
         <ShowEditModal
           showId={editingShowId}
+          initialShow={shows.find(s => s.id === editingShowId)}
           isOpen={!!editingShowId}
           onClose={() => setEditingShowId(null)}
           onSaved={handleShowSaved}

@@ -118,6 +118,8 @@ export async function enrichShowWithTMDB(tmdbId: number): Promise<{
   posterPath?: string;
   genres: string[];
   year?: number;
+  numberOfSeasons?: number;
+  showStatus?: string;
 }> {
   try {
     const details = await getShowDetails(tmdbId);
@@ -125,7 +127,9 @@ export async function enrichShowWithTMDB(tmdbId: number): Promise<{
       overview: details.overview,
       posterPath: details.poster_path || undefined,
       genres: details.genres.map(g => g.name),
-      year: details.first_air_date ? parseInt(details.first_air_date.split('-')[0]) : undefined
+      year: details.first_air_date ? parseInt(details.first_air_date.split('-')[0]) : undefined,
+      numberOfSeasons: details.number_of_seasons,
+      showStatus: details.status
     };
   } catch {
     return { genres: [] };
@@ -186,6 +190,25 @@ const PROVIDER_MAP: Record<number, string> = {
   529: 'amc-plus', // AMC+ Apple TV Channel
 };
 
+// Normalize slug names (handles variants not in PROVIDER_MAP)
+function normalizeSlug(slug: string): string | null {
+  // Paramount+ variants
+  if (slug.startsWith('paramount-plus')) return 'paramount-plus';
+  // Apple TV+ variants (channels, amazon, etc.)
+  if (slug.includes('apple-tv')) return 'apple-tv-plus';
+  // BritBox variants
+  if (slug.startsWith('britbox')) return 'britbox';
+  // AMC+ variants
+  if (slug.startsWith('amc-plus') || slug === 'amc') return 'amc-plus';
+  // Amazon/Prime variants
+  if (slug === 'amazon-video' || slug.includes('amazon-channel')) return null; // Skip channel variants
+  if (slug.startsWith('mgm-')) return null; // Skip MGM channel
+  // Skip misc channels
+  if (slug.includes('-channel') || slug.includes('signature-collection')) return null;
+
+  return slug;
+}
+
 interface WatchProvider {
   provider_id: number;
   provider_name: string;
@@ -221,10 +244,16 @@ export async function getWatchProviders(tmdbId: number, country: string = 'AU'):
       return [];
     }
 
-    // Map provider IDs to our slugs
+    // Map provider IDs to our slugs, then normalize
     const services = countryData.flatrate
-      .map(p => PROVIDER_MAP[p.provider_id] || p.provider_name.toLowerCase().replace(/\s+/g, '-'))
-      .filter(Boolean);
+      .map(p => {
+        const mapped = PROVIDER_MAP[p.provider_id];
+        if (mapped) return mapped;
+        // Generate slug from name and normalize
+        const slug = p.provider_name.toLowerCase().replace(/\s+/g, '-');
+        return normalizeSlug(slug);
+      })
+      .filter((s): s is string => s !== null);
 
     return [...new Set(services)]; // Dedupe
   } catch (error) {
