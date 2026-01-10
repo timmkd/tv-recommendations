@@ -13,10 +13,10 @@
         "Action & Adventure",
         "Crime"
       ],
-      "rtFetchedAt": "2026-01-10T07:38:22.496Z",
+      "rtFetchedAt": "2026-01-10T20:56:31.152Z",
       "streamingFetchedAt": "2026-01-09T12:40:36.564Z",
       "createdAt": "2026-01-09T06:32:48.963Z",
-      "updatedAt": "2026-01-10T07:38:22.500Z",
+      "updatedAt": "2026-01-10T20:56:31.169Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -61,10 +61,10 @@
       "genres": [
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:38:24.263Z",
+      "rtFetchedAt": "2026-01-10T20:56:33.102Z",
       "streamingFetchedAt": "2026-01-09T12:40:37.285Z",
       "createdAt": "2026-01-09T06:32:48.963Z",
-      "updatedAt": "2026-01-10T07:38:24.269Z",
+      "updatedAt": "2026-01-10T20:56:33.124Z",
       "streamingServices": [],
       "title": "Operation Buffalo",
       "year": 2020,
@@ -200,9 +200,9 @@
     },
     {
       "tmdbId": 111141,
-      "predictedRating": 4,
-      "predictedRatingReason": "Predicted 4★ (94% RT): Limited series about survival and resilience - emotional depth like Baby Reindeer (4★). Quality Netflix drama.",
-      "recommendedWatchPreference": "together",
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Predicted 3.5★ (94% RT): Heavy emotional limited series about survival. Quality acting but intense subject matter - better for solo.",
+      "recommendedWatchPreference": "solo",
       "posterPath": "/4brWcSXdH31BZUTtRTHj2BYFe6M.jpg",
       "overview": "After fleeing an abusive relationship, a young mother finds a job cleaning houses as she fights to provide for her child and build them a better future.",
       "genres": [
@@ -622,10 +622,10 @@
       "genres": [
         "Comedy"
       ],
-      "rtFetchedAt": "2026-01-10T07:38:57.355Z",
+      "rtFetchedAt": "2026-01-10T20:56:34.466Z",
       "streamingFetchedAt": "2026-01-09T12:40:50.201Z",
       "createdAt": "2026-01-09T06:32:49.467Z",
-      "updatedAt": "2026-01-10T07:38:57.358Z",
+      "updatedAt": "2026-01-10T20:56:34.472Z",
       "streamingServices": [
         "foxtel-now",
         "binge"
@@ -672,10 +672,10 @@
         "Action & Adventure",
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:00.095Z",
+      "rtFetchedAt": "2026-01-10T20:56:36.488Z",
       "streamingFetchedAt": "2026-01-09T12:40:50.773Z",
       "createdAt": "2026-01-09T06:32:49.467Z",
-      "updatedAt": "2026-01-10T07:39:00.098Z",
+      "updatedAt": "2026-01-10T20:56:36.505Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -1014,10 +1014,10 @@
         "Action & Adventure",
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:02.243Z",
+      "rtFetchedAt": "2026-01-10T20:56:38.793Z",
       "streamingFetchedAt": "2026-01-09T12:40:54.928Z",
       "createdAt": "2026-01-09T06:32:49.467Z",
-      "updatedAt": "2026-01-10T07:39:02.246Z",
+      "updatedAt": "2026-01-10T20:56:38.806Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -1190,10 +1190,10 @@
         "Action & Adventure",
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:03.925Z",
+      "rtFetchedAt": "2026-01-10T20:56:40.636Z",
       "streamingFetchedAt": "2026-01-09T12:40:57.852Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T07:39:03.928Z",
+      "updatedAt": "2026-01-10T20:56:40.657Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -1314,10 +1314,10 @@
       "genres": [
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:05.902Z",
+      "rtFetchedAt": "2026-01-10T20:56:42.403Z",
       "streamingFetchedAt": "2026-01-09T12:41:00.893Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T07:39:05.909Z",
+      "updatedAt": "2026-01-10T20:56:42.416Z",
       "streamingServices": [
         "apple-tv-plus"
       ],
@@ -1776,10 +1776,10 @@
         "Drama",
         "War & Politics"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:08.881Z",
+      "rtFetchedAt": "2026-01-10T20:56:45.367Z",
       "streamingFetchedAt": "2026-01-09T12:41:09.584Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T07:39:08.884Z",
+      "updatedAt": "2026-01-10T20:56:45.403Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -2088,10 +2088,10 @@
       "genres": [
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:11.051Z",
+      "rtFetchedAt": "2026-01-10T20:56:47.823Z",
       "streamingFetchedAt": "2026-01-09T12:41:14.465Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T07:39:11.055Z",
+      "updatedAt": "2026-01-10T20:56:47.827Z",
       "streamingServices": [],
       "title": "Les Misérables",
       "year": 2018,
@@ -2596,10 +2596,10 @@
         "Action & Adventure",
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:13.437Z",
+      "rtFetchedAt": "2026-01-10T20:56:49.836Z",
       "streamingFetchedAt": "2026-01-09T12:41:28.570Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T07:39:13.440Z",
+      "updatedAt": "2026-01-10T20:56:49.843Z",
       "streamingServices": [
         "prime-video"
       ],
@@ -2782,10 +2782,10 @@
         "Drama",
         "Crime"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:14.519Z",
+      "rtFetchedAt": "2026-01-10T20:56:51.568Z",
       "streamingFetchedAt": "2026-01-09T12:42:13.363Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T07:39:14.522Z",
+      "updatedAt": "2026-01-10T20:56:51.575Z",
       "streamingServices": [
         "foxtel-now",
         "britbox",
@@ -2902,8 +2902,8 @@
     },
     {
       "tmdbId": 106393,
-      "predictedRating": 4,
-      "predictedRatingReason": "Predicted 4★: Kids Star Trek but praised for genuine Trek quality. Your Trek love (Lower Decks 4.5, SNW 4) suggests you'd appreciate it.",
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Predicted 3.5★: Kids Star Trek praised for genuine Trek quality. Your Trek love suggests you'd appreciate it, but CANCELLED (-0.5★).",
       "recommendedWatchPreference": "solo",
       "posterPath": "/eUFD446HtoayV4FsXGmECXZdm7x.jpg",
       "overview": "A motley crew of young rebellious aliens commandeer an old Starfleet ship and must figure out how to work together while navigating a greater galaxy, in search for a better future. These six young outcasts know nothing about the ship they have commandeered, but over the course of their adventures together, they will each be introduced to Starfleet and the ideals it represents.",
@@ -3012,10 +3012,10 @@
         "Comedy",
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:16.161Z",
+      "rtFetchedAt": "2026-01-10T20:56:53.279Z",
       "streamingFetchedAt": "2026-01-09T12:42:20.005Z",
       "createdAt": "2026-01-09T06:32:49.469Z",
-      "updatedAt": "2026-01-10T07:39:16.164Z",
+      "updatedAt": "2026-01-10T20:56:53.289Z",
       "streamingServices": [
         "prime-video"
       ],
@@ -3162,10 +3162,10 @@
         "Comedy",
         "Sci-Fi & Fantasy"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:18.801Z",
+      "rtFetchedAt": "2026-01-10T20:56:55.401Z",
       "streamingFetchedAt": "2026-01-09T12:42:23.782Z",
       "createdAt": "2026-01-09T06:32:49.469Z",
-      "updatedAt": "2026-01-10T07:39:18.811Z",
+      "updatedAt": "2026-01-10T20:56:55.411Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -3604,10 +3604,10 @@
         "Comedy",
         "Crime"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:21.484Z",
+      "rtFetchedAt": "2026-01-10T20:56:57.499Z",
       "streamingFetchedAt": "2026-01-09T12:42:30.320Z",
       "createdAt": "2026-01-09T06:32:49.469Z",
-      "updatedAt": "2026-01-10T07:39:21.487Z",
+      "updatedAt": "2026-01-10T20:56:57.504Z",
       "streamingServices": [
         "netflix"
       ],
@@ -3631,7 +3631,7 @@
       "rtFetchedAt": "2026-01-09T07:59:06.443Z",
       "streamingFetchedAt": "2026-01-09T12:42:30.685Z",
       "createdAt": "2026-01-09T06:32:49.469Z",
-      "updatedAt": "2026-01-09T12:46:24.544Z",
+      "updatedAt": "2026-01-10T08:59:11.307Z",
       "streamingServices": [
         "max"
       ],
@@ -3639,9 +3639,15 @@
       "year": 2020,
       "numberOfSeasons": 2,
       "showStatus": "Canceled",
-      "predictedRating": 4,
-      "predictedRatingReason": "Predicted 4★: Kaley Cuoco mystery-comedy - same fun whodunit energy as Only Murders (4★). Perfect together viewing, not too heavy.",
-      "recommendedWatchPreference": "together"
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Predicted 3.5★: Kaley Cuoco mystery-comedy with Only Murders energy. Fun together viewing, but CANCELLED (-0.5★).",
+      "recommendedWatchPreference": "together",
+      "watchPreferenceNote": null,
+      "rating": 2.5,
+      "reviewNote": "watched for a couple of episodes and it didn't grab us although it was so long ago I can't remember why",
+      "notes": null,
+      "hidden": true,
+      "dropped": true
     },
     {
       "tmdbId": 81355,
@@ -3857,10 +3863,10 @@
       "genres": [
         "Drama"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:23.521Z",
+      "rtFetchedAt": "2026-01-10T20:56:59.284Z",
       "streamingFetchedAt": "2026-01-09T12:42:33.405Z",
       "createdAt": "2026-01-09T06:32:49.469Z",
-      "updatedAt": "2026-01-10T07:39:23.524Z",
+      "updatedAt": "2026-01-10T20:56:59.293Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -3980,10 +3986,10 @@
         "Documentary",
         "Crime"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:25.999Z",
+      "rtFetchedAt": "2026-01-10T20:57:01.362Z",
       "streamingFetchedAt": "2026-01-09T12:42:35.265Z",
       "createdAt": "2026-01-09T06:32:49.469Z",
-      "updatedAt": "2026-01-10T07:39:26.006Z",
+      "updatedAt": "2026-01-10T20:57:01.371Z",
       "streamingServices": [
         "netflix"
       ],
@@ -4770,10 +4776,10 @@
         "Drama",
         "Action & Adventure"
       ],
-      "rtFetchedAt": "2026-01-10T07:39:28.111Z",
+      "rtFetchedAt": "2026-01-10T20:57:03.945Z",
       "streamingFetchedAt": "2026-01-09T12:42:45.051Z",
       "createdAt": "2026-01-09T06:32:49.470Z",
-      "updatedAt": "2026-01-10T07:39:28.114Z",
+      "updatedAt": "2026-01-10T20:57:03.950Z",
       "streamingServices": [
         "disney-plus"
       ],
@@ -5390,7 +5396,7 @@
       ],
       "streamingFetchedAt": "2026-01-09T12:40:46.170Z",
       "createdAt": "2026-01-09T12:32:12.457Z",
-      "updatedAt": "2026-01-10T07:38:26.509Z",
+      "updatedAt": "2026-01-10T20:57:05.951Z",
       "title": "Your Friends & Neighbors",
       "posterPath": "/lo01EVDVrpGqd0fFWP4RBIQe4OK.jpg",
       "overview": "When a financial titan suddenly finds himself divorced and jobless, he starts robbing his wealthy neighbors to stay afloat. Stealing from his own social circle strangely exhilarates him—but he gradually gets tangled in a deadly web.",
@@ -5403,7 +5409,7 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Dramedy about neighbors - lighter ensemble fare.",
       "recommendedWatchPreference": "together",
-      "rtFetchedAt": "2026-01-10T07:38:26.506Z"
+      "rtFetchedAt": "2026-01-10T20:57:05.948Z"
     },
     {
       "tmdbId": 46518,
@@ -5512,7 +5518,7 @@
       ],
       "streamingFetchedAt": "2026-01-09T12:40:48.157Z",
       "createdAt": "2026-01-09T12:32:15.319Z",
-      "updatedAt": "2026-01-10T07:38:28.575Z",
+      "updatedAt": "2026-01-10T20:57:08.421Z",
       "title": "The Four Seasons",
       "posterPath": "/w09XeYl096pwES8riRMZwEA9rnh.jpg",
       "overview": "The decades-long friendship between three married couples is tested when one divorces, complicating their tradition of quarterly weekend getaways.",
@@ -5525,7 +5531,7 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: Comedy based on the classic film - ensemble cast but may lack freshness.",
       "recommendedWatchPreference": "together",
-      "rtFetchedAt": "2026-01-10T07:38:28.572Z"
+      "rtFetchedAt": "2026-01-10T20:57:08.417Z"
     },
     {
       "tmdbId": 119051,
@@ -5561,6 +5567,9 @@
     },
     {
       "tmdbId": 95403,
+      "predictedRating": 3,
+      "predictedRatingReason": "Predicted 3★: Complex sci-fi from Westworld creators - but CANCELLED after S1 without resolution. Your Big Door Prize note: 'I hate when cancelled unresolved'. Risky.",
+      "recommendedWatchPreference": "solo",
       "streamingServices": [
         "prime-video"
       ],
@@ -5577,9 +5586,6 @@
       "year": 2022,
       "numberOfSeasons": 1,
       "showStatus": "Canceled",
-      "predictedRating": 3,
-      "predictedRatingReason": "Predicted 3★: Complex sci-fi from Westworld creators - but CANCELLED after S1 without resolution. Your Big Door Prize note: 'I hate when cancelled unresolved'. Risky.",
-      "recommendedWatchPreference": "solo",
       "rtCriticsScore": 79,
       "rtAudienceScore": 85,
       "rtFetchedAt": "2026-01-09T22:39:00.727Z"
@@ -5738,8 +5744,8 @@
       "numberOfSeasons": 4,
       "showStatus": "Returning Series",
       "predictedRating": 4.5,
-      "predictedRatingReason": "Predicted 4.5★ (93% RT S1): Anthology crime - Season 1 (McConaughey/Harrelson) is exceptional prestige TV. Complex slow-burn you'd love solo. On Max.",
-      "recommendedWatchPreference": "solo",
+      "predictedRatingReason": "Predicted 4.5★ (93% RT S1): Anthology crime - Season 1 (McConaughey/Harrelson) is exceptional. Try together first (detective format), but if pacing feels slow, swap to solo.",
+      "recommendedWatchPreference": "together",
       "rtCriticsScore": 79,
       "rtAudienceScore": 59,
       "rtFetchedAt": "2026-01-09T22:39:02.100Z"
@@ -6053,7 +6059,7 @@
       "hidden": false,
       "dropped": false,
       "createdAt": "2026-01-10T07:32:06.548Z",
-      "updatedAt": "2026-01-10T07:43:21.132Z",
+      "updatedAt": "2026-01-10T20:57:10.271Z",
       "title": "The Agency: Central Intelligence",
       "posterPath": "/fDZgOeTiplrl0skvK6IIyejHLQF.jpg",
       "overview": "Covert CIA agent Martian is ordered to abandon his undercover life and return to London Station. When the love he left behind unexpectedly reappears, their romance reignites, pitting his career, his real identity and his mission against his heart while hurling them both into a deadly game of international intrigue and espionage.",
@@ -6064,7 +6070,7 @@
       "year": 2024,
       "numberOfSeasons": 1,
       "showStatus": "Returning Series",
-      "rtFetchedAt": "2026-01-10T07:43:21.129Z",
+      "rtFetchedAt": "2026-01-10T20:57:10.266Z",
       "streamingFetchedAt": "2026-01-10T07:43:21.129Z"
     },
     {
@@ -6137,8 +6143,8 @@
       "numberOfSeasons": 1,
       "showStatus": "Ended",
       "createdAt": "2026-01-10T07:33:44.356Z",
-      "updatedAt": "2026-01-10T07:44:48.933Z",
-      "rtFetchedAt": "2026-01-10T07:38:32.143Z",
+      "updatedAt": "2026-01-10T20:57:11.374Z",
+      "rtFetchedAt": "2026-01-10T20:57:11.360Z",
       "streamingServices": [
         "apple-tv-plus"
       ],
@@ -6286,8 +6292,8 @@
       "numberOfSeasons": 1,
       "showStatus": "Returning Series",
       "createdAt": "2026-01-10T07:33:47.537Z",
-      "updatedAt": "2026-01-10T07:44:50.449Z",
-      "rtFetchedAt": "2026-01-10T07:38:48.143Z",
+      "updatedAt": "2026-01-10T20:57:13.146Z",
+      "rtFetchedAt": "2026-01-10T20:57:13.141Z",
       "streamingServices": [
         "apple-tv-plus"
       ],
@@ -6381,8 +6387,8 @@
       "numberOfSeasons": 1,
       "showStatus": "Ended",
       "createdAt": "2026-01-10T07:33:48.953Z",
-      "updatedAt": "2026-01-10T07:44:51.927Z",
-      "rtFetchedAt": "2026-01-10T07:38:55.659Z",
+      "updatedAt": "2026-01-10T20:57:15.486Z",
+      "rtFetchedAt": "2026-01-10T20:57:15.473Z",
       "streamingServices": [
         "netflix"
       ],
@@ -6396,7 +6402,7 @@
       "title": "Invasion",
       "year": 2021,
       "createdAt": "2026-01-10T07:41:40.374Z",
-      "updatedAt": "2026-01-10T07:41:41.287Z",
+      "updatedAt": "2026-01-10T20:57:17.345Z",
       "posterPath": "/1PdNB3rYTcf8VXc8rcmZ0SeYxSq.jpg",
       "overview": "Earth is visited by an alien species that threatens humanity's existence. Events unfold in real time through the eyes of five ordinary people across the globe as they struggle to make sense of the chaos unraveling around them.",
       "genres": [
@@ -6404,7 +6410,31 @@
         "Drama"
       ],
       "numberOfSeasons": 3,
-      "showStatus": "Returning Series"
+      "showStatus": "Returning Series",
+      "rtCriticsScore": 73,
+      "rtAudienceScore": 81,
+      "rtFetchedAt": "2026-01-10T20:57:17.332Z"
+    },
+    {
+      "tmdbId": 203614,
+      "title": "Colin from Accounts",
+      "year": 2022,
+      "createdAt": "2026-01-10T20:56:29.951Z",
+      "updatedAt": "2026-01-10T21:00:32.876Z",
+      "posterPath": "/zYPRXAImgarNSKrwd4kXobjXQNQ.jpg",
+      "overview": "Ashley and Gordon are two single(ish), complex humans who are brought together by a car accident and an injured dog. Flawed, funny people choosing each other and being brave enough to show their true self, scars and all, as they navigate life together.",
+      "genres": [
+        "Comedy"
+      ],
+      "numberOfSeasons": 2,
+      "showStatus": "Returning Series",
+      "watchPreference": "solo",
+      "watchPreferenceNote": "We started this together but some of the episodes got a bit boring and crude language for Helen. She also thought a few of the characters were a bit wierd. She didn't love the premise of every episode either (although some were enjoyable for her too... so halfway through season 2 I switched to watching this on my own)",
+      "rating": 4,
+      "reviewNote": null,
+      "notes": null,
+      "hidden": false,
+      "dropped": false
     }
   ]
 }

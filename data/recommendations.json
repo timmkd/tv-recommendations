@@ -198,18 +198,7 @@
       "source": "prediction",
       "predictedRating": 4
     },
-    {
-      "title": "The Flight Attendant",
-      "year": 2020,
-      "tmdbId": 93287,
-      "posterPath": "/oCK0o8CWV46Z0PUdh7CKXnjD2Po.jpg",
-      "reason": "Predicted 4★: Kaley Cuoco mystery-comedy - same fun whodunit energy as Only Murders (4★). Not too heavy, perfect together viewing. On Max.",
-      "streamingServices": ["max"],
-      "confidence": "high",
-      "source": "prediction",
-      "predictedRating": 4
-    },
-    {
+        {
       "title": "The Pitt",
       "year": 2025,
       "tmdbId": 250307,
