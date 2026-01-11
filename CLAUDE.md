@@ -84,6 +84,12 @@ Use `GET /api/trakt/shows?syncFromTrakt=true` to import:
 | `rtFetchedAt` | RT scores fetched |
 | `streamingFetchedAt` | Streaming availability fetched |
 
+**Using dates to know when updates are needed:**
+- Compare `ratedAt` across shows to find recently rated shows for taste profile updates
+- Check `predictionsUpdatedAt` to find stale predictions that need refreshing
+- Shows rated after predictions were generated may indicate the taste profile has evolved
+- Query: "Shows rated since last prediction update" = candidates for re-prediction
+
 ### Streaming Data Fallbacks
 Streaming availability uses 3-layer fallback (in order):
 1. **Trakt API** (`/shows/{slug}/watchnow/au`) - most reliable
@@ -359,6 +365,34 @@ predicted_rating = (IMDB / 2) - 0.3★ + modifiers
 - Slow pacing risk → Consider solo instead of together
 - Alt-history vs true story → True story preferred
 - Helen dislikes: superhero, crude humor, slow pacing, sci-fi
+
+### When to Update Taste Profile & Predictions
+
+The date fields enable tracking when updates are needed:
+
+**Taste profile updates** - Refresh when users have provided new feedback:
+```javascript
+// Shows rated since a given date (new taste data available)
+overlays.filter(o => o.ratedAt && new Date(o.ratedAt) > lastProfileUpdate)
+
+// Shows where user rating differs significantly from prediction (taste correction)
+overlays.filter(o => o.rating && o.predictedRating && Math.abs(o.rating - o.predictedRating) >= 1)
+```
+
+**Prediction updates** - Re-run when taste profile has evolved:
+```javascript
+// Shows with stale predictions (rated after prediction was made)
+overlays.filter(o => o.rating && o.ratedAt > o.predictionsUpdatedAt)
+
+// Unrated shows that need predictions
+overlays.filter(o => !o.rating && !o.predictedRating)
+```
+
+**Signs to refresh:**
+- New ratings added since last prediction run
+- User significantly disagreed with predictions (validates/invalidates patterns)
+- New review notes added that reveal preferences
+- Watch preference notes updated (solo/together patterns)
 
 ### Reference Documents
 
