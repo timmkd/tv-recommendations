@@ -826,7 +826,24 @@ function ShowsContent() {
                   <div className="text-sm font-medium truncate group-hover:text-blue-400">
                     {show.title}
                   </div>
-                  <div className="text-xs text-gray-400 mb-1">{show.year}</div>
+                  <div className="text-xs text-gray-400 mb-1 flex items-center gap-1.5">
+                    {show.year && <span>{show.year}</span>}
+                    {show.numberOfSeasons && (
+                      <>
+                        <span className="text-gray-600">•</span>
+                        <span>{show.numberOfSeasons}S</span>
+                      </>
+                    )}
+                    {show.showStatus && show.showStatus !== 'Returning Series' && (
+                      <span className={`px-1 rounded text-[10px] ${
+                        show.showStatus === 'Ended' ? 'bg-green-900/50 text-green-400' :
+                        show.showStatus === 'Canceled' ? 'bg-red-900/50 text-red-400' :
+                        'bg-gray-700 text-gray-400'
+                      }`}>
+                        {show.showStatus}
+                      </span>
+                    )}
+                  </div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className={`px-1.5 py-0.5 rounded text-xs ${STATUS_LABELS[show.status].color}`}>
                       {STATUS_LABELS[show.status].label}

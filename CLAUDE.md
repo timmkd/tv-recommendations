@@ -249,15 +249,15 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 
 ## Taste Profile
 
-### Rating Distribution (178 rated shows)
+### Rating Distribution (184 rated shows)
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites, actively recommend |
-| 4.5★ | 14 | Loved it - strong signal of preferences |
-| 4★ | 67 | Good solid show - would recommend |
+| 4.5★ | 15 | Loved it - strong signal of preferences |
+| 4★ | 68 | Good solid show - would recommend |
 | 3.5★ | 43 | Enjoy but don't love every moment |
-| 3★ | 33 | Still good - will stick with it |
-| 2-2.5★ | 16 | Dropped or disappointed |
+| 3★ | 34 | Still good - will stick with it |
+| 2-2.5★ | 19 | Dropped or disappointed |
 
 ### The 5★ Shows (Reference Points)
 - **Severance** (solo) - psychological sci-fi, mind-bending
@@ -293,6 +293,7 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 - Spy thrillers (Slow Horses 4.5★, Bodyguard 4★, The Americans 4★, Homeland 4★, The Diplomat 4★)
 - Period dramas (The Crown 4.5★, Bridgerton 4★, The Gilded Age 4★, A Gentleman in Moscow 4★)
 - Prestige true stories (Chernobyl 5★, Lessons in Chemistry 4.5★, Unorthodox 4★)
+- British prestige mystery (Sherlock 4.5★ - "One of the best shows... Love the acting. Moriarty was brilliant")
 - Prestige limited series with exceptional acting/cinematography (Adolescence 4★ - "Beautifully shot and brilliantly acted. So well scripted.")
 - Light mystery-comedy (Only Murders 4★, Shrinking 4★)
 - Easy watch rom-coms (Nobody Wants This 4★ - "Love a good easy watch")
@@ -309,7 +310,9 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 ### Dropped Shows (Learn From These)
 | Show | Rating | Reason |
 |------|--------|--------|
+| A Very British Scandal | 2★ | Didn't like characters, nothing redeeming (together) |
 | Mr. & Mrs. Smith | 2★ | Slow pacing, not funny |
+| Bad Monkey | 2.5★ | Slow paced, didn't like characters (together) |
 | Mindhunter | 2.5★ | Too intense AND boring |
 | War and Peace | 2.5★ | Got bored, gave up |
 | Disclaimer | 2.5★ | Didn't like anyone in the show |
@@ -320,6 +323,7 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 | A League of Their Own | 2.5★ | Fizzled after first few episodes |
 | Home Before Dark | 2.5★ | Didn't go anywhere |
 | The Tick | 2.5★ | Got bored after a couple episodes |
+| Elementary | 3★ | First season good, second got boring (together) |
 
 ### Rating Source Correlations
 

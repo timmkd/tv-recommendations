@@ -485,13 +485,18 @@ export async function getUserShows(username: string): Promise<TraktUserShow[]> {
     const existing = showsMap.get(tmdbId);
     const progress = progressMap.get(slug);
 
-    // Determine status based on progress if available
+    // Determine status based on progress:
+    // - completed >= aired = completed (watched everything)
+    // - completed > 0 but < aired = watching (in progress)
+    // - completed = 0 = stays as watchlist (if was there) or completed (default)
     let status: ShowStatus = 'completed';
     if (progress) {
-      // If they've watched some but not all aired episodes, it's "watching"
-      if (progress.completed < progress.aired && progress.completed > 0) {
+      if (progress.completed >= progress.aired && progress.aired > 0) {
+        status = 'completed';
+      } else if (progress.completed > 0) {
         status = 'watching';
       }
+      // If completed = 0 and aired > 0, keep as watchlist if already there, else completed
     }
 
     if (existing) {
