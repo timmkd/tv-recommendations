@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlayByTmdbId, saveOverlay } from '@/lib/data';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
 import { getRTRatings } from '@/lib/rottentomatoes';
-import { getStreamingAvailability } from '@/lib/justwatch';
+import { getStreamingAvailability, getStreamingByTitle } from '@/lib/justwatch';
+import { getShowWithRatings, getImdbRating, getShowStreaming } from '@/lib/trakt';
 import type { ShowStatus } from '@/types';
 
 const TRAKT_API_URL = 'https://api.trakt.tv';
@@ -41,16 +42,19 @@ export async function POST(request: NextRequest) {
     }
 
     const results: {
-      trakt?: { success: boolean; status?: ShowStatus; aired?: number; completed?: number; addedToWatchlist?: boolean; error?: string };
+      trakt?: { success: boolean; status?: ShowStatus; aired?: number; completed?: number; addedToWatchlist?: boolean; traktRating?: number; traktVoteCount?: number; error?: string };
       tmdb?: { success: boolean; posterPath?: string; genres?: string[]; error?: string };
       rt?: { success: boolean; criticsScore?: number; audienceScore?: number; error?: string };
       streaming?: { success: boolean; services?: string[]; error?: string };
+      imdb?: { success: boolean; rating?: number; votes?: number; error?: string };
     } = {};
 
     // Get existing overlay data
     const existing = await getOverlayByTmdbId(tmdbId);
     let title = existing?.title || '';
     let year = existing?.year;
+    let imdbId = existing?.imdbId;
+    let traktSlug: string | undefined;
 
     // 1. Sync with Trakt - add to watchlist and get progress
     const authHeaders = await getAuthHeaders();
@@ -64,7 +68,7 @@ export async function POST(request: NextRequest) {
           const searchResults = await searchResponse.json();
           if (searchResults.length && searchResults[0].show) {
             const traktShow = searchResults[0].show;
-            const traktSlug = traktShow.ids.slug;
+            traktSlug = traktShow.ids.slug;
             const traktId = traktShow.ids.trakt;
             title = traktShow.title;
             year = traktShow.year;
@@ -101,7 +105,35 @@ export async function POST(request: NextRequest) {
               }
             }
 
-            results.trakt = { success: true, status, aired, completed, addedToWatchlist: addedToWatchlistResult };
+            // Get Trakt community rating
+            const showDetails = await getShowWithRatings(traktSlug!);
+            const traktRating = showDetails?.rating;
+            const traktVoteCount = showDetails?.votes;
+            imdbId = traktShow.ids.imdb || imdbId;
+
+            results.trakt = {
+              success: true,
+              status,
+              aired,
+              completed,
+              addedToWatchlist: addedToWatchlistResult,
+              traktRating,
+              traktVoteCount
+            };
+
+            // Get IMDB rating (if OMDB_API_KEY is set)
+            if (imdbId) {
+              try {
+                const imdbData = await getImdbRating(imdbId);
+                if (imdbData) {
+                  results.imdb = { success: true, rating: imdbData.rating, votes: imdbData.votes };
+                } else {
+                  results.imdb = { success: false, error: 'No OMDB_API_KEY or rating not found' };
+                }
+              } catch (error) {
+                results.imdb = { success: false, error: error instanceof Error ? error.message : 'IMDB fetch failed' };
+              }
+            }
           } else {
             results.trakt = { success: false, error: 'Show not found on Trakt' };
           }
@@ -142,12 +174,30 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 4. Get streaming availability
+    // 4. Get streaming availability (with fallbacks)
     try {
-      const streamingData = await getStreamingAvailability(tmdbId);
+      let services: string[] = [];
+
+      // Try 1: Trakt streaming endpoint (most reliable - uses slug)
+      if (traktSlug) {
+        services = await getShowStreaming(traktSlug, 'au');
+      }
+
+      // Try 2: JustWatch by TMDB ID (if Trakt returned empty)
+      if (services.length === 0) {
+        const streamingData = await getStreamingAvailability(tmdbId);
+        services = streamingData.services;
+      }
+
+      // Try 3: JustWatch by title (final fallback)
+      if (services.length === 0 && title) {
+        const titleData = await getStreamingByTitle(title, year);
+        services = titleData.services;
+      }
+
       results.streaming = {
         success: true,
-        services: streamingData.services
+        services
       };
     } catch (error) {
       results.streaming = { success: false, error: error instanceof Error ? error.message : 'Streaming fetch failed' };
@@ -167,13 +217,22 @@ export async function POST(request: NextRequest) {
       genres: tmdbData?.genres?.length ? tmdbData.genres : existing?.genres,
       numberOfSeasons: tmdbData?.numberOfSeasons || existing?.numberOfSeasons,
       showStatus: tmdbData?.showStatus || existing?.showStatus,
+      tmdbRating: tmdbData?.tmdbRating ?? existing?.tmdbRating,
+      tmdbVoteCount: tmdbData?.tmdbVoteCount ?? existing?.tmdbVoteCount,
       // RT data
       rtCriticsScore: results.rt?.criticsScore ?? existing?.rtCriticsScore,
       rtAudienceScore: results.rt?.audienceScore ?? existing?.rtAudienceScore,
       rtFetchedAt: results.rt?.success ? new Date().toISOString() : existing?.rtFetchedAt,
       // Streaming data
       streamingServices: results.streaming?.services?.length ? results.streaming.services : existing?.streamingServices,
-      streamingFetchedAt: results.streaming?.success ? new Date().toISOString() : existing?.streamingFetchedAt
+      streamingFetchedAt: results.streaming?.success ? new Date().toISOString() : existing?.streamingFetchedAt,
+      // Trakt ratings
+      traktRating: results.trakt?.traktRating ?? existing?.traktRating,
+      traktVoteCount: results.trakt?.traktVoteCount ?? existing?.traktVoteCount,
+      // IMDB data
+      imdbId: imdbId || existing?.imdbId,
+      imdbRating: results.imdb?.rating ?? existing?.imdbRating,
+      imdbVoteCount: results.imdb?.votes ?? existing?.imdbVoteCount
     });
 
     return NextResponse.json({

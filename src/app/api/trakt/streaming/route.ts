@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlayByTmdbId, saveOverlay, getOverlaysMap } from '@/lib/data';
-import { getUserShows } from '@/lib/trakt';
-import { getWatchProviders } from '@/lib/tmdb';
+import { getUserShows, getShowByTmdbId, getShowStreaming } from '@/lib/trakt';
+import { getStreamingAvailability, getStreamingByTitle } from '@/lib/justwatch';
 
 // POST to fetch streaming availability from TMDB
 export async function POST(request: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const overlaysMap = await getOverlaysMap();
 
     // Filter to shows that need streaming data
-    const showsToFetch: { tmdbId: number; title: string }[] = [];
+    const showsToFetch: { tmdbId: number; title: string; year?: number; slug?: string }[] = [];
 
     for (const show of traktShows) {
       // If specific IDs provided, only fetch those
@@ -44,7 +44,12 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      showsToFetch.push({ tmdbId: show.tmdbId, title: show.title });
+      showsToFetch.push({
+        tmdbId: show.tmdbId,
+        title: show.title,
+        year: show.year,
+        slug: show.slug
+      });
     }
 
     if (showsToFetch.length === 0) {
@@ -56,13 +61,30 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Fetch streaming data from TMDB
+    // Fetch streaming data with fallbacks (Trakt -> JustWatch by TMDB ID -> JustWatch by title)
     let updated = 0;
     const results: Record<number, string[]> = {};
 
     for (const show of showsToFetch) {
       try {
-        const services = await getWatchProviders(show.tmdbId);
+        let services: string[] = [];
+
+        // Try 1: Trakt streaming endpoint (most reliable - uses slug)
+        if (show.slug) {
+          services = await getShowStreaming(show.slug, 'au');
+        }
+
+        // Try 2: JustWatch by TMDB ID (if Trakt returned empty)
+        if (services.length === 0) {
+          const streamingData = await getStreamingAvailability(show.tmdbId);
+          services = streamingData.services;
+        }
+
+        // Try 3: JustWatch by title (final fallback)
+        if (services.length === 0 && show.title) {
+          const titleData = await getStreamingByTitle(show.title, show.year);
+          services = titleData.services;
+        }
 
         // Get existing overlay and update streaming data
         const existing = await getOverlayByTmdbId(show.tmdbId);
@@ -79,7 +101,7 @@ export async function POST(request: NextRequest) {
         updated++;
 
         // Rate limit - small delay between requests
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 150));
       } catch (error) {
         console.error(`Failed to fetch streaming for ${show.title}:`, error);
       }

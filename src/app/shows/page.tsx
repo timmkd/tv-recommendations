@@ -204,12 +204,16 @@ function ShowsContent() {
 
   // Apply filters
   let filtered = shows;
-  // Hide dropped shows unless showDropped is true
-  if (!showDropped) {
+  // Dropped filter: OFF = hide dropped, ON = show ONLY dropped
+  if (showDropped) {
+    filtered = filtered.filter(s => s.dropped);
+  } else {
     filtered = filtered.filter(s => !s.dropped);
   }
-  // Hide hidden shows unless showHidden is true
-  if (!showHidden) {
+  // Hidden filter: OFF = hide hidden, ON = show ONLY hidden
+  if (showHidden) {
+    filtered = filtered.filter(s => s.hidden);
+  } else {
     filtered = filtered.filter(s => !s.hidden);
   }
   if (statusFilter) {
@@ -641,7 +645,17 @@ function ShowsContent() {
 
         {/* Status Filter */}
         <div className="mb-4">
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap items-center">
+            {/* Clear all filters button - only show if any filter is active */}
+            {(statusFilter || unratedFilter || streamingFilter || watchPrefFilter || showHidden || showDropped || sortParam !== 'updated' || searchQuery) && (
+              <Link
+                href="/shows"
+                onClick={() => setSearchQuery('')}
+                className="px-3 py-1 rounded text-sm bg-red-900/50 hover:bg-red-800 text-red-300 border border-red-700/50"
+              >
+                ✕ Clear filters
+              </Link>
+            )}
             <Link
               href={buildFilterUrl({ streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
               className={`px-3 py-1 rounded text-sm ${

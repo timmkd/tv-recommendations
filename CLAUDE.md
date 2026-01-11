@@ -14,7 +14,12 @@ npm run lint     # Run ESLint
 
 Required in `.env.local`:
 - `TMDB_API_KEY` - The Movie Database API key for show search and metadata
+- `TRAKT_CLIENT_ID` - Trakt API client ID for show sync and ratings
+- `TRAKT_CLIENT_SECRET` - Trakt API client secret for OAuth
+
+Optional:
 - `OPENAI_API_KEY` - OpenAI API key for AI-powered recommendations (via `src/lib/openai.ts`)
+- `OMDB_API_KEY` - OMDB API key for IMDB ratings (free at omdbapi.com, 1000 requests/day)
 
 ## Architecture
 
@@ -23,10 +28,10 @@ This is a Next.js 16 app using the App Router with file-based JSON storage (no d
 ### Data Flow
 
 All data is stored in `data/*.json` files:
-- `shows.json` - User's TV show library with ratings and watch status
+- `overlays.json` - User ratings, notes, predictions, and show metadata (synced from Trakt)
 - `episodes.json` - Episode watch tracking
 - `settings.json` - Streaming service subscriptions and API keys
-- `recommendations.json` - Generated recommendations for solo/with-wife contexts
+- `recommendations.json` - Curated recommendations for solo/together contexts (subscribed services only)
 
 Data access is centralized through `src/lib/data.ts` which provides typed CRUD functions for all JSON files.
 
@@ -88,11 +93,44 @@ Each show has a simple rating structure:
 
 ## Generating Recommendations
 
-When the user asks for TV recommendations, generate them by:
+### Two Types of Predictions
 
-1. **Read the shows data** from `data/shows.json` to understand their viewing history and preferences
-2. **Check subscribed services** in `data/settings.json` - only recommend shows available on those services
-3. **Update recommendations** by writing to `data/recommendations.json`
+1. **Predictions (in `overlays.json`)** - Rating predictions for ALL shows regardless of subscription status
+   - Used to show predicted ratings in the UI for any show
+   - When user changes subscriptions, they can see what's good on each service
+   - Do NOT mention platform names in prediction reasons (e.g., don't say "On Netflix")
+
+2. **Recommendations (in `recommendations.json`)** - Curated picks for SUBSCRIBED services only
+   - The "what to watch now" list
+   - Only includes shows available on currently subscribed services
+   - Can mention platform names since these are actionable
+
+### Workflow
+
+1. **Read the shows data** from `data/overlays.json` to understand viewing history and preferences
+2. **Check subscribed services** in `data/settings.json`
+3. **For predictions**: Add `predictedRating` and `predictedRatingReason` to shows in overlays.json
+4. **For recommendations**: Write top picks to `data/recommendations.json` (subscribed services only)
+
+### Prediction Format (in overlays.json)
+
+Add these fields to show entries:
+```json
+{
+  "tmdbId": 12345,
+  "predictedRating": 4,
+  "predictedRatingReason": "Predicted 4★: [Why based on taste profile]. COMPLETE 4 seasons.",
+  "recommendedWatchPreference": "solo" | "together",
+  // ... other show data
+}
+```
+
+**Prediction reason guidelines:**
+- Start with "Predicted X★:"
+- Reference similar shows from their history with ratings
+- Note if COMPLETE/LIMITED series (reduces cancellation anxiety)
+- Note RT scores if notable (90%+)
+- Do NOT mention streaming platform names
 
 ### Recommendation Format
 
@@ -121,8 +159,11 @@ When the user asks for TV recommendations, generate them by:
 
 ### Service Slugs
 - `netflix`, `stan`, `binge`, `disney-plus`, `prime-video`
-- `paramount-plus`, `apple-tv-plus`, `hbo-max`
+- `paramount-plus`, `apple-tv-plus`, `max`
 - `foxtel-now`, `britbox`, `abc-iview`, `sbs-on-demand`
+
+### Current Subscriptions
+Check `data/settings.json` for current subscriptions. As of last update: Stan, Prime Video, Max, ABC iview, SBS On Demand.
 
 ### Guidelines
 
@@ -150,10 +191,10 @@ When the user asks for TV recommendations, generate them by:
    - "Dropped - too slow after ep 3" → avoid similar pacing issues
 
 4. **Use `rating` to weight importance:**
-   - 3-5 stars = shows I liked (use these to inform recommendations)
-   - 4-5 stars = strong signal of preferences
-   - 3 stars = liked but not a favorite
-   - 1-2 stars = signal of what to avoid
+   - 5★ = Exceptional, all-time favorite
+   - 4-4.5★ = Strong signal - would recommend, use heavily for taste matching
+   - 3-3.5★ = Enjoyed it, still a good show - use for general patterns
+   - 2-2.5★ = Dropped or disappointed - signal of what to avoid
 
 **General tips:**
 - Reference specific shows from their history to explain recommendations
@@ -167,11 +208,11 @@ When the user asks for TV recommendations, generate them by:
 ### Rating Distribution (178 rated shows)
 | Rating | Count | Meaning |
 |--------|-------|---------|
-| 5★ | 5 | Exceptional - actively recommend |
-| 4.5★ | 14 | Loved it - strong signal |
-| 4★ | 67 | Great - reliable enjoyment |
-| 3.5★ | 43 | Good - enjoyed but not memorable |
-| 3★ | 33 | Fine - watchable |
+| 5★ | 5 | Exceptional - all-time favorites, actively recommend |
+| 4.5★ | 14 | Loved it - strong signal of preferences |
+| 4★ | 67 | Good solid show - would recommend |
+| 3.5★ | 43 | Enjoy but don't love every moment |
+| 3★ | 33 | Still good - will stick with it |
 | 2-2.5★ | 16 | Dropped or disappointed |
 
 ### The 5★ Shows (Reference Points)
@@ -236,12 +277,52 @@ When the user asks for TV recommendations, generate them by:
 | Home Before Dark | 2.5★ | Didn't go anywhere |
 | The Tick | 2.5★ | Got bored after a couple episodes |
 
-### Prediction Modifiers
+### Rating Source Correlations
+
+Based on analysis of 180 rated shows (see `docs/rating-analysis.md`):
+
+| Source | Correlation | Use For Predictions |
+|--------|-------------|---------------------|
+| **IMDB** | 0.46 | ✅ Primary signal |
+| **Trakt** | 0.47 | ✅ Primary signal |
+| **TMDB** | 0.43 | ✅ Useful backup |
+| **RT Critics** | 0.18 | ❌ Ignore for predictions |
+| **RT Audience** | 0.13 | ❌ Ignore for predictions |
+
+**Key insight:** RT scores measure consensus ("was it good enough?"), not quality. Many dropped shows had 95%+ RT scores.
+
+### Prediction Formula
+
+```
+predicted_rating = (IMDB / 2) - 0.3★ + modifiers
+```
+
+**Base:** IMDB rating divided by 2, minus 0.3★ (user is slightly more critical than average)
+
+**Positive Modifiers:**
 | Pattern | Adjustment |
 |---------|------------|
-| WWII + True Story + Prestige | +1★ for together |
 | Australian content | +0.5★ |
-| Complete/limited series | +0.5★ |
+| Psychological complexity (Severance-like) | +0.5★ |
+| Workplace comedy | +0.5★ |
+| True story | +0.3★ |
+| Limited/complete series | +0.3★ |
+| WWII setting (for together) | +0.3★ |
+
+**Negative Modifiers:**
+| Pattern | Adjustment |
+|---------|------------|
 | Cancelled/unresolved | -0.5★ |
-| Slow pacing risk for together | Consider solo instead |
-| Alt-history vs true story | True story > fiction |
+| Slow-burn/experimental | -0.5★ |
+| Dark without hope | -0.5★ |
+| Style over substance risk | -0.5★ |
+
+**Context Rules:**
+- Slow pacing risk → Consider solo instead of together
+- Alt-history vs true story → True story preferred
+- Helen dislikes: superhero, crude humor, slow pacing, sci-fi
+
+### Reference Documents
+
+- `docs/rating-analysis.md` - Full correlation analysis with disagreement patterns
+- `docs/prediction-updates.md` - All current predictions with reasoning

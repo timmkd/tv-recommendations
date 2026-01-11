@@ -280,6 +280,60 @@ export async function getShowByTmdbId(tmdbId: number): Promise<TraktShowInfo | n
   return null;
 }
 
+// Extended show info with ratings
+export interface TraktShowExtended extends TraktShowInfo {
+  rating?: number;  // Community rating 0-10
+  votes?: number;   // Vote count
+}
+
+// Get show with community ratings
+export async function getShowWithRatings(slugOrId: string | number): Promise<TraktShowExtended | null> {
+  const clientId = getClientId();
+  const url = `${TRAKT_API_URL}/shows/${slugOrId}?extended=full`;
+
+  const response = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'trakt-api-version': '2',
+      'trakt-api-key': clientId
+    }
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  return response.json();
+}
+
+// Get IMDB rating via OMDB API (requires OMDB_API_KEY env var)
+export async function getImdbRating(imdbId: string): Promise<{ rating: number; votes: number } | null> {
+  const apiKey = process.env.OMDB_API_KEY;
+  if (!apiKey || !imdbId) {
+    return null;
+  }
+
+  try {
+    const url = `https://www.omdbapi.com/?i=${imdbId}&apikey=${apiKey}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json();
+    if (data.Response === 'True' && data.imdbRating && data.imdbRating !== 'N/A') {
+      return {
+        rating: parseFloat(data.imdbRating),
+        votes: parseInt(data.imdbVotes?.replace(/,/g, '') || '0', 10)
+      };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 // Progress response type from /shows/{id}/progress/watched
 interface TraktShowProgress {
   aired: number;

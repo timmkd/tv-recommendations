@@ -440,23 +440,6 @@ export default function ShowEditModal({
                     {show.genres.slice(0, 4).join(' • ')}
                   </div>
                 )}
-                {/* RT Scores */}
-                {(show.rtCriticsScore || show.rtAudienceScore) && (
-                  <div className="flex items-center gap-3 mt-2 text-xs">
-                    {show.rtCriticsScore && (
-                      <span className="flex items-center gap-1">
-                        <span className={show.rtCriticsScore >= 60 ? 'text-red-400' : 'text-green-400'}>🍅</span>
-                        <span className="text-gray-300">{show.rtCriticsScore}%</span>
-                      </span>
-                    )}
-                    {show.rtAudienceScore && (
-                      <span className="flex items-center gap-1">
-                        <span>🍿</span>
-                        <span className="text-gray-300">{show.rtAudienceScore}%</span>
-                      </span>
-                    )}
-                  </div>
-                )}
                 {show.streamingServices.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">
                     {show.streamingServices.map((service) => (
@@ -605,6 +588,33 @@ export default function ShowEditModal({
                 </div>
               </div>
             </div>
+
+            {/* External Scores Reference */}
+            {(show.tmdbRating || show.rtCriticsScore || show.rtAudienceScore) && (
+              <div className="mt-4 pt-3 border-t border-gray-700/50">
+                <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <span className="uppercase tracking-wide">Public scores:</span>
+                  {show.tmdbRating && (
+                    <span className="flex items-center gap-1" title={`TMDB: ${show.tmdbVoteCount?.toLocaleString() || 0} votes`}>
+                      <span>⭐</span>
+                      <span>{show.tmdbRating.toFixed(1)}/10</span>
+                    </span>
+                  )}
+                  {show.rtCriticsScore && (
+                    <span className="flex items-center gap-1" title="Rotten Tomatoes Critics">
+                      <span>🍅</span>
+                      <span>{show.rtCriticsScore}%</span>
+                    </span>
+                  )}
+                  {show.rtAudienceScore && (
+                    <span className="flex items-center gap-1" title="Rotten Tomatoes Audience">
+                      <span>🍿</span>
+                      <span>{show.rtAudienceScore}%</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Footer */}
             <div className="mt-4 pt-4 border-t border-gray-700 space-y-3">

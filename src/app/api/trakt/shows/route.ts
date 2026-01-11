@@ -29,6 +29,8 @@ function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show
 
     // External data from overlay cache
     genres: overlay?.genres || [],
+    tmdbRating: overlay?.tmdbRating,
+    tmdbVoteCount: overlay?.tmdbVoteCount,
     rtCriticsScore: overlay?.rtCriticsScore,
     rtAudienceScore: overlay?.rtAudienceScore,
     rtFetchedAt: overlay?.rtFetchedAt,
@@ -65,6 +67,8 @@ function overlayToShow(overlay: ShowOverlay): Show {
     hidden: overlay.hidden,
     dropped: overlay.dropped,
     genres: overlay.genres || [],
+    tmdbRating: overlay.tmdbRating,
+    tmdbVoteCount: overlay.tmdbVoteCount,
     rtCriticsScore: overlay.rtCriticsScore,
     rtAudienceScore: overlay.rtAudienceScore,
     rtFetchedAt: overlay.rtFetchedAt,
@@ -149,6 +153,8 @@ export async function GET(request: NextRequest) {
                       genres: tmdbData.genres,
                       numberOfSeasons: tmdbData.numberOfSeasons,
                       showStatus: tmdbData.showStatus,
+                      tmdbRating: tmdbData.tmdbRating,
+                      tmdbVoteCount: tmdbData.tmdbVoteCount,
                       updatedAt: new Date().toISOString()
                     });
                   }
@@ -245,10 +251,23 @@ export async function PUT(request: NextRequest) {
 
     const existingOverlay = await getOverlayByTmdbId(tmdbId);
 
+    // Check if rating changed - set ratedAt timestamp
+    const ratingChanged = updates.rating !== undefined && updates.rating !== existingOverlay?.rating;
+
+    // Check if predictions changed - set predictionsUpdatedAt timestamp
+    const predictionsChanged = (
+      (updates.predictedRating !== undefined && updates.predictedRating !== existingOverlay?.predictedRating) ||
+      (updates.predictedRatingReason !== undefined && updates.predictedRatingReason !== existingOverlay?.predictedRatingReason) ||
+      (updates.recommendedWatchPreference !== undefined && updates.recommendedWatchPreference !== existingOverlay?.recommendedWatchPreference)
+    );
+
     const updated: ShowOverlay = {
       tmdbId,
       ...existingOverlay,
-      ...updates
+      ...updates,
+      // Set timestamps for rating/prediction changes
+      ...(ratingChanged && { ratedAt: new Date().toISOString() }),
+      ...(predictionsChanged && { predictionsUpdatedAt: new Date().toISOString() })
     };
 
     await saveOverlay(updated);

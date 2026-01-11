@@ -9,6 +9,7 @@ interface TMDBShowDetails {
   first_air_date: string;
   genres: { id: number; name: string }[];
   vote_average: number;
+  vote_count: number;
   status: string;
   number_of_seasons: number;
   number_of_episodes: number;
@@ -120,6 +121,8 @@ export async function enrichShowWithTMDB(tmdbId: number): Promise<{
   year?: number;
   numberOfSeasons?: number;
   showStatus?: string;
+  tmdbRating?: number;
+  tmdbVoteCount?: number;
 }> {
   try {
     const details = await getShowDetails(tmdbId);
@@ -129,7 +132,9 @@ export async function enrichShowWithTMDB(tmdbId: number): Promise<{
       genres: details.genres.map(g => g.name),
       year: details.first_air_date ? parseInt(details.first_air_date.split('-')[0]) : undefined,
       numberOfSeasons: details.number_of_seasons,
-      showStatus: details.status
+      showStatus: details.status,
+      tmdbRating: details.vote_average || undefined,
+      tmdbVoteCount: details.vote_count || undefined
     };
   } catch {
     return { genres: [] };

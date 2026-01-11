@@ -72,7 +72,9 @@ export async function POST(request: NextRequest) {
           genres: metadata.genres.length > 0 ? metadata.genres : existing?.genres,
           year: metadata.year || existing?.year,
           numberOfSeasons: metadata.numberOfSeasons || existing?.numberOfSeasons,
-          showStatus: metadata.showStatus || existing?.showStatus
+          showStatus: metadata.showStatus || existing?.showStatus,
+          tmdbRating: metadata.tmdbRating ?? existing?.tmdbRating,
+          tmdbVoteCount: metadata.tmdbVoteCount ?? existing?.tmdbVoteCount
         });
 
         results[show.tmdbId] = {

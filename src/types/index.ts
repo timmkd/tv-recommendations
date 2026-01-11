@@ -31,6 +31,13 @@ export interface Show {
   dropped?: boolean; // Show was dropped - hidden from views but kept for taste analysis
 
   // External data
+  imdbId?: string;        // IMDB ID (tt1234567)
+  imdbRating?: number;    // IMDB rating (1-10 scale)
+  imdbVoteCount?: number; // Number of IMDB votes
+  traktRating?: number;   // Trakt rating (1-10 scale)
+  traktVoteCount?: number; // Number of Trakt votes
+  tmdbRating?: number;    // TMDB vote average (1-10 scale)
+  tmdbVoteCount?: number; // Number of TMDB votes
   rtCriticsScore?: number;
   rtAudienceScore?: number;
   rtFetchedAt?: string;  // ISO date - when RT scores were last fetched
@@ -100,11 +107,13 @@ export interface ShowOverlay {
   // Rating & review (our custom rating, not Trakt's)
   rating?: number; // 0.5 to 5 in 0.5 increments
   reviewNote?: string;
+  ratedAt?: string; // ISO date - when user rated the show
 
   // Predicted rating (for watchlist items)
   predictedRating?: number; // 0.5 to 5 in 0.5 increments
   predictedRatingReason?: string;
   recommendedWatchPreference?: WatchPreference;
+  predictionsUpdatedAt?: string; // ISO date - when AI predictions were last updated
 
   // General notes
   notes?: string;
@@ -120,6 +129,13 @@ export interface ShowOverlay {
   year?: number;
   numberOfSeasons?: number;
   showStatus?: string; // e.g. "Ended", "Returning Series", "Canceled"
+  imdbId?: string;        // IMDB ID (tt1234567)
+  imdbRating?: number;    // IMDB rating (1-10 scale)
+  imdbVoteCount?: number; // Number of IMDB votes
+  traktRating?: number;   // Trakt rating (1-10 scale)
+  traktVoteCount?: number; // Number of Trakt votes
+  tmdbRating?: number;    // TMDB vote average (1-10 scale)
+  tmdbVoteCount?: number; // Number of TMDB votes
   rtCriticsScore?: number;
   rtAudienceScore?: number;
   rtFetchedAt?: string;
