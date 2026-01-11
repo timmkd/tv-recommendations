@@ -7352,7 +7352,7 @@
       "title": "Gilmore Girls",
       "year": 2000,
       "createdAt": "2026-01-11T03:26:57.602Z",
-      "updatedAt": "2026-01-11T03:28:39.424Z",
+      "updatedAt": "2026-01-11T03:36:57.449Z",
       "posterPath": "/gwtzCwU2wdLLf8oejQu2TINiWfQ.jpg",
       "overview": "Set in the charming town of Stars Hollow, Connecticut, the series follows the captivating lives of Lorelai and Rory Gilmore, a mother/daughter pair who have a relationship most people only dream of.",
       "genres": [
@@ -7370,7 +7370,19 @@
       "notes": null,
       "hidden": false,
       "dropped": false,
-      "ratedAt": "2026-01-11T03:28:39.420Z"
+      "ratedAt": "2026-01-11T03:28:39.420Z",
+      "rtCriticsScore": 90,
+      "rtAudienceScore": 87,
+      "rtFetchedAt": "2026-01-11T03:36:48.288Z",
+      "streamingServices": [
+        "netflix",
+        "prime-video",
+        "disney-plus"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:36:48.288Z",
+      "traktRating": 8.245133399963379,
+      "traktVoteCount": 8220,
+      "imdbId": "tt0238784"
     },
     {
       "tmdbId": 4608,
@@ -7401,7 +7413,7 @@
       "title": "The Resident",
       "year": 2018,
       "createdAt": "2026-01-11T03:26:57.609Z",
-      "updatedAt": "2026-01-11T03:29:45.911Z",
+      "updatedAt": "2026-01-11T03:31:44.053Z",
       "posterPath": "/2IkYQJlT26yXef2iot7dhRtavSC.jpg",
       "overview": "A tough, brilliant senior resident guides an idealistic young doctor through his first day, pulling back the curtain on what really happens, both good and bad, in modern-day medicine.",
       "genres": [
@@ -7418,7 +7430,16 @@
       "notes": null,
       "hidden": false,
       "dropped": false,
-      "ratedAt": "2026-01-11T03:29:45.905Z"
+      "ratedAt": "2026-01-11T03:29:45.905Z",
+      "rtCriticsScore": 59,
+      "rtAudienceScore": 75,
+      "rtFetchedAt": "2026-01-11T03:31:44.047Z",
+      "streamingServices": [
+        "netflix",
+        "stan",
+        "disney-plus"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:31:44.047Z"
     }
   ]
 }
