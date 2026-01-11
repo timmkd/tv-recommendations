@@ -12,7 +12,8 @@ import {
   removeFromDroppedList,
   getHiddenShows,
   getDroppedShows,
-  getUserRatings
+  getUserRatings,
+  getShowStreaming
 } from '@/lib/trakt';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
 import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
@@ -124,7 +125,7 @@ export async function GET(request: NextRequest) {
 
           // Merge and filter deleted shows
           const traktTmdbIds = new Set<number>();
-          const newOverlaysToSave: ShowOverlay[] = [];
+          const newOverlaysToSave: { overlay: ShowOverlay; slug: string }[] = [];
 
           for (const traktShow of traktShows) {
             if (await isShowDeleted(traktShow.tmdbId)) {
@@ -143,7 +144,7 @@ export async function GET(request: NextRequest) {
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString()
               };
-              newOverlaysToSave.push(overlay);
+              newOverlaysToSave.push({ overlay, slug: traktShow.slug });
             }
 
             // Merge Trakt sync data if syncing (only update if not already set locally)
@@ -185,29 +186,42 @@ export async function GET(request: NextRequest) {
             shows.push(show);
           }
 
-          // Save new overlays and enrich with TMDB data in background (don't block response)
+          // Save new overlays and enrich with TMDB + streaming data in background (don't block response)
           if (newOverlaysToSave.length > 0) {
             (async () => {
-              for (const overlay of newOverlaysToSave) {
+              for (const { overlay, slug } of newOverlaysToSave) {
                 try {
                   // First save basic overlay
                   await saveOverlay(overlay);
 
-                  // Then enrich with TMDB data (poster, genres, etc.)
+                  // Enrich with TMDB data (poster, genres, etc.)
                   const tmdbData = await enrichShowWithTMDB(overlay.tmdbId);
-                  if (tmdbData.posterPath || tmdbData.genres.length > 0) {
-                    await saveOverlay({
-                      ...overlay,
-                      posterPath: tmdbData.posterPath,
-                      overview: tmdbData.overview,
-                      genres: tmdbData.genres,
-                      numberOfSeasons: tmdbData.numberOfSeasons,
-                      showStatus: tmdbData.showStatus,
-                      tmdbRating: tmdbData.tmdbRating,
-                      tmdbVoteCount: tmdbData.tmdbVoteCount,
-                      updatedAt: new Date().toISOString()
-                    });
+
+                  // Fetch streaming availability via Trakt
+                  let streamingServices: string[] = [];
+                  try {
+                    streamingServices = await getShowStreaming(slug, 'au');
+                  } catch (err) {
+                    console.error(`Failed to fetch streaming for ${overlay.title}:`, err);
                   }
+
+                  // Save enriched overlay with TMDB and streaming data
+                  await saveOverlay({
+                    ...overlay,
+                    posterPath: tmdbData.posterPath,
+                    overview: tmdbData.overview,
+                    genres: tmdbData.genres,
+                    numberOfSeasons: tmdbData.numberOfSeasons,
+                    showStatus: tmdbData.showStatus,
+                    tmdbRating: tmdbData.tmdbRating,
+                    tmdbVoteCount: tmdbData.tmdbVoteCount,
+                    streamingServices: streamingServices.length > 0 ? streamingServices : undefined,
+                    streamingFetchedAt: streamingServices.length > 0 ? new Date().toISOString() : undefined,
+                    updatedAt: new Date().toISOString()
+                  });
+
+                  // Small delay between shows to avoid rate limiting
+                  await new Promise(resolve => setTimeout(resolve, 150));
                 } catch (err) {
                   console.error(`Failed to enrich show ${overlay.tmdbId}:`, err);
                 }

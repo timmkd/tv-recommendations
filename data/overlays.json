@@ -6464,7 +6464,7 @@
       "title": "Invasion",
       "year": 2021,
       "createdAt": "2026-01-10T07:41:40.374Z",
-      "updatedAt": "2026-01-10T20:57:17.345Z",
+      "updatedAt": "2026-01-11T03:27:04.921Z",
       "posterPath": "/1PdNB3rYTcf8VXc8rcmZ0SeYxSq.jpg",
       "overview": "Earth is visited by an alien species that threatens humanity's existence. Events unfold in real time through the eyes of five ordinary people across the globe as they struggle to make sense of the chaos unraveling around them.",
       "genres": [
@@ -6475,14 +6475,16 @@
       "showStatus": "Returning Series",
       "rtCriticsScore": 73,
       "rtAudienceScore": 81,
-      "rtFetchedAt": "2026-01-10T20:57:17.332Z"
+      "rtFetchedAt": "2026-01-10T20:57:17.332Z",
+      "streamingServices": [],
+      "streamingFetchedAt": "2026-01-11T03:27:04.917Z"
     },
     {
       "tmdbId": 203614,
       "title": "Colin from Accounts",
       "year": 2022,
       "createdAt": "2026-01-10T20:56:29.951Z",
-      "updatedAt": "2026-01-10T21:00:32.876Z",
+      "updatedAt": "2026-01-11T03:27:28.524Z",
       "posterPath": "/zYPRXAImgarNSKrwd4kXobjXQNQ.jpg",
       "overview": "Ashley and Gordon are two single(ish), complex humans who are brought together by a car accident and an injured dog. Flawed, funny people choosing each other and being brave enough to show their true self, scars and all, as they navigate life together.",
       "genres": [
@@ -6496,14 +6498,19 @@
       "reviewNote": null,
       "notes": null,
       "hidden": false,
-      "dropped": false
+      "dropped": false,
+      "streamingServices": [
+        "foxtel-now",
+        "binge"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:28.519Z"
     },
     {
       "tmdbId": 1415,
       "title": "Elementary",
       "year": 2012,
       "createdAt": "2026-01-11T01:09:09.279Z",
-      "updatedAt": "2026-01-11T01:43:10.217Z",
+      "updatedAt": "2026-01-11T03:27:03.596Z",
       "posterPath": "/q9dObe29W4bDpgzUfOOH3ZnzDbR.jpg",
       "overview": "A modern-day drama about a crime-solving duo that cracks the NYPD's most impossible cases. Following his fall from grace in London and a stint in rehab, eccentric Sherlock escapes to Manhattan where his wealthy father forces him to live with his worst nightmare - a sober companion, Dr. Watson.",
       "genres": [
@@ -6522,14 +6529,19 @@
       "notes": null,
       "hidden": false,
       "dropped": true,
-      "ratedAt": "2026-01-11T01:43:10.214Z"
+      "ratedAt": "2026-01-11T01:43:10.214Z",
+      "streamingServices": [
+        "paramount-plus",
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:03.591Z"
     },
     {
       "tmdbId": 90812,
       "title": "Industry",
       "year": 2020,
       "createdAt": "2026-01-11T01:09:09.281Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:04.096Z",
       "posterPath": "/mZ7YFEOxAKfjXJKWm0sYFXQ8n8A.jpg",
       "overview": "In the cutthroat world of international finance, a group of young graduates compete for a limited set of permanent positions at a top investment bank in London. The boundaries between colleague, friend, lover, and enemy soon blur as they immerse themselves in a company culture defined as much by sex, drugs and ego as it is by deals and dividends.",
       "genres": [
@@ -6542,14 +6554,18 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: HBO finance drama. Prestige but stressful and intense - not the comforting workplace comedy you prefer. Heavy on adult content. May feel exhausting rather than entertaining.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:04.090Z"
     },
     {
       "tmdbId": 1396,
       "title": "Breaking Bad",
       "year": 2008,
       "createdAt": "2026-01-11T01:09:09.285Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:05.758Z",
       "posterPath": "/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg",
       "overview": "Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a sense of fearlessness and an unrelenting desire to secure his family's financial future at any cost as he enters the dangerous world of drugs and crime.",
       "genres": [
@@ -6563,14 +6579,18 @@
       "predictedRating": 4,
       "predictedRatingReason": "Predicted 4★: Exceptional acting and psychological complexity you love (Severance 5★). COMPLETE 5 seasons. Deducted from 4.5★ because it's relentlessly dark with no redemption - darker than your typical favorites. Too intense for together.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:05.754Z"
     },
     {
       "tmdbId": 76692,
       "title": "Catherine the Great",
       "year": 2019,
       "createdAt": "2026-01-11T01:09:09.288Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:06.252Z",
       "posterPath": "/s50flEj06i7HmZx0lVMTHD4p6MF.jpg",
       "overview": "This four-part historical drama follows the end of Catherine the Great's reign and her affair with Russian military leader Grigory Potemkin that helped shape the future of Russian politics.",
       "genres": [
@@ -6584,14 +6604,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Helen Mirren period drama. LIMITED SERIES. Russian historical setting like A Gentleman in Moscow (4★). Lower ratings suggest it doesn't fully deliver on the premise.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "foxtel-now"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:06.247Z"
     },
     {
       "tmdbId": 271267,
       "title": "The Chair Company",
       "year": 2025,
       "createdAt": "2026-01-11T01:09:09.289Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:07.111Z",
       "posterPath": "/xZgftEXZXTM47k2rZlXo8kr8HZF.jpg",
       "overview": "After an embarrassing incident at work, suburban family man William Ronald Trosper finds himself investigating a far-reaching conspiracy.",
       "genres": [
@@ -6606,14 +6630,16 @@
       "predictedRating": 4,
       "predictedRatingReason": "Predicted 4★: Tim Robinson's absurdist workplace comedy-thriller. 100% RT. Sharp satire pattern (Barry 4★, Fleabag 4★). Not a cozy sitcom - uncomfortable cringe humor that's divisive. Too weird for together viewing.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [],
+      "streamingFetchedAt": "2026-01-11T03:27:07.103Z"
     },
     {
       "tmdbId": 197803,
       "title": "Here We Go",
       "year": 2022,
       "createdAt": "2026-01-11T01:09:09.290Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:07.942Z",
       "posterPath": "/lYBjHVGXisTZ2fRgAI7OMdBkMpr.jpg",
       "overview": "Family life with no filter. The Jessops navigate life's everyday challenges - from changing jobs to kidnapping dogs.",
       "genres": [
@@ -6627,14 +6653,16 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: British family sitcom. Easy watch but not particularly distinctive. Generic family comedy.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [],
+      "streamingFetchedAt": "2026-01-11T03:27:07.937Z"
     },
     {
       "tmdbId": 1406,
       "title": "Deadwood",
       "year": 2004,
       "createdAt": "2026-01-11T01:09:09.291Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:08.795Z",
       "posterPath": "/fWwxYAuqY4Na7fKI3Qq2nFWCwG8.jpg",
       "overview": "The story of the early days of Deadwood, South Dakota; woven around actual historic events with most of the main characters based on real people. Deadwood starts as a gold mining camp and gradually turns from a lawless wild-west community into an organized wild-west civilized town. The story focuses on the real-life characters Seth Bullock and Al Swearengen.",
       "genres": [
@@ -6649,14 +6677,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Prestige HBO Western with exceptional writing. Got closure movie. But very slow, violent, and crude - definitely too much for together. Dense Shakespearean dialogue requires focus.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "paramount-plus"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:08.789Z"
     },
     {
       "tmdbId": 56296,
       "title": "Orphan Black",
       "year": 2013,
       "createdAt": "2026-01-11T01:09:09.293Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:09.647Z",
       "posterPath": "/tjFYkWMafg71sihs1aa7IDx17aS.jpg",
       "overview": "A streetwise hustler is pulled into a compelling conspiracy after witnessing the suicide of a girl who looks just like her.",
       "genres": [
@@ -6670,14 +6702,18 @@
       "predictedRating": 4,
       "predictedRatingReason": "Predicted 4★: Psychological sci-fi with identity themes (Severance 5★ pattern). Tatiana Maslany's acting is exceptional - plays 10+ clones. COMPLETE 5 seasons. Slight deduction as later seasons reportedly weaker.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:09.642Z"
     },
     {
       "tmdbId": 241405,
       "title": "Dying for Sex",
       "year": 2025,
       "createdAt": "2026-01-11T01:09:09.294Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:10.522Z",
       "posterPath": "/xaKb3cTh8mT6fgLSXuqo4JoS0dU.jpg",
       "overview": "After Molly Kochan receives a diagnosis of Stage IV metastatic breast cancer, she leaves her husband and explores the full breadth and complexity of her sexual desires for the first time in her life.",
       "genres": [
@@ -6691,14 +6727,18 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: LIMITED SERIES about terminal illness and sexuality. True story basis (+). But heavy subject matter and adult focus may not be an easy watch.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:10.514Z"
     },
     {
       "tmdbId": 225385,
       "title": "Black Doves",
       "year": 2024,
       "createdAt": "2026-01-11T01:09:09.295Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:11.353Z",
       "posterPath": "/uoXtkm2P4HPPL8T3IBJ02G3hCC4.jpg",
       "overview": "When a spy posing as a politician's wife learns her lover has been murdered, an old assassin friend joins her on a quest for truth — and vengeance.",
       "genres": [
@@ -6713,14 +6753,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: British spy thriller (Slow Horses 4.5★ pattern). Keira Knightley lead. Only 1 season so far. Reviews note stylish but somewhat slow pacing - watch for Helen's tolerance.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:11.348Z"
     },
     {
       "tmdbId": 120998,
       "title": "Poker Face",
       "year": 2023,
       "createdAt": "2026-01-11T01:09:09.296Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:12.202Z",
       "posterPath": "/8Xm5dyMQC9whMJKnGdFugUAW73C.jpg",
       "overview": "Follow Charlie Cale, a woman with an extraordinary ability to tell when someone is lying, as she hits the road and, at every stop, encounters a new cast of characters and crimes she can't help but solve.",
       "genres": [
@@ -6734,14 +6778,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Clever mystery format from Rian Johnson. Standalone episodes so cancellation doesn't hurt the story. Similar light mystery vibe to Only Murders (4★). Natasha Lyonne is great.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:12.196Z"
     },
     {
       "tmdbId": 63639,
       "title": "The Expanse",
       "year": 2015,
       "createdAt": "2026-01-11T01:09:09.297Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:13.088Z",
       "posterPath": "/8djpxDeWpINnGhjpFXQjnBe6zbx.jpg",
       "overview": "A thriller set two hundred years in the future following the case of a missing young woman who brings a hardened detective and a rogue ship's captain together in a race across the solar system to expose the greatest conspiracy in human history.",
       "genres": [
@@ -6756,14 +6804,18 @@
       "predictedRating": 4.5,
       "predictedRatingReason": "Predicted 4.5★: Hard sci-fi political thriller - fits Foundation (4.5★) and Silo (4.5★) pattern perfectly. COMPLETE 6 seasons. Warning: first 3-4 episodes are slow setup, but then it becomes gripping.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:13.080Z"
     },
     {
       "tmdbId": 261646,
       "title": "What's Next? The Future with Bill Gates",
       "year": 2024,
       "createdAt": "2026-01-11T01:09:09.298Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:14.018Z",
       "posterPath": "/s2uNbATWA2qZTVgsrJeqWmQPb4V.jpg",
       "overview": "Join visionary philanthropist Bill Gates as he delves into pressing global issues and uncovers cutting-edge technologies that will transform the world.",
       "genres": [
@@ -6776,14 +6828,18 @@
       "predictedRating": 2.5,
       "predictedRatingReason": "Predicted 2.5★: Documentary about tech/future. Very low ratings suggest it's not compelling viewing. May feel like a lecture rather than entertainment.",
       "recommendedWatchPreference": "either",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:14.013Z"
     },
     {
       "tmdbId": 243396,
       "title": "Territory",
       "year": 2024,
       "createdAt": "2026-01-11T01:09:09.299Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:14.859Z",
       "posterPath": "/jPoNveBQWYwwWf2UnK27LEtWiqb.jpg",
       "overview": "When the world's largest cattle station is left without a clear heir, rival factions descend as a fierce generational struggle upends the land's future.",
       "genres": [
@@ -6798,14 +6854,18 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: Australian outback drama (+Australian bonus). But CANCELLED after 1 season - likely unresolved. Family melodrama similar to Yellowstone.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:14.855Z"
     },
     {
       "tmdbId": 209437,
       "title": "Am I Being Unreasonable?",
       "year": 2022,
       "createdAt": "2026-01-11T01:09:09.300Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:15.831Z",
       "posterPath": "/mr0RwhGEKVRgmUC7RHnhlr0CIFa.jpg",
       "overview": "Nic is lonely, stuck in her marriage, and the cat’s missing. She loves her son but wants more from life. When new mum Jen arrives in town, Nic’s life is lit up. But it comes at a cost.",
       "genres": [
@@ -6819,14 +6879,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: British dark comedy/thriller. Mix of uncomfortable humor and tension. May be too tonally dark for together watching.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:15.823Z"
     },
     {
       "tmdbId": 100350,
       "title": "Girls5eva",
       "year": 2021,
       "createdAt": "2026-01-11T01:09:09.302Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:16.653Z",
       "posterPath": "/1RplQ2ooky3kONomTNhsptZxqAV.jpg",
       "overview": "When a one-hit-wonder girl group from the '90s gets sampled by a young rapper, its members reunite to give their pop star dreams one more shot. They may be grown women balancing spouses, kids, jobs, debt, aging parents and shoulder pain, but can't they also be Girls5Eva?",
       "genres": [
@@ -6839,14 +6903,19 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: Musical comedy from Tina Fey. CANCELLED after 3 seasons. Funny but niche appeal. Similar sensibility to 30 Rock but not as strong.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix",
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:16.647Z"
     },
     {
       "tmdbId": 130853,
       "title": "Bad Monkey",
       "year": 2024,
       "createdAt": "2026-01-11T01:09:09.303Z",
-      "updatedAt": "2026-01-11T01:45:01.289Z",
+      "updatedAt": "2026-01-11T03:27:17.488Z",
       "posterPath": "/lUGG3lxIF3f2N796t4aHmxDhLK5.jpg",
       "overview": "A detective turned restaurant inspector in Southern Florida is pulled into a world of greed and corruption after a tourist finds a severed arm while fishing. And yes, there's a monkey.",
       "genres": [
@@ -6864,14 +6933,16 @@
       "notes": null,
       "hidden": false,
       "dropped": true,
-      "ratedAt": "2026-01-11T01:45:01.278Z"
+      "ratedAt": "2026-01-11T01:45:01.278Z",
+      "streamingServices": [],
+      "streamingFetchedAt": "2026-01-11T03:27:17.483Z"
     },
     {
       "tmdbId": 209504,
       "title": "Maestro in Blue",
       "year": 2022,
       "createdAt": "2026-01-11T01:09:09.305Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:18.315Z",
       "posterPath": "/ckkTjgfDqfm7amTPODPMvjkIhh1.jpg",
       "overview": "A musician goes to lead a festival on a scenic island, where he begins an unexpected romance and finds himself entwined in other people's problems.",
       "genres": [
@@ -6885,14 +6956,18 @@
       "predictedRating": 3,
       "predictedRatingReason": "Predicted 3★: Greek island drama. Foreign language, likely slow-paced. No strong match to your taste patterns.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:18.310Z"
     },
     {
       "tmdbId": 233629,
       "title": "Bodies",
       "year": 2023,
       "createdAt": "2026-01-11T01:09:09.306Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:19.140Z",
       "posterPath": "/qWX71nLvoLsBNPEjddZMC75lq6I.jpg",
       "overview": "One victim, found dead on a London street. Four detectives, in four different time periods, must solve the mystery to protect Britain's future.",
       "genres": [
@@ -6908,14 +6983,18 @@
       "predictedRating": 4,
       "predictedRatingReason": "Predicted 4★: Time-loop detective mystery across 4 eras - very similar to Dark (4.5★). LIMITED SERIES, complete story. Mind-bending narrative you love. Slightly lower than Dark as it's less emotionally deep.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:19.135Z"
     },
     {
       "tmdbId": 95555,
       "title": "Daisy Jones & the Six",
       "year": 2023,
       "createdAt": "2026-01-11T01:09:09.307Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:20.005Z",
       "posterPath": "/ltfscPUljehY7IwGG85vij2TEbQ.jpg",
       "overview": "In 1977, Daisy Jones & The Six were on top of the world. Fronted by two charismatic lead singers — Daisy Jones and Billy Dunne — the band had risen from obscurity to fame. And then, after a sold-out show at Chicago's Soldier Field, they called it quits. Now, decades later, the band members finally agree to reveal the truth.",
       "genres": [
@@ -6928,14 +7007,18 @@
       "predictedRating": 4,
       "predictedRatingReason": "Predicted 4★: 1970s music drama with beautiful production. LIMITED SERIES. Period aesthetic Helen loves (The Crown 4.5★). Easy watch with great music. Not too intense.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:20.001Z"
     },
     {
       "tmdbId": 157744,
       "title": "1923",
       "year": 2022,
       "createdAt": "2026-01-11T01:09:09.308Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:20.816Z",
       "posterPath": "/zgZRJZvZn5cpsWAB0zMUdad3iZd.jpg",
       "overview": "Follow a new generation of the Dutton family during the early twentieth century when pandemics, historic drought, the end of Prohibition and the Great Depression all plague the mountain west, and the Duttons who call it home.",
       "genres": [
@@ -6949,14 +7032,19 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Harrison Ford and Helen Mirren in 1920s Western. COMPLETE 2 seasons. Period drama elements but Western/family melodrama may not resonate as strongly as British period dramas.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "paramount-plus",
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:20.811Z"
     },
     {
       "tmdbId": 218344,
       "title": "Blue Lights",
       "year": 2023,
       "createdAt": "2026-01-11T01:09:09.309Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:21.660Z",
       "posterPath": "/7sBx40gwTCSiZ9NI8WWARjQq1hm.jpg",
       "overview": "Follows rookie police officers working in Belfast, a city in which being a frontline response cop comes with unique pressures and dangers.",
       "genres": [
@@ -6970,14 +7058,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: British police drama set in Belfast. Character-focused but tense. Fits British drama pattern. May be slower-paced - watch for Helen's engagement.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:21.655Z"
     },
     {
       "tmdbId": 61244,
       "title": "Happy Valley",
       "year": 2014,
       "createdAt": "2026-01-11T01:09:09.312Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:22.489Z",
       "posterPath": "/xZK5iQSrn2mouZEk2PwyLPCwa4u.jpg",
       "overview": "Happy Valley is a dark, funny, multi-layered thriller revolving around the personal and professional life of Catherine, a dedicated, experienced, hard-working copper. She is also a bereaved mother who looks after her orphaned grandchild.",
       "genres": [
@@ -6992,14 +7084,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: British prestige crime drama with BAFTA-winning acting (Sherlock 4.5★ pattern). COMPLETE 3 seasons. Caution: Very dark themes (violence, assault) - may be too intense for together. Could be 4★ if darkness isn't an issue.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:22.484Z"
     },
     {
       "tmdbId": 95215,
       "title": "Reservation Dogs",
       "year": 2021,
       "createdAt": "2026-01-11T01:09:09.313Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:23.309Z",
       "posterPath": "/t6hqwD5oQRGgNrZKN71BQYxteC1.jpg",
       "overview": "Four Indigenous teenagers in rural Oklahoma steal, rob and save in order to get to the exotic, mysterious and faraway land of California.",
       "genres": [
@@ -7013,14 +7109,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Unique Indigenous comedy/drama. COMPLETE 3 seasons. Critically acclaimed but atmospheric and slow-paced - different from your workplace comedy preferences. May be too slow for together.",
       "recommendedWatchPreference": "solo",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:23.304Z"
     },
     {
       "tmdbId": 201581,
       "title": "Dear Mama",
       "year": 2023,
       "createdAt": "2026-01-11T01:09:09.315Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:24.183Z",
       "posterPath": "/2XFAe9VqjJ9F7QozukQtFdnARQP.jpg",
       "overview": "Explore the history of activist Afeni Shakur and hip-hop icon Tupac Shakur, two voices that could not be silenced. Told through the eyes of the people who knew them best, this series is an intimate wide-angle portrait of the most inspiring and dangerous mother-son duo in American history, whose unified message of freedom, equality, persecution and justice are more relevant today than ever.",
       "genres": [
@@ -7033,14 +7133,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Well-made Tupac documentary. LIMITED SERIES. High ratings but niche subject matter - depends on interest in hip-hop history.",
       "recommendedWatchPreference": "either",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:24.178Z"
     },
     {
       "tmdbId": 103416,
       "title": "The Lying Life of Adults",
       "year": 2023,
       "createdAt": "2026-01-11T01:09:09.316Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:25.018Z",
       "posterPath": "/cDy24NY2QIXYUxRzelvhkWGbkPH.jpg",
       "overview": "Young Giovanna navigates her passage from childhood into adolescence as she experiences the different sides of Naples during the 1990s. A girl in search of her true reflection in a divided Naples: the Naples of the heights, which assumes a mask of refinement, and the Naples of the depths, a place of excess and vulgarity.",
       "genres": [
@@ -7053,14 +7157,18 @@
       "predictedRating": 2.5,
       "predictedRatingReason": "Predicted 2.5★: Italian literary drama. Elena Ferrante adaptation. High risk of slow, literary pacing that led to dropping War and Peace (2.5★).",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "netflix"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:25.014Z"
     },
     {
       "tmdbId": 108978,
       "title": "Reacher",
       "year": 2022,
       "createdAt": "2026-01-11T01:09:09.318Z",
-      "updatedAt": "2026-01-11T02:09:29.737Z",
+      "updatedAt": "2026-01-11T03:27:25.965Z",
       "posterPath": "/31GlRQMiDunO8cl3NxTz34U64rf.jpg",
       "overview": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explores the nation he once served.",
       "genres": [
@@ -7075,14 +7183,18 @@
       "predictedRating": 3.5,
       "predictedRatingReason": "Predicted 3.5★: Straightforward action thriller. Similar to Jack Ryan (3.5★). Easy watch, each season complete story. Not deep but entertaining.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z"
+      "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:25.957Z"
     },
     {
       "tmdbId": 139064,
       "title": "A Very British Scandal",
       "year": 2021,
       "createdAt": "2026-01-11T01:09:09.322Z",
-      "updatedAt": "2026-01-11T01:13:10.306Z",
+      "updatedAt": "2026-01-11T03:27:26.805Z",
       "posterPath": "/7I6CKYo4f6sUIwJk88DnK7ss2Ka.jpg",
       "overview": "The true story of a duchess publicly shamed in a high society divorce that gripped the nation.",
       "genres": [
@@ -7099,14 +7211,18 @@
       "notes": null,
       "hidden": false,
       "dropped": true,
-      "ratedAt": "2026-01-11T01:13:10.302Z"
+      "ratedAt": "2026-01-11T01:13:10.302Z",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:26.798Z"
     },
     {
       "tmdbId": 19885,
       "title": "Sherlock",
       "year": 2010,
       "createdAt": "2026-01-11T01:09:09.324Z",
-      "updatedAt": "2026-01-11T01:41:29.325Z",
+      "updatedAt": "2026-01-11T03:27:27.632Z",
       "posterPath": "/7WTsnHkbA0FaG6R9twfFde0I9hl.jpg",
       "overview": "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.",
       "genres": [
@@ -7125,7 +7241,11 @@
       "notes": null,
       "hidden": false,
       "dropped": false,
-      "ratedAt": "2026-01-11T01:41:29.318Z"
+      "ratedAt": "2026-01-11T01:41:29.318Z",
+      "streamingServices": [
+        "stan"
+      ],
+      "streamingFetchedAt": "2026-01-11T03:27:27.624Z"
     },
     {
       "tmdbId": 62436,
@@ -7150,6 +7270,155 @@
       "dropped": true,
       "createdAt": "2026-01-11T02:13:47.342Z",
       "updatedAt": "2026-01-11T02:13:47.342Z"
+    },
+    {
+      "tmdbId": 236235,
+      "title": "The Gentlemen",
+      "year": 2024,
+      "createdAt": "2026-01-11T03:26:57.498Z",
+      "updatedAt": "2026-01-11T03:26:59.463Z",
+      "posterPath": "/tw3tzfXaSpmUZIB8ZNqNEGzMBCy.jpg",
+      "overview": "When aristocratic Eddie inherits the family estate, he discovers that it's home to an enormous weed empire — and its proprietors aren't going anywhere.",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Crime"
+      ],
+      "numberOfSeasons": 2,
+      "showStatus": "Returning Series",
+      "tmdbRating": 7.865,
+      "tmdbVoteCount": 686
+    },
+    {
+      "tmdbId": 157741,
+      "title": "Landman",
+      "year": 2024,
+      "createdAt": "2026-01-11T03:26:57.500Z",
+      "updatedAt": "2026-01-11T03:27:00.101Z",
+      "posterPath": "/hYthRgS1nvQkGILn9YmqsF8kSk6.jpg",
+      "overview": "Set in the proverbial boomtowns of West-Texas and a modern-day tale of fortune-seeking in the world of oil rigs, the series is an upstairs/downstairs story of roughnecks and wildcat billionaires that are fueling a boom so big it’s reshaping our climate, our economy and our geopolitics.",
+      "genres": [
+        "Drama"
+      ],
+      "numberOfSeasons": 2,
+      "showStatus": "Returning Series",
+      "tmdbRating": 8.049,
+      "tmdbVoteCount": 358
+    },
+    {
+      "tmdbId": 1973,
+      "title": "24",
+      "year": 2001,
+      "createdAt": "2026-01-11T03:26:57.590Z",
+      "updatedAt": "2026-01-11T03:27:00.478Z",
+      "posterPath": "/iq6yrZ5LEDXf1ArCOYLq8PIUBpV.jpg",
+      "overview": "Counterterrorism agent Jack Bauer fights the bad guys of the world, a day at a time. With each week's episode unfolding in real-time, \"24\" covers a single day in the life of Bauer each season.",
+      "genres": [
+        "Action & Adventure",
+        "Drama",
+        "Crime"
+      ],
+      "numberOfSeasons": 9,
+      "showStatus": "Ended",
+      "tmdbRating": 7.8,
+      "tmdbVoteCount": 1695
+    },
+    {
+      "tmdbId": 21762,
+      "title": "Parenthood",
+      "year": 2010,
+      "createdAt": "2026-01-11T03:26:57.596Z",
+      "updatedAt": "2026-01-11T03:29:15.770Z",
+      "posterPath": "/9KjKLJrrUI1sU9bNsQaQ5H8kTyY.jpg",
+      "overview": "The trials and tribulations of the very large, colorful and imperfect Braverman family.",
+      "genres": [
+        "Drama"
+      ],
+      "numberOfSeasons": 6,
+      "showStatus": "Ended",
+      "tmdbRating": 7.476,
+      "tmdbVoteCount": 165,
+      "watchPreference": "together",
+      "watchPreferenceNote": "easy watch family drama",
+      "rating": 3.5,
+      "reviewNote": "while not always perfect (Hatty the character was often annoying) we enjoyed this together",
+      "notes": null,
+      "hidden": false,
+      "dropped": false,
+      "ratedAt": "2026-01-11T03:29:15.759Z"
+    },
+    {
+      "tmdbId": 4586,
+      "title": "Gilmore Girls",
+      "year": 2000,
+      "createdAt": "2026-01-11T03:26:57.602Z",
+      "updatedAt": "2026-01-11T03:28:39.424Z",
+      "posterPath": "/gwtzCwU2wdLLf8oejQu2TINiWfQ.jpg",
+      "overview": "Set in the charming town of Stars Hollow, Connecticut, the series follows the captivating lives of Lorelai and Rory Gilmore, a mother/daughter pair who have a relationship most people only dream of.",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "numberOfSeasons": 7,
+      "showStatus": "Canceled",
+      "tmdbRating": 7.91,
+      "tmdbVoteCount": 1192,
+      "watchPreference": "together",
+      "watchPreferenceNote": "great to have an easy watch that we both can enjoy and laugh at",
+      "rating": 4,
+      "reviewNote": "easy watch",
+      "notes": null,
+      "hidden": false,
+      "dropped": false,
+      "ratedAt": "2026-01-11T03:28:39.420Z"
+    },
+    {
+      "tmdbId": 4608,
+      "title": "30 Rock",
+      "year": 2006,
+      "createdAt": "2026-01-11T03:26:57.605Z",
+      "updatedAt": "2026-01-11T03:28:09.670Z",
+      "posterPath": "/eYYQWACx7ttUzRwTNYuo6zveqpE.jpg",
+      "overview": "Liz Lemon, the head writer for a late-night TV variety show in New York, tries to juggle all the egos around her while chasing her own dream.",
+      "genres": [
+        "Comedy"
+      ],
+      "numberOfSeasons": 7,
+      "showStatus": "Ended",
+      "tmdbRating": 7.464,
+      "tmdbVoteCount": 758,
+      "watchPreference": "together",
+      "watchPreferenceNote": "not always helens humour but we did laugh at this and it's nice to have a comedy we both enjoy",
+      "rating": 3.5,
+      "reviewNote": null,
+      "notes": null,
+      "hidden": false,
+      "dropped": false,
+      "ratedAt": "2026-01-11T03:28:09.661Z"
+    },
+    {
+      "tmdbId": 74016,
+      "title": "The Resident",
+      "year": 2018,
+      "createdAt": "2026-01-11T03:26:57.609Z",
+      "updatedAt": "2026-01-11T03:29:45.911Z",
+      "posterPath": "/2IkYQJlT26yXef2iot7dhRtavSC.jpg",
+      "overview": "A tough, brilliant senior resident guides an idealistic young doctor through his first day, pulling back the curtain on what really happens, both good and bad, in modern-day medicine.",
+      "genres": [
+        "Drama"
+      ],
+      "numberOfSeasons": 6,
+      "showStatus": "Canceled",
+      "tmdbRating": 8.397,
+      "tmdbVoteCount": 1281,
+      "watchPreference": "together",
+      "watchPreferenceNote": "medical drama",
+      "rating": 3,
+      "reviewNote": "we seem to have gotten bored in the middle of season 2 and not sure if we will continue.",
+      "notes": null,
+      "hidden": false,
+      "dropped": false,
+      "ratedAt": "2026-01-11T03:29:45.905Z"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-11T02:43:09.926Z",
+  "generatedAt": "2026-01-11T02:46:09.493Z",
   "subscribedServices": [
     "stan",
     "prime-video",
@@ -72,10 +72,12 @@
       "title": "Mr. Robot",
       "year": 2015,
       "tmdbId": 62560,
-      "posterPath": "/oKIBhzZzDX07SoE2bOLhq2EE8rf.jpg",
+      "posterPath": "/kv1nRqgebSsREnd7vdC2pSGjpLo.jpg",
       "reason": "Predicted 4.5★: Psychological hacker thriller with Severance-level unreliable narrator. Rami Malek extraordinary. COMPLETE 4-season run with acclaimed ending. On Prime Video.",
       "streamingServices": [
-        "prime-video"
+        "prime-video",
+        "foxtel-now",
+        "binge"
       ],
       "confidence": "high",
       "source": "watchlist",
@@ -125,7 +127,7 @@
       "title": "Succession",
       "year": 2018,
       "tmdbId": 76331,
-      "posterPath": "/e4FYgE2y6X3prC3jc2QYQaGlndj.jpg",
+      "posterPath": "/z0XiwdrCQ9yVIr4O0pxzaAYRxdW.jpg",
       "reason": "Predicted 4.5★ (IMDB 8.8): Emmy-sweeping family power drama - razor-sharp writing like The Great (4.5★). COMPLETE 4-season run with acclaimed ending. On Max.",
       "streamingServices": [
         "max"
@@ -203,10 +205,10 @@
       "title": "Peaky Blinders",
       "year": 2013,
       "tmdbId": 60574,
-      "posterPath": "/pE8CScObQURsFZ723OPHQkdYKAu.jpg",
+      "posterPath": "/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
       "reason": "Predicted 4★ (IMDB 8.7): British gangster period drama with Cillian Murphy. Stylish and propulsive. COMPLETE 6 seasons. On Stan.",
       "streamingServices": [
-        "stan"
+        "netflix"
       ],
       "confidence": "high",
       "source": "watchlist",
@@ -270,7 +272,7 @@
       "title": "The Night Manager",
       "year": 2016,
       "tmdbId": 61859,
-      "posterPath": "/f99GnEDXsfF3sicqZzSqjkQutAB.jpg",
+      "posterPath": "/f99GnEDXsfF3sicqZzSqjzQutAB.jpg",
       "reason": "Predicted 4.5★ (IMDB 8.0): Tom Hiddleston/Hugh Laurie spy thriller - PERFECT for Helen (Slow Horses 4.5★, Bodyguard 4★ pattern). 6-episode limited series. On Prime Video.",
       "streamingServices": [
         "prime-video"
@@ -295,13 +297,13 @@
       "year": 2025,
       "tmdbId": 250307,
       "posterPath": "/yfaIbd8dqaafUKYaXMnQokpyAkd.jpg",
-      "reason": "Predicted 4.5★ (IMDB 8.9): Noah Wyle ER-style medical drama. Real-time single-shift format. Exceptional early reception - highest rated new show. On Max.",
+      "reason": "Predicted 4★ (IMDB 8.9): Noah Wyle ER-style medical drama. Real-time single-shift format. Exceptional early reception - highest rated new show. On Max.",
       "streamingServices": [
         "max"
       ],
       "confidence": "high",
       "source": "watchlist",
-      "predictedRating": 4.5
+      "predictedRating": 4
     },
     {
       "title": "Mare of Easttown",
@@ -373,13 +375,13 @@
       "year": 2016,
       "tmdbId": 68248,
       "posterPath": "/dQpsurcTmqPr64bVMEbzmTzmV4r.jpg",
-      "reason": "Predicted 4.5★ (100% RT!): Tasmanian workplace comedy - combines your Australian content love with Parks & Rec warmth. Perfect light together viewing. On Prime Video.",
+      "reason": "Predicted 4★ (100% RT!): Tasmanian workplace comedy - combines your Australian content love with Parks & Rec warmth. Perfect light together viewing. On Prime Video.",
       "streamingServices": [
         "prime-video"
       ],
       "confidence": "high",
       "source": "watchlist",
-      "predictedRating": 4.5
+      "predictedRating": 4
     },
     {
       "title": "Apple Cider Vinegar",
