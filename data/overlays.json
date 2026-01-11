@@ -77,11 +77,11 @@
     },
     {
       "tmdbId": 79788,
-      "predictedRating": 4.5,
-      "predictedRatingReason": "Predicted 4.5★ (96% RT): HBO superhero deconstruction with Severance-level complexity. LIMITED SERIES, complete story. Prestige genre-bending. On Max.",
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Predicted 3.5★ (IMDB 8.2): HBO superhero deconstruction - but 57% audience score signals polarizing. You're Marvel completionist, not DC. Political allegory structure may feel heavy-handed. Limited series is a plus, but high risk of not landing.",
       "recommendedWatchPreference": "solo",
       "posterPath": "/m8rWq3j73ZGhDuSCZWMMoE9ePH1.jpg",
-      "overview": "Set in an alternate history where “superheroes” are treated as outlaws, “Watchmen” embraces the nostalgia of the original groundbreaking graphic novel while attempting to break new ground of its own.",
+      "overview": "Set in an alternate history where 'superheroes' are treated as outlaws, 'Watchmen' embraces the nostalgia of the original groundbreaking graphic novel while attempting to break new ground of its own.",
       "genres": [
         "Drama",
         "Crime",
@@ -5353,8 +5353,8 @@
       "year": 2001,
       "numberOfSeasons": 1,
       "showStatus": "Ended",
-      "predictedRating": 5,
-      "predictedRatingReason": "Predicted 5★ (94% RT): HBO WWII masterpiece - identical formula to Chernobyl (5★). True story, prestige production, limited series. The definitive war drama.",
+      "predictedRating": 4.5,
+      "predictedRatingReason": "Predicted 4.5★ (IMDB 9.4): HBO WWII prestige miniseries, true story. Your WWII pattern (A Small Light 4★, All the Light 4★) suggests excellent not exceptional. Different from Chernobyl - this is episodic war epic, not psychological thriller. Still top-tier together viewing.",
       "recommendedWatchPreference": "together",
       "rtCriticsScore": 94,
       "rtAudienceScore": 97,
@@ -5475,8 +5475,8 @@
       "year": 2024,
       "numberOfSeasons": 1,
       "showStatus": "Ended",
-      "predictedRating": 4.5,
-      "predictedRatingReason": "Predicted 4.5★: Spielberg WWII aviation follow-up to Band of Brothers. Same prestige pedigree, true story, Apple TV+ production quality. Your WWII + true story pattern.",
+      "predictedRating": 4,
+      "predictedRatingReason": "Predicted 4★: Spielberg WWII aviation follow-up to Band of Brothers. True story, prestige production. But RT 85%/73% is lukewarm - reviews say not as strong as BoB. WWII pattern applies but tempered by weaker reception.",
       "recommendedWatchPreference": "together",
       "rtCriticsScore": 85,
       "rtAudienceScore": 73,
@@ -5574,8 +5574,8 @@
       "year": 2025,
       "numberOfSeasons": 2,
       "showStatus": "Returning Series",
-      "predictedRating": 3,
-      "predictedRatingReason": "Predicted 3★: Comedy based on the 1981 Alan Alda film about couples vacationing together. Ensemble cast but remake may lack freshness of original.",
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Steve Carell (The Office 5★) + Tina Fey (30 Rock 3.5★) ensemble comedy. Actors are a positive signal but dont make the show alone. Remake risk but cast chemistry could deliver.",
       "recommendedWatchPreference": "together",
       "rtFetchedAt": "2026-01-10T20:57:08.417Z"
     },
@@ -5792,8 +5792,8 @@
       "numberOfSeasons": 4,
       "showStatus": "Returning Series",
       "predictedRating": 4.5,
-      "predictedRatingReason": "Predicted 4.5★ (93% RT S1): Anthology crime - Season 1 (McConaughey/Harrelson) is exceptional. Try together first (detective format), but if pacing feels slow, swap to solo.",
-      "recommendedWatchPreference": "together",
+      "predictedRatingReason": "Predicted 4.5★ (IMDB 8.9, S1 ~9.0): Anthology crime - Season 1 (McConaughey/Harrelson) is exceptional prestige TV. Dark, philosophical, slow-burn. Helen doesn't do slow, so this is solo viewing. S1 is the must-watch; later seasons vary.",
+      "recommendedWatchPreference": "solo",
       "rtCriticsScore": 79,
       "rtAudienceScore": 59,
       "rtFetchedAt": "2026-01-09T22:39:02.100Z"
@@ -6576,8 +6576,8 @@
       "showStatus": "Ended",
       "tmdbRating": 8.935,
       "tmdbVoteCount": 16852,
-      "predictedRating": 4,
-      "predictedRatingReason": "Predicted 4★: Exceptional acting and psychological complexity you love (Severance 5★). COMPLETE 5 seasons. Deducted from 4.5★ because it's relentlessly dark with no redemption - darker than your typical favorites. Too intense for together.",
+      "predictedRating": 4.5,
+      "predictedRatingReason": "Predicted 4.5★ (IMDB 9.5 - highest rated drama ever): Exceptional acting, psychological transformation of Walter White. COMPLETE 5 seasons. You rated BCS 4★ but BB is more propulsive/less slow-burn. Dark but gripping, not boring-dark like Mindhunter. Solo - too intense for Helen.",
       "recommendedWatchPreference": "solo",
       "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
       "streamingServices": [
@@ -6801,8 +6801,8 @@
       "showStatus": "Ended",
       "tmdbRating": 8.068,
       "tmdbVoteCount": 2685,
-      "predictedRating": 4.5,
-      "predictedRatingReason": "Predicted 4.5★: Hard sci-fi political thriller - fits Foundation (4.5★) and Silo (4.5★) pattern perfectly. COMPLETE 6 seasons. Warning: first 3-4 episodes are slow setup, but then it becomes gripping.",
+      "predictedRating": 4,
+      "predictedRatingReason": "Predicted 4★ (IMDB 8.1): Hard sci-fi political thriller - fits Foundation/Silo pattern but IMDB 8.1 is lower than those. COMPLETE 6 seasons. WARNING: First 4 episodes notoriously slow - you drop slow shows. If you push through, could be 4.5★.",
       "recommendedWatchPreference": "solo",
       "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
       "streamingServices": [
@@ -7497,11 +7497,11 @@
     {
       "tmdbId": 236598,
       "predictedRating": 3.5,
-      "predictedRatingReason": "Steve Carell (The Office 5★) + Tina Fey ensemble comedy about couples. Your love for comfort comedies and Carell's work is a strong signal. Remake risk but cast chemistry could deliver.",
+      "predictedRatingReason": "Steve Carell (The Office 5★) + Tina Fey (30 Rock 3.5★) ensemble comedy. Actors are a positive signal but dont make the show alone. Remake risk but cast chemistry could deliver.",
       "recommendedWatchPreference": "together",
-      "predictionsUpdatedAt": "2026-01-11T04:28:31.116Z",
+      "predictionsUpdatedAt": "2026-01-11T10:08:03Z",
       "createdAt": "2026-01-11T04:28:31.120Z",
-      "updatedAt": "2026-01-11T04:28:31.120Z"
+      "updatedAt": "2026-01-11T09:47:21.656Z"
     }
   ]
 }
