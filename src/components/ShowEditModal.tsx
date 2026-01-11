@@ -3,12 +3,6 @@
 import { useState, useEffect } from 'react';
 import type { Show, ShowStatus, WatchPreference } from '@/types';
 
-const STATUS_OPTIONS: { value: ShowStatus; label: string }[] = [
-  { value: 'watching', label: 'Watching' },
-  { value: 'completed', label: 'Completed' },
-  { value: 'watchlist', label: 'Watchlist' }
-];
-
 const PREFERENCE_OPTIONS: { value: WatchPreference; label: string }[] = [
   { value: 'solo', label: 'Solo' },
   { value: 'together', label: 'Together' }
@@ -496,21 +490,18 @@ export default function ShowEditModal({
                 <h3 className="text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Your Rating</h3>
 
                 <div className="flex items-center gap-4">
-                  <div className="flex-1">
-                    <label className="block text-xs text-gray-500 mb-1">Status</label>
-                    <select
-                      value={status}
-                      onChange={(e) => setStatus(e.target.value as ShowStatus)}
-                      className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-1.5 text-sm"
-                    >
-                      {STATUS_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
                   <div>
+                    <label className="block text-xs text-gray-500 mb-1">Status</label>
+                    <span className={`inline-block px-3 py-1.5 rounded text-sm font-medium ${
+                      status === 'completed' ? 'bg-green-900/50 text-green-300' :
+                      status === 'watching' ? 'bg-blue-900/50 text-blue-300' :
+                      'bg-yellow-900/50 text-yellow-300'
+                    }`}>
+                      {status === 'completed' ? 'Completed' :
+                       status === 'watching' ? 'Watching' : 'Watchlist'}
+                    </span>
+                  </div>
+                  <div className="flex-1">
                     <label className="block text-xs text-gray-500 mb-1">Rating</label>
                     <div className="flex items-center gap-2">
                       <StarRating value={rating} onChange={setRating} />

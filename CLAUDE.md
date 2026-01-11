@@ -249,14 +249,14 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 
 ## Taste Profile
 
-### Rating Distribution (184 rated shows)
+### Rating Distribution (188 rated shows)
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites, actively recommend |
 | 4.5★ | 15 | Loved it - strong signal of preferences |
-| 4★ | 68 | Good solid show - would recommend |
-| 3.5★ | 43 | Enjoy but don't love every moment |
-| 3★ | 34 | Still good - will stick with it |
+| 4★ | 69 | Good solid show - would recommend |
+| 3.5★ | 45 | Enjoy but don't love every moment |
+| 3★ | 35 | Still good - will stick with it |
 | 2-2.5★ | 19 | Dropped or disappointed |
 
 ### The 5★ Shows (Reference Points)
@@ -296,7 +296,7 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 - British prestige mystery (Sherlock 4.5★ - "One of the best shows... Love the acting. Moriarty was brilliant")
 - Prestige limited series with exceptional acting/cinematography (Adolescence 4★ - "Beautifully shot and brilliantly acted. So well scripted.")
 - Light mystery-comedy (Only Murders 4★, Shrinking 4★)
-- Easy watch rom-coms (Nobody Wants This 4★ - "Love a good easy watch")
+- Easy watches (Nobody Wants This 4★, Gilmore Girls 4★ - "easy watch")
 - WWII + True Story + Uplifting = near-guaranteed hit (A Small Light 4★, All the Light We Cannot See 4★)
 
 **Helen dislikes:**
