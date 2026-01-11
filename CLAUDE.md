@@ -39,8 +39,9 @@ Data access is centralized through `src/lib/data.ts` which provides typed CRUD f
 
 - `src/lib/tmdb.ts` - TMDB API client for show search, metadata, and poster images
 - `src/lib/openai.ts` - OpenAI integration for AI-powered recommendations
-- `src/lib/trakt.ts` - Trakt.tv API for importing watch history
+- `src/lib/trakt.ts` - Trakt.tv API for importing watch history and two-way sync
 - `src/lib/rottentomatoes.ts` - Rotten Tomatoes scraper for critic scores
+- `src/lib/justwatch.ts` - JustWatch API for streaming availability (Australian region)
 
 ### API Routes
 
@@ -55,6 +56,39 @@ All under `src/app/api/`:
 ### Types
 
 All TypeScript types are in `src/types/index.ts`. Key types: `Show`, `Episode`, `Settings`, `WatchPreference`.
+
+---
+
+## Trakt Sync
+
+Two-way sync with Trakt is enabled for key user data:
+
+### Push to Trakt (automatic on save)
+| Local Field | Trakt Feature | Notes |
+|-------------|---------------|-------|
+| `rating` | Ratings | Converts 0.5-5★ → 1-10 scale |
+| `hidden` | Hidden recommendations | Hides from Trakt suggestions |
+| `dropped` | "Dropped" custom list | Auto-created if needed |
+
+### Pull from Trakt
+Use `GET /api/trakt/shows?syncFromTrakt=true` to import:
+- Ratings (only if no local rating exists)
+- Hidden status
+- Dropped list membership
+
+### Date Tracking
+| Field | Set When |
+|-------|----------|
+| `ratedAt` | User adds/changes rating |
+| `predictionsUpdatedAt` | AI predictions are added/changed |
+| `rtFetchedAt` | RT scores fetched |
+| `streamingFetchedAt` | Streaming availability fetched |
+
+### Streaming Data Fallbacks
+Streaming availability uses 3-layer fallback (in order):
+1. **Trakt API** (`/shows/{slug}/watchnow/au`) - most reliable
+2. **JustWatch by TMDB ID** - backup
+3. **JustWatch by title** - final fallback
 
 ---
 
@@ -74,16 +108,20 @@ Each show has a simple rating structure:
 
 ```json
 {
-  "id": "uuid",
   "tmdbId": 12345,
   "title": "Show Name",
   "status": "watching" | "completed" | "watchlist",
   "dropped": false,
+  "hidden": false,
   "watchPreference": "solo" | "together",
   "watchPreferenceNote": "Too intense for watching together",
   "rating": 4.5,
+  "ratedAt": "2026-01-11T10:00:00Z",
   "reviewNote": "Incredible tension, amazing character arc",
-  "notes": "General notes"
+  "notes": "General notes",
+  "predictedRating": 4.0,
+  "predictedRatingReason": "Predicted 4★: Similar to...",
+  "predictionsUpdatedAt": "2026-01-11T10:00:00Z"
 }
 ```
 
