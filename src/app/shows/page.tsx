@@ -811,6 +811,7 @@ function ShowsContent() {
                 onClick={() => setEditingShowId(show.id)}
                 className="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all group cursor-pointer"
               >
+                {/* Poster */}
                 {show.posterPath ? (
                   <img
                     src={`https://image.tmdb.org/t/p/w342${show.posterPath}`}
@@ -822,11 +823,46 @@ function ShowsContent() {
                     <span className="text-gray-500 text-xs text-center px-2">{show.title}</span>
                   </div>
                 )}
+
+                {/* Rating ribbon between poster and details */}
+                {show.rating ? (
+                  <div className="flex items-center justify-between px-3 py-2 bg-gray-900">
+                    <span className="text-yellow-400 font-semibold">{show.rating}★</span>
+                    {show.watchPreference && (
+                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                        show.watchPreference === 'solo' ? 'bg-blue-600 text-white' : 'bg-pink-600 text-white'
+                      }`}>
+                        {show.watchPreference === 'solo' ? 'Solo' : 'Together'}
+                      </span>
+                    )}
+                  </div>
+                ) : (show.predictedRating || show.recommendedWatchPreference) ? (
+                  <div className="flex items-center justify-between px-3 py-2 bg-purple-900/60 cursor-help" title={show.predictedRatingReason || 'Based on your taste profile'}>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-purple-300 text-[10px] font-medium uppercase">AI</span>
+                      {show.predictedRating && (
+                        <span className="text-yellow-400 font-semibold">{show.predictedRating}★</span>
+                      )}
+                    </div>
+                    {show.recommendedWatchPreference && (
+                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                        show.recommendedWatchPreference === 'solo'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-pink-600 text-white'
+                      }`}>
+                        {show.recommendedWatchPreference === 'solo' ? 'Solo' : 'Together'}
+                      </span>
+                    )}
+                  </div>
+                ) : null}
                 <div className="p-3">
+                  {/* Title */}
                   <div className="text-sm font-medium truncate group-hover:text-blue-400">
                     {show.title}
                   </div>
-                  <div className="text-xs text-gray-400 mb-1 flex items-center gap-1.5">
+
+                  {/* Meta row: Year, Seasons, Show Status */}
+                  <div className="text-xs text-gray-400 flex items-center gap-1.5 mb-1.5">
                     {show.year && <span>{show.year}</span>}
                     {show.numberOfSeasons && (
                       <>
@@ -844,7 +880,9 @@ function ShowsContent() {
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 mb-1">
+
+                  {/* Status + RT Scores row */}
+                  <div className="flex items-center gap-2 mb-1.5">
                     <span className={`px-1.5 py-0.5 rounded text-xs ${STATUS_LABELS[show.status].color}`}>
                       {STATUS_LABELS[show.status].label}
                     </span>
@@ -857,40 +895,10 @@ function ShowsContent() {
                     />
                   </div>
 
-                  {/* Ratings row - user rating or predicted */}
-                  <div className="flex items-center gap-2 mt-1 text-xs">
-                    {show.rating ? (
-                      <Tooltip content="Your rating">
-                        <span className="text-yellow-400">{show.rating}★</span>
-                      </Tooltip>
-                    ) : show.predictedRating ? (
-                      <Tooltip content={`Predicted: ${show.predictedRating}/5${show.predictedRatingReason ? '\n' + show.predictedRatingReason : ''}`}>
-                        <span className="text-yellow-600/70 cursor-help">
-                          ~{show.predictedRating}★
-                        </span>
-                      </Tooltip>
-                    ) : null}
-
-                    {/* Watch preference - actual or recommended */}
-                    {show.watchPreference ? (
-                      <Tooltip content={show.watchPreferenceNote ? `Your preference: ${show.watchPreference}\n${show.watchPreferenceNote}` : `Your preference: ${show.watchPreference}`}>
-                        <span className={`px-1 rounded ${show.watchPreference === 'solo' ? 'bg-blue-900/50 text-blue-300' : 'bg-pink-900/50 text-pink-300'} ${show.watchPreferenceNote ? 'cursor-help' : ''}`}>
-                          {show.watchPreference === 'solo' ? 'Solo' : 'Together'}
-                        </span>
-                      </Tooltip>
-                    ) : show.recommendedWatchPreference ? (
-                      <Tooltip content={`Recommended: ${show.recommendedWatchPreference === 'solo' ? 'Solo' : 'Together'}\nBased on similar shows you've rated`}>
-                        <span className={`px-1 rounded cursor-help opacity-60 ${show.recommendedWatchPreference === 'solo' ? 'bg-blue-900/30 text-blue-400' : 'bg-pink-900/30 text-pink-400'}`}>
-                          {show.recommendedWatchPreference === 'solo' ? 'Solo?' : 'Together?'}
-                        </span>
-                      </Tooltip>
-                    ) : null}
-                  </div>
-
                   {/* Streaming services */}
                   {show.streamingServices && show.streamingServices.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mt-1.5">
-                      {show.streamingServices.slice(0, 5).map(service => {
+                    <div className="flex flex-wrap gap-1">
+                      {show.streamingServices.slice(0, 4).map(service => {
                         const brand = STREAMING_BRANDS[service];
                         if (brand?.logo) {
                           return (
@@ -903,17 +911,10 @@ function ShowsContent() {
                             </Tooltip>
                           );
                         }
-                        // Fallback for services without logos
-                        return (
-                          <Tooltip key={service} content={service}>
-                            <span className="px-1 py-0.5 bg-gray-700/80 rounded text-[9px] text-gray-300">
-                              {service.slice(0, 3)}
-                            </span>
-                          </Tooltip>
-                        );
+                        return null;
                       })}
-                      {show.streamingServices.length > 5 && (
-                        <span className="text-[10px] text-gray-500">+{show.streamingServices.length - 5}</span>
+                      {show.streamingServices.length > 4 && (
+                        <span className="text-[10px] text-gray-500">+{show.streamingServices.length - 4}</span>
                       )}
                     </div>
                   )}

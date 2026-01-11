@@ -1329,14 +1329,19 @@
       "rtFetchedAt": "2026-01-10T20:56:42.403Z",
       "streamingFetchedAt": "2026-01-09T12:41:00.893Z",
       "createdAt": "2026-01-09T06:32:49.468Z",
-      "updatedAt": "2026-01-10T20:56:42.416Z",
+      "updatedAt": "2026-01-11T02:32:04.376Z",
       "streamingServices": [
         "apple-tv-plus"
       ],
       "title": "The Buccaneers",
       "year": 2023,
       "numberOfSeasons": 2,
-      "showStatus": "Returning Series"
+      "showStatus": "Returning Series",
+      "watchPreferenceNote": null,
+      "reviewNote": "so badly written and the characters were pretty rubbish",
+      "notes": null,
+      "hidden": false,
+      "dropped": true
     },
     {
       "tmdbId": 247767,
@@ -5154,7 +5159,7 @@
       ],
       "streamingFetchedAt": "2026-01-09T12:40:40.146Z",
       "createdAt": "2026-01-09T12:32:03.613Z",
-      "updatedAt": "2026-01-09T22:38:30.735Z",
+      "updatedAt": "2026-01-11T02:26:56.711Z",
       "title": "Pluribus",
       "posterPath": "/nrM2xFUfKJJEmZzd5d7kohT2G0C.jpg",
       "overview": "The most miserable person on Earth must save the world from happiness.",
@@ -5165,12 +5170,13 @@
       "year": 2025,
       "numberOfSeasons": 1,
       "showStatus": "Returning Series",
-      "predictedRating": 3.5,
-      "predictedRatingReason": "Predicted 3.5★: Stan Original sci-fi - Australian production with genre elements you enjoy. Limited info available.",
+      "predictedRating": 4.5,
+      "predictedRatingReason": "Predicted 4.5★: Vince Gilligan (Breaking Bad) psychological sci-fi with Rhea Seehorn. 98% RT. Woman resists alien hive mind that made humanity 'happy' - themes of conformity vs individuality like Severance (5★). Apple TV+'s most-watched series ever. Season 2 ordered.",
       "recommendedWatchPreference": "solo",
       "rtCriticsScore": 98,
       "rtAudienceScore": 66,
-      "rtFetchedAt": "2026-01-09T22:38:30.729Z"
+      "rtFetchedAt": "2026-01-09T22:38:30.729Z",
+      "predictionsUpdatedAt": "2026-01-11T02:26:56.711Z"
     },
     {
       "tmdbId": 1621,
