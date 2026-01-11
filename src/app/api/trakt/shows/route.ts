@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlaysMap, getOverlays, saveOverlay, getOverlayByTmdbId, isShowDeleted } from '@/lib/data';
-import { getUserShows, searchShows as traktSearch, TraktUserShow } from '@/lib/trakt';
+import {
+  getUserShows,
+  searchShows as traktSearch,
+  TraktUserShow,
+  syncRatingToTrakt,
+  removeRatingFromTrakt,
+  hideShowOnTrakt,
+  unhideShowOnTrakt,
+  addToDroppedList,
+  removeFromDroppedList,
+  getHiddenShows,
+  getDroppedShows,
+  getUserRatings
+} from '@/lib/trakt';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
 import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
 
@@ -89,6 +102,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const settings = await getSettings();
     const fallbackOnly = searchParams.get('fallback') === 'true';
+    const syncFromTrakt = searchParams.get('syncFromTrakt') === 'true';
 
     let shows: Show[] = [];
     let usedFallback = false;
@@ -96,7 +110,13 @@ export async function GET(request: NextRequest) {
     // Try Trakt first (unless fallback-only mode)
     if (!fallbackOnly && settings.traktUsername) {
       try {
-        const traktShows = await getUserShows(settings.traktUsername);
+        // Fetch shows and optionally sync hidden/dropped/ratings from Trakt
+        const [traktShows, hiddenFromTrakt, droppedFromTrakt, ratingsFromTrakt] = await Promise.all([
+          getUserShows(settings.traktUsername),
+          syncFromTrakt ? getHiddenShows() : Promise.resolve(new Set<number>()),
+          syncFromTrakt ? getDroppedShows() : Promise.resolve(new Set<number>()),
+          syncFromTrakt ? getUserRatings() : Promise.resolve(new Map<number, number>())
+        ]);
 
         if (traktShows.length > 0) {
           // Get local overlays
@@ -124,6 +144,36 @@ export async function GET(request: NextRequest) {
                 updatedAt: new Date().toISOString()
               };
               newOverlaysToSave.push(overlay);
+            }
+
+            // Merge Trakt sync data if syncing (only update if not already set locally)
+            if (syncFromTrakt) {
+              const tmdbId = traktShow.tmdbId;
+              let overlayUpdated = false;
+
+              // Sync hidden status from Trakt
+              if (hiddenFromTrakt.has(tmdbId) && !overlay.hidden) {
+                overlay = { ...overlay, hidden: true };
+                overlayUpdated = true;
+              }
+
+              // Sync dropped status from Trakt
+              if (droppedFromTrakt.has(tmdbId) && !overlay.dropped) {
+                overlay = { ...overlay, dropped: true };
+                overlayUpdated = true;
+              }
+
+              // Sync rating from Trakt (only if we don't have a local rating)
+              const traktRating = ratingsFromTrakt.get(tmdbId);
+              if (traktRating && !overlay.rating) {
+                overlay = { ...overlay, rating: traktRating, ratedAt: new Date().toISOString() };
+                overlayUpdated = true;
+              }
+
+              // Save updated overlay in background
+              if (overlayUpdated) {
+                saveOverlay(overlay).catch(err => console.error('Failed to save synced overlay:', err));
+              }
             }
 
             const show = mergeWithOverlay(traktShow, overlay);
@@ -251,8 +301,10 @@ export async function PUT(request: NextRequest) {
 
     const existingOverlay = await getOverlayByTmdbId(tmdbId);
 
-    // Check if rating changed - set ratedAt timestamp
+    // Check what changed for timestamps and Trakt sync
     const ratingChanged = updates.rating !== undefined && updates.rating !== existingOverlay?.rating;
+    const hiddenChanged = updates.hidden !== undefined && updates.hidden !== existingOverlay?.hidden;
+    const droppedChanged = updates.dropped !== undefined && updates.dropped !== existingOverlay?.dropped;
 
     // Check if predictions changed - set predictionsUpdatedAt timestamp
     const predictionsChanged = (
@@ -271,6 +323,43 @@ export async function PUT(request: NextRequest) {
     };
 
     await saveOverlay(updated);
+
+    // Sync changes to Trakt in background (don't block response)
+    const syncResults: { rating?: boolean; hidden?: boolean; dropped?: boolean } = {};
+
+    (async () => {
+      try {
+        // Sync rating to Trakt
+        if (ratingChanged) {
+          if (updates.rating) {
+            syncResults.rating = await syncRatingToTrakt(tmdbId, updates.rating);
+          } else {
+            // Rating was removed
+            syncResults.rating = await removeRatingFromTrakt(tmdbId);
+          }
+        }
+
+        // Sync hidden status to Trakt
+        if (hiddenChanged) {
+          if (updates.hidden) {
+            syncResults.hidden = await hideShowOnTrakt(tmdbId);
+          } else {
+            syncResults.hidden = await unhideShowOnTrakt(tmdbId);
+          }
+        }
+
+        // Sync dropped status to Trakt (via custom list)
+        if (droppedChanged) {
+          if (updates.dropped) {
+            syncResults.dropped = await addToDroppedList(tmdbId);
+          } else {
+            syncResults.dropped = await removeFromDroppedList(tmdbId);
+          }
+        }
+      } catch (err) {
+        console.error('Trakt sync error:', err);
+      }
+    })();
 
     return NextResponse.json({ success: true, overlay: updated });
   } catch (error) {

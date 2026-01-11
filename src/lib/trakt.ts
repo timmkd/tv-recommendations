@@ -718,3 +718,288 @@ export async function importFromTrakt(
     errors
   };
 }
+
+// ============================================
+// TRAKT SYNC FUNCTIONS
+// ============================================
+
+// Sync a rating to Trakt (converts 0.5-5 scale to 1-10)
+export async function syncRatingToTrakt(tmdbId: number, rating: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) {
+    console.error('Cannot sync rating: not authenticated with Trakt');
+    return false;
+  }
+
+  // Convert our 0.5-5 scale to Trakt's 1-10 scale
+  const traktRating = Math.round(rating * 2);
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/sync/ratings`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{
+          ids: { tmdb: tmdbId },
+          rating: traktRating
+        }]
+      })
+    });
+
+    if (!response.ok) {
+      console.error('Failed to sync rating to Trakt:', response.status);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error syncing rating to Trakt:', error);
+    return false;
+  }
+}
+
+// Remove a rating from Trakt
+export async function removeRatingFromTrakt(tmdbId: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return false;
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/sync/ratings/remove`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{ ids: { tmdb: tmdbId } }]
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Error removing rating from Trakt:', error);
+    return false;
+  }
+}
+
+// Hide a show on Trakt (hides from recommendations)
+export async function hideShowOnTrakt(tmdbId: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return false;
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/hidden/recommendations`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{ ids: { tmdb: tmdbId } }]
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Error hiding show on Trakt:', error);
+    return false;
+  }
+}
+
+// Unhide a show on Trakt
+export async function unhideShowOnTrakt(tmdbId: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return false;
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/hidden/recommendations/remove`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{ ids: { tmdb: tmdbId } }]
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Error unhiding show on Trakt:', error);
+    return false;
+  }
+}
+
+// Get or create the "Dropped" list on Trakt
+async function getOrCreateDroppedList(): Promise<string | null> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return null;
+
+  try {
+    // First, try to find existing "Dropped" list
+    const listsResponse = await fetch(`${TRAKT_API_URL}/users/me/lists`, {
+      headers: authHeaders
+    });
+
+    if (listsResponse.ok) {
+      const lists = await listsResponse.json();
+      const droppedList = lists.find((list: { name: string; ids: { slug: string } }) =>
+        list.name.toLowerCase() === 'dropped'
+      );
+      if (droppedList) {
+        return droppedList.ids.slug;
+      }
+    }
+
+    // Create the list if it doesn't exist
+    const createResponse = await fetch(`${TRAKT_API_URL}/users/me/lists`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        name: 'Dropped',
+        description: 'Shows I started but decided not to continue',
+        privacy: 'private',
+        display_numbers: false,
+        allow_comments: false
+      })
+    });
+
+    if (createResponse.ok) {
+      const newList = await createResponse.json();
+      return newList.ids.slug;
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error getting/creating Dropped list:', error);
+    return null;
+  }
+}
+
+// Add a show to the Dropped list
+export async function addToDroppedList(tmdbId: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return false;
+
+  const listSlug = await getOrCreateDroppedList();
+  if (!listSlug) return false;
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/me/lists/${listSlug}/items`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{ ids: { tmdb: tmdbId } }]
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Error adding to Dropped list:', error);
+    return false;
+  }
+}
+
+// Remove a show from the Dropped list
+export async function removeFromDroppedList(tmdbId: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return false;
+
+  const listSlug = await getOrCreateDroppedList();
+  if (!listSlug) return false;
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/me/lists/${listSlug}/items/remove`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{ ids: { tmdb: tmdbId } }]
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Error removing from Dropped list:', error);
+    return false;
+  }
+}
+
+// Get all hidden shows from Trakt
+export async function getHiddenShows(): Promise<Set<number>> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return new Set();
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/hidden/recommendations?type=show&limit=1000`, {
+      headers: authHeaders
+    });
+
+    if (!response.ok) return new Set();
+
+    const hidden = await response.json();
+    const tmdbIds = new Set<number>();
+
+    for (const item of hidden) {
+      if (item.show?.ids?.tmdb) {
+        tmdbIds.add(item.show.ids.tmdb);
+      }
+    }
+
+    return tmdbIds;
+  } catch (error) {
+    console.error('Error fetching hidden shows:', error);
+    return new Set();
+  }
+}
+
+// Get all shows in the Dropped list
+export async function getDroppedShows(): Promise<Set<number>> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return new Set();
+
+  const listSlug = await getOrCreateDroppedList();
+  if (!listSlug) return new Set();
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/me/lists/${listSlug}/items/shows`, {
+      headers: authHeaders
+    });
+
+    if (!response.ok) return new Set();
+
+    const items = await response.json();
+    const tmdbIds = new Set<number>();
+
+    for (const item of items) {
+      if (item.show?.ids?.tmdb) {
+        tmdbIds.add(item.show.ids.tmdb);
+      }
+    }
+
+    return tmdbIds;
+  } catch (error) {
+    console.error('Error fetching dropped shows:', error);
+    return new Set();
+  }
+}
+
+// Get user's ratings from Trakt (returns map of tmdbId -> rating in our 0.5-5 scale)
+export async function getUserRatings(): Promise<Map<number, number>> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return new Map();
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/users/me/ratings/shows`, {
+      headers: authHeaders
+    });
+
+    if (!response.ok) return new Map();
+
+    const ratings = await response.json();
+    const ratingsMap = new Map<number, number>();
+
+    for (const item of ratings) {
+      if (item.show?.ids?.tmdb && item.rating) {
+        // Convert Trakt's 1-10 to our 0.5-5 scale (round to nearest 0.5)
+        const ourRating = Math.round(item.rating / 2 * 2) / 2;
+        ratingsMap.set(item.show.ids.tmdb, ourRating);
+      }
+    }
+
+    return ratingsMap;
+  } catch (error) {
+    console.error('Error fetching user ratings:', error);
+    return new Map();
+  }
+}
