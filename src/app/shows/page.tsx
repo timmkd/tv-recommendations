@@ -422,6 +422,9 @@ function ShowsContent() {
 
   const showsNeedingStreaming = shows.filter(s => isStreamingStale(s)).length;
 
+  // View mode (grid or list)
+  const viewParam = searchParams.get('view') || 'grid';
+
   const fetchStreaming = async () => {
     const showsToFetch = shows.filter(s => isStreamingStale(s));
     if (showsToFetch.length === 0) {
@@ -473,16 +476,17 @@ function ShowsContent() {
   };
 
   // Helper to build filter URLs
-  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; streaming?: string | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; sort?: SortOption }) => {
-    const searchParams = new URLSearchParams();
-    if (params.status) searchParams.set('status', params.status);
-    if (params.unrated) searchParams.set('unrated', 'true');
-    if (params.streaming) searchParams.set('streaming', params.streaming);
-    if (params.watchpref) searchParams.set('watchpref', params.watchpref);
-    if (params.hidden) searchParams.set('hidden', 'true');
-    if (params.dropped) searchParams.set('dropped', 'true');
-    if (params.sort && params.sort !== 'updated') searchParams.set('sort', params.sort);
-    const query = searchParams.toString();
+  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; streaming?: string | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; sort?: SortOption; view?: 'grid' | 'list' }) => {
+    const urlParams = new URLSearchParams();
+    if (params.status) urlParams.set('status', params.status);
+    if (params.unrated) urlParams.set('unrated', 'true');
+    if (params.streaming) urlParams.set('streaming', params.streaming);
+    if (params.watchpref) urlParams.set('watchpref', params.watchpref);
+    if (params.hidden) urlParams.set('hidden', 'true');
+    if (params.dropped) urlParams.set('dropped', 'true');
+    if (params.sort && params.sort !== 'updated') urlParams.set('sort', params.sort);
+    if (params.view && params.view !== 'grid') urlParams.set('view', params.view);
+    const query = urlParams.toString();
     return query ? `/shows?${query}` : '/shows';
   };
 
@@ -784,14 +788,14 @@ function ShowsContent() {
           </div>
         </div>
 
-        {/* Sort Options */}
-        <div className="mb-8">
+        {/* Sort Options and View Toggle */}
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div className="flex gap-2 flex-wrap items-center">
             <span className="text-sm text-gray-400 mr-1">Sort:</span>
             {SORT_OPTIONS.map(option => (
               <Link
                 key={option.value}
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: option.value })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: option.value, view: viewParam as 'grid' | 'list' })}
                 className={`px-3 py-1 rounded text-sm ${
                   sortParam === option.value ? 'bg-green-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -800,128 +804,349 @@ function ShowsContent() {
               </Link>
             ))}
           </div>
+          {/* View Toggle */}
+          <div className="flex items-center gap-1 bg-gray-800 rounded-lg p-1">
+            <Link
+              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam, view: 'grid' })}
+              className={`px-3 py-1.5 rounded-md text-sm flex items-center gap-1.5 transition-colors ${
+                viewParam === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700'
+              }`}
+              title="Grid view"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+              Grid
+            </Link>
+            <Link
+              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam, view: 'list' })}
+              className={`px-3 py-1.5 rounded-md text-sm flex items-center gap-1.5 transition-colors ${
+                viewParam === 'list' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700'
+              }`}
+              title="List view"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              List
+            </Link>
+          </div>
         </div>
 
-        {/* Shows Grid */}
+        {/* Shows Display */}
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {filtered.map(show => (
-              <div
-                key={show.id}
-                onClick={() => setEditingShowId(show.id)}
-                className="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all group cursor-pointer"
-              >
-                {/* Poster */}
-                {show.posterPath ? (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w342${show.posterPath}`}
-                    alt={show.title}
-                    className="w-full aspect-[2/3] object-cover"
-                  />
-                ) : (
-                  <div className="w-full aspect-[2/3] bg-gray-700 flex items-center justify-center">
-                    <span className="text-gray-500 text-xs text-center px-2">{show.title}</span>
-                  </div>
-                )}
-
-                {/* Rating ribbon between poster and details */}
-                {show.rating ? (
-                  <div className="flex items-center justify-between px-3 py-2 bg-gray-900">
-                    <span className="text-yellow-400 font-semibold">{show.rating}★</span>
-                    {show.watchPreference && (
-                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                        show.watchPreference === 'solo' ? 'bg-blue-600 text-white' : 'bg-pink-600 text-white'
-                      }`}>
-                        {show.watchPreference === 'solo' ? 'Solo' : 'Together'}
-                      </span>
-                    )}
-                  </div>
-                ) : (show.predictedRating || show.recommendedWatchPreference) ? (
-                  <div className="flex items-center justify-between px-3 py-2 bg-purple-900/60 cursor-help" title={show.predictedRatingReason || 'Based on your taste profile'}>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-purple-300 text-[10px] font-medium uppercase">AI</span>
-                      {show.predictedRating && (
-                        <span className="text-yellow-400 font-semibold">{show.predictedRating}★</span>
-                      )}
-                    </div>
-                    {show.recommendedWatchPreference && (
-                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                        show.recommendedWatchPreference === 'solo'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-pink-600 text-white'
-                      }`}>
-                        {show.recommendedWatchPreference === 'solo' ? 'Solo' : 'Together'}
-                      </span>
-                    )}
-                  </div>
-                ) : null}
-                <div className="p-3">
-                  {/* Title */}
-                  <div className="text-sm font-medium truncate group-hover:text-blue-400">
-                    {show.title}
-                  </div>
-
-                  {/* Meta row: Year, Seasons, Show Status */}
-                  <div className="text-xs text-gray-400 flex items-center gap-1.5 mb-1.5">
-                    {show.year && <span>{show.year}</span>}
-                    {show.numberOfSeasons && (
-                      <>
-                        <span className="text-gray-600">•</span>
-                        <span>{show.numberOfSeasons}S</span>
-                      </>
-                    )}
-                    {show.showStatus && show.showStatus !== 'Returning Series' && (
-                      <span className={`px-1 rounded text-[10px] ${
-                        show.showStatus === 'Ended' ? 'bg-green-900/50 text-green-400' :
-                        show.showStatus === 'Canceled' ? 'bg-red-900/50 text-red-400' :
-                        'bg-gray-700 text-gray-400'
-                      }`}>
-                        {show.showStatus}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Status + RT Scores row */}
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className={`px-1.5 py-0.5 rounded text-xs ${STATUS_LABELS[show.status].color}`}>
-                      {STATUS_LABELS[show.status].label}
-                    </span>
-                    <RTScores
-                      showId={show.id}
-                      title={show.title}
-                      criticsScore={show.rtCriticsScore}
-                      audienceScore={show.rtAudienceScore}
-                      size="sm"
-                    />
-                  </div>
-
-                  {/* Streaming services */}
-                  {show.streamingServices && show.streamingServices.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {show.streamingServices.slice(0, 4).map(service => {
-                        const brand = STREAMING_BRANDS[service];
-                        if (brand?.logo) {
-                          return (
-                            <Tooltip key={service} content={service}>
-                              <img
-                                src={`https://image.tmdb.org/t/p/w45${brand.logo}`}
-                                alt={service}
-                                className="h-4 w-4 rounded object-cover"
-                              />
+          viewParam === 'list' ? (
+            /* List View */
+            <div className="bg-gray-800 rounded-lg overflow-hidden">
+              <table className="w-full">
+                <thead className="bg-gray-900 sticky top-0">
+                  <tr>
+                    <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-12"></th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      <Link
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam === 'title' ? 'title-desc' : 'title', view: 'list' })}
+                        className="flex items-center gap-1 hover:text-white"
+                      >
+                        Title
+                        {(sortParam === 'title' || sortParam === 'title-desc') && (
+                          <span>{sortParam === 'title' ? '↑' : '↓'}</span>
+                        )}
+                      </Link>
+                    </th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
+                      <Link
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam === 'year' ? 'year-asc' : 'year', view: 'list' })}
+                        className="flex items-center gap-1 hover:text-white"
+                      >
+                        Year
+                        {(sortParam === 'year' || sortParam === 'year-asc') && (
+                          <span>{sortParam === 'year' ? '↓' : '↑'}</span>
+                        )}
+                      </Link>
+                    </th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      <Link
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'rating', view: 'list' })}
+                        className="flex items-center gap-1 hover:text-white"
+                      >
+                        Rating
+                        {sortParam === 'rating' && <span>↓</span>}
+                      </Link>
+                    </th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden md:table-cell">
+                      <Link
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'predicted', view: 'list' })}
+                        className="flex items-center gap-1 hover:text-white"
+                      >
+                        Predicted
+                        {sortParam === 'predicted' && <span>↓</span>}
+                      </Link>
+                    </th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden lg:table-cell">
+                      <Link
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'rt-critics', view: 'list' })}
+                        className="flex items-center gap-1 hover:text-white"
+                      >
+                        🍅
+                        {sortParam === 'rt-critics' && <span>↓</span>}
+                      </Link>
+                    </th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden lg:table-cell">
+                      <Link
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'rt-audience', view: 'list' })}
+                        className="flex items-center gap-1 hover:text-white"
+                      >
+                        🍿
+                        {sortParam === 'rt-audience' && <span>↓</span>}
+                      </Link>
+                    </th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">Streaming</th>
+                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden md:table-cell">Watch</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-700">
+                  {filtered.map(show => {
+                    const watchPref = show.watchPreference || show.recommendedWatchPreference;
+                    return (
+                      <tr
+                        key={show.id}
+                        onClick={() => setEditingShowId(show.id)}
+                        className="hover:bg-gray-700 cursor-pointer transition-colors"
+                      >
+                        {/* Poster thumbnail */}
+                        <td className="px-2 py-2">
+                          {show.posterPath ? (
+                            <img
+                              src={`https://image.tmdb.org/t/p/w92${show.posterPath}`}
+                              alt=""
+                              className="w-10 h-15 object-cover rounded"
+                            />
+                          ) : (
+                            <div className="w-10 h-15 bg-gray-700 rounded"></div>
+                          )}
+                        </td>
+                        {/* Title */}
+                        <td className="px-3 py-2">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-white hover:text-blue-400">{show.title}</span>
+                            {show.numberOfSeasons && (
+                              <span className="text-xs text-gray-500">{show.numberOfSeasons}S</span>
+                            )}
+                          </div>
+                          {show.predictedRatingReason && (
+                            <div className="text-xs text-gray-500 truncate max-w-xs hidden sm:block" title={show.predictedRatingReason}>
+                              {show.predictedRatingReason.length > 60
+                                ? show.predictedRatingReason.slice(0, 60) + '...'
+                                : show.predictedRatingReason}
+                            </div>
+                          )}
+                          <div className="text-xs text-gray-500 sm:hidden">{show.year}</div>
+                        </td>
+                        {/* Year */}
+                        <td className="px-3 py-2 text-gray-400 text-sm hidden sm:table-cell">{show.year}</td>
+                        {/* Status */}
+                        <td className="px-3 py-2">
+                          <span className={`px-2 py-0.5 rounded text-xs ${STATUS_LABELS[show.status].color}`}>
+                            {STATUS_LABELS[show.status].label}
+                          </span>
+                        </td>
+                        {/* Rating */}
+                        <td className="px-3 py-2">
+                          {show.rating ? (
+                            <span className="text-yellow-400 font-medium">{show.rating}★</span>
+                          ) : (
+                            <span className="text-gray-600">-</span>
+                          )}
+                        </td>
+                        {/* Predicted */}
+                        <td className="px-3 py-2 hidden md:table-cell">
+                          {show.predictedRating ? (
+                            <Tooltip content={show.predictedRatingReason || 'AI prediction'}>
+                              <span className="text-purple-400 cursor-help">{show.predictedRating}★</span>
                             </Tooltip>
-                          );
-                        }
-                        return null;
-                      })}
-                      {show.streamingServices.length > 4 && (
-                        <span className="text-[10px] text-gray-500">+{show.streamingServices.length - 4}</span>
-                      )}
+                          ) : (
+                            <span className="text-gray-600">-</span>
+                          )}
+                        </td>
+                        {/* RT Critics */}
+                        <td className="px-3 py-2 hidden lg:table-cell">
+                          {show.rtCriticsScore ? (
+                            <span className={show.rtCriticsScore >= 60 ? 'text-red-400' : 'text-green-400'}>{show.rtCriticsScore}%</span>
+                          ) : (
+                            <span className="text-gray-600">-</span>
+                          )}
+                        </td>
+                        {/* RT Audience */}
+                        <td className="px-3 py-2 hidden lg:table-cell">
+                          {show.rtAudienceScore ? (
+                            <span className="text-yellow-400">{show.rtAudienceScore}%</span>
+                          ) : (
+                            <span className="text-gray-600">-</span>
+                          )}
+                        </td>
+                        {/* Streaming */}
+                        <td className="px-3 py-2 hidden sm:table-cell">
+                          <div className="flex gap-1">
+                            {show.streamingServices?.slice(0, 3).map(service => {
+                              const brand = STREAMING_BRANDS[service];
+                              if (brand?.logo) {
+                                return (
+                                  <Tooltip key={service} content={service}>
+                                    <img
+                                      src={`https://image.tmdb.org/t/p/w45${brand.logo}`}
+                                      alt={service}
+                                      className="h-5 w-5 rounded object-cover"
+                                    />
+                                  </Tooltip>
+                                );
+                              }
+                              return null;
+                            })}
+                            {(show.streamingServices?.length || 0) > 3 && (
+                              <span className="text-xs text-gray-500">+{show.streamingServices!.length - 3}</span>
+                            )}
+                          </div>
+                        </td>
+                        {/* Watch Preference */}
+                        <td className="px-3 py-2 hidden md:table-cell">
+                          {watchPref && (
+                            <span className={`px-2 py-0.5 rounded text-xs ${
+                              watchPref === 'solo' ? 'bg-blue-600' : 'bg-pink-600'
+                            }`}>
+                              {watchPref === 'solo' ? 'Solo' : 'Together'}
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            /* Grid View */
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {filtered.map(show => (
+                <div
+                  key={show.id}
+                  onClick={() => setEditingShowId(show.id)}
+                  className="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all group cursor-pointer"
+                >
+                  {/* Poster */}
+                  {show.posterPath ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w342${show.posterPath}`}
+                      alt={show.title}
+                      className="w-full aspect-[2/3] object-cover"
+                    />
+                  ) : (
+                    <div className="w-full aspect-[2/3] bg-gray-700 flex items-center justify-center">
+                      <span className="text-gray-500 text-xs text-center px-2">{show.title}</span>
                     </div>
                   )}
+
+                  {/* Rating ribbon between poster and details */}
+                  {show.rating ? (
+                    <div className="flex items-center justify-between px-3 py-2 bg-gray-900">
+                      <span className="text-yellow-400 font-semibold">{show.rating}★</span>
+                      {show.watchPreference && (
+                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                          show.watchPreference === 'solo' ? 'bg-blue-600 text-white' : 'bg-pink-600 text-white'
+                        }`}>
+                          {show.watchPreference === 'solo' ? 'Solo' : 'Together'}
+                        </span>
+                      )}
+                    </div>
+                  ) : (show.predictedRating || show.recommendedWatchPreference) ? (
+                    <div className="flex items-center justify-between px-3 py-2 bg-purple-900/60">
+                      <Tooltip content={show.predictedRatingReason || 'Based on your taste profile'}>
+                        <div className="flex items-center gap-1.5 cursor-help">
+                          <span className="text-purple-300 text-[10px] font-medium uppercase">AI</span>
+                          {show.predictedRating && (
+                            <span className="text-yellow-400 font-semibold">{show.predictedRating}★</span>
+                          )}
+                        </div>
+                      </Tooltip>
+                      {show.recommendedWatchPreference && (
+                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                          show.recommendedWatchPreference === 'solo'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-pink-600 text-white'
+                        }`}>
+                          {show.recommendedWatchPreference === 'solo' ? 'Solo' : 'Together'}
+                        </span>
+                      )}
+                    </div>
+                  ) : null}
+                  <div className="p-3">
+                    {/* Title */}
+                    <div className="text-sm font-medium truncate group-hover:text-blue-400">
+                      {show.title}
+                    </div>
+
+                    {/* Meta row: Year, Seasons, Show Status */}
+                    <div className="text-xs text-gray-400 flex items-center gap-1.5 mb-1.5">
+                      {show.year && <span>{show.year}</span>}
+                      {show.numberOfSeasons && (
+                        <>
+                          <span className="text-gray-600">•</span>
+                          <span>{show.numberOfSeasons}S</span>
+                        </>
+                      )}
+                      {show.showStatus && show.showStatus !== 'Returning Series' && (
+                        <span className={`px-1 rounded text-[10px] ${
+                          show.showStatus === 'Ended' ? 'bg-green-900/50 text-green-400' :
+                          show.showStatus === 'Canceled' ? 'bg-red-900/50 text-red-400' :
+                          'bg-gray-700 text-gray-400'
+                        }`}>
+                          {show.showStatus}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Status + RT Scores row */}
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className={`px-1.5 py-0.5 rounded text-xs ${STATUS_LABELS[show.status].color}`}>
+                        {STATUS_LABELS[show.status].label}
+                      </span>
+                      <RTScores
+                        showId={show.id}
+                        title={show.title}
+                        criticsScore={show.rtCriticsScore}
+                        audienceScore={show.rtAudienceScore}
+                        size="sm"
+                      />
+                    </div>
+
+                    {/* Streaming services */}
+                    {show.streamingServices && show.streamingServices.length > 0 && (
+                      <div className="flex flex-wrap gap-1">
+                        {show.streamingServices.slice(0, 4).map(service => {
+                          const brand = STREAMING_BRANDS[service];
+                          if (brand?.logo) {
+                            return (
+                              <Tooltip key={service} content={service}>
+                                <img
+                                  src={`https://image.tmdb.org/t/p/w45${brand.logo}`}
+                                  alt={service}
+                                  className="h-4 w-4 rounded object-cover"
+                                />
+                              </Tooltip>
+                            );
+                          }
+                          return null;
+                        })}
+                        {show.streamingServices.length > 4 && (
+                          <span className="text-[10px] text-gray-500">+{show.streamingServices.length - 4}</span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )
         ) : (
           <div className="text-center py-16 bg-gray-800 rounded-lg">
             <p className="text-gray-400 mb-4">No shows found</p>
