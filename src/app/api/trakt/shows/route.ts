@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSettings, getOverlaysMap, getOverlays, saveOverlay, getOverlayByTmdbId, isShowDeleted } from '@/lib/data';
+import { getSettings, getOverlaysMap, getOverlays, saveOverlay, getOverlayByTmdbId, getDeletedTmdbIds } from '@/lib/db/queries';
 import {
   getUserShows,
   searchShows as traktSearch,
@@ -108,6 +108,9 @@ export async function GET(request: NextRequest) {
     let shows: Show[] = [];
     let usedFallback = false;
 
+    // Fetch deleted IDs once upfront (single query instead of N queries)
+    const deletedTmdbIds = await getDeletedTmdbIds();
+
     // Try Trakt first (unless fallback-only mode)
     if (!fallbackOnly && settings.traktUsername) {
       try {
@@ -128,7 +131,7 @@ export async function GET(request: NextRequest) {
           const newOverlaysToSave: { overlay: ShowOverlay; slug: string }[] = [];
 
           for (const traktShow of traktShows) {
-            if (await isShowDeleted(traktShow.tmdbId)) {
+            if (deletedTmdbIds.has(traktShow.tmdbId)) {
               continue;
             }
 
@@ -232,7 +235,7 @@ export async function GET(request: NextRequest) {
           // Also include overlay-only shows (not in Trakt but in overlays)
           for (const [tmdbId, overlay] of overlaysMap) {
             if (traktTmdbIds.has(tmdbId)) continue; // Already included from Trakt
-            if (await isShowDeleted(tmdbId)) continue;
+            if (deletedTmdbIds.has(tmdbId)) continue;
             if (!overlay.title) continue; // Skip unenriched overlays
 
             const show = overlayToShow(overlay);
@@ -254,7 +257,7 @@ export async function GET(request: NextRequest) {
       const overlays = await getOverlays();
 
       for (const overlay of overlays) {
-        if (await isShowDeleted(overlay.tmdbId)) {
+        if (deletedTmdbIds.has(overlay.tmdbId)) {
           continue;
         }
 

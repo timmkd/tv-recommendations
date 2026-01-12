@@ -1,7 +1,7 @@
 import type { Show, ShowStatus, WatchPreference, TraktAuth } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 import { getStreamingAvailability } from './justwatch';
-import { getSettings, saveSettings } from './data';
+import { getSettings, saveSettings } from './db/queries';
 
 const TRAKT_API_URL = 'https://api.trakt.tv';
 const TRAKT_TOKEN_URL = 'https://api.trakt.tv/oauth/token';
@@ -419,18 +419,34 @@ async function fetchProgressForShowsInternal(slugs: string[]): Promise<Map<strin
 // Fetch progress for multiple shows (with caching to avoid rate limits)
 async function fetchProgressForShows(slugs: string[]): Promise<Map<string, TraktShowProgress>> {
   const now = Date.now();
+  const cacheIsFresh = progressCache.size > 0 && (now - progressCacheTime) < PROGRESS_CACHE_TTL;
 
-  // Return cached data if still fresh
-  if (progressCache.size > 0 && (now - progressCacheTime) < PROGRESS_CACHE_TTL) {
+  // Find shows that are NOT in the cache (newly added)
+  const uncachedSlugs = slugs.filter(slug => !progressCache.has(slug));
+
+  // If cache is fresh and all shows are cached, return cache
+  if (cacheIsFresh && uncachedSlugs.length === 0) {
     return progressCache;
   }
 
-  // If progress fetching is disabled (due to rate limits), return empty
+  // If progress fetching is disabled (due to rate limits), return what we have
   if (!progressFetchEnabled) {
     console.log('Progress fetching disabled due to rate limits, using cached data');
     return progressCache;
   }
 
+  // If cache is fresh but we have new shows, only fetch those
+  if (cacheIsFresh && uncachedSlugs.length > 0) {
+    console.log(`Fetching progress for ${uncachedSlugs.length} new shows`);
+    const newProgress = await fetchProgressForShowsInternal(uncachedSlugs);
+    // Merge new progress into existing cache
+    for (const [slug, progress] of newProgress) {
+      progressCache.set(slug, progress);
+    }
+    return progressCache;
+  }
+
+  // Cache is stale, refetch everything
   return fetchProgressForShowsInternal(slugs);
 }
 

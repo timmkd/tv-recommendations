@@ -10,6 +10,16 @@ npm run build    # Build for production
 npm run lint     # Run ESLint
 ```
 
+## Deployment
+
+Deployed on Vercel. To deploy:
+
+```bash
+vercel --prod    # Deploy to production
+```
+
+Production URL: https://tv-recommendations-navy.vercel.app
+
 ## Environment Variables
 
 Required in `.env.local`:
@@ -249,15 +259,17 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 
 ## Taste Profile
 
-### Rating Distribution (188 rated shows)
+### Rating Distribution (187 rated shows)
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites, actively recommend |
-| 4.5★ | 15 | Loved it - strong signal of preferences |
+| 4.5★ | 16 | Loved it - strong signal of preferences |
 | 4★ | 69 | Good solid show - would recommend |
-| 3.5★ | 45 | Enjoy but don't love every moment |
-| 3★ | 35 | Still good - will stick with it |
-| 2-2.5★ | 19 | Dropped or disappointed |
+| 3.5★ | 46 | Enjoy but don't love every moment |
+| 3★ | 34 | Still good - will stick with it |
+| 2-2.5★ | 17 | Dropped or disappointed |
+
+**Solo vs Together Gap:** Solo shows average 3.75★, Together shows average 3.49★. Solo viewing allows deeper engagement with complex content.
 
 ### The 5★ Shows (Reference Points)
 - **Severance** (solo) - psychological sci-fi, mind-bending
@@ -267,27 +279,30 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 - **The West Wing** (together) - prestige political drama
 
 ### Solo Profile
-**Core tastes:** Psychological depth, mind-bending narratives, exceptional acting. Sci-fi that makes you think.
+**Core tastes:** Psychological depth, mind-bending narratives, exceptional acting. Sci-fi that makes you think. Easy rewatchable comedies.
 
 **Loves:**
-- Psychological sci-fi (Severance 5★, Black Mirror 4.5★, Dark 4.5★, Silo 4.5★, Foundation 4.5★, Stranger Things 4.5★)
-- Comfort workplace comedies (Parks & Rec 5★, The Office 5★, Brooklyn Nine-Nine 4.5★, Abbott Elementary 4★)
+- Psychological sci-fi (Severance 5★, Black Mirror 4.5★, Dark 4.5★ - "love when a show has pay offs", Silo 4.5★, Foundation 4.5★, Stranger Things 4.5★)
+- Comfort workplace comedies (Parks & Rec 5★ - "One of my fav shows of all time rewatched many times", The Office 5★ - "rewatched so many times", Brooklyn Nine-Nine 4.5★ - "Love an easy watch with lots of laughs and this is easily rewatchable")
+- Easy bingeworthy shows (Hacks 3.5★ - "easy one to binge", Superstore 4★ - "easy watch comedy", The Paper 4★ - "surprisingly good easy watch")
 - Star Trek universe (Lower Decks 4.5★, Strange New Worlds 4★, Discovery 4★)
-- Marvel/superhero completionist (Loki 4.5★, WandaVision 4★, What If...? 4★)
+- Marvel/superhero completionist (Loki 4.5★, WandaVision 4★, What If...? 4★, Jessica Jones 4★ - "I really like this one")
 - Great acting and pacing (Murderbot 4.5★ - "great pacing, acting")
 - Sharp satire/dark comedy (The Great 4.5★, Barry 4★, Fleabag 4★)
-- True story dramas (Dopesick 4★ - "love based on true stories")
-- Australian content bonus (Newsreader 3.5★ - "great acting and love australian stuff")
+- True story dramas (Dopesick 4★ - "great acting, love based on true stories")
+- Australian content bonus (Newsreader 3.5★ - "great acting and love australian stuff", Boy Swallows Universe 3.5★ - "good to see australian shows that don't suck")
+- Historical dramas (Fosse/Verdon 3.5★ - "i do like an historical drama and this was well acted")
 
 **Avoids:**
 - Cancelled unresolved shows (Big Door Prize 2.5★ - "I hate when cancelled unresolved", Wheel of Time 4★ - "So gutted this was cancelled")
-- Declining quality (Arrested Development 4★ - "s05 was rubbish")
-- Slow/dragging (Daredevil 3★ - "episodes dragged a little")
+- Declining quality in later seasons (Arrested Development 4★ - "s05 was rubbish", House of Cards 3.5★ - "last season fizzled")
+- Slow/dragging episodes (Daredevil 3★ - "episodes dragged a little")
 - Weak Marvel entries (Ms. Marvel 2.5★ - "not that great")
-- Too intense AND slow (Mindhunter 2.5★ - "too intense and a bit boring")
+- Too intense AND slow (Mindhunter 2.5★ - "Too intense and a bit boring")
+- Shows that fizzle (Travelers 3★ - "fizzled out towards the end")
 
 ### Together Profile (with Helen)
-**Core tastes:** Spy thrillers, period dramas, prestige true stories, light mysteries, easy watches.
+**Core tastes:** Spy thrillers, period dramas, prestige true stories, light mysteries, easy watches. Shows need momentum to keep Helen engaged.
 
 **Loves:**
 - Spy thrillers (Slow Horses 4.5★, Bodyguard 4★, The Americans 4★, Homeland 4★, The Diplomat 4★)
@@ -296,35 +311,55 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 - British prestige mystery (Sherlock 4.5★ - "One of the best shows... Love the acting. Moriarty was brilliant")
 - Prestige limited series with exceptional acting/cinematography (Adolescence 4★ - "Beautifully shot and brilliantly acted. So well scripted.")
 - Light mystery-comedy (Only Murders 4★, Shrinking 4★)
-- Easy watches (Nobody Wants This 4★, Gilmore Girls 4★ - "easy watch")
+- Easy watches (Nobody Wants This 4★ - "Love a good easy watch", Gilmore Girls 4★ - "easy watch", This Is Us 3.5★ - "Good family drama that is an easy watch")
 - WWII + True Story + Uplifting = near-guaranteed hit (A Small Light 4★, All the Light We Cannot See 4★)
-- **Episode-of-the-week / procedural formats** - Helen enjoys procedurals and case-of-the-week formats. Tim often watches these together because Helen likes them (e.g., Fringe 4★, Elsbeth). Helen also watches classic procedurals solo (Bones, Law & Order SVU, House) - Tim is less interested in these.
+- Legal dramas (The Good Wife 4★ - "great courtroom scenes and character development")
+- **Episode-of-the-week / procedural formats** - Helen enjoys procedurals and case-of-the-week formats. Tim often watches these together because Helen likes them (e.g., Fringe 4★, The Rookie 4.5★). Helen also watches classic procedurals solo (Bones, Law & Order SVU, House) - Tim is less interested in these.
+- Low-commitment limited series (Manhunt 3.5★ - "nice low commitment watch especially with short seasons")
 
 **Helen dislikes:**
 - Superhero content ("helen doesn't like superhero shows")
 - Crude humor, graphic sex/language (The Boys 4★, What We Do in the Shadows 3★ - "too crude for Helen") - though she'll tolerate these if the show is gripping enough (e.g., early Homeland seasons, The Americans)
 - Slow pacing (Severance - "too slow for helen", Fargo - "bit slow paced for Helen")
-- Shows that get boring (Elsbeth 3★ - "got boring", Night Agent 3★ - "so boring in 2nd season")
+- Shows that get boring mid-run (Elsbeth 3★ - "got boring", Night Agent 3★ - "so boring in 2nd season", Elementary 3★ - "second season got boring")
 - Drawn out mysteries (The Agency 3.5★ - "a little slow paced", Paradise 3.5★ - "a little drawn out")
 - Very slow literary dramas (War and Peace 2.5★ - "got bored, gave up")
+- Shows where nothing happens early (The Artful Dodger 2.5★ - "not much was happening and Helen wasn't interested")
+
+**Critical "Fizzle" Pattern for Together Shows:**
+Many together shows start strong but fizzle out. This is a major risk factor:
+- Killing Eve 3★ - "was good to start but this fizzled out"
+- Tehran 3★ - "pacing didn't go anywhere so we fizzled out"
+- A League of Their Own 2.5★ - "fizzled after the first few episodes"
+- Home Before Dark 2.5★ - "kind of didn't go anywhere"
 
 ### Dropped Shows (Learn From These)
 | Show | Rating | Reason |
 |------|--------|--------|
+| Station 19 | 2★ | Couldn't invest in characters despite trying (together) |
 | A Very British Scandal | 2★ | Didn't like characters, nothing redeeming (together) |
 | Mr. & Mrs. Smith | 2★ | Slow pacing, not funny |
 | Bad Monkey | 2.5★ | Slow paced, didn't like characters (together) |
+| The Buccaneers | 2.5★ | Badly written, rubbish characters (together) |
+| Homecoming | 2.5★ | Felt pointless, why a second season? (together) |
+| The Artful Dodger | 2.5★ | Nothing was happening, Helen lost interest (together) |
 | Mindhunter | 2.5★ | Too intense AND boring |
 | War and Peace | 2.5★ | Got bored, gave up |
 | Disclaimer | 2.5★ | Didn't like anyone in the show |
 | Big Door Prize | 2.5★ | Cancelled unresolved |
 | Underground Railroad | 2.5★ | Too many other shows, ditched |
 | Ms. Marvel | 2.5★ | Weak Marvel entry |
-| MobLand | 2.5★ | Dropped (together) |
 | A League of Their Own | 2.5★ | Fizzled after first few episodes |
 | Home Before Dark | 2.5★ | Didn't go anywhere |
 | The Tick | 2.5★ | Got bored after a couple episodes |
+| The Staircase | 2.5★ | - |
 | Elementary | 3★ | First season good, second got boring (together) |
+| The Resident | 3★ | Got bored in middle of season 2 (together) |
+
+**Key Drop Patterns:**
+1. **Character Investment Failure** - If you don't like the characters by episode 3-4, it's a drop (Station 19, Bad Monkey, A Very British Scandal, The Buccaneers)
+2. **Momentum Loss** - Shows that start okay but "nothing happens" get abandoned (Artful Dodger, Home Before Dark)
+3. **Season 2 Decline** - Many shows get boring in second season (Elementary, The Resident, Night Agent, Elsbeth)
 
 ### Rating Source Correlations
 
@@ -370,6 +405,143 @@ predicted_rating = (IMDB / 2) - 0.3★ + modifiers
 - Slow pacing risk → Consider solo instead of together
 - Alt-history vs true story → True story preferred
 - Helen dislikes: superhero, crude humor, slow pacing, sci-fi
+
+### Advanced Predictive Patterns (Data-Driven)
+
+Based on analysis of 190+ rated shows, these patterns have predictive value:
+
+#### 1. Longevity = Quality Signal
+| Season Count | Avg Rating | Interpretation |
+|--------------|------------|----------------|
+| 7+ seasons | 4.05★ | Proven shows survive - trust them |
+| 4-6 seasons | 3.79★ | Sweet spot - enough to prove quality |
+| 2-3 seasons | 3.51★ | Average risk |
+| 1 season | 3.43★ | Higher risk - less proven |
+
+**Modifier:** +0.3★ for shows with 4+ seasons
+
+#### 2. Show Status Matters
+| Status | Avg Rating | Action |
+|--------|------------|--------|
+| Ended (properly) | 3.66★ | Safe - story concluded |
+| Returning Series | 3.64★ | Active - good sign |
+| Canceled | 3.26★ | **Danger** - unresolved endings hated |
+
+**Modifier:** -0.5★ for cancelled/unresolved shows (Big Door Prize effect)
+
+#### 3. Genre Combinations
+**Best combos:**
+- Drama + Sci-Fi & Fantasy: 3.86★ (sweet spot)
+- Comedy + Crime: 3.75★
+- War & Politics + anything: 3.86★
+
+**Worst combos:**
+- Action + Comedy: 2.50★ (avoid)
+- Action + Crime: 2.83★
+
+#### 4. RT Critics vs Audience Divergence (Genre-Specific)
+
+When RT Critics score is 20+ points higher than Audience score, your response is **genre-dependent**:
+
+| Genre | You Side With | Record | Implication |
+|-------|--------------|--------|-------------|
+| Sci-Fi/Fantasy | Critics | 9-0 | Trust critics for sci-fi, ignore low audience |
+| Drama | Critics | 15-7 | Usually critics |
+| Action/Adventure | Critics | 6-1 | Trust critics |
+| Comedy | Mixed | 3-2 | Case by case |
+| **Mystery/Crime** | **Audience** | **0-4** | Low audience = real warning |
+
+**Key insight:** For mystery/crime shows, a low audience score relative to critics is a genuine red flag. For sci-fi, ignore audience complaints - you consistently side with critics.
+
+#### 5. Platform Quality Tiers
+| Tier | Platforms | Avg Rating |
+|------|-----------|------------|
+| Top | Max, Paramount+, Netflix | 3.70-3.75★ |
+| Mid | Disney+, Apple TV+, Stan | 3.55-3.58★ |
+| Lower | Prime Video | 3.31★ |
+
+Minor consideration only - content matters more than platform.
+
+#### 6. Era/Decade Effect
+| Decade | Avg Rating | Notes |
+|--------|------------|-------|
+| 2000s | 4.07★ | Classics/nostalgia bonus |
+| 2010s | 3.62★ | Solid era |
+| 2020s | 3.51★ | Recency = less proven |
+
+**Modifier:** +0.2★ for established 2000s/early 2010s classics
+
+#### 7. Solo vs Together Rating Gap
+- Solo shows average: 3.75★
+- Together shows average: 3.47★
+
+Solo viewing allows deeper engagement with complex content. Together shows need broader appeal, making high ratings harder.
+
+#### 8. Keyword Signals From Notes
+**Strong positive indicators (4+ stars likely):**
+- "brilliant" → 4.33★ avg
+- "love" → 3.95★ avg
+- "acting" → 3.83★ avg
+
+**Warning signs (sub-3★ likely):**
+- "didn't like" → 2.25★ avg
+- "dropped" → 2.67★ avg
+- "bored" → 2.75★ avg
+- "fizzled" → 3.00★ avg
+
+#### 9. Completion Risk
+| Predicted Rating | Drop Risk |
+|------------------|-----------|
+| 3.5★+ | ~0% |
+| 3★ | 17% |
+| 2.5★ | 65% |
+| 2★ | 100% |
+
+If base calculation yields <3★, seriously consider whether to recommend at all.
+
+#### 10. Comedy-Specific Formula
+
+Comedy has distinct patterns that override general rules:
+
+**What makes a 5★ comedy (Parks & Rec, The Office):**
+- Workplace ensemble cast
+- Mockumentary format
+- Pure comedy (no drama genre tag)
+- Long-running (7+ seasons proves rewatchability)
+- Solo viewing preferred
+
+**Comedy sub-genre performance:**
+| Sub-genre | Avg Rating | Notes |
+|-----------|------------|-------|
+| Pure Comedy | 3.95★ | Best - undiluted |
+| Comedy + Animation | 4.25★ | Works great (Bluey, Lower Decks) |
+| Comedy + Crime | 3.75★ | Good combo (Brooklyn Nine-Nine, Only Murders) |
+| Comedy + Drama | 3.56★ | Dilutes the comedy |
+| Comedy + Sci-Fi | 3.36★ | Mixed results |
+| Comedy + Action | 2.50★ | **Avoid** - kills both genres |
+
+**Comedy-specific modifiers:**
+| Pattern | Adjustment |
+|---------|------------|
+| Workplace/ensemble format | +0.5★ |
+| Mockumentary style | +0.3★ |
+| Pure comedy (no drama tag) | +0.2★ |
+| 4+ seasons proven | +0.3★ |
+| Comedy + Action hybrid | -0.5★ |
+| Together viewing (Helen) | -0.2★ |
+
+**Key stats:**
+- Workplace comedies: 3.84★ vs non-workplace: 3.53★
+- Mockumentary format: 4.11★ avg
+- Solo comedies: 3.76★ vs together: 3.48★
+
+**Comedy killers:**
+1. **Action hybrid** - Mr. & Mrs. Smith (2★), The Tick (2.5★), Ms. Marvel (2.5★)
+2. **"Fizzled" after strong start** - shows that can't sustain momentum
+3. **Cancelled comedies** - unresolved comedy hurts more than unresolved drama
+4. **Together viewing** - Tim and Helen's comedy tastes diverge significantly
+
+**Reference 5★ comedies:** Parks and Recreation, The Office (both workplace, mockumentary, ensemble, long-running, solo, infinitely rewatchable)
 
 ### When to Update Taste Profile & Predictions
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { searchShows, getPosterUrl, getGenreNames } from '@/lib/tmdb';
-import { getOverlayByTmdbId } from '@/lib/data';
+import { getOverlayByTmdbId } from '@/lib/db/queries';
 
 export async function GET(request: NextRequest) {
   try {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRTRatings } from '@/lib/rottentomatoes';
-import { getOverlayByTmdbId, saveOverlay } from '@/lib/data';
+import { getOverlayByTmdbId, saveOverlay } from '@/lib/db/queries';
 
 // GET ratings for a show (fetches from RT and caches in overlays)
 export async function GET(request: NextRequest) {

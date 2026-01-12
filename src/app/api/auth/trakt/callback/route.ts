@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSettings, saveSettings } from '@/lib/data';
+import { getSettings, saveSettings } from '@/lib/db/queries';
 import type { TraktAuth } from '@/types';
 
 const TRAKT_TOKEN_URL = 'https://api.trakt.tv/oauth/token';

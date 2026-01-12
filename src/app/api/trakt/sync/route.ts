@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSettings, getOverlayByTmdbId, saveOverlay } from '@/lib/data';
+import { getSettings, getOverlayByTmdbId, saveOverlay } from '@/lib/db/queries';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
 import { getRTRatings } from '@/lib/rottentomatoes';
 import { getStreamingAvailability, getStreamingByTitle } from '@/lib/justwatch';

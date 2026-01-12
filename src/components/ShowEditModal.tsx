@@ -486,7 +486,7 @@ export default function ShowEditModal({
             {/* Editable Fields - Two Column Grid */}
             <div className="grid grid-cols-2 gap-4">
               {/* Left Column - Your Rating */}
-              <div className="bg-gray-800/50 rounded-lg p-4 space-y-4">
+              <div className="bg-gray-800/50 rounded-lg p-4 space-y-4 flex flex-col">
                 <h3 className="text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Your Rating</h3>
 
                 <div className="flex items-center gap-4">
@@ -517,14 +517,14 @@ export default function ShowEditModal({
                   </div>
                 </div>
 
-                <div>
+                <div className="flex-1 flex flex-col">
                   <label className="block text-xs text-gray-500 mb-1">What did you think? (likes/dislikes)</label>
                   <textarea
                     value={reviewNote}
                     onChange={(e) => setReviewNote(e.target.value)}
                     placeholder="Great pacing, loved the characters..."
-                    rows={2}
-                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                    rows={4}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm flex-1 min-h-[80px]"
                   />
                 </div>
               </div>

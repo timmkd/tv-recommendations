@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRecommendations } from '@/lib/openai';
-import { getSettings, getSubscribedServices, getOverlays } from '@/lib/data';
+import { getSettings, getSubscribedServices, getOverlays } from '@/lib/db/queries';
 import { getUserShows } from '@/lib/trakt';
 import type { WatchPreference, Show } from '@/types';
 

@@ -1,4 +1,4 @@
-import { getSettings, getOverlays } from '@/lib/data';
+import { getSettings, getOverlays } from '@/lib/db/queries';
 import { getUserShows } from '@/lib/trakt';
 import type { Show } from '@/types';
 

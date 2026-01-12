@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSettings, getOverlayByTmdbId, saveOverlay, getOverlaysMap } from '@/lib/data';
+import { getSettings, getOverlayByTmdbId, saveOverlay, getOverlaysMap } from '@/lib/db/queries';
 import { getUserShows } from '@/lib/trakt';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
 

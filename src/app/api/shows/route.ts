@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { addDeletedShow, deleteOverlay } from '@/lib/data';
+import { addDeletedShow, deleteOverlay } from '@/lib/db/queries';
 
 // DELETE a show (adds to deleted list so it won't reappear from Trakt)
 export async function DELETE(request: NextRequest) {
