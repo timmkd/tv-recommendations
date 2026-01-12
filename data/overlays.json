@@ -6458,8 +6458,8 @@
     },
     {
       "tmdbId": 127235,
-      "predictedRating": 3,
-      "predictedRatingReason": "Predicted 3★: Alien invasion sci-fi with multiple character perspectives. Sci-fi is your thing but invasion shows can be slow. Mixed reviews suggest inconsistent quality.",
+      "predictedRating": 3.5,
+      "predictedRatingReason": "Predicted 3.5★: Alien invasion told through multiple perspectives across continents - each storyline in its own genre (military sci-fi, survival horror, kids adventure). Similar slow-burn multi-perspective structure to Dark (4.5★). S1 is notoriously slow but S2/S3 improve significantly. Risk: some find characters frustrating early on.",
       "recommendedWatchPreference": "solo",
       "title": "Invasion",
       "year": 2021,
@@ -6809,8 +6809,8 @@
       "tmdbRating": 7.488,
       "tmdbVoteCount": 457,
       "predictedRating": 3.5,
-      "predictedRatingReason": "Predicted 3.5★: Clever mystery format from Rian Johnson. Standalone episodes so cancellation doesn't hurt the story. Similar light mystery vibe to Only Murders (4★). Natasha Lyonne is great.",
-      "recommendedWatchPreference": "solo",
+      "predictedRatingReason": "Predicted 3.5★: Clever mystery format from Rian Johnson. Standalone episodes so cancellation doesn't hurt the story. Similar light mystery vibe to Only Murders (4★ together). Helen loves episodic formats. Caveat: inverted mystery pacing (you know whodunit, watch the reveal) may feel slow.",
+      "recommendedWatchPreference": "together",
       "predictionsUpdatedAt": "2026-01-11T02:09:29.737Z",
       "streamingServices": [
         "stan"
@@ -7671,8 +7671,8 @@
       "rtAudienceScore": 75,
       "rtFetchedAt": "2026-01-11T10:50:23.188Z",
       "predictedRating": 4,
-      "predictedRatingReason": "Predicted 4★ (IMDB 8.0, 98% RT): Post-apocalyptic but hopeful - focuses on art, memory, and human connection after pandemic. Mackenzie Davis stars. LIMITED SERIES complete (10 episodes). Beautiful non-linear storytelling. Similar prestige limited series vibe to your favorites.",
-      "recommendedWatchPreference": "together",
+      "predictedRatingReason": "Predicted 4★ (IMDB 8.0, 98% RT): Beautiful post-apocalyptic drama about art and human connection. Mackenzie Davis. LIMITED SERIES (10 eps). BUT: non-linear timeline jumping decades, literary pacing, 'rewards patient viewers' = too slow for Helen. Structurally closer to Dark/Leftovers than Chernobyl. Worth trialing 1-2 eps together though - some episodes focus on individual character arcs.",
+      "recommendedWatchPreference": "solo",
       "predictionsUpdatedAt": "2026-01-11T10:56:52.327Z"
     },
     {
