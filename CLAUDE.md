@@ -298,10 +298,11 @@ Check `data/settings.json` for current subscriptions. As of last update: Stan, P
 - Light mystery-comedy (Only Murders 4★, Shrinking 4★)
 - Easy watches (Nobody Wants This 4★, Gilmore Girls 4★ - "easy watch")
 - WWII + True Story + Uplifting = near-guaranteed hit (A Small Light 4★, All the Light We Cannot See 4★)
+- **Episode-of-the-week / procedural formats** - Helen enjoys procedurals and case-of-the-week formats. Tim often watches these together because Helen likes them (e.g., Fringe 4★, Elsbeth). Helen also watches classic procedurals solo (Bones, Law & Order SVU, House) - Tim is less interested in these.
 
 **Helen dislikes:**
 - Superhero content ("helen doesn't like superhero shows")
-- Crude humor (The Boys 4★, What We Do in the Shadows 3★ - "too crude for Helen")
+- Crude humor, graphic sex/language (The Boys 4★, What We Do in the Shadows 3★ - "too crude for Helen") - though she'll tolerate these if the show is gripping enough (e.g., early Homeland seasons, The Americans)
 - Slow pacing (Severance - "too slow for helen", Fargo - "bit slow paced for Helen")
 - Shows that get boring (Elsbeth 3★ - "got boring", Night Agent 3★ - "so boring in 2nd season")
 - Drawn out mysteries (The Agency 3.5★ - "a little slow paced", Paradise 3.5★ - "a little drawn out")
