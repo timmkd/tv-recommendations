@@ -36,13 +36,13 @@ function StarRating({
   };
 
   return (
-    <div className="flex items-center gap-1" onMouseLeave={() => setHoverValue(null)}>
+    <div className="flex items-center gap-0.5 sm:gap-1" onMouseLeave={() => setHoverValue(null)}>
       {[0, 1, 2, 3, 4].map((starIndex) => {
         const fillLevel = Math.max(0, Math.min(1, displayValue - starIndex));
         return (
           <div
             key={starIndex}
-            className="relative w-7 h-7 cursor-pointer"
+            className="relative w-5 h-5 sm:w-7 sm:h-7 cursor-pointer"
             onMouseMove={(e) => handleMouseMove(e, starIndex)}
             onClick={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -52,7 +52,7 @@ function StarRating({
             }}
           >
             <svg
-              className="absolute inset-0 w-7 h-7 text-gray-600"
+              className="absolute inset-0 w-5 h-5 sm:w-7 sm:h-7 text-gray-600"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -63,7 +63,7 @@ function StarRating({
               style={{ width: `${fillLevel * 100}%` }}
             >
               <svg
-                className="w-7 h-7 text-yellow-400"
+                className="w-5 h-5 sm:w-7 sm:h-7 text-yellow-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -73,7 +73,7 @@ function StarRating({
           </div>
         );
       })}
-      <span className="ml-2 text-sm text-gray-400">
+      <span className="ml-1.5 sm:ml-2 text-xs sm:text-sm text-gray-400">
         {value ? `${value}/5` : 'Not rated'}
       </span>
     </div>
@@ -375,7 +375,7 @@ export default function ShowEditModal({
       />
 
       {/* Modal */}
-      <div className="relative bg-gray-900 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-gray-900 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-2 sm:mx-4">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -397,29 +397,29 @@ export default function ShowEditModal({
             </div>
           </div>
         ) : (
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {/* Header with poster and title */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex gap-3 sm:gap-4 mb-4 sm:mb-6">
               {show.posterPath ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w185${show.posterPath}`}
                   alt={show.title}
-                  className="w-24 rounded-lg shadow-lg flex-shrink-0"
+                  className="w-16 sm:w-24 rounded-lg shadow-lg flex-shrink-0"
                 />
               ) : (
-                <div className="w-24 aspect-[2/3] bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-16 sm:w-24 aspect-[2/3] bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-gray-500 text-xs text-center px-2">{show.title}</span>
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-bold mb-1 pr-8">{show.title}</h2>
-                <div className="text-gray-400 text-sm">
+                <h2 className="text-base sm:text-xl font-bold mb-1 pr-8">{show.title}</h2>
+                <div className="text-gray-400 text-xs sm:text-sm">
                   {show.year && <span>{show.year}</span>}
                   {show.numberOfSeasons && (
-                    <span className="ml-2">• {show.numberOfSeasons} season{show.numberOfSeasons > 1 ? 's' : ''}</span>
+                    <span className="ml-2">• {show.numberOfSeasons}S</span>
                   )}
                   {show.showStatus && (
-                    <span className={`ml-2 px-1.5 py-0.5 rounded text-xs ${
+                    <span className={`ml-2 px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs ${
                       show.showStatus === 'Ended' ? 'bg-green-900/50 text-green-300' :
                       show.showStatus === 'Returning Series' ? 'bg-blue-900/50 text-blue-300' :
                       show.showStatus === 'Canceled' ? 'bg-red-900/50 text-red-300' :
@@ -430,40 +430,43 @@ export default function ShowEditModal({
                   )}
                 </div>
                 {show.genres.length > 0 && (
-                  <div className="text-gray-500 text-xs mt-1">
-                    {show.genres.slice(0, 4).join(' • ')}
+                  <div className="text-gray-500 text-[10px] sm:text-xs mt-1">
+                    {show.genres.slice(0, 3).join(' • ')}
                   </div>
                 )}
                 {show.streamingServices.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {show.streamingServices.map((service) => (
-                      <span key={service} className="px-2 py-0.5 bg-gray-700 rounded text-xs">
+                  <div className="flex flex-wrap gap-1 mt-1.5 sm:mt-2">
+                    {show.streamingServices.slice(0, 4).map((service) => (
+                      <span key={service} className="px-1.5 sm:px-2 py-0.5 bg-gray-700 rounded text-[10px] sm:text-xs">
                         {service}
                       </span>
                     ))}
+                    {show.streamingServices.length > 4 && (
+                      <span className="text-[10px] sm:text-xs text-gray-500">+{show.streamingServices.length - 4}</span>
+                    )}
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Overview */}
+            {/* Overview - hidden on mobile to save space */}
             {show.overview && (
-              <div className="mb-5 p-3 bg-gray-800/50 rounded-lg">
+              <div className="hidden sm:block mb-5 p-3 bg-gray-800/50 rounded-lg">
                 <p className="text-sm text-gray-300 leading-relaxed">{show.overview}</p>
               </div>
             )}
 
             {/* AI Predictions (only show if no user rating/preference set) */}
             {(!rating && show.predictedRating) || (!watchPreference && show.recommendedWatchPreference) ? (
-              <div className="mb-5 p-3 bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-700/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-purple-400 text-sm font-medium">🤖 AI Predictions</span>
+              <div className="mb-3 sm:mb-5 p-2 sm:p-3 bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-700/50 rounded-lg">
+                <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                  <span className="text-purple-400 text-xs sm:text-sm font-medium">🤖 AI Predictions</span>
                 </div>
-                <div className="space-y-2 text-sm">
+                <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm">
                   {!rating && show.predictedRating && (
                     <div>
                       <span className="text-yellow-500">~{show.predictedRating}★</span>
-                      <span className="text-gray-400 ml-2">predicted rating</span>
+                      <span className="text-gray-400 ml-1 sm:ml-2">predicted</span>
                     </div>
                   )}
                   {!watchPreference && show.recommendedWatchPreference && (
@@ -471,28 +474,28 @@ export default function ShowEditModal({
                       <span className={show.recommendedWatchPreference === 'solo' ? 'text-blue-400' : 'text-pink-400'}>
                         {show.recommendedWatchPreference === 'solo' ? 'Solo' : 'Together'}
                       </span>
-                      <span className="text-gray-400 ml-2">recommended</span>
+                      <span className="text-gray-400 ml-1 sm:ml-2">rec.</span>
                     </div>
                   )}
-                  {show.predictedRatingReason && (
-                    <p className="text-gray-400 text-xs mt-2 italic">
-                      &quot;{show.predictedRatingReason}&quot;
-                    </p>
-                  )}
                 </div>
+                {show.predictedRatingReason && (
+                  <p className="text-gray-400 text-[10px] sm:text-xs mt-1 sm:mt-2 italic">
+                    &quot;{show.predictedRatingReason}&quot;
+                  </p>
+                )}
               </div>
             ) : null}
 
-            {/* Editable Fields - Two Column Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Editable Fields - Stacks on mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Left Column - Your Rating */}
-              <div className="bg-gray-800/50 rounded-lg p-4 space-y-4 flex flex-col">
-                <h3 className="text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Your Rating</h3>
+              <div className="bg-gray-800/50 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-4 flex flex-col">
+                <h3 className="text-xs sm:text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Your Rating</h3>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Status</label>
-                    <span className={`inline-block px-3 py-1.5 rounded text-sm font-medium ${
+                    <label className="block text-[10px] sm:text-xs text-gray-500 mb-1">Status</label>
+                    <span className={`inline-block px-2 sm:px-3 py-1 sm:py-1.5 rounded text-xs sm:text-sm font-medium ${
                       status === 'completed' ? 'bg-green-900/50 text-green-300' :
                       status === 'watching' ? 'bg-blue-900/50 text-blue-300' :
                       'bg-yellow-900/50 text-yellow-300'
@@ -502,7 +505,7 @@ export default function ShowEditModal({
                     </span>
                   </div>
                   <div className="flex-1">
-                    <label className="block text-xs text-gray-500 mb-1">Rating</label>
+                    <label className="block text-[10px] sm:text-xs text-gray-500 mb-1">Rating</label>
                     <div className="flex items-center gap-2">
                       <StarRating value={rating} onChange={setRating} />
                       {rating && (
@@ -518,23 +521,23 @@ export default function ShowEditModal({
                 </div>
 
                 <div className="flex-1 flex flex-col">
-                  <label className="block text-xs text-gray-500 mb-1">What did you think? (likes/dislikes)</label>
+                  <label className="block text-[10px] sm:text-xs text-gray-500 mb-1">What did you think?</label>
                   <textarea
                     value={reviewNote}
                     onChange={(e) => setReviewNote(e.target.value)}
                     placeholder="Great pacing, loved the characters..."
-                    rows={4}
-                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm flex-1 min-h-[80px]"
+                    rows={3}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm flex-1 min-h-[60px] sm:min-h-[80px]"
                   />
                 </div>
               </div>
 
               {/* Right Column - Watch Context */}
-              <div className="bg-gray-800/50 rounded-lg p-4 space-y-4">
-                <h3 className="text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Watch Context</h3>
+              <div className="bg-gray-800/50 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-4">
+                <h3 className="text-xs sm:text-sm font-medium text-gray-300 border-b border-gray-700 pb-2">Watch Context</h3>
 
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">Who do you watch this with?</label>
+                  <label className="block text-[10px] sm:text-xs text-gray-500 mb-1">Who watches?</label>
                   <div className="flex gap-2">
                     {PREFERENCE_OPTIONS.map((opt) => (
                       <button
@@ -542,7 +545,7 @@ export default function ShowEditModal({
                         onClick={() => setWatchPreference(
                           watchPreference === opt.value ? undefined : opt.value
                         )}
-                        className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${
+                        className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded text-xs sm:text-sm font-medium transition-colors ${
                           watchPreference === opt.value
                             ? opt.value === 'solo'
                               ? 'bg-blue-600 text-white'
@@ -557,24 +560,24 @@ export default function ShowEditModal({
                 </div>
 
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">Why? (helps AI learn)</label>
+                  <label className="block text-[10px] sm:text-xs text-gray-500 mb-1">Why? (helps AI)</label>
                   <textarea
                     value={watchPreferenceNote}
                     onChange={(e) => setWatchPreferenceNote(e.target.value)}
-                    placeholder="Too intense for together watching..."
+                    placeholder="Too intense for together..."
                     rows={2}
-                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">Notes</label>
+                  <label className="block text-[10px] sm:text-xs text-gray-500 mb-1">Notes</label>
                   <textarea
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Any other notes..."
                     rows={2}
-                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm"
                   />
                 </div>
               </div>
@@ -582,23 +585,23 @@ export default function ShowEditModal({
 
             {/* External Scores Reference */}
             {(show.tmdbRating || show.rtCriticsScore || show.rtAudienceScore) && (
-              <div className="mt-4 pt-3 border-t border-gray-700/50">
-                <div className="flex items-center gap-4 text-xs text-gray-500">
-                  <span className="uppercase tracking-wide">Public scores:</span>
+              <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-gray-700/50">
+                <div className="flex items-center gap-2 sm:gap-4 text-[10px] sm:text-xs text-gray-500">
+                  <span className="uppercase tracking-wide hidden sm:inline">Public scores:</span>
                   {show.tmdbRating && (
-                    <span className="flex items-center gap-1" title={`TMDB: ${show.tmdbVoteCount?.toLocaleString() || 0} votes`}>
+                    <span className="flex items-center gap-0.5 sm:gap-1" title={`TMDB: ${show.tmdbVoteCount?.toLocaleString() || 0} votes`}>
                       <span>⭐</span>
-                      <span>{show.tmdbRating.toFixed(1)}/10</span>
+                      <span>{show.tmdbRating.toFixed(1)}</span>
                     </span>
                   )}
                   {show.rtCriticsScore && (
-                    <span className="flex items-center gap-1" title="Rotten Tomatoes Critics">
+                    <span className="flex items-center gap-0.5 sm:gap-1" title="Rotten Tomatoes Critics">
                       <span>🍅</span>
                       <span>{show.rtCriticsScore}%</span>
                     </span>
                   )}
                   {show.rtAudienceScore && (
-                    <span className="flex items-center gap-1" title="Rotten Tomatoes Audience">
+                    <span className="flex items-center gap-0.5 sm:gap-1" title="Rotten Tomatoes Audience">
                       <span>🍿</span>
                       <span>{show.rtAudienceScore}%</span>
                     </span>
@@ -608,37 +611,37 @@ export default function ShowEditModal({
             )}
 
             {/* Footer */}
-            <div className="mt-4 pt-4 border-t border-gray-700 space-y-3">
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-700 space-y-2 sm:space-y-3">
               {/* Toggles Row */}
-              <div className="flex items-center gap-6 text-sm">
-                <label className="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
+              <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm">
+                <label className="flex items-center gap-1.5 sm:gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
                   <button
                     type="button"
                     onClick={() => setHidden(!hidden)}
-                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    className={`relative inline-flex h-4 sm:h-5 w-7 sm:w-9 items-center rounded-full transition-colors ${
                       hidden ? 'bg-yellow-600' : 'bg-gray-600'
                     }`}
                   >
                     <span
-                      className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
-                        hidden ? 'translate-x-5' : 'translate-x-1'
+                      className={`inline-block h-2.5 sm:h-3 w-2.5 sm:w-3 transform rounded-full bg-white transition-transform ${
+                        hidden ? 'translate-x-3.5 sm:translate-x-5' : 'translate-x-0.5 sm:translate-x-1'
                       }`}
                     />
                   </button>
                   Hidden
                 </label>
 
-                <label className="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
+                <label className="flex items-center gap-1.5 sm:gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
                   <button
                     type="button"
                     onClick={() => setDropped(!dropped)}
-                    className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                    className={`relative inline-flex h-4 sm:h-5 w-7 sm:w-9 items-center rounded-full transition-colors ${
                       dropped ? 'bg-red-600' : 'bg-gray-600'
                     }`}
                   >
                     <span
-                      className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${
-                        dropped ? 'translate-x-5' : 'translate-x-1'
+                      className={`inline-block h-2.5 sm:h-3 w-2.5 sm:w-3 transform rounded-full bg-white transition-transform ${
+                        dropped ? 'translate-x-3.5 sm:translate-x-5' : 'translate-x-0.5 sm:translate-x-1'
                       }`}
                     />
                   </button>
@@ -648,7 +651,7 @@ export default function ShowEditModal({
 
               {/* Sync Status */}
               {syncStatus && (
-                <div className="text-sm text-green-400 bg-green-900/30 px-3 py-2 rounded">
+                <div className="text-xs sm:text-sm text-green-400 bg-green-900/30 px-2 sm:px-3 py-1.5 sm:py-2 rounded">
                   {syncStatus}
                 </div>
               )}
@@ -657,16 +660,16 @@ export default function ShowEditModal({
               <div className="flex items-center justify-between">
                 <button
                   onClick={deleteShowHandler}
-                  className="text-gray-500 hover:text-red-400 text-sm transition-colors"
+                  className="text-gray-500 hover:text-red-400 text-xs sm:text-sm transition-colors"
                 >
                   Delete
                 </button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <button
                     onClick={syncShow}
                     disabled={syncing || saving}
-                    className="text-gray-400 hover:text-white disabled:text-gray-600 px-3 py-2 text-sm border border-gray-600 hover:border-gray-500 disabled:border-gray-700 rounded transition-colors"
+                    className="text-gray-400 hover:text-white disabled:text-gray-600 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border border-gray-600 hover:border-gray-500 disabled:border-gray-700 rounded transition-colors"
                     title="Sync with Trakt, refresh TMDB, RT scores, and streaming"
                   >
                     {syncing ? 'Syncing...' : 'Sync'}
@@ -674,7 +677,7 @@ export default function ShowEditModal({
                   <button
                     onClick={saveChanges}
                     disabled={saving || syncing}
-                    className="bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 px-5 py-2 rounded font-medium text-sm"
+                    className="bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 px-3 sm:px-5 py-1.5 sm:py-2 rounded font-medium text-xs sm:text-sm"
                   >
                     {saving ? 'Saving...' : 'Save'}
                   </button>
