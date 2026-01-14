@@ -22,6 +22,7 @@ export interface Show {
   predictedRating?: number; // 0.5 to 5 in 0.5 increments
   predictedRatingReason?: string;
   recommendedWatchPreference?: WatchPreference;
+  predictionsUpdatedAt?: string; // ISO date - when AI predictions were last updated
 
   // General notes
   notes?: string;
