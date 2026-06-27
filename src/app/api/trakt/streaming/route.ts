@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSettings, getOverlayByTmdbId, saveOverlay, getOverlaysMap } from '@/lib/db/queries';
-import { getUserShows, getShowByTmdbId, getShowStreaming } from '@/lib/trakt';
+import { getUserShows, getShowStreaming } from '@/lib/trakt';
 import { getStreamingAvailability, getStreamingByTitle } from '@/lib/justwatch';
 
 // POST to fetch streaming availability from TMDB
@@ -69,21 +69,21 @@ export async function POST(request: NextRequest) {
       try {
         let services: string[] = [];
 
-        // Try 1: Trakt streaming endpoint (most reliable - uses slug)
-        if (show.slug) {
-          services = await getShowStreaming(show.slug, 'au');
-        }
+        // Try 1: JustWatch by TMDB id — accurate source that filters subscription/free
+        // vs rent/buy. (Trakt's watchnow/au endpoint currently returns empty for AU, so
+        // it's demoted to a last resort below.)
+        const streamingData = await getStreamingAvailability(show.tmdbId, show.title, show.year);
+        services = streamingData.services;
 
-        // Try 2: JustWatch by TMDB ID (if Trakt returned empty)
-        if (services.length === 0) {
-          const streamingData = await getStreamingAvailability(show.tmdbId);
-          services = streamingData.services;
-        }
-
-        // Try 3: JustWatch by title (final fallback)
+        // Try 2: JustWatch by title only (if TMDB match failed)
         if (services.length === 0 && show.title) {
           const titleData = await getStreamingByTitle(show.title, show.year);
           services = titleData.services;
+        }
+
+        // Try 3: Trakt watchnow (last resort — usually empty for AU)
+        if (services.length === 0 && show.slug) {
+          services = await getShowStreaming(show.slug, 'au');
         }
 
         // Get existing overlay and update streaming data

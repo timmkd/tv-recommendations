@@ -27,13 +27,15 @@ const STREAMING_BRANDS: Record<string, { bg: string; activeBg: string; logo: str
   'britbox': { bg: 'bg-red-900/60', activeBg: 'bg-red-700', logo: '/aGIS8maihUm60A3moKYD9gfYHYT.jpg' },
   'abc-iview': { bg: 'bg-green-900/60', activeBg: 'bg-green-600', logo: '/zR1TJmEwssf0ZThB2iByNtZi2Oo.jpg' },
   'sbs-on-demand': { bg: 'bg-red-900/60', activeBg: 'bg-red-600', logo: '/cR4okiAS0zcXb4ufs3mi4PImXPB.jpg' },
+  'ten-play': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-500', logo: '/8fIieu3ZfmTPu8eozZbtgATcPO5.jpg' },
   'amc-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-600', logo: '/ovmu6uot1XVvsemM2dDySXLiX57.jpg' },
 };
 
-type SortOption = 'updated' | 'title' | 'title-desc' | 'year' | 'year-asc' | 'rating' | 'predicted' | 'rt-critics' | 'rt-audience';
+type SortOption = 'updated' | 'added' | 'title' | 'title-desc' | 'year' | 'year-asc' | 'rating' | 'predicted' | 'rt-critics' | 'rt-audience';
 
 const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'updated', label: 'Recently Updated' },
+  { value: 'added', label: 'Recently Added' },
   { value: 'title', label: 'Title (A-Z)' },
   { value: 'title-desc', label: 'Title (Z-A)' },
   { value: 'year', label: 'Year (Newest)' },
@@ -54,6 +56,7 @@ function ShowsContent() {
   const watchPrefFilter = searchParams.get('watchpref') as 'solo' | 'together' | null;
   const showHidden = searchParams.get('hidden') === 'true';
   const showDropped = searchParams.get('dropped') === 'true';
+  const showRemoved = searchParams.get('removed') === 'true';
   const sortParam = (searchParams.get('sort') as SortOption) || 'updated';
 
   const [shows, setShows] = useState<Show[]>([]);
@@ -69,6 +72,8 @@ function ShowsContent() {
   const [refreshingTrakt, setRefreshingTrakt] = useState(false);
   const [traktStatus, setTraktStatus] = useState<string | null>(null);
   const [syncingTrakt, setSyncingTrakt] = useState(false);
+  const [syncingProgress, setSyncingProgress] = useState(false);
+  const [progressStatus, setProgressStatus] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Load shows - first from cache (fast), then sync Trakt in background
@@ -110,8 +115,9 @@ function ShowsContent() {
               });
             }
           }
-        } catch {
-          // Trakt sync failed, keep using cached data
+        } catch (err) {
+          setTraktStatus('Trakt sync failed - showing cached data');
+          setTimeout(() => setTraktStatus(null), 5000);
         } finally {
           setSyncingTrakt(false);
         }
@@ -172,6 +178,60 @@ function ShowsContent() {
     }
   };
 
+  // Sync progress from Trakt (batched operation - updates watching/completed status)
+  const syncProgress = async () => {
+    setSyncingProgress(true);
+    setProgressStatus('Syncing progress...');
+
+    let totalSynced = 0;
+    let iterations = 0;
+    const maxIterations = 20; // Safety limit
+
+    try {
+      // Keep syncing in batches until no more remaining
+      while (iterations < maxIterations) {
+        iterations++;
+        const response = await fetch('/api/trakt/sync/progress', { method: 'POST' });
+
+        if (!response.ok) {
+          setProgressStatus('Failed to sync progress - check console');
+          break;
+        }
+
+        const data = await response.json();
+
+        if (!data.success) {
+          setProgressStatus(data.message || 'Failed to sync progress');
+          break;
+        }
+
+        totalSynced += data.updated || 0;
+        setProgressStatus(`Syncing... ${totalSynced} updated, ${data.remaining || 0} remaining`);
+
+        // Stop if no more remaining
+        if (!data.remaining || data.remaining === 0) {
+          setProgressStatus(`✓ Done! ${data.stats.watching} watching, ${data.stats.completed} completed, ${data.stats.watchlist} watchlist`);
+          // Refresh shows to get updated statuses
+          await fetchShows();
+          break;
+        }
+
+        // Small delay between batches
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
+      if (iterations >= maxIterations) {
+        setProgressStatus(`Stopped after ${maxIterations} batches. ${totalSynced} updated.`);
+        await fetchShows();
+      }
+    } catch {
+      setProgressStatus('Error syncing progress');
+    } finally {
+      setSyncingProgress(false);
+      setTimeout(() => setProgressStatus(null), 8000);
+    }
+  };
+
   useEffect(() => {
     fetchShows();
     fetchSettings();
@@ -218,6 +278,12 @@ function ShowsContent() {
   } else {
     filtered = filtered.filter(s => !s.hidden);
   }
+  // Removed filter: OFF = hide removed (no status), ON = show ONLY removed
+  if (showRemoved) {
+    filtered = filtered.filter(s => !s.status);
+  } else {
+    filtered = filtered.filter(s => !!s.status);
+  }
   if (statusFilter) {
     filtered = filtered.filter(s => s.status === statusFilter);
   }
@@ -229,7 +295,12 @@ function ShowsContent() {
     filtered = filtered.filter(s => (s.predictedRating === undefined || s.predictedRating === null) && (s.rating === undefined || s.rating === null));
   }
   if (streamingFilters.length > 0) {
-    filtered = filtered.filter(s => s.streamingServices?.some(service => streamingFilters.includes(service)));
+    // Special case: "none" means shows with no streaming service
+    if (streamingFilters.includes('none')) {
+      filtered = filtered.filter(s => !s.streamingServices || s.streamingServices.length === 0);
+    } else {
+      filtered = filtered.filter(s => s.streamingServices?.some(service => streamingFilters.includes(service)));
+    }
   }
   if (watchPrefFilter) {
     // Filter by actual preference or recommended preference
@@ -246,6 +317,7 @@ function ShowsContent() {
   // Count hidden and dropped shows for the badges
   const hiddenCount = shows.filter(s => s.hidden).length;
   const droppedCount = shows.filter(s => s.dropped).length;
+  const removedCount = shows.filter(s => !s.status).length;
 
   // Apply sorting
   filtered.sort((a, b) => {
@@ -276,6 +348,8 @@ function ShowsContent() {
         if (a.rtAudienceScore && !b.rtAudienceScore) return -1;
         if (!a.rtAudienceScore && b.rtAudienceScore) return 1;
         return (b.rtAudienceScore || 0) - (a.rtAudienceScore || 0);
+      case 'added':
+        return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
       case 'updated':
       default:
         return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
@@ -482,7 +556,7 @@ function ShowsContent() {
   };
 
   // Helper to build filter URLs
-  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; unpredicted?: boolean; streaming?: string[] | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; sort?: SortOption; view?: 'grid' | 'list' }) => {
+  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; unpredicted?: boolean; streaming?: string[] | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; removed?: boolean; sort?: SortOption; view?: 'grid' | 'list' }) => {
     const urlParams = new URLSearchParams();
     if (params.status) urlParams.set('status', params.status);
     if (params.unrated) urlParams.set('unrated', 'true');
@@ -491,6 +565,7 @@ function ShowsContent() {
     if (params.watchpref) urlParams.set('watchpref', params.watchpref);
     if (params.hidden) urlParams.set('hidden', 'true');
     if (params.dropped) urlParams.set('dropped', 'true');
+    if (params.removed) urlParams.set('removed', 'true');
     if (params.sort && params.sort !== 'updated') urlParams.set('sort', params.sort);
     if (params.view && params.view !== 'grid') urlParams.set('view', params.view);
     const query = urlParams.toString();
@@ -589,6 +664,14 @@ function ShowsContent() {
               >
                 🔄 {refreshingTrakt ? 'Syncing...' : 'Sync Trakt'}
               </button>
+              <button
+                onClick={syncProgress}
+                disabled={syncingProgress}
+                className="bg-yellow-700 hover:bg-yellow-600 disabled:bg-gray-700 px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
+                title="Sync watching/completed status from Trakt (slow)"
+              >
+                📊 {syncingProgress ? 'Syncing...' : 'Sync Progress'}
+              </button>
               <Link
                 href="/add"
                 className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-medium"
@@ -625,6 +708,14 @@ function ShowsContent() {
                 title="Sync Trakt"
               >
                 🔄
+              </button>
+              <button
+                onClick={syncProgress}
+                disabled={syncingProgress}
+                className="bg-yellow-700 hover:bg-yellow-600 disabled:bg-gray-700 px-2 py-1.5 rounded text-xs font-medium"
+                title="Sync watching/completed status"
+              >
+                📊
               </button>
               <Link
                 href="/add"
@@ -666,6 +757,18 @@ function ShowsContent() {
           </div>
         )}
 
+        {progressStatus && (
+          <div className={`mb-4 rounded-lg px-4 py-3 text-sm ${
+            progressStatus.includes('✓')
+              ? 'bg-green-900/50 border border-green-700 text-green-200'
+              : progressStatus.includes('Error') || progressStatus.includes('Failed')
+              ? 'bg-red-900/50 border border-red-700 text-red-200'
+              : 'bg-yellow-900/50 border border-yellow-700 text-yellow-200'
+          }`}>
+            {progressStatus}
+          </div>
+        )}
+
         {/* Filter Bar - Row 1: Search + Status + Special Filters */}
         <div className="mb-2 sm:mb-3 overflow-x-auto pb-2 -mx-3 px-3 sm:mx-0 sm:px-0">
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-max">
@@ -700,7 +803,7 @@ function ShowsContent() {
 
             {/* Status Filters */}
             <Link
-              href={buildFilterUrl({ unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+              href={buildFilterUrl({ unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                 !statusFilter && !unratedFilter && !unpredictedFilter ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -710,7 +813,7 @@ function ShowsContent() {
             {(Object.keys(STATUS_LABELS) as ShowStatus[]).map(status => (
               <Link
                 key={status}
-                href={buildFilterUrl({ status, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                href={buildFilterUrl({ status, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                 className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                   statusFilter === status ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -723,7 +826,7 @@ function ShowsContent() {
 
             {/* Special Filters */}
             <Link
-              href={buildFilterUrl({ status: statusFilter, unrated: !unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+              href={buildFilterUrl({ status: statusFilter, unrated: !unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                 unratedFilter ? 'bg-yellow-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -731,7 +834,7 @@ function ShowsContent() {
               Unrated
             </Link>
             <Link
-              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: !unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: !unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                 unpredictedFilter ? 'bg-purple-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -740,7 +843,7 @@ function ShowsContent() {
             </Link>
             {hiddenCount > 0 && (
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: !showHidden, dropped: showDropped, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: !showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                 className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                   showHidden ? 'bg-orange-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -750,7 +853,7 @@ function ShowsContent() {
             )}
             {droppedCount > 0 && (
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: !showDropped, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: !showDropped, removed: showRemoved, sort: sortParam })}
                 className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                   showDropped ? 'bg-gray-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -758,9 +861,19 @@ function ShowsContent() {
                 Dropped ({droppedCount})
               </Link>
             )}
+            {removedCount > 0 && (
+              <Link
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: !showRemoved, sort: sortParam })}
+                className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
+                  showRemoved ? 'bg-amber-700' : 'bg-gray-700 hover:bg-gray-600'
+                }`}
+              >
+                Removed ({removedCount})
+              </Link>
+            )}
 
             {/* Clear all filters button */}
-            {(statusFilter || unratedFilter || unpredictedFilter || streamingFilters.length > 0 || watchPrefFilter || showHidden || showDropped || sortParam !== 'updated' || searchQuery) && (
+            {(statusFilter || unratedFilter || unpredictedFilter || streamingFilters.length > 0 || watchPrefFilter || showHidden || showDropped || showRemoved || sortParam !== 'updated' || searchQuery) && (
               <Link
                 href="/shows"
                 onClick={() => setSearchQuery('')}
@@ -779,12 +892,21 @@ function ShowsContent() {
             {allServices.length > 0 && (
               <div className="hidden sm:flex items-center gap-1.5">
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                   className={`px-2 py-1 rounded text-xs ${
                     streamingFilters.length === 0 ? 'bg-purple-600' : 'bg-gray-700 hover:bg-gray-600'
                   }`}
                 >
                   All
+                </Link>
+                <Link
+                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters.includes('none') ? null : ['none'], watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                  className={`px-2 py-1 rounded text-xs ${
+                    streamingFilters.includes('none') ? 'bg-red-600' : 'bg-gray-700 hover:bg-gray-600'
+                  }`}
+                  title="Shows with no streaming service"
+                >
+                  No Platform
                 </Link>
                 {allServices.map(service => {
                   const brand = STREAMING_BRANDS[service.slug];
@@ -795,7 +917,7 @@ function ShowsContent() {
                   return (
                     <Link
                       key={service.slug}
-                      href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: newFilters.length > 0 ? newFilters : null, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                      href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: newFilters.length > 0 ? newFilters : null, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                       className={`px-1.5 py-1 rounded-md flex items-center transition-all ${
                         isActive
                           ? 'ring-2 ring-white bg-gray-700'
@@ -822,6 +944,15 @@ function ShowsContent() {
             {/* Mobile streaming - compact, show all services */}
             {allServices.length > 0 && (
               <div className="flex sm:hidden items-center gap-1">
+                <Link
+                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters.includes('none') ? null : ['none'], watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                  className={`px-1.5 py-0.5 rounded text-[10px] ${
+                    streamingFilters.includes('none') ? 'bg-red-600' : 'bg-gray-700 hover:bg-gray-600'
+                  }`}
+                  title="No platform"
+                >
+                  ∅
+                </Link>
                 {allServices.map(service => {
                   const brand = STREAMING_BRANDS[service.slug];
                   const isActive = streamingFilters.includes(service.slug);
@@ -831,7 +962,7 @@ function ShowsContent() {
                   return (
                     <Link
                       key={service.slug}
-                      href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: newFilters.length > 0 ? newFilters : null, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                      href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: newFilters.length > 0 ? newFilters : null, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                       className={`p-0.5 rounded-md flex items-center transition-all ${
                         isActive
                           ? 'ring-2 ring-white'
@@ -859,7 +990,7 @@ function ShowsContent() {
             <div className="flex items-center gap-1 sm:gap-1.5">
               <span className="text-[10px] sm:text-xs text-gray-500 hidden sm:inline">Watch:</span>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: null, hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: null, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                 className={`px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-xs ${
                   !watchPrefFilter ? 'bg-teal-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -867,7 +998,7 @@ function ShowsContent() {
                 All
               </Link>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter === 'solo' ? null : 'solo', hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter === 'solo' ? null : 'solo', hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                 className={`px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-xs ${
                   watchPrefFilter === 'solo' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -875,7 +1006,7 @@ function ShowsContent() {
                 Solo
               </Link>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter === 'together' ? null : 'together', hidden: showHidden, dropped: showDropped, sort: sortParam })}
+                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter === 'together' ? null : 'together', hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
                 className={`px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-xs ${
                   watchPrefFilter === 'together' ? 'bg-pink-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -889,7 +1020,7 @@ function ShowsContent() {
               <select
                 value={sortParam}
                 onChange={(e) => {
-                  const url = buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: e.target.value as SortOption, view: viewParam as 'grid' | 'list' });
+                  const url = buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: e.target.value as SortOption, view: viewParam as 'grid' | 'list' });
                   window.location.href = url;
                 }}
                 className="bg-gray-800 border border-gray-700 rounded-lg px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer"
@@ -903,7 +1034,7 @@ function ShowsContent() {
 
               <div className="flex items-center gap-0.5 sm:gap-1 bg-gray-800 rounded-lg p-0.5">
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam, view: 'grid' })}
+                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam, view: 'grid' })}
                   className={`p-1 sm:p-1.5 rounded transition-colors ${
                     viewParam === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700'
                   }`}
@@ -914,7 +1045,7 @@ function ShowsContent() {
                   </svg>
                 </Link>
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam, view: 'list' })}
+                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam, view: 'list' })}
                   className={`p-1 sm:p-1.5 rounded transition-colors ${
                     viewParam === 'list' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700'
                   }`}
@@ -940,7 +1071,7 @@ function ShowsContent() {
                     <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-12"></th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam === 'title' ? 'title-desc' : 'title', view: 'list' })}
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam === 'title' ? 'title-desc' : 'title', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Title
@@ -951,7 +1082,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: sortParam === 'year' ? 'year-asc' : 'year', view: 'list' })}
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam === 'year' ? 'year-asc' : 'year', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Year
@@ -963,7 +1094,7 @@ function ShowsContent() {
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'rating', view: 'list' })}
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'rating', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Rating
@@ -972,7 +1103,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden md:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'predicted', view: 'list' })}
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'predicted', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Predicted
@@ -981,7 +1112,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden lg:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'rt-critics', view: 'list' })}
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'rt-critics', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         🍅
@@ -990,7 +1121,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden lg:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, sort: 'rt-audience', view: 'list' })}
+                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'rt-audience', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         🍿
@@ -1043,8 +1174,8 @@ function ShowsContent() {
                         <td className="px-3 py-2 text-gray-400 text-sm hidden sm:table-cell">{show.year}</td>
                         {/* Status */}
                         <td className="px-3 py-2">
-                          <span className={`px-2 py-0.5 rounded text-xs ${STATUS_LABELS[show.status].color}`}>
-                            {STATUS_LABELS[show.status].label}
+                          <span className={`px-2 py-0.5 rounded text-xs ${show.status ? STATUS_LABELS[show.status].color : 'bg-gray-600'}`}>
+                            {show.status ? STATUS_LABELS[show.status].label : 'Removed'}
                           </span>
                         </td>
                         {/* Rating */}
@@ -1203,8 +1334,8 @@ function ShowsContent() {
 
                     {/* Status + RT Scores row */}
                     <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-1.5">
-                      <span className={`px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs ${STATUS_LABELS[show.status].color}`}>
-                        {STATUS_LABELS[show.status].label}
+                      <span className={`px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs ${show.status ? STATUS_LABELS[show.status].color : 'bg-gray-600'}`}>
+                        {show.status ? STATUS_LABELS[show.status].label : 'Removed'}
                       </span>
                       <RTScores
                         showId={show.id}

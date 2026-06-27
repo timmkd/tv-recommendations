@@ -49,7 +49,8 @@ const SERVICE_COLORS: Record<string, string> = {
   'apple-tv-plus': 'bg-gray-600',
   'hbo-max': 'bg-purple-600',
   'abc-iview': 'bg-green-600',
-  'sbs-on-demand': 'bg-red-700'
+  'sbs-on-demand': 'bg-red-700',
+  'ten-play': 'bg-blue-500'
 };
 
 const SERVICE_NAMES: Record<string, string> = {
@@ -62,7 +63,8 @@ const SERVICE_NAMES: Record<string, string> = {
   'apple-tv-plus': 'Apple TV+',
   'hbo-max': 'HBO Max',
   'abc-iview': 'ABC iview',
-  'sbs-on-demand': 'SBS On Demand'
+  'sbs-on-demand': 'SBS On Demand',
+  'ten-play': '10 Play'
 };
 
 async function getRecommendations(): Promise<RecommendationsData | null> {

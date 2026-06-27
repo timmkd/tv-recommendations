@@ -1,31 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSettings, getOverlaysMap, getOverlays, saveOverlay, getOverlayByTmdbId, getDeletedTmdbIds } from '@/lib/db/queries';
+import { getSettings, getOverlaysMap, getOverlays, saveOverlay, getOverlayByTmdbId, getDeletedTmdbIds, setShowTags, getTagsForShow } from '@/lib/db/queries';
 import {
   getUserShows,
   searchShows as traktSearch,
   TraktUserShow,
   syncRatingToTrakt,
   removeRatingFromTrakt,
-  hideShowOnTrakt,
-  unhideShowOnTrakt,
   addToDroppedList,
   removeFromDroppedList,
-  getHiddenShows,
+  removeFromWatchlist,
   getDroppedShows,
   getUserRatings,
   getShowStreaming
 } from '@/lib/trakt';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
+import { getStreamingAvailability, getStreamingByTitle } from '@/lib/justwatch';
 import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
 
 // Merge Trakt data with local overlay to create a Show object
+// Uses stored status from overlay if available, otherwise falls back to Trakt's computed status
 function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show {
   return {
     id: `trakt-${traktShow.tmdbId}`, // Use tmdbId as the ID since we're Trakt-based
     tmdbId: traktShow.tmdbId,
     title: traktShow.title,
     year: traktShow.year,
-    status: traktShow.status,
+    // Use stored status if explicitly set (including null for removed), otherwise use Trakt's computed status
+    status: overlay && 'status' in overlay ? overlay.status : traktShow.status,
 
     // From overlay (custom data)
     posterPath: overlay?.posterPath,
@@ -68,7 +69,8 @@ function overlayToShow(overlay: ShowOverlay): Show {
     tmdbId: overlay.tmdbId,
     title: overlay.title || `Show ${overlay.tmdbId}`,
     year: overlay.year,
-    status: overlay.rating ? 'completed' : 'watchlist', // Best guess without Trakt
+    // Use stored status (null = removed from watchlist), fallback for legacy data only
+    status: overlay.status !== undefined ? overlay.status : (overlay.rating ? 'completed' : 'watchlist'),
     posterPath: overlay.posterPath,
     overview: overlay.overview,
     watchPreference: overlay.watchPreference,
@@ -116,10 +118,12 @@ export async function GET(request: NextRequest) {
     // Try Trakt first (unless fallback-only mode)
     if (!fallbackOnly && settings.traktUsername) {
       try {
-        // Fetch shows and optionally sync hidden/dropped/ratings from Trakt
-        const [traktShows, hiddenFromTrakt, droppedFromTrakt, ratingsFromTrakt] = await Promise.all([
+        // Fetch shows and optionally sync dropped/ratings from Trakt.
+        // NOTE: hidden is intentionally NOT synced from Trakt. Trakt's "hidden from
+        // recommendations" means "stop suggesting this" (normal for watched/watchlist
+        // shows) and must NOT be conflated with the app's local "hide from library".
+        const [traktShows, droppedFromTrakt, ratingsFromTrakt] = await Promise.all([
           getUserShows(settings.traktUsername),
-          syncFromTrakt ? getHiddenShows() : Promise.resolve(new Set<number>()),
           syncFromTrakt ? getDroppedShows() : Promise.resolve(new Set<number>()),
           syncFromTrakt ? getUserRatings() : Promise.resolve(new Map<number, number>())
         ]);
@@ -144,24 +148,26 @@ export async function GET(request: NextRequest) {
             if (!overlay) {
               overlay = {
                 tmdbId: traktShow.tmdbId,
+                traktSlug: traktShow.slug,
+                status: traktShow.status, // Save the computed status
                 title: traktShow.title,
                 year: traktShow.year,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString()
               };
               newOverlaysToSave.push({ overlay, slug: traktShow.slug });
+            } else {
+              // Always ensure traktSlug is saved (needed for progress sync)
+              if (!overlay.traktSlug || overlay.traktSlug !== traktShow.slug) {
+                overlay = { ...overlay, traktSlug: traktShow.slug };
+                saveOverlay(overlay).catch(err => console.error('Failed to save traktSlug:', err));
+              }
             }
 
             // Merge Trakt sync data if syncing (only update if not already set locally)
             if (syncFromTrakt) {
               const tmdbId = traktShow.tmdbId;
               let overlayUpdated = false;
-
-              // Sync hidden status from Trakt
-              if (hiddenFromTrakt.has(tmdbId) && !overlay.hidden) {
-                overlay = { ...overlay, hidden: true };
-                overlayUpdated = true;
-              }
 
               // Sync dropped status from Trakt
               if (droppedFromTrakt.has(tmdbId) && !overlay.dropped) {
@@ -202,10 +208,19 @@ export async function GET(request: NextRequest) {
                   // Enrich with TMDB data (poster, genres, etc.)
                   const tmdbData = await enrichShowWithTMDB(overlay.tmdbId);
 
-                  // Fetch streaming availability via Trakt
+                  // Fetch streaming availability via JustWatch (accurate; Trakt's
+                  // watchnow/au returns empty). Fall back to title search, then Trakt.
                   let streamingServices: string[] = [];
                   try {
-                    streamingServices = await getShowStreaming(slug, 'au');
+                    const jw = await getStreamingAvailability(overlay.tmdbId, overlay.title, overlay.year);
+                    streamingServices = jw.services;
+                    if (streamingServices.length === 0 && overlay.title) {
+                      const byTitle = await getStreamingByTitle(overlay.title, overlay.year);
+                      streamingServices = byTitle.services;
+                    }
+                    if (streamingServices.length === 0) {
+                      streamingServices = await getShowStreaming(slug, 'au');
+                    }
                   } catch (err) {
                     console.error(`Failed to fetch streaming for ${overlay.title}:`, err);
                   }
@@ -248,7 +263,7 @@ export async function GET(request: NextRequest) {
           }
         }
       } catch (traktError) {
-        console.error('Trakt fetch failed, using fallback:', traktError);
+        console.error('[shows] Trakt fetch failed, using fallback:', traktError);
       }
     }
 
@@ -293,8 +308,9 @@ export async function GET(request: NextRequest) {
       shows = shows.filter(s => s.streamingServices.includes(streaming));
     }
 
-    // Add header to indicate fallback mode
+    // Add headers
     const response = NextResponse.json(shows);
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
     if (usedFallback) {
       response.headers.set('X-Fallback-Mode', 'true');
     }
@@ -312,7 +328,7 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const { tmdbId, ...updates } = body;
+    const { tmdbId, tags: tagNames, ...updates } = body;
 
     if (!tmdbId) {
       return NextResponse.json({ error: 'tmdbId is required' }, { status: 400 });
@@ -320,10 +336,11 @@ export async function PUT(request: NextRequest) {
 
     const existingOverlay = await getOverlayByTmdbId(tmdbId);
 
-    // Check what changed for timestamps and Trakt sync
+    // Check what changed for timestamps and Trakt sync.
+    // NOTE: `hidden` is a local-only flag and is intentionally NOT synced to Trakt.
     const ratingChanged = updates.rating !== undefined && updates.rating !== existingOverlay?.rating;
-    const hiddenChanged = updates.hidden !== undefined && updates.hidden !== existingOverlay?.hidden;
     const droppedChanged = updates.dropped !== undefined && updates.dropped !== existingOverlay?.dropped;
+    const removedFromWatchlist = updates.status === null && existingOverlay?.status === 'watchlist';
 
     // Check if predictions changed - set predictionsUpdatedAt timestamp
     const predictionsChanged = (
@@ -343,11 +360,21 @@ export async function PUT(request: NextRequest) {
 
     await saveOverlay(updated);
 
+    // Handle tags separately (stored in junction table)
+    if (tagNames !== undefined && Array.isArray(tagNames)) {
+      await setShowTags(tmdbId, tagNames);
+    }
+
     // Sync changes to Trakt in background (don't block response)
-    const syncResults: { rating?: boolean; hidden?: boolean; dropped?: boolean } = {};
+    const syncResults: { rating?: boolean; dropped?: boolean; watchlist?: boolean } = {};
 
     (async () => {
       try {
+        // Remove from Trakt watchlist if status changed to null
+        if (removedFromWatchlist) {
+          syncResults.watchlist = await removeFromWatchlist(tmdbId);
+        }
+
         // Sync rating to Trakt
         if (ratingChanged) {
           if (updates.rating) {
@@ -355,15 +382,6 @@ export async function PUT(request: NextRequest) {
           } else {
             // Rating was removed
             syncResults.rating = await removeRatingFromTrakt(tmdbId);
-          }
-        }
-
-        // Sync hidden status to Trakt
-        if (hiddenChanged) {
-          if (updates.hidden) {
-            syncResults.hidden = await hideShowOnTrakt(tmdbId);
-          } else {
-            syncResults.hidden = await unhideShowOnTrakt(tmdbId);
           }
         }
 
@@ -380,7 +398,10 @@ export async function PUT(request: NextRequest) {
       }
     })();
 
-    return NextResponse.json({ success: true, overlay: updated });
+    // Include tags in response
+    const showTags = await getTagsForShow(tmdbId);
+
+    return NextResponse.json({ success: true, overlay: updated, tags: showTags });
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : 'Failed to update overlay' },

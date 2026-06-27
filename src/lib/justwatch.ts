@@ -6,7 +6,7 @@ const LOCALE = 'en_AU';
 const COUNTRY = 'AU';
 
 // Map JustWatch provider IDs to our slug format (Australia)
-// IDs from: https://apis.justwatch.com/content/providers/locale/en_AU
+// IDs verified via JustWatch GraphQL API January 2026
 const PROVIDER_MAP: Record<number, string> = {
   8: 'netflix',
   119: 'prime-video',
@@ -14,12 +14,18 @@ const PROVIDER_MAP: Record<number, string> = {
   21: 'stan',
   385: 'binge',
   134: 'foxtel-now',
-  2: 'apple-tv-plus',
+  350: 'apple-tv-plus',      // Apple TV (streaming service)
   531: 'paramount-plus',
-  380: 'britbox',
-  29: 'abc-iview',
+  151: 'britbox',
+  135: 'abc-iview',
   132: 'sbs-on-demand',
-  384: 'hbo-max',
+  1899: 'max',               // HBO Max
+  82: 'ten-play',             // 10 Play (free, ad-supported)
+  // Additional ad-supported/channel variants (map to same slug)
+  1796: 'netflix',           // Netflix Standard with Ads
+  2100: 'prime-video',       // Amazon Prime Video with Ads
+  2303: 'paramount-plus',    // Paramount Plus Premium
+  2304: 'paramount-plus',    // Paramount Plus Basic with Ads
 };
 
 // Reverse map for lookup
@@ -150,24 +156,36 @@ export async function searchJustWatch(title: string, year?: number): Promise<Jus
 }
 
 // Get streaming availability for a show by TMDB ID
-export async function getStreamingAvailability(tmdbId: number): Promise<StreamingResult> {
+// Uses search to find the show and matches by TMDB ID for accuracy
+export async function getStreamingAvailability(tmdbId: number, title?: string, year?: number): Promise<StreamingResult> {
   const query = `
-    query GetTitleOffers($nodeId: ID!, $country: Country!, $language: Language!) {
-      node(id: $nodeId) {
-        ... on Show {
-          id
-          objectId
-          content(country: $country, language: $language) {
-            title
-            fullPath
-          }
-          offers(country: $country, platform: WEB) {
-            monetizationType
-            presentationType
-            package {
-              id
-              packageId
-              clearName
+    query SearchByTmdb($filter: TitleFilter!, $country: Country!, $language: Language!) {
+      popularTitles(
+        country: $country
+        filter: $filter
+        first: 20
+      ) {
+        edges {
+          node {
+            id
+            objectId
+            objectType
+            content(country: $country, language: $language) {
+              title
+              originalReleaseYear
+              fullPath
+              externalIds {
+                tmdbId
+              }
+            }
+            offers(country: $country, platform: WEB) {
+              monetizationType
+              presentationType
+              package {
+                id
+                packageId
+                clearName
+              }
             }
           }
         }
@@ -175,11 +193,14 @@ export async function getStreamingAvailability(tmdbId: number): Promise<Streamin
     }
   `;
 
-  // JustWatch node ID format: ts{tmdbId} for shows
-  const nodeId = `ts${tmdbId}`;
+  // Build search filter - prefer searching by title if available
+  const searchQuery = title || `tmdb:${tmdbId}`;
 
   const variables = {
-    nodeId,
+    filter: {
+      searchQuery,
+      objectTypes: ['SHOW'],
+    },
     country: COUNTRY,
     language: 'en',
   };
@@ -198,33 +219,55 @@ export async function getStreamingAvailability(tmdbId: number): Promise<Streamin
     }
 
     const data = await response.json();
-    const node = data?.data?.node;
+    const edges = data?.data?.popularTitles?.edges || [];
 
-    if (!node) {
-      // Try searching by title as fallback
+    // Find the show matching our TMDB ID
+    let matchedNode = null;
+    for (const edge of edges) {
+      const node = edge.node;
+      const nodeTmdbId = node.content?.externalIds?.tmdbId;
+
+      // Match by TMDB ID (primary)
+      if (nodeTmdbId && String(nodeTmdbId) === String(tmdbId)) {
+        matchedNode = node;
+        break;
+      }
+
+      // Match by year if no TMDB match found yet (fallback)
+      if (!matchedNode && year && node.content?.originalReleaseYear === year) {
+        matchedNode = node;
+      }
+    }
+
+    // If no match by TMDB ID, take first result as last resort
+    if (!matchedNode && edges.length > 0) {
+      matchedNode = edges[0].node;
+    }
+
+    if (!matchedNode) {
       return { services: [], allOffers: [] };
     }
 
-    const offers: JustWatchOffer[] = (node.offers || []).map((offer: any) => ({
+    const offers: JustWatchOffer[] = (matchedNode.offers || []).map((offer: any) => ({
       providerId: offer.package?.packageId,
       providerName: offer.package?.clearName,
       monetizationType: offer.monetizationType?.toLowerCase(),
       presentationType: offer.presentationType,
     }));
 
-    // Filter to only "flatrate" (subscription) offers and map to our slugs
+    // Free-tier providers (ad-supported public broadcasters)
+    const FREE_PROVIDERS = new Set([135, 132]); // ABC iview, SBS On Demand
+
+    // Filter to "flatrate" (subscription) or "free" (for public broadcasters) offers
     const subscriptionServices = offers
-      .filter(o => o.monetizationType === 'flatrate')
-      .map(o => {
-        // Map provider ID to our slug
-        return PROVIDER_MAP[o.providerId];
-      })
+      .filter(o => o.monetizationType === 'flatrate' || (o.monetizationType === 'free' && FREE_PROVIDERS.has(o.providerId)))
+      .map(o => PROVIDER_MAP[o.providerId])
       .filter((slug): slug is string => !!slug);
 
     // Dedupe
     const uniqueServices = [...new Set(subscriptionServices)];
 
-    const fullPath = node.content?.fullPath;
+    const fullPath = matchedNode.content?.fullPath;
     const justWatchUrl = fullPath
       ? `https://www.justwatch.com${fullPath}`
       : undefined;
@@ -253,10 +296,13 @@ export async function getStreamingByTitle(title: string, year?: number): Promise
     ? results.find(r => r.originalReleaseYear === year) || results[0]
     : results[0];
 
+  // Free-tier providers (ad-supported public broadcasters)
+  const FREE_PROVIDERS = new Set([135, 132]); // ABC iview, SBS On Demand
+
   // If we have offers from search, use those
   if (match.offers.length > 0) {
     const subscriptionServices = match.offers
-      .filter(o => o.monetizationType === 'flatrate')
+      .filter(o => o.monetizationType === 'flatrate' || (o.monetizationType === 'free' && FREE_PROVIDERS.has(o.providerId)))
       .map(o => PROVIDER_MAP[o.providerId])
       .filter((slug): slug is string => !!slug);
 

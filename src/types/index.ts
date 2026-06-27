@@ -1,6 +1,30 @@
 export type WatchPreference = 'solo' | 'together';
 export type ShowStatus = 'watching' | 'completed' | 'watchlist';
 
+// Structured metadata types for filtering
+export type ShowOrigin = 'australian' | 'british' | 'american' | 'korean' | 'japanese' | 'canadian' | 'other';
+export type ShowFormat = 'workplace' | 'procedural' | 'anthology' | 'limited-series' | 'sitcom' | 'mockumentary' | 'family-sitcom' | 'prestige-drama' | 'other';
+
+// Common content flags (users can also add custom ones)
+export type ContentFlag =
+  | 'true-story'
+  | 'slow-burn'
+  | 'cancelled'
+  | 'crude-humor'
+  | 'comfort-rewatch'
+  | 'binge-worthy'
+  | 'intense'
+  | 'cerebral'
+  | 'wwii'
+  | 'feel-good'
+  | string; // Allow custom flags
+
+export interface Tag {
+  id: number;
+  name: string;
+  createdAt?: string;
+}
+
 export interface Show {
   id: string;
   tmdbId: number;
@@ -8,7 +32,7 @@ export interface Show {
   year?: number;
   posterPath?: string;
   overview?: string;
-  status: ShowStatus;
+  status?: ShowStatus; // undefined = removed from watchlist (data preserved)
 
   // Watch preference (binary choice)
   watchPreference?: WatchPreference;
@@ -101,6 +125,10 @@ export interface ShowOverlay {
   tmdbId: number;
   title?: string; // Stored for easier review/debugging
 
+  // Trakt data
+  traktSlug?: string; // Trakt slug for API calls
+  status?: ShowStatus; // watching/completed/watchlist - synced from Trakt progress
+
   // Watch preference (binary choice)
   watchPreference?: WatchPreference;
   watchPreferenceNote?: string;
@@ -143,6 +171,11 @@ export interface ShowOverlay {
   streamingServices?: string[];
   streamingFetchedAt?: string;
   justWatchUrl?: string;
+
+  // Structured metadata for filtering
+  origin?: ShowOrigin;
+  format?: ShowFormat;
+  contentFlags?: ContentFlag[];
 
   // Metadata
   createdAt?: string;

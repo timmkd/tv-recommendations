@@ -1,6 +1,7 @@
 import { db, shows, settings, streamingServices, deletedShows } from './index';
+import { tags, showTags } from './schema';
 import { eq, and, or } from 'drizzle-orm';
-import type { ShowOverlay, Settings, DeletedShow, TraktAuth, StreamingService } from '@/types';
+import type { ShowOverlay, Settings, DeletedShow, TraktAuth, StreamingService, Tag } from '@/types';
 import type { DbShow } from './schema';
 
 // ==================== SHOWS (Overlays) ====================
@@ -228,6 +229,8 @@ export function generateId(): string {
 function dbShowToOverlay(row: DbShow): ShowOverlay {
   return {
     tmdbId: row.tmdbId,
+    traktSlug: row.traktSlug ?? undefined,
+    status: row.status ?? undefined,
     title: row.title ?? undefined,
     year: row.year ?? undefined,
     posterPath: row.posterPath ?? undefined,
@@ -260,6 +263,9 @@ function dbShowToOverlay(row: DbShow): ShowOverlay {
     streamingServices: row.streamingServices ?? undefined,
     streamingFetchedAt: row.streamingFetchedAt ?? undefined,
     justWatchUrl: row.justWatchUrl ?? undefined,
+    origin: row.origin ?? undefined,
+    format: row.format ?? undefined,
+    contentFlags: row.contentFlags ?? undefined,
     createdAt: row.createdAt ?? undefined,
     updatedAt: row.updatedAt ?? undefined,
   };
@@ -268,6 +274,8 @@ function dbShowToOverlay(row: DbShow): ShowOverlay {
 function overlayToDbShow(overlay: ShowOverlay): Omit<typeof shows.$inferInsert, 'id' | 'createdAt' | 'updatedAt'> {
   return {
     tmdbId: overlay.tmdbId,
+    traktSlug: overlay.traktSlug ?? null,
+    status: overlay.status ?? null,
     title: overlay.title ?? null,
     year: overlay.year ?? null,
     posterPath: overlay.posterPath ?? null,
@@ -300,5 +308,79 @@ function overlayToDbShow(overlay: ShowOverlay): Omit<typeof shows.$inferInsert, 
     streamingServices: overlay.streamingServices ?? null,
     streamingFetchedAt: overlay.streamingFetchedAt ?? null,
     justWatchUrl: overlay.justWatchUrl ?? null,
+    origin: overlay.origin ?? null,
+    format: overlay.format ?? null,
+    contentFlags: overlay.contentFlags ?? null,
   };
+}
+
+// ==================== TAGS ====================
+
+export async function getAllTags(): Promise<Tag[]> {
+  const result = await db.select().from(tags).orderBy(tags.name);
+  return result.map(t => ({
+    id: t.id,
+    name: t.name,
+    createdAt: t.createdAt,
+  }));
+}
+
+export async function getTagsForShow(tmdbId: number): Promise<string[]> {
+  const result = await db
+    .select({ name: tags.name })
+    .from(showTags)
+    .innerJoin(tags, eq(showTags.tagId, tags.id))
+    .where(eq(showTags.showTmdbId, tmdbId));
+  return result.map(r => r.name);
+}
+
+export async function getShowsWithTag(tagName: string): Promise<number[]> {
+  const result = await db
+    .select({ tmdbId: showTags.showTmdbId })
+    .from(showTags)
+    .innerJoin(tags, eq(showTags.tagId, tags.id))
+    .where(eq(tags.name, tagName));
+  return result.map(r => r.tmdbId);
+}
+
+export async function addTagToShow(tmdbId: number, tagName: string): Promise<void> {
+  // Get or create the tag
+  let tagRow = await db.select().from(tags).where(eq(tags.name, tagName)).limit(1);
+
+  if (tagRow.length === 0) {
+    await db.insert(tags).values({ name: tagName });
+    tagRow = await db.select().from(tags).where(eq(tags.name, tagName)).limit(1);
+  }
+
+  const tagId = tagRow[0].id;
+
+  // Check if relationship exists
+  const existing = await db
+    .select()
+    .from(showTags)
+    .where(and(eq(showTags.showTmdbId, tmdbId), eq(showTags.tagId, tagId)))
+    .limit(1);
+
+  if (existing.length === 0) {
+    await db.insert(showTags).values({ showTmdbId: tmdbId, tagId });
+  }
+}
+
+export async function removeTagFromShow(tmdbId: number, tagName: string): Promise<void> {
+  const tagRow = await db.select().from(tags).where(eq(tags.name, tagName)).limit(1);
+  if (tagRow.length === 0) return;
+
+  await db.delete(showTags).where(
+    and(eq(showTags.showTmdbId, tmdbId), eq(showTags.tagId, tagRow[0].id))
+  );
+}
+
+export async function setShowTags(tmdbId: number, tagNames: string[]): Promise<void> {
+  // Clear existing tags for this show
+  await db.delete(showTags).where(eq(showTags.showTmdbId, tmdbId));
+
+  // Add new tags
+  for (const tagName of tagNames) {
+    await addTagToShow(tmdbId, tagName);
+  }
 }

@@ -105,7 +105,7 @@ export default function ShowEditModal({
   const [error, setError] = useState<string | null>(null);
 
   // Editable fields
-  const [status, setStatus] = useState<ShowStatus>('watchlist');
+  const [status, setStatus] = useState<ShowStatus | undefined>('watchlist');
   const [watchPreference, setWatchPreference] = useState<WatchPreference | undefined>(undefined);
   const [watchPreferenceNote, setWatchPreferenceNote] = useState('');
   const [rating, setRating] = useState<number | undefined>(undefined);
@@ -263,6 +263,37 @@ export default function ShowEditModal({
       onClose();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to save changes');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const removeFromWatchlistHandler = async () => {
+    if (!show || !confirm('Remove from watchlist? The show data will be kept.')) return;
+
+    setSaving(true);
+    try {
+      const url = show.id.startsWith('trakt-') || show.id.startsWith('overlay-')
+        ? '/api/trakt/shows'
+        : '/api/shows';
+
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tmdbId: show.tmdbId,
+          id: show.id,
+          status: null,
+        })
+      });
+
+      if (!response.ok) throw new Error('Failed to remove from watchlist');
+
+      const updated: Show = { ...show, status: undefined as unknown as ShowStatus };
+      onSaved?.(updated);
+      onClose();
+    } catch {
+      setError('Failed to remove from watchlist');
     } finally {
       setSaving(false);
     }
@@ -658,12 +689,23 @@ export default function ShowEditModal({
 
               {/* Actions Row */}
               <div className="flex items-center justify-between">
-                <button
-                  onClick={deleteShowHandler}
-                  className="text-gray-500 hover:text-red-400 text-xs sm:text-sm transition-colors"
-                >
-                  Delete
-                </button>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <button
+                    onClick={deleteShowHandler}
+                    className="text-gray-500 hover:text-red-400 text-xs sm:text-sm transition-colors"
+                  >
+                    Delete
+                  </button>
+                  {status === 'watchlist' && (
+                    <button
+                      onClick={removeFromWatchlistHandler}
+                      disabled={saving}
+                      className="text-gray-500 hover:text-amber-400 text-xs sm:text-sm transition-colors disabled:text-gray-600"
+                    >
+                      Remove from Watchlist
+                    </button>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <button

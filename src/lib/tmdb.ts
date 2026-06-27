@@ -185,6 +185,7 @@ const PROVIDER_MAP: Record<number, string> = {
   // Free-to-air
   29: 'abc-iview',
   132: 'sbs-on-demand',
+  82: 'ten-play',
 
   // Max (HBO)
   1899: 'max',

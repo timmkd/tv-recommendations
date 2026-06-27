@@ -81,6 +81,8 @@ const TRAKT_SOURCE_MAP: Record<string, string> = {
   'britbox': 'britbox',
   'abc iview': 'abc-iview',
   'sbs on demand': 'sbs-on-demand',
+  '10 play': 'ten-play',
+  '10': 'ten-play',
   'hbo max': 'max',
   'max': 'max',
 };
@@ -112,7 +114,7 @@ async function refreshTokenIfNeeded(auth: TraktAuth): Promise<TraktAuth | null> 
   try {
     const response = await fetch(TRAKT_TOKEN_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'User-Agent': 'tv-recommendations/1.0' },
       body: JSON.stringify({
         refresh_token: auth.refreshToken,
         client_id: getClientId(),
@@ -147,6 +149,16 @@ async function refreshTokenIfNeeded(auth: TraktAuth): Promise<TraktAuth | null> 
   }
 }
 
+// Common headers for all Trakt API requests
+function getBaseHeaders(): Record<string, string> {
+  return {
+    'Content-Type': 'application/json',
+    'trakt-api-version': '2',
+    'trakt-api-key': getClientId(),
+    'User-Agent': 'tv-recommendations/1.0',
+  };
+}
+
 // Get auth headers for authenticated requests
 async function getAuthHeaders(): Promise<Record<string, string> | null> {
   const settings = await getSettings();
@@ -160,10 +172,8 @@ async function getAuthHeaders(): Promise<Record<string, string> | null> {
   }
 
   return {
-    'Content-Type': 'application/json',
+    ...getBaseHeaders(),
     'Authorization': `Bearer ${auth.accessToken}`,
-    'trakt-api-version': '2',
-    'trakt-api-key': getClientId(),
   };
 }
 
@@ -173,81 +183,94 @@ export async function isAuthenticated(): Promise<boolean> {
   return headers !== null;
 }
 
-// Fetch user's watchlist via Trakt API
+// Fetch ALL pages of a Trakt list endpoint, following the X-Pagination-Page-Count
+// header. Trakt paginates watchlist/watched/ratings at a default cap (100 items);
+// fetching only the first page silently drops everything beyond it — that bug let
+// newly-added watchlist shows go un-synced. Returns the first page's HTTP status so
+// callers can keep their own error handling (404 = private profile, etc.).
+async function fetchAllTraktPages(
+  url: string,
+  headers: Record<string, string>
+): Promise<{ firstStatus: number; items: TraktShow[] }> {
+  const sep = url.includes('?') ? '&' : '?';
+  const items: TraktShow[] = [];
+
+  const first = await fetch(`${url}${sep}page=1&limit=100`, { cache: 'no-store', headers });
+  if (!first.ok) {
+    return { firstStatus: first.status, items };
+  }
+
+  const firstItems = await first.json();
+  if (Array.isArray(firstItems)) items.push(...firstItems);
+
+  const pageCount = parseInt(first.headers.get('x-pagination-page-count') || '1', 10) || 1;
+  for (let page = 2; page <= pageCount; page++) {
+    const res = await fetch(`${url}${sep}page=${page}&limit=100`, { cache: 'no-store', headers });
+    if (!res.ok) break;
+    const pageItems = await res.json();
+    if (Array.isArray(pageItems)) items.push(...pageItems);
+  }
+
+  return { firstStatus: first.status, items };
+}
+
+// Fetch user's watchlist via Trakt API (uses auth if available for private profiles)
 async function fetchWatchlist(username: string): Promise<TraktShow[]> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/users/${username}/watchlist/shows`;
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': clientId
-    }
-  });
+  // Try authenticated request first (needed for private profiles)
+  const authHeaders = await getAuthHeaders();
+  const headers = authHeaders || getBaseHeaders();
 
-  if (!response.ok) {
-    if (response.status === 404) {
+  const { firstStatus, items } = await fetchAllTraktPages(url, headers);
+
+  if (firstStatus < 200 || firstStatus >= 300) {
+    if (firstStatus === 404) {
       throw new Error(`User "${username}" not found or profile is private`);
     }
-    throw new Error(`Failed to fetch Trakt watchlist: ${response.status}`);
+    throw new Error(`Failed to fetch Trakt watchlist: ${firstStatus}`);
   }
 
-  return response.json();
+  return items;
 }
 
-// Fetch user's watched shows via Trakt API
+// Fetch user's watched shows via Trakt API (uses auth if available for private profiles)
 async function fetchWatched(username: string): Promise<TraktShow[]> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/users/${username}/watched/shows`;
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': clientId
-    }
-  });
+  const authHeaders = await getAuthHeaders();
+  const headers = authHeaders || getBaseHeaders();
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch Trakt watched: ${response.status}`);
+  const { firstStatus, items } = await fetchAllTraktPages(url, headers);
+
+  if (firstStatus < 200 || firstStatus >= 300) {
+    throw new Error(`Failed to fetch Trakt watched: ${firstStatus}`);
   }
 
-  return response.json();
+  return items;
 }
 
-// Fetch user's ratings via Trakt API
+// Fetch user's ratings via Trakt API (uses auth if available for private profiles)
 async function fetchRatings(username: string): Promise<TraktShow[]> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/users/${username}/ratings/shows`;
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': clientId
-    }
-  });
+  const authHeaders = await getAuthHeaders();
+  const headers = authHeaders || getBaseHeaders();
 
-  if (!response.ok) {
+  const { firstStatus, items } = await fetchAllTraktPages(url, headers);
+
+  if (firstStatus < 200 || firstStatus >= 300) {
     return [];
   }
 
-  return response.json();
+  return items;
 }
 
 // Search for shows via Trakt API
 export async function searchShows(query: string): Promise<TraktSearchResult[]> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/search/show?query=${encodeURIComponent(query)}&extended=full`;
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': clientId
-    }
-  });
+  const response = await fetch(url, { headers: getBaseHeaders() });
 
   if (!response.ok) {
     throw new Error(`Failed to search Trakt: ${response.status}`);
@@ -258,16 +281,9 @@ export async function searchShows(query: string): Promise<TraktSearchResult[]> {
 
 // Get show details by Trakt ID or TMDB ID
 export async function getShowByTmdbId(tmdbId: number): Promise<TraktShowInfo | null> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/search/tmdb/${tmdbId}?type=show&extended=full`;
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': clientId
-    }
-  });
+  const response = await fetch(url, { headers: getBaseHeaders() });
 
   if (!response.ok) {
     return null;
@@ -288,16 +304,9 @@ export interface TraktShowExtended extends TraktShowInfo {
 
 // Get show with community ratings
 export async function getShowWithRatings(slugOrId: string | number): Promise<TraktShowExtended | null> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/shows/${slugOrId}?extended=full`;
 
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'trakt-api-version': '2',
-      'trakt-api-key': clientId
-    }
-  });
+  const response = await fetch(url, { headers: getBaseHeaders() });
 
   if (!response.ok) {
     return null;
@@ -385,8 +394,13 @@ export async function refreshProgressCache(slugs: string[]): Promise<number> {
 async function fetchProgressForShowsInternal(slugs: string[]): Promise<Map<string, TraktShowProgress>> {
   const results = new Map<string, TraktShowProgress>();
 
-  // Process in batches of 2 with longer delays to avoid rate limiting
-  const batchSize = 2;
+  // Process in larger batches with shorter delays (aggressive but within Trakt limits)
+  // Trakt rate limit is 1000 requests per 5 minutes = ~3.3 requests/second
+  // With batch of 10 and 300ms delay, we get ~33 requests/second which is too high
+  // With batch of 5 and 200ms delay, we get ~25 requests/second - still high but with bursting
+  const batchSize = 5;
+  const delayMs = 200;
+
   for (let i = 0; i < slugs.length; i += batchSize) {
     const batch = slugs.slice(i, i + batchSize);
     const promises = batch.map(async (slug) => {
@@ -403,9 +417,9 @@ async function fetchProgressForShowsInternal(slugs: string[]): Promise<Map<strin
     });
     await Promise.all(promises);
 
-    // Longer delay between batches to avoid rate limiting (500ms)
+    // Shorter delay between batches (200ms)
     if (i + batchSize < slugs.length) {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, delayMs));
     }
   }
 
@@ -452,14 +466,16 @@ async function fetchProgressForShows(slugs: string[]): Promise<Map<string, Trakt
 
 // Get all user shows combined (watchlist + watched + ratings)
 // Uses authenticated progress endpoint when available for accurate status
-export async function getUserShows(username: string): Promise<TraktUserShow[]> {
+// Set fetchProgress=false to skip slow progress fetching (status will default to 'completed' for watched shows)
+export async function getUserShows(username: string, options?: { fetchProgress?: boolean }): Promise<TraktUserShow[]> {
+  const { fetchProgress = false } = options || {}; // Default to false to avoid timeouts
   const showsMap = new Map<number, TraktUserShow>();
 
   // Fetch all data in parallel
   const [watchlist, watched, ratings] = await Promise.all([
-    fetchWatchlist(username).catch(() => []),
-    fetchWatched(username).catch(() => []),
-    fetchRatings(username).catch(() => [])
+    fetchWatchlist(username).catch(err => { console.error('Trakt watchlist fetch failed:', err.message); return []; }),
+    fetchWatched(username).catch(err => { console.error('Trakt watched fetch failed:', err.message); return []; }),
+    fetchRatings(username).catch(err => { console.error('Trakt ratings fetch failed:', err.message); return []; })
   ]);
 
   // Process watchlist - status: watchlist
@@ -479,17 +495,19 @@ export async function getUserShows(username: string): Promise<TraktUserShow[]> {
   }
 
   // Fetch progress for all watched shows to determine watching vs completed
-  // Wrapped in try-catch to handle rate limiting gracefully
+  // Only fetch progress if explicitly requested (slow operation, can timeout on serverless)
   let progressMap = new Map<string, TraktShowProgress>();
-  try {
-    const hasAuth = await isAuthenticated();
-    const watchedSlugs = watched.map(w => w.show.ids.slug).filter(Boolean);
-    if (hasAuth && watchedSlugs.length > 0) {
-      progressMap = await fetchProgressForShows(watchedSlugs);
+  if (fetchProgress) {
+    try {
+      const hasAuth = await isAuthenticated();
+      const watchedSlugs = watched.map(w => w.show.ids.slug).filter(Boolean);
+      if (hasAuth && watchedSlugs.length > 0) {
+        progressMap = await fetchProgressForShows(watchedSlugs);
+      }
+    } catch (err) {
+      console.error('Failed to fetch progress (rate limited?):', err);
+      // Continue without progress - shows will default to "completed"
     }
-  } catch (err) {
-    console.error('Failed to fetch progress (rate limited?):', err);
-    // Continue without progress - shows will default to "completed"
   }
 
   // Process watched - use progress data for accurate status
@@ -560,17 +578,10 @@ export async function getUserShows(username: string): Promise<TraktUserShow[]> {
 
 // Fetch streaming availability from Trakt for a show
 export async function getShowStreaming(slug: string, country: string = 'au'): Promise<string[]> {
-  const clientId = getClientId();
   const url = `${TRAKT_API_URL}/shows/${slug}/watchnow/${country}`;
 
   try {
-    const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'trakt-api-version': '2',
-        'trakt-api-key': clientId
-      }
-    });
+    const response = await fetch(url, { headers: getBaseHeaders() });
 
     if (!response.ok) {
       return [];
@@ -796,6 +807,27 @@ export async function removeRatingFromTrakt(tmdbId: number): Promise<boolean> {
     return response.ok;
   } catch (error) {
     console.error('Error removing rating from Trakt:', error);
+    return false;
+  }
+}
+
+// Remove a show from Trakt watchlist
+export async function removeFromWatchlist(tmdbId: number): Promise<boolean> {
+  const authHeaders = await getAuthHeaders();
+  if (!authHeaders) return false;
+
+  try {
+    const response = await fetch(`${TRAKT_API_URL}/sync/watchlist/remove`, {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        shows: [{ ids: { tmdb: tmdbId } }]
+      })
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Error removing from Trakt watchlist:', error);
     return false;
   }
 }
