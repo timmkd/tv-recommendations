@@ -250,3 +250,11 @@ These shows had their predicted ratings adjusted based on IMDB formula review:
 **Solo triggers:** Sci-fi, superhero content, crude humor, intense/dark, experimental, antihero drama, Seth Rogen comedy
 **Together triggers:** Spy thrillers, period drama, true stories, mystery-comedy, WWII content, procedurals
 **Together-veto risks:** Bleak crime without comedy, dark character studies, slow pacing, crude humor
+
+---
+
+## 2026-07-13 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **DTF St. Louis** | — | 3.5★ S | new prediction (watchlist import 2026-07-13) |

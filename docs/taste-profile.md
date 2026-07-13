@@ -2,16 +2,16 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (203 rated shows)
+## Rating Distribution (209 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
 | 4.5★ | 18 | Loved it - strong signal |
-| 4★ | 74 | Good solid show |
-| 3.5★ | 47 | Enjoy but don't love |
+| 4★ | 77 | Good solid show |
+| 3.5★ | 48 | Enjoy but don't love |
 | 3★ | 35 | Still good |
-| 2-2.5★ | 24 | Dropped or disappointed |
+| 2-2.5★ | 26 | Dropped or disappointed |
 
 ### Solo vs Together — it's about VARIANCE, not a lower ceiling (revised May 2026)
 
@@ -316,7 +316,7 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 
 ## Prediction Accuracy (May 2026)
 
-**14-show validated sample:** MAE: 0.60★ (target ~0.5★) | Bias: -0.46★ (formula already corrects via -0.5★ term) | Within 0.5★: 71%
+**18-show validated sample (Jul 2026):** MAE: 0.56★ (target ~0.5★) | Bias: -0.39★ (formula already corrects via -0.5★ term) | Within 0.5★: 78%
 
 **Key lessons:**
 - Happy Valley (-2.5★): Led to "purposeful difficulty" framework
@@ -329,6 +329,8 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 - **A Man on the Inside (exact)**: Schur-warm-exception rule validated — Comedy + Crime backbone + gentle register overrode the Schur-solo default. Predicted 4★ together, rated 4★ together.
 - **Daisy Jones & the Six (exact)**: predicted 4★ together → rated 4★ ("easy to binge and watch multiples"). Validates the Hello Sunshine 3.5-4★ floor (now n=6, none dropped) and refines the *why*: pure bingeable momentum + relatable leads carries it even without a mystery/thriller hook. Hits the ~4★ ceiling, not above it.
 - **Rosehaven (together rec missed)**: Recommended together on "Australian + light tone"; Helen hated it (pointless/boring, annoying lead). Pure character comedy with no genre backbone = SOLO. Corrected to solo. Don't over-apply the Schur warm-exception to backbone-less comedies.
+- **Wonder Man (+0.5)**: predicted 3.5★ → rated 4★ solo (call exact). Marvel completionist plus *personal relatability* (film sets, self-tapes — "felt like I was watching an acting class") lifted it above prediction; "the right amount of quirky" confirms quirky is fine SOLO — the quirky penalty is a together/Helen problem (Rosehaven), not a Tim problem.
+- **Broadchurch (exact)**: predicted 4★ → rated 4★ together. Together crime-procedural sweet spot validated at its 4★ ceiling — "I would not watch it on my own but love watching with Helen" is the together-lane thesis in one quote.
 
 ### Library audit (May 2026)
 
