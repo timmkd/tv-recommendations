@@ -119,7 +119,8 @@ a. `lsof -i :3000 -sTCP:LISTEN -n -P`
    - If something is listening: set SERVER_PREEXISTING=yes and use it.
    - Else: start `npm run dev` as a BACKGROUND task and remember that task id.
      Poll `curl -s -o /dev/null -w '%{http_code}' --max-time 5 http://localhost:3000/`
-     every 3s until it prints `200` (max 10 tries, else STOP and report).
+     every 3s until it prints a 2xx or 3xx code (the root redirects, so 307 is
+     healthy; max 10 tries, else STOP and report).
 b. Trigger the sync (response is large — always discard it):
    `curl -s -o /dev/null "http://localhost:3000/api/trakt/shows?syncFromTrakt=true"`
 c. Re-run `npx tsx scripts/check-new-trakt-shows.ts` every 20s until it reports
