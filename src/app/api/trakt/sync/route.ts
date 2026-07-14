@@ -24,6 +24,7 @@ async function getAuthHeaders(): Promise<Record<string, string> | null> {
     'Content-Type': 'application/json',
     'trakt-api-version': '2',
     'trakt-api-key': clientId,
+    'User-Agent': 'tv-recommendations/1.0',
     'Authorization': `Bearer ${settings.traktAuth.accessToken}`
   };
 }
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
       try {
         // Look up show by TMDB ID
         const searchUrl = `${TRAKT_API_URL}/search/tmdb/${tmdbId}?type=show`;
-        const searchResponse = await fetch(searchUrl, { headers: authHeaders });
+        const searchResponse = await fetch(searchUrl, { headers: authHeaders, cache: 'no-store' });
 
         if (searchResponse.ok) {
           const searchResults = await searchResponse.json();
@@ -89,7 +90,7 @@ export async function POST(request: NextRequest) {
 
             // Get progress
             const progressUrl = `${TRAKT_API_URL}/shows/${traktSlug}/progress/watched`;
-            const progressResponse = await fetch(progressUrl, { headers: authHeaders });
+            const progressResponse = await fetch(progressUrl, { headers: authHeaders, cache: 'no-store' });
 
             let status: ShowStatus = 'watchlist';
             let aired = 0;

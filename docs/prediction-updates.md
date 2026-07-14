@@ -258,3 +258,54 @@ These shows had their predicted ratings adjusted based on IMDB formula review:
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **DTF St. Louis** | — | 3.5★ S | new prediction (watchlist import 2026-07-13) |
+
+## 2026-07-14 — Prediction rescan (error sweep: star mismatches, stubs, superseded rules, platform mentions)
+
+Sweep of all 178 live predictions flagged 72; screened to 27 substantive; 18 changed, 9 kept
+(4 false positives citing corrected rules properly, 5 intentional kids-content N/A stubs).
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Mr. Robot** | 4.5★ S | 4.5★ S | star mismatch: reason said 4★ — rewritten at 4.5★ |
+| **Star Trek: Starfleet Academy** | 4★ S | 3.5★ S | mismatch resolved down; Trakt 6.3 audience warning |
+| **The Wire** | 4★ S | 4★ S | reason said 4.5★ together — rewritten at 4★ solo |
+| **Yellowstone** | 3★ T | 3★ T | reason said 3.5★ — rewritten with fizzle-risk logic |
+| **The Peripheral** | 2.5★ S | 2.5★ S | star mismatch + platform mention removed |
+| **Industry** | 2.5★ T | 3★ S | crude content is a Helen veto, not a rating penalty |
+| **Territory** | 2.5★ T | 3★ T | formula with cancellation penalty lands 3★ |
+| **The Residence** | 2.5★ T | 3.5★ T | case resolves — cancellation penalty over-applied |
+| **HIS & HERS** | 2.5★ T | 3.5★ T | limited mystery in Helen's lane; old value was a stub |
+| **Big Mistakes** | 3★ T | 3★ S | silliness dial: zany crime-comedy stays solo |
+| **The Lying Life of Adults** | 2.5★ T | 2.5★ S | slow literary + subtitles = Helen veto |
+| **What's Next? The Future with Bill Gates** | 2.5★ S | 3★ S | stub replaced; formula lands 3★ |
+| **The Last Frontier** | 2.5★ T | 2.5★ T | stub expanded to full format |
+| **Constellation** | 2.5★ S | 2.5★ S | stub expanded to full format |
+| **Dr. Brain** | 2.5★ S | 2.5★ S | stub expanded to full format |
+| **Scarpetta** | 3.5★ T | 3.5★ T | platform-tier mention removed |
+| **The Gray House** | 3★ T | 3★ T | platform mention removed |
+| **Rooster** | 4★ S | 4★ S | platform mention removed; post-air Trakt data added |
+
+Deferred: ~45 predictions with cosmetic-only platform/pedigree mentions.
+Open item: the February 2026 Review table above (Succession→4★, True Detective→4★, Peaky→3.5★,
+House of the Dragon→3.5★, Boardwalk→3.5★) appears never to have been applied to the DB.
+
+## 2026-07-14 — 4.5★ hunt upgrades
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **The Expanse** | 4★ S | 4.5★ S | Foundation/Silo cluster match at the same Trakt tier |
+| **Person of Interest** | 4★ S | 4.5★ S | genre-pivot payoff arc + Trakt 8.4 + complete ending |
+
+## 2026-07-14 — Discovery adds (/predict-new-shows equivalent, 4.5★ hunt)
+
+Added to library + Trakt watchlist: Ludwig, Line of Duty, Wolf Hall, 12 Monkeys, Mr Inbetween,
+Star Wars: Andor (arrived marked COMPLETED on Trakt — needs a user rating, not a prediction).
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Ludwig** | — | 4★ T | new discovery add: Helen dry-wit detective lane |
+| **Line of Duty** | — | 4★ T | Mercurio/Bodyguard comp, Helen momentum lane |
+| **Wolf Hall** | — | 4★ T | Crown-lane period prestige, complete |
+| **12 Monkeys** | — | 4★ S | Dark-cluster payoff sci-fi, complete |
+| **Mr Inbetween** | — | 4★ S | AU dark dramedy, Barry comp |
+| **Bait** | 3★ S | 3.5★ S | sci-fi critics-divergence rule + Wonder Man relatability lesson |

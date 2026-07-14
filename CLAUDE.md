@@ -120,6 +120,11 @@ Two-way sync with Trakt is enabled for key user data:
 | `hidden` | Hidden recommendations | Hides from Trakt suggestions |
 | `dropped` | "Dropped" custom list | Auto-created if needed |
 
+### Add/refresh a single show
+`POST /api/trakt/sync` with `{ "tmdbId": 12345, "addToWatchlist": true }` — searches Trakt,
+adds to the Trakt watchlist, pulls progress + community rating, then enriches with TMDB/RT/streaming.
+(NOT `/api/trakt/shows` — its POST has a different contract.)
+
 ### Pull from Trakt
 Use `GET /api/trakt/shows?syncFromTrakt=true` to import:
 - Ratings (only if no local rating exists)

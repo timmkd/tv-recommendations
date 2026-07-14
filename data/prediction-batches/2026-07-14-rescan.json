@@ -1,0 +1,146 @@
+[
+  {
+    "tmdbId": 62560,
+    "title": "Mr. Robot",
+    "predictedRating": 4.5,
+    "predictedRatingReason": "Predicted 4.5★: Psychological hacker thriller whose unreliable-narrator structure delivers genuine jaw-drop reveals — your single favourite thing (Dark 4.5★, Severance 5★ are the comps). Rami Malek's Emmy-winning lead performance anchors it, and Trakt 8.5 is elite audience heat. COMPLETE across 4 seasons with a planned, praised ending — no cancellation anxiety. Mid-run seasons meander, so commit to 4-5 episodes when momentum dips. Solo — paranoid tone, cerebral complexity and dark themes are firmly your lane, not Helen's.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "star mismatch: reason said 4★, field 4.5★ — reason rewritten at 4.5★"
+  },
+  {
+    "tmdbId": 223530,
+    "title": "Star Trek: Starfleet Academy",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Trek-completionist entry following Academy cadets. The franchise floor is real — you rate modern Trek 4★+ (Strange New Worlds 4★, Lower Decks 4.5★, Discovery 4★) — but the audience signal is the coldest of any current Trek (Trakt 6.3), and the teen-skewing cadet focus sits furthest from what you love in the franchise. Returning series, S1. Watch it as part of the Trek run; 2-3 episodes will tell you whether it's Discovery-tier or a rare franchise skip. Solo — sci-fi franchise viewing is never Helen's lane.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "star mismatch resolved DOWN: field said 4★, reason 3.5★; Trakt 6.3 audience warning backs 3.5★"
+  },
+  {
+    "tmdbId": 1438,
+    "title": "The Wire",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: The acclaimed Baltimore crime epic examining broken institutions — routinely called the greatest show ever made (Trakt 9.2). Purposeful difficulty done right: systemic villains and payoffs for patience, the register that worked in Dopesick (4★). The risk is pace — slow, dense build is what sank Mindhunter (2.5★) for you, so commit to 4-5 episodes before judging. COMPLETE, 5 seasons, fully resolved. Solo — bleak crime with no comedy buffer is a Helen veto, and the density rewards focused viewing.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "star+pref mismatch: reason said 4.5★ together, field 4★ solo — reason rewritten to match field"
+  },
+  {
+    "tmdbId": 73586,
+    "title": "Yellowstone",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: Taylor Sheridan's ranch-dynasty saga — a huge cultural moment with strong audience heat (Trakt 8.4) and family-saga momentum that suits shared viewing. But it's the sprawling, spun-off kind of commitment (5 seasons plus prequels) with a messy Costner-departure back half — exactly the mid-run fizzle pattern that cost Killing Eve (3★) and Night Agent (3★). COMPLETE (flagship ended). Strict 2-episode test together; if the soapiness outweighs the momentum for Helen, drop early rather than push through.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "star mismatch: reason said 3.5★, field 3★ — reason rewritten at 3★ with fizzle-risk logic"
+  },
+  {
+    "tmdbId": 95403,
+    "title": "The Peripheral",
+    "predictedRating": 2.5,
+    "predictedRatingReason": "Predicted 2.5★: William Gibson sci-fi — VR, time-splintered futures, a strong Chloe Grace Moretz lead and real ideas (Trakt 7.5, critics 79%). The killer problem: CANCELLED after one season on a cliffhanger, which is your stated dealbreaker — Big Door Prize (2.5★) and Sunny (2.5★) both landed here for the same reason. The complex premise needs the resolution it will never get. Only worth starting if you accept an unresolved ending going in. Solo — dense sci-fi is your lane and firmly not Helen's.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "star mismatch (reason said 3★) + platform mention removed"
+  },
+  {
+    "tmdbId": 90812,
+    "title": "Industry",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: London finance-graduate drama — Succession-adjacent workplace power games with a young, chaotic cast (Trakt 7.5; critics 91% vs audience 71%, and for drama you side with critics). The graphic content is the decider: heavy drugs, sex and crude excess is a hard Helen dealbreaker, so this only works solo, where the satire and momentum can carry it. Four seasons and still returning is a real longevity signal. Character-driven and initially confusing — give it 3-4 episodes. Solo; the old together call was wrong.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "recompute: 2.5→3★, together→solo — crude content is a Helen veto, not a rating penalty"
+  },
+  {
+    "tmdbId": 243396,
+    "title": "Territory",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: Australian outback-dynasty drama (+0.5★ stated Australian preference) — a Yellowstone-style succession fight over the world's biggest cattle station, with strong critic support (87%) but a soft audience (54%). CANCELLED after one season, though the season tells a fairly complete arc, which softens your unresolved-ending dealbreaker without removing it. Together — family-saga momentum and scenery suit shared viewing; strict 2-episode test, and treat the low audience score as the real warning here.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "recompute: 2.5→3★ — formula with cancellation penalty lands 3★; reason was a stub"
+  },
+  {
+    "tmdbId": 242054,
+    "title": "The Residence",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Screwball White House whodunnit — an eccentric detective, one state dinner, everyone a suspect. This is squarely the Only Murders (4★) mystery-comedy lane Helen loves, with strong scores (Trakt 7.7, RT 84/80). It was cancelled after one season BUT the case fully resolves, so the usual unresolved-cancellation penalty mostly doesn't bite — you get a complete 8-episode mystery. Light, propulsive, likeable-lead driven. Together — 2 episodes is enough to know; the earlier 2.5★ over-applied the cancellation rule.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "recompute: 2.5→3.5★ — case resolves, so cancellation penalty was over-applied; Helen mystery-comedy lane"
+  },
+  {
+    "tmdbId": 259731,
+    "title": "HIS & HERS",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Estranged spouses — a detective and a reporter — race to solve a murder while each suspects the other. A propulsive case engine plus a marriage-in-crisis hook is Helen's mystery sweet spot (Broadchurch 4★, Only Murders 4★), and the audience likes it (Trakt 7.6). COMPLETE limited series, so the commitment is low and short length buffers any darkness. Unknown pedigree keeps it from 4★ — a solid-not-special bet. Together; 2-episode test. The old 2.5★ was an unanalysed placeholder from the January sweep.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "recompute: 2.5→3.5★ — limited mystery in Helen's lane; old value was a stub with no analysis"
+  },
+  {
+    "tmdbId": 291506,
+    "title": "Big Mistakes",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: Farcical crime comedy — two 'deeply incapable' siblings blackmailed into working for gangsters. The register is the decider: this is zany/silly crime-comedy, and the silliness dial says that stays SOLO — Brooklyn Nine-Nine (4.5★) proves a crime backbone doesn't flip silly comedy together, while Helen's comedy wins are heartwarming (A Man on the Inside 4★). Early audience signal has improved (Trakt 7.8). Returning, S1. 2 episodes is enough to know; character-investment risk if the siblings grate. Solo.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "silliness-dial correction: zany crime-comedy flips together→solo; rating holds at 3★"
+  },
+  {
+    "tmdbId": 103416,
+    "title": "The Lying Life of Adults",
+    "predictedRating": 2.5,
+    "predictedRatingReason": "Predicted 2.5★: Italian literary coming-of-age in 90s Naples from Elena Ferrante — critics adore it (100%) but audiences shrug (46%, Trakt 6.5), and a slow, subtitled character study with minimal plot momentum is the exact 'nothing happens' profile that sank The Artful Dodger (2.5★) with Helen. COMPLETE single season. The old together call was wrong — literary pace plus subtitles is a Helen veto, so if it's watched at all it's solo, and only if the Ferrante pedigree pulls you. Give it 2 episodes at most.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "pref flip together→solo: slow literary + subtitles = Helen 'nothing happens' veto; 2.5★ holds"
+  },
+  {
+    "tmdbId": 261646,
+    "title": "What's Next? The Future with Bill Gates",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: Tech-futures docuseries with Bill Gates walking through AI, climate and global health. Viewers rate it decently (Trakt 7.3, critics 80%) and it's an easy, low-commitment watch, but documentary talking-heads content sits outside every taste signal in your library — nothing here triggers your loves (twists, characters, comedy) or your avoids, so the formula's solid-average verdict stands at 3★. Returning. Solo — topic-driven viewing you'd dip into alone; 1-2 episodes on interest, no completion pressure.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "recompute: 2.5→3★ — stub reason replaced; formula on Trakt 7.3 with no modifiers lands 3★"
+  },
+  {
+    "tmdbId": 221079,
+    "title": "The Last Frontier",
+    "predictedRating": 2.5,
+    "predictedRatingReason": "Predicted 2.5★: Alaskan marshal versus dozens of escaped inmates after a prison-plane crash — a big action-thriller premise the audience half-likes (Trakt 7.2) and critics pan (29%). Action-crime hybrids are statistically your worst genre lane (2.83★ avg; Mr. & Mrs. Smith 2★ is the cautionary comp), and it was CANCELLED after one season, stacking your unresolved-ending dealbreaker on top. At 65% historical drop risk for this tier, it's a skip unless the premise really calls. Together if tried; strict 2-episode test.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "reason refresh: 26-char stub expanded to full format; 2.5★ holds"
+  },
+  {
+    "tmdbId": 197125,
+    "title": "Constellation",
+    "predictedRating": 2.5,
+    "predictedRatingReason": "Predicted 2.5★: Psychological space thriller — an astronaut returns from an ISS disaster to a subtly wrong version of her life. The premise sits in your psychological sci-fi sweet spot, but execution divided viewers (Trakt 6.6, audience 62%) and it was CANCELLED after one season with its central mystery unresolved — the Big Door Prize (2.5★) dealbreaker exactly. Slow, ambiguous storytelling with no payoff coming makes the investment hard to justify. Solo if ever — sci-fi puzzle-box is your lane, not Helen's. Skip.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: stub expanded to full format; 2.5★ holds"
+  },
+  {
+    "tmdbId": 119955,
+    "title": "Dr. Brain",
+    "predictedRating": 2.5,
+    "predictedRatingReason": "Predicted 2.5★: Korean sci-fi noir — a brain scientist syncs with dead people's memories to solve his family's tragedy. A stylish premise in your cerebral lane with decent critical marks (80%), but a lukewarm audience (Trakt 6.6) and CANCELLED after one season without resolving its central mystery — the unresolved-ending dealbreaker that tanked Sunny (2.5★). Subtitled, moody pacing adds friction with no payoff waiting at the end. Solo — dark psychological sci-fi is never a Helen watch. Skip unless the premise hooks you.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: stub expanded to full format; 2.5★ holds"
+  },
+  {
+    "tmdbId": 240740,
+    "title": "Scarpetta",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Nicole Kidman as forensic pathologist Kay Scarpetta. Direct empirical comps: Big Little Lies (3.5★ together) and The Undoing (3.5★ together) — Kidman-led prestige crime/mystery lands at exactly this level for you two, a tight floor and ceiling. Patricia Cornwell's source novels bring more procedural plotting muscle than The Undoing's single-twist structure, which suits Helen's case-engine preference. Audience is mild so far (Trakt 7.0). Returning, S1, so some new-series volatility. Together; 2-episode test.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "reason refresh: platform-tier mention removed; 3.5★ T holds"
+  },
+  {
+    "tmdbId": 211178,
+    "title": "The Gray House",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: Civil War spy drama about a real female Union espionage ring. Period + true story + spycraft is Helen-adjacent territory (A Small Light 4★; true story +0.3★) and War & Politics is one of your stronger combos (3.86★ avg). But the early data is genuinely weak — Trakt 6.5 on a tiny vote sample and a very soft TMDB score — so the formula lands low despite the on-paper fit. Returning, S1. Together, strict 2-episode test: proceed only if the period craft and momentum hold, because the drop risk here is real.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "reason refresh: platform mention removed; 3★ T holds"
+  },
+  {
+    "tmdbId": 254953,
+    "title": "Rooster",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Bill Lawrence comedy (Scrubs, Ted Lasso, Shrinking) starring Steve Carell as an author navigating a complicated relationship with his daughter. Carell anchors your all-time favourite (The Office 5★) and Lawrence's warm crowd-pleasers are core territory; now aired, the audience response is strong (Trakt 8.0). New-series volatility would trim this, but per the Pluribus lesson that modifier weakens when a show hits a core sweet spot. Returning, S1. Solo by comedy default — flip together only if it plays heartwarming rather than silly; 2 episodes will tell.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: platform mention removed, post-air Trakt data added; 4★ S holds"
+  }
+]

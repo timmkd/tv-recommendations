@@ -1,0 +1,50 @@
+[
+  {
+    "tmdbId": 243360,
+    "title": "Ludwig",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: David Mitchell as a reclusive puzzle-setter impersonating his detective twin — a cozy case-of-the-week engine wrapped around a dry, grumpy lead, which is Helen's exact archetype (the Jackson Lamb one-liner lane). Comps: Sherlock (4.5★) and Only Murders (4★) — mystery-comedy with warmth and momentum, together's best-performing shape. Strong audience response (Trakt 8.0). Returning — S2 on the way, but S1 resolves its case cleanly. Together; 2 episodes is enough to know, and the puzzle-of-the-week lightness is a feature here.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "new discovery add: Helen dry-wit detective lane"
+  },
+  {
+    "tmdbId": 43982,
+    "title": "Line of Duty",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Jed Mercurio's anti-corruption police thriller — same creator as Bodyguard (4★ together), same propulsive engine, built around legendary interrogation set-pieces. Trakt 8.5 with each season a self-contained case, so you can stop cleanly at any series end. Broadchurch (4★) is the other comp: a gripping British procedural you'd only watch with Helen. Returning (S7 coming) after six complete seasons. Risk is late-season quality wobble — your S2+ decline pattern — so reassess each season. Together; 2-episode test.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "new discovery add: Mercurio/Bodyguard comp, Helen momentum lane"
+  },
+  {
+    "tmdbId": 61697,
+    "title": "Wolf Hall",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Mark Rylance as Thomas Cromwell in the definitive Tudor-court drama — true-story period prestige in The Crown's (4.5★) exact together lane, COMPLETE across two limited runs including the acclaimed 2024 finale. The register is slower and more austere than The Crown — candlelit and deliberate — which is the one Helen risk here: commit to 4-5 episodes and let the court intrigue take hold. A Gentleman in Moscow (4★) is the pace comp. Together — period drama is your strongest shared genre, and this is its prestige peak.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "new discovery add: Crown-lane period prestige, complete"
+  },
+  {
+    "tmdbId": 60948,
+    "title": "12 Monkeys",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Time-loop thriller that becomes one of TV's great payoff machines — four COMPLETE seasons building to a finale that famously sticks the landing, with jaw-drop reveals engineered across the whole run (your #1 modifier; Dark 4.5★ is the comp). Two cautions from your own data: mid-budget execution cost 3 Body Problem (3★) its concept, and Travelers (3★) fizzled where this doesn't. S1 starts uneven — commit to 4-5 episodes until the mythology locks in. Solo — twisty time-travel is your lane, not Helen's.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "new discovery add: Dark-cluster payoff sci-fi, complete"
+  },
+  {
+    "tmdbId": 81358,
+    "title": "Mr Inbetween",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Australian (+0.5★ stated preference) hitman dramedy — Scott Ryan's Ray Shoesmith juggles school pickup, anger-management class and contract violence with bone-dry wit. Barry (4★) is the direct comp: dark crime-comedy with real emotional weight, done leaner and meaner here. Elite word-of-mouth (Trakt 8.3), COMPLETE in three short seasons — low commitment, no cancellation anxiety. Solo — the violence and pitch-black register are yours, not Helen's. 2 episodes is enough to know if Ray's charm lands.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "new discovery add: AU dark dramedy, Barry comp"
+  },
+  {
+    "tmdbId": 257519,
+    "title": "Bait",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Riz Ahmed's trippy showbiz conspiracy — a struggling actor's Bond audition tips into an existential thriller. Two things moved this up from 3★: critics crowned it the best new show of early 2026 while audiences sit mild (Trakt 6.5), and for sci-fi your divergence rule says side with critics (9-0 record); plus Wonder Man (4★) just proved the acting-world-relatability angle lands for you. COMPLETE short-episode limited series, so the commitment is tiny. Solo — the experimental register isn't Helen's. Give it 2-3 episodes.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "3→3.5★: sci-fi critics-divergence rule + Wonder Man relatability lesson; old reason asked to sharpen"
+  }
+]
