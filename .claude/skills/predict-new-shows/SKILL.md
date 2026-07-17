@@ -17,8 +17,10 @@ apply script and log them.
   any other way.
 - NEVER write or change `rating`, `ratedAt`, `reviewNote`, or `watchPreference` on
   any show — those are the user's fields.
-- This skill does NOT edit `docs/taste-profile.md` and does NOT run the Trakt sync.
-  If the profile looks wrong, say so and suggest `/review-ratings`.
+- This skill does NOT edit `docs/taste-profile.md` and does NOT run the full
+  Trakt sync — EXCEPT the Step 1 escape hatch (user explicitly asked for a
+  not-yet-imported show). If the profile looks wrong, say so and suggest
+  `/review-ratings`.
 - Commit to ONE final predicted rating per show — never a range, never options.
 - If any validation/fix loop fails 3 times, STOP and show the user the exact error.
 
@@ -35,9 +37,15 @@ apply script and log them.
 npx tsx scripts/check-new-trakt-shows.ts
 ```
 
-If it reports shows on Trakt that are NOT in the local DB: tell the user
-"N shows are on Trakt but not yet imported — run /review-ratings to sync them
-first, or continue with what's in the DB?" and WAIT for their answer.
+If it reports shows on Trakt that are NOT in the local DB:
+
+- If the user's request explicitly names one of the missing shows, import it:
+  follow the dev-server sync lifecycle in review-ratings Step 6 EXACTLY
+  (reuse or start the server → trigger sync → converge → enrichment wait →
+  stop only a server you started), then continue with Step 2.
+- Otherwise tell the user "N shows are on Trakt but not yet imported — run
+  /review-ratings to sync them first, or continue with what's in the DB?"
+  and WAIT for their answer.
 
 ### Step 2 — Build the working list
 
@@ -85,13 +93,15 @@ npx tsx scripts/apply-predictions.ts data/prediction-batches/<file>.json --dry-r
   say so and continue.
 - Proceed only on `RESULT: DRY-RUN OK`.
 
-### Step 6 — STOP: user approval
+### Step 6 — Present (no approval gate)
 
 Present the full prediction table: Title | Predicted | Solo/Together | complete
-reason text. Wait for approval. If the user challenges a prediction, debate it on
-the evidence — do not fold automatically, and do not offer them rating options;
-revise to a single new number only if the debate convinces you, then re-run the
-`--dry-run` and re-present.
+reason text — then proceed straight to Step 7 WITHOUT waiting for approval.
+Predictions are the predictor's call (user directive 2026-07-17: "ratings are
+your choice, you are the predictor"). If the user challenges a prediction after
+it's applied, debate it on the evidence — do not fold automatically, and do not
+offer them rating options; revise to a single new number only if the debate
+convinces you, then re-run the `--dry-run` and re-apply via Step 7.
 
 ### Step 7 — Apply and log
 
@@ -128,5 +138,5 @@ and do NOT offer to commit — /review-ratings owns the close-out.
 |---|---|
 | No rating source for a show anywhere | STOP, ask the user (never invent a base) |
 | Trakt API errors during enrichment | The script skips those shows; report them per show and continue |
-| `RESULT: FAILED` after user approval | Never hand-write to the DB; show the errors and STOP |
+| `RESULT: FAILED` on final apply | Never hand-write to the DB; show the errors and STOP |
 | Validation loop exceeds 3 cycles | STOP with the exact remaining errors |

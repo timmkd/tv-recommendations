@@ -140,7 +140,7 @@ npx tsx scripts/find-shows-needing-predictions.ts
 ```
 
 If it lists more than 0 shows: invoke the Skill tool with `predict-new-shows` and
-let it run its full flow (enrich → worksheet → dry-run → approval → apply → log).
+let it run its full flow (enrich → worksheet → dry-run → present → apply → log).
 Do NOT duplicate its prediction logic here, and do NOT improvise predictions
 inline if the invocation fails — report the failure instead.
 

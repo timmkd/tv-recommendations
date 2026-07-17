@@ -90,12 +90,14 @@ Fix EVERY listed error, re-run until `RESULT: DRY-RUN OK` (max 3 cycles, else
 STOP). Investigate every `WARNING:` line — rewrite if it's a real platform
 mention.
 
-### Step 5 — STOP: user approval
+### Step 5 — Present (no approval gate)
 
 Present: (1) the screening table, (2) the changes table
-`Show | Old | New | Reason for Change`. If the user challenges a change, debate
-it on the evidence — don't fold automatically; revise to a single new number only
-if convinced, re-dry-run, re-present.
+`Show | Old | New | Reason for Change` — then proceed straight to Step 6 WITHOUT
+waiting for approval. Predictions are the predictor's call (user directive
+2026-07-17). If the user challenges a change after it's applied, debate it on
+the evidence — don't fold automatically; revise to a single new number only if
+convinced, re-dry-run, re-apply via Step 6.
 
 ### Step 6 — Apply and log
 
@@ -137,5 +139,5 @@ Offer to commit the changed files.
 |---|---|
 | `pendingChanges=0` but the user insists something changed | Explain the hand-entry format in docs/profile-changelog.md, or use `--since <ISO>` |
 | `staleCount` > 40 | Still screen ALL of them (the exactly-staleCount-rows table is mandatory); if genuinely unmanageable, STOP and propose splitting the run by `affects:` keyword |
-| `RESULT: FAILED` after user approval | Never hand-write to the DB; show the errors and STOP |
+| `RESULT: FAILED` on final apply | Never hand-write to the DB; show the errors and STOP |
 | Validation loop exceeds 3 cycles | STOP with the exact remaining errors |

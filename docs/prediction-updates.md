@@ -309,3 +309,9 @@ Star Wars: Andor (arrived marked COMPLETED on Trakt — needs a user rating, not
 | **12 Monkeys** | — | 4★ S | Dark-cluster payoff sci-fi, complete |
 | **Mr Inbetween** | — | 4★ S | AU dark dramedy, Barry comp |
 | **Bait** | 3★ S | 3.5★ S | sci-fi critics-divergence rule + Wonder Man relatability lesson |
+
+## 2026-07-17 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Alice and Steve** | — | 3.5★ S | New import: Alice and Steve — 3.5★ solo, Trakt 7.1 base, limited-series bonus, cringe comedy stays solo |
