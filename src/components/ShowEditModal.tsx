@@ -8,6 +8,65 @@ const PREFERENCE_OPTIONS: { value: WatchPreference; label: string }[] = [
   { value: 'together', label: 'Together' }
 ];
 
+// Bingeability: how easily the show is binged - deliberately NOT a measure of quality.
+// 1-5 integers only (never 0 - the `|| null` save path treats 0 as unset).
+const BINGEABILITY_LABELS: Record<number, string> = {
+  5: "Couldn't stop - wanted to keep going",
+  4: 'Very easy to keep watching',
+  3: 'Easy enough, watched steadily',
+  2: 'Needed effort to keep going',
+  1: 'A struggle to get into'
+};
+
+// Numeric 1-5 selector. Kept visually distinct from StarRating so the two
+// scores don't drag toward each other. Label appears on hover or once set.
+function BingeabilityRating({
+  value,
+  onChange
+}: {
+  value: number | undefined;
+  onChange: (value: number | undefined) => void;
+}) {
+  const [hovered, setHovered] = useState<number | undefined>(undefined);
+  const shown = hovered ?? value;
+
+  return (
+    <div>
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <button
+            key={n}
+            onClick={() => onChange(value === n ? undefined : n)}
+            onMouseEnter={() => setHovered(n)}
+            onMouseLeave={() => setHovered(undefined)}
+            aria-label={`${n} - ${BINGEABILITY_LABELS[n]}`}
+            aria-pressed={value === n}
+            className={`w-8 h-8 sm:w-9 sm:h-9 rounded text-xs sm:text-sm font-medium transition-colors ${
+              value === n
+                ? 'bg-teal-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            {n}
+          </button>
+        ))}
+        {value && (
+          <button
+            onClick={() => onChange(undefined)}
+            className="ml-1 text-xs text-gray-500 hover:text-red-400"
+            aria-label="Clear bingeability"
+          >
+            ×
+          </button>
+        )}
+      </div>
+      <p className="mt-1.5 text-[10px] sm:text-xs text-gray-400 min-h-[1rem]">
+        {shown ? BINGEABILITY_LABELS[shown] : ''}
+      </p>
+    </div>
+  );
+}
+
 // Star rating component with half-star support
 function StarRating({
   value,
@@ -109,6 +168,7 @@ export default function ShowEditModal({
   const [watchPreference, setWatchPreference] = useState<WatchPreference | undefined>(undefined);
   const [watchPreferenceNote, setWatchPreferenceNote] = useState('');
   const [rating, setRating] = useState<number | undefined>(undefined);
+  const [bingeability, setBingeability] = useState<number | undefined>(undefined);
   const [reviewNote, setReviewNote] = useState('');
   const [notes, setNotes] = useState('');
   const [hidden, setHidden] = useState(false);
@@ -124,6 +184,7 @@ export default function ShowEditModal({
       setWatchPreference(initialShow.watchPreference);
       setWatchPreferenceNote(initialShow.watchPreferenceNote || '');
       setRating(initialShow.rating);
+      setBingeability(initialShow.bingeability);
       setReviewNote(initialShow.reviewNote || '');
       setNotes(initialShow.notes || '');
       setHidden(initialShow.hidden || false);
@@ -170,6 +231,7 @@ export default function ShowEditModal({
             setWatchPreference(found.watchPreference);
             setWatchPreferenceNote(found.watchPreferenceNote || '');
             setRating(found.rating);
+            setBingeability(found.bingeability);
             setReviewNote(found.reviewNote || '');
             setNotes(found.notes || '');
             setHidden(found.hidden || false);
@@ -219,6 +281,7 @@ export default function ShowEditModal({
             watchPreference: watchPreference || null,
             watchPreferenceNote: watchPreferenceNote || null,
             rating: rating || null,
+            bingeability: bingeability || null,
             reviewNote: reviewNote || null,
             notes: notes || null,
             hidden,
@@ -230,6 +293,7 @@ export default function ShowEditModal({
             watchPreference: watchPreference || null,
             watchPreferenceNote: watchPreferenceNote || null,
             rating: rating || null,
+            bingeability: bingeability || null,
             reviewNote: reviewNote || null,
             notes: notes || null,
             hidden,
@@ -253,6 +317,7 @@ export default function ShowEditModal({
         watchPreference,
         watchPreferenceNote,
         rating,
+        bingeability,
         reviewNote,
         notes,
         hidden,
@@ -612,6 +677,17 @@ export default function ShowEditModal({
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Bingeability - own card so it reads as a separate axis from the star rating */}
+            <div className="mt-3 sm:mt-4 bg-gray-800/50 rounded-lg p-3 sm:p-4">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-300 border-b border-gray-700 pb-2 mb-3">
+                Bingeability
+              </h3>
+              <p className="text-[10px] sm:text-xs text-gray-500 mb-2">
+                How easily did it binge? Not how good it was.
+              </p>
+              <BingeabilityRating value={bingeability} onChange={setBingeability} />
             </div>
 
             {/* External Scores Reference */}

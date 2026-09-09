@@ -23,6 +23,7 @@ export const shows = sqliteTable('shows', {
   watchPreference: text('watch_preference').$type<'solo' | 'together'>(),
   watchPreferenceNote: text('watch_preference_note'),
   rating: real('rating'), // 0.5-5.0
+  bingeability: integer('bingeability'), // 1-5, how easily binged - independent of quality
   reviewNote: text('review_note'),
   notes: text('notes'),
   ratedAt: text('rated_at'), // ISO date
@@ -30,6 +31,7 @@ export const shows = sqliteTable('shows', {
   // AI predictions
   predictedRating: real('predicted_rating'),
   predictedRatingReason: text('predicted_rating_reason'),
+  predictedBingeability: integer('predicted_bingeability'), // 1-5
   recommendedWatchPreference: text('recommended_watch_preference').$type<'solo' | 'together'>(),
   predictionsUpdatedAt: text('predictions_updated_at'),
 

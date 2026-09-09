@@ -9,6 +9,7 @@
  *     "predictedRating": 4,                        // 0.5-5 in 0.5 steps
  *     "predictedRatingReason": "Predicted 4★: ...", // 400-600 chars, no platform names
  *     "recommendedWatchPreference": "solo",        // or "together"
+ *     "predictedBingeability": 4,                  // OPTIONAL 1-5 integer, how easily binged
  *     "changeNote": "optional, <=120 chars, shown in the prediction-updates.md log"
  *   }
  *
@@ -96,6 +97,11 @@ async function main() {
       errors.push(`${label}: recommendedWatchPreference must be "solo" or "together", got ${JSON.stringify(r?.recommendedWatchPreference)}`);
     if (r?.changeNote != null && (typeof r.changeNote !== 'string' || r.changeNote.length > 120))
       errors.push(`${label}: changeNote must be a string of <=120 chars`);
+    // Optional. 1-5 integers only: 0 would be swallowed by the `|| null` truthiness
+    // conventions used elsewhere for this field.
+    const binge = r?.predictedBingeability;
+    if (binge != null && !(Number.isInteger(binge) && binge >= 1 && binge <= 5))
+      errors.push(`${label}: predictedBingeability must be an integer 1-5 (or omitted), got ${JSON.stringify(binge)}`);
 
     // --- reason ---
     const reason = r?.predictedRatingReason;
@@ -153,7 +159,11 @@ async function main() {
       ? starLabel(existing.predictedRating, existing.recommendedWatchPreference)
       : '—';
     console.log(
-      `tmdb=${row.tmdbId}  ${existing.title}: ${oldLabel} -> ${starLabel(row.predictedRating, row.recommendedWatchPreference)}${row.changeNote ? `  (${row.changeNote})` : ''}`
+      `tmdb=${row.tmdbId}  ${existing.title}: ${oldLabel} -> ${starLabel(row.predictedRating, row.recommendedWatchPreference)}${
+        row.predictedBingeability != null
+          ? `  binge ${existing.predictedBingeability ?? '—'}->${row.predictedBingeability}`
+          : ''
+      }${row.changeNote ? `  (${row.changeNote})` : ''}`
     );
   }
 
@@ -171,6 +181,9 @@ async function main() {
       predictedRating: row.predictedRating,
       predictedRatingReason: row.predictedRatingReason,
       recommendedWatchPreference: row.recommendedWatchPreference,
+      ...(row.predictedBingeability != null
+        ? { predictedBingeability: row.predictedBingeability }
+        : {}),
       predictionsUpdatedAt: now,
     });
     console.log(`saved tmdb=${row.tmdbId} ${existing.title}`);

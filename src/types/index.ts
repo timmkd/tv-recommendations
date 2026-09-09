@@ -40,11 +40,13 @@ export interface Show {
 
   // Rating & review
   rating?: number; // 0.5 to 5 in 0.5 increments
+  bingeability?: number; // 1-5 integer - how easily binged, independent of quality
   reviewNote?: string;
 
   // Predicted rating (for watchlist items)
   predictedRating?: number; // 0.5 to 5 in 0.5 increments
   predictedRatingReason?: string;
+  predictedBingeability?: number; // 1-5 integer
   recommendedWatchPreference?: WatchPreference;
   predictionsUpdatedAt?: string; // ISO date - when AI predictions were last updated
 
@@ -135,12 +137,14 @@ export interface ShowOverlay {
 
   // Rating & review (our custom rating, not Trakt's)
   rating?: number; // 0.5 to 5 in 0.5 increments
+  bingeability?: number; // 1-5 integer - how easily binged, independent of quality
   reviewNote?: string;
   ratedAt?: string; // ISO date - when user rated the show
 
   // Predicted rating (for watchlist items)
   predictedRating?: number; // 0.5 to 5 in 0.5 increments
   predictedRatingReason?: string;
+  predictedBingeability?: number; // 1-5 integer
   recommendedWatchPreference?: WatchPreference;
   predictionsUpdatedAt?: string; // ISO date - when AI predictions were last updated
 
