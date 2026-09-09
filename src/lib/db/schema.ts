@@ -32,6 +32,7 @@ export const shows = sqliteTable('shows', {
   predictedRating: real('predicted_rating'),
   predictedRatingReason: text('predicted_rating_reason'),
   predictedBingeability: integer('predicted_bingeability'), // 1-5
+  predictedBingeabilityReason: text('predicted_bingeability_reason'),
   recommendedWatchPreference: text('recommended_watch_preference').$type<'solo' | 'together'>(),
   predictionsUpdatedAt: text('predictions_updated_at'),
 

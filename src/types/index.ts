@@ -47,6 +47,7 @@ export interface Show {
   predictedRating?: number; // 0.5 to 5 in 0.5 increments
   predictedRatingReason?: string;
   predictedBingeability?: number; // 1-5 integer
+  predictedBingeabilityReason?: string; // how/why that bingeability was predicted
   recommendedWatchPreference?: WatchPreference;
   predictionsUpdatedAt?: string; // ISO date - when AI predictions were last updated
 
@@ -145,6 +146,7 @@ export interface ShowOverlay {
   predictedRating?: number; // 0.5 to 5 in 0.5 increments
   predictedRatingReason?: string;
   predictedBingeability?: number; // 1-5 integer
+  predictedBingeabilityReason?: string; // how/why that bingeability was predicted
   recommendedWatchPreference?: WatchPreference;
   predictionsUpdatedAt?: string; // ISO date - when AI predictions were last updated
 

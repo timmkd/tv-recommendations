@@ -1290,7 +1290,16 @@ function ShowsContent() {
                   {/* Rating ribbon between poster and details */}
                   {show.rating ? (
                     <div className="flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-900">
-                      <span className="text-yellow-400 font-semibold text-sm sm:text-base">{show.rating}★</span>
+                      <div className="flex items-center gap-1 sm:gap-1.5">
+                        <span className="text-yellow-400 font-semibold text-sm sm:text-base">{show.rating}★</span>
+                        {show.bingeability && (
+                          <Tooltip content={`Bingeability ${show.bingeability}/5 (your score)`}>
+                            <span className="px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-semibold bg-teal-900/70 text-teal-300 cursor-help">
+                              B{show.bingeability}
+                            </span>
+                          </Tooltip>
+                        )}
+                      </div>
                       {show.watchPreference && (
                         <span className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium ${
                           show.watchPreference === 'solo' ? 'bg-blue-600 text-white' : 'bg-pink-600 text-white'
@@ -1301,14 +1310,23 @@ function ShowsContent() {
                     </div>
                   ) : (show.predictedRating || show.recommendedWatchPreference) ? (
                     <div className="flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 bg-purple-900/60">
-                      <Tooltip content={show.predictedRatingReason || 'Based on your taste profile'}>
-                        <div className="flex items-center gap-1 sm:gap-1.5 cursor-help">
-                          <span className="text-purple-300 text-[8px] sm:text-[10px] font-medium uppercase">AI</span>
-                          {show.predictedRating && (
-                            <span className="text-yellow-400 font-semibold text-sm sm:text-base">{show.predictedRating}★</span>
-                          )}
-                        </div>
-                      </Tooltip>
+                      <div className="flex items-center gap-1 sm:gap-1.5">
+                        <Tooltip content={show.predictedRatingReason || 'Based on your taste profile'}>
+                          <div className="flex items-center gap-1 sm:gap-1.5 cursor-help">
+                            <span className="text-purple-300 text-[8px] sm:text-[10px] font-medium uppercase">AI</span>
+                            {show.predictedRating && (
+                              <span className="text-yellow-400 font-semibold text-sm sm:text-base">{show.predictedRating}★</span>
+                            )}
+                          </div>
+                        </Tooltip>
+                        {show.predictedBingeability && (
+                          <Tooltip content={show.predictedBingeabilityReason || `Predicted bingeability ${show.predictedBingeability}/5`}>
+                            <span className="px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-semibold bg-teal-900/70 text-teal-300 cursor-help">
+                              B{show.predictedBingeability}
+                            </span>
+                          </Tooltip>
+                        )}
+                      </div>
                       {show.recommendedWatchPreference && (
                         <span className={`px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium ${
                           show.recommendedWatchPreference === 'solo'

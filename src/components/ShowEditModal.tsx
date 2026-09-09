@@ -553,7 +553,7 @@ export default function ShowEditModal({
             )}
 
             {/* AI Predictions (only show if no user rating/preference set) */}
-            {(!rating && show.predictedRating) || (!watchPreference && show.recommendedWatchPreference) ? (
+            {(!rating && show.predictedRating) || (!watchPreference && show.recommendedWatchPreference) || (!bingeability && show.predictedBingeability) ? (
               <div className="mb-3 sm:mb-5 p-2 sm:p-3 bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-700/50 rounded-lg">
                 <div className="flex items-center gap-2 mb-1 sm:mb-2">
                   <span className="text-purple-400 text-xs sm:text-sm font-medium">🤖 AI Predictions</span>
@@ -563,6 +563,12 @@ export default function ShowEditModal({
                     <div>
                       <span className="text-yellow-500">~{show.predictedRating}★</span>
                       <span className="text-gray-400 ml-1 sm:ml-2">predicted</span>
+                    </div>
+                  )}
+                  {!bingeability && show.predictedBingeability && (
+                    <div>
+                      <span className="text-teal-400">~{show.predictedBingeability}/5</span>
+                      <span className="text-gray-400 ml-1 sm:ml-2">bingeability</span>
                     </div>
                   )}
                   {!watchPreference && show.recommendedWatchPreference && (
@@ -577,6 +583,11 @@ export default function ShowEditModal({
                 {show.predictedRatingReason && (
                   <p className="text-gray-400 text-[10px] sm:text-xs mt-1 sm:mt-2 italic">
                     &quot;{show.predictedRatingReason}&quot;
+                  </p>
+                )}
+                {!bingeability && show.predictedBingeabilityReason && (
+                  <p className="text-teal-300/80 text-[10px] sm:text-xs mt-1 sm:mt-2 italic">
+                    &quot;{show.predictedBingeabilityReason}&quot;
                   </p>
                 )}
               </div>

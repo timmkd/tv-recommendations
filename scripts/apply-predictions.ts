@@ -10,6 +10,12 @@
  *     "predictedRatingReason": "Predicted 4★: ...", // 400-600 chars, no platform names
  *     "recommendedWatchPreference": "solo",        // or "together"
  *     "predictedBingeability": 4,                  // OPTIONAL 1-5 integer, how easily binged
+ *     "predictedBingeabilityReason": "Binge 4/5: ...", // OPTIONAL 120-400 chars, required with the above
+ *
+ *   BINGEABILITY-ONLY rows: omit predictedRating / predictedRatingReason /
+ *   recommendedWatchPreference and supply only the two bingeability fields. The
+ *   show must already carry a star prediction, which is left untouched. This
+ *   avoids re-emitting long existing reasons just to attach a binge score.
  *     "changeNote": "optional, <=120 chars, shown in the prediction-updates.md log"
  *   }
  *
@@ -91,10 +97,19 @@ async function main() {
     if (seenIds.has(r?.tmdbId)) errors.push(`${label}: duplicate tmdbId ${r.tmdbId} in this batch`);
     seenIds.add(r?.tmdbId);
     const rating = r?.predictedRating;
+    // A row that carries only bingeability leaves the stored star prediction alone.
+    const bingeOnly =
+      rating === undefined &&
+      r?.predictedRatingReason === undefined &&
+      r?.recommendedWatchPreference === undefined &&
+      r?.predictedBingeability != null;
+    r.__bingeOnly = bingeOnly;
     const ratingOk = typeof rating === 'number' && Number.isInteger(rating * 2) && rating * 2 >= 1 && rating * 2 <= 10;
-    if (!ratingOk) errors.push(`${label}: predictedRating must be 0.5-5 in 0.5 steps, got ${JSON.stringify(rating)}`);
-    if (r?.recommendedWatchPreference !== 'solo' && r?.recommendedWatchPreference !== 'together')
-      errors.push(`${label}: recommendedWatchPreference must be "solo" or "together", got ${JSON.stringify(r?.recommendedWatchPreference)}`);
+    if (!bingeOnly) {
+      if (!ratingOk) errors.push(`${label}: predictedRating must be 0.5-5 in 0.5 steps, got ${JSON.stringify(rating)}`);
+      if (r?.recommendedWatchPreference !== 'solo' && r?.recommendedWatchPreference !== 'together')
+        errors.push(`${label}: recommendedWatchPreference must be "solo" or "together", got ${JSON.stringify(r?.recommendedWatchPreference)}`);
+    }
     if (r?.changeNote != null && (typeof r.changeNote !== 'string' || r.changeNote.length > 120))
       errors.push(`${label}: changeNote must be a string of <=120 chars`);
     // Optional. 1-5 integers only: 0 would be swallowed by the `|| null` truthiness
@@ -102,10 +117,23 @@ async function main() {
     const binge = r?.predictedBingeability;
     if (binge != null && !(Number.isInteger(binge) && binge >= 1 && binge <= 5))
       errors.push(`${label}: predictedBingeability must be an integer 1-5 (or omitted), got ${JSON.stringify(binge)}`);
+    const bingeReason = r?.predictedBingeabilityReason;
+    if (binge != null && typeof bingeReason !== 'string')
+      errors.push(`${label}: predictedBingeabilityReason is required when predictedBingeability is set`);
+    if (typeof bingeReason === 'string') {
+      const bm = bingeReason.match(/^Binge (\d)\/5: /);
+      if (!bm) errors.push(`${label}: predictedBingeabilityReason must start with "Binge X/5: ", got "${bingeReason.slice(0, 30)}..."`);
+      else if (binge != null && Number(bm[1]) !== binge)
+        errors.push(`${label}: reason says "Binge ${bm[1]}/5" but predictedBingeability is ${binge}`);
+      if (bingeReason.length < 120 || bingeReason.length > 400)
+        errors.push(`${label}: predictedBingeabilityReason must be 120-400 chars, got ${bingeReason.length}`);
+    }
 
     // --- reason ---
     const reason = r?.predictedRatingReason;
-    if (typeof reason !== 'string') {
+    if (bingeOnly) {
+      // nothing to check: the stored reason is untouched
+    } else if (typeof reason !== 'string') {
       errors.push(`${label}: predictedRatingReason must be a string`);
     } else {
       const m = reason.match(/^Predicted (\d(?:\.5)?)★: /);
@@ -134,6 +162,8 @@ async function main() {
       } else {
         if (typeof r?.title === 'string' && existing.title && existing.title.trim().toLowerCase() !== r.title.trim().toLowerCase())
           errors.push(`${label}: title mismatch — DB has "${existing.title}" for tmdbId ${r.tmdbId} (likely a tmdbId mix-up)`);
+        if (r.__bingeOnly && existing.predictedRating == null)
+          errors.push(`${label}: bingeability-only row but the show has no existing star prediction`);
         if (existing.rating != null && !allowRated)
           errors.push(`${label}: show already rated ${existing.rating}★ by the user — predictions for rated shows need --allow-rated`);
         if (existing.dropped) errors.push(`${label}: show is DROPPED — do not predict dropped shows`);
@@ -158,6 +188,12 @@ async function main() {
     const oldLabel = existing.predictedRating != null
       ? starLabel(existing.predictedRating, existing.recommendedWatchPreference)
       : '—';
+    if (row.__bingeOnly) {
+      console.log(
+        `tmdb=${row.tmdbId}  ${existing.title}: ${oldLabel} (unchanged)  binge ${existing.predictedBingeability ?? '—'}->${row.predictedBingeability}`
+      );
+      continue;
+    }
     console.log(
       `tmdb=${row.tmdbId}  ${existing.title}: ${oldLabel} -> ${starLabel(row.predictedRating, row.recommendedWatchPreference)}${
         row.predictedBingeability != null
@@ -178,11 +214,18 @@ async function main() {
     await saveOverlay({
       ...existing,
       tmdbId: row.tmdbId,
-      predictedRating: row.predictedRating,
-      predictedRatingReason: row.predictedRatingReason,
-      recommendedWatchPreference: row.recommendedWatchPreference,
+      ...(row.__bingeOnly
+        ? {}
+        : {
+            predictedRating: row.predictedRating,
+            predictedRatingReason: row.predictedRatingReason,
+            recommendedWatchPreference: row.recommendedWatchPreference,
+          }),
       ...(row.predictedBingeability != null
-        ? { predictedBingeability: row.predictedBingeability }
+        ? {
+            predictedBingeability: row.predictedBingeability,
+            predictedBingeabilityReason: row.predictedBingeabilityReason,
+          }
         : {}),
       predictionsUpdatedAt: now,
     });
@@ -198,6 +241,10 @@ async function main() {
       ? starLabel(existing.predictedRating, existing.recommendedWatchPreference)
       : '—';
     const note = row.changeNote || (existing.predictedRating == null ? 'new prediction' : '');
+    if (row.__bingeOnly) {
+      console.log(`| **${existing.title}** | ${oldLabel} | ${oldLabel} + B${row.predictedBingeability} | ${row.changeNote || 'bingeability prediction added'} |`);
+      continue;
+    }
     console.log(`| **${existing.title}** | ${oldLabel} | ${starLabel(row.predictedRating, row.recommendedWatchPreference)} | ${note} |`);
   }
 
