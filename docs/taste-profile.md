@@ -268,19 +268,22 @@ A second rating axis, tracked separately from the star rating since Aug 2026. **
 
 **Recording convention (decided Sep 2026):** ONE score per show, not a hook/sustain split. The number is a **blend**; when a show's start and finish differ, that shape goes in the review note ("slow start, unstoppable finish"). Do not add a second numeric field — this was considered and rejected as over-engineering.
 
-> **STATUS (2026-09-09): 78 shows scored — the axis is VALIDATED as a distinct signal, the WEIGHTS are not.** The scored set is deliberately skewed to shows Tim rated 3.5-5★ (no 3★ or below, no dropped shows), and he has decided **not** to score the low end. Two consequences, both permanent: (1) the negative weights can never be validated, so they are **retired** rather than pending — low-hook risk is carried by the structural modifiers instead; (2) with only 3 of the 78 scored shows holding a stored Trakt score, whether bingeability adds anything **over** IMDB/Trakt is untestable, so the positive weights stay PROVISIONAL and out of the formula.
+> **STATUS (2026-09-09, rev 2): 80 shows scored — the axis is VALIDATED as a distinct signal, the WEIGHTS are not.** The scored set is deliberately skewed to shows Tim rated 3-5★ (only one show at 3★, none below, no dropped shows), and he has decided **not** to score the low end. Two consequences, both permanent: (1) the negative weights can never be validated, so they are **retired** rather than pending — low-hook risk is carried by the structural modifiers instead; (2) with only 3 of the 80 scored shows holding a stored Trakt score, whether bingeability adds anything **over** IMDB/Trakt is untestable, so the positive weights stay PROVISIONAL and out of the formula.
+>
+> **The axis has never been validated against a prediction — the overlap is ZERO.** All 174 stored `predictedBingeability` values sit on shows with no user score, and all 80 user scores sit on shows that were never predicted. Bingeability MAE is therefore **unmeasurable**, not merely poor. Do NOT read the gap between the predicted distribution (mean 3.74; 16% at 5) and the scored distribution (mean 4.19; 44% at 5) as predictor bias: the scored set is **completion-selected** — Tim scores only shows he finished, and finishing is itself selected on high bingeability — while the predicted set is mostly unwatched watchlist. No blanket recalibration is justified from that comparison; only rule-driven, per-show changes are.
 
 ### Why it is a separate axis
 
-Measured on the 78 scored shows (Sep 2026):
+Measured on the 80 scored shows (Sep 2026, rev 2):
 
 | Metric | Value |
 |---|---|
-| r (bingeability vs star rating) | **0.55** (r² = 0.30) |
-| Bingeability spread (sd) | **0.81** — range 2-5 used |
-| Star spread (sd), same shows | **0.34** — nearly all on 4★ |
+| r (bingeability vs star rating) | **0.58** (r² = 0.34) |
+| Bingeability spread (sd) | **0.83** — range 2-5 used |
+| Star spread (sd), same shows | **0.36** — nearly all on 4★ |
+| Score distribution | 5: 35 · 4: 26 · 3: 18 · 2: 1 · 1: 0 |
 
-**The axes are correlated, NOT orthogonal** — and since the scored set spans only 3.5-5★, range restriction *attenuates* r, so the true library-wide figure is likely higher. But bingeability still discriminates where the star scale cannot: on shows rated almost identically, it varies more than twice as much. That is the point of it. (Context: 128 of 214 rated shows sit at 3.5★ or 4★, so the star scale has ~1.5★ of usable range.)
+**The axes are correlated, NOT orthogonal** — and since the scored set spans only 3-5★, range restriction *attenuates* r, so the true library-wide figure is likely higher. But bingeability still discriminates where the star scale cannot: on shows rated almost identically, it varies more than twice as much. That is the point of it. (Context: 128 of 214 rated shows sit at 3.5★ or 4★, so the star scale has ~1.5★ of usable range.)
 
 **CORRECTION — the earlier "orthogonal at the top" claim was wrong.** It was built by mining review notes for binge language and reading *silence* as evidence of low bingeability. Every show cited as proof went the other way once actually scored: Dark 4, Sherlock 4, and Foundation, The Crown, Murderbot and Pluribus all **5**. Absence of binge language in a note means nothing. Do not infer this axis from note text.
 
@@ -294,9 +297,17 @@ The two halves predict **opposite** things:
 - **Sustain is NOT SUFFICIENT.** Binge 5 spans 4★ (17 shows), 4.5★ (13) and 5★ (5). A compulsive watch is often just a 4★.
 - **Hook predicts ABANDONMENT, not quality.** Monk 3★ ("haven't been able to jump on board after about 8 episodes") and Ghosts 3★ ("reaching for other shows") both failed on hook. But **Dark had a weak hook and still landed 4.5★** — because the payoff was real.
 
+**The score is a run-AVERAGE across seasons — not a peak, not a final state (added Sep 2026).** Both new scores say so in the note, unprompted: **Upload** 3.5★/binge **3** ("Earlier seasons were higher in bingeability than the later seasons, so it averaged to a 3") and **Westworld** 3★/binge **3** ("...average to a 3"). A front-loaded show is scored on the whole run Tim actually watched, so a strong S1 does not carry it. This is a third dimension on top of hook and sustain, and it only ever pushes **down**.
+
+- **Momentum decline ≠ quality decline — only momentum drags the average.** **The Crown** declined in quality by its own note ("started to get a little less good as it went on") and still scored **5**. **Sherlock** ("the last season wasn't quite as good") scored **4**, and that is hook-limited, not decay. Westworld and Upload lost *momentum* — the reveals and stakes stopped paying — which is the thing that averages down.
+- **Operational test.** Drop ONE level from the peak-momentum estimate when BOTH hold: (a) the run is ≥ 4 seasons, or ≥ 3 with a notorious mid-run collapse; AND (b) the later-run complaint is about **momentum/resolution** (stalling, spinning wheels, reveals that never land, formula fatigue) rather than **quality** (weaker writing, cast changes, less prestige). If the complaint is quality-only, hold the score — that is the Crown precedent. Per-season-closed structures (anthology, one case per series) are exempt: momentum resets rather than decays.
+- **Westworld is the counter-example to "withholds answers by design = 5".** It is the strongest-hook serialised mystery box in the library and it scored **3**, because the questions kept accumulating across four seasons without resolving. A mystery box earns top marks only when it *resolves* (Dark 4, Severance 5, Silo 5, Stranger Things 5) or closes per season (Black Mirror 5, White Lotus shape). An open-ended question engine is a run-average **risk**, not an automatic 5.
+- **Length alone is not decay.** Seven-plus seasons still score 5 when momentum holds: Gilmore Girls 5 (7 seasons, weak S7), The West Wing 5, The Office 5, Parks and Recreation 5, The Rookie 5, Brooklyn Nine-Nine 5. Do not dock for season count — dock only for a momentum complaint.
+- **The 4/5 boundary is noisy.** **The Diplomat** (binge **4**) and **The Handmaid's Tale** (binge **5**) carry near-identical notes ("five star bingeable at the end of seasons although not always at the start"). Treat a one-level difference at the top as within noise, and do not fine-tune predictions there.
+
 **Therefore: a weak hook is only a drag when there is no payoff waiting.** Never cap a prediction for slow-start alone — check the payoff signal first (jaw-drop reveals/resolution is a stated core love). This is exactly what the stick-with-it verdict in the prediction reason exists to express: "weak hook, but commit — the payoff is real" (Dark) vs "weak hook, nothing coming — don't force it" (Monk).
 
-Observed mean star rating by level, for reference (selection-biased, do not read as weights): binge 3 → 3.91★ (n=16) · binge 4 → 4.04★ (n=26) · binge 5 → 4.33★ (n=35).
+Observed mean star rating by level, for reference (selection-biased, do not read as weights): binge 3 → 3.83★ (n=18) · binge 4 → 4.04★ (n=26) · binge 5 → 4.33★ (n=35).
 
 ### Weights — NOT in the formula
 

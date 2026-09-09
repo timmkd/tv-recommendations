@@ -339,3 +339,32 @@ entry touched their prediction. The 2026-08-31 bingeability entry is `affects: n
 Kept-after-recompute (flagged, no change): Mare of Easttown, Manhunt, Justified,
 Unforgotten, Line of Duty, Blue Lights, Outlander, Alone, Widow's Bay, Scarpetta,
 Smoke, Industry, Annika, Am I Being Unreasonable?
+
+## 2026-09-09 — Bingeability rescan (run-average rule)
+
+Rechecked all **174** stored `predictedBingeability` values against the two new
+user scores (Westworld 3, Upload 3) and the run-average rule they established.
+Screened the 34 multi-season shows (the only ones the rule can touch — the other
+140 are one-season or limited runs, where there is no run to average); changed 7.
+
+No blanket recalibration was applied: predicted-vs-scored distributions differ
+(mean 3.74 vs 4.19) but the scored set is completion-selected, so that gap is not
+evidence of predictor bias.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **24** | 3.5★ T | 3.5★ T + B4 | run-average rule (2026-09-09): 9-season formula fatigue is momentum decay |
+| **Outlander** | 3.5★ T | 3.5★ T + B4 | run-average rule (2026-09-09): mid-run meander over 8 seasons |
+| **Orphan Black** | 4★ S | 4★ S + B4 | run-average rule (2026-09-09): conspiracy sprawls without resolving |
+| **You** | 3★ S | 3★ S + B4 | run-average rule (2026-09-09): formula repeats across 5 seasons |
+| **Yellowjackets** | 3.5★ S | 3.5★ S + B4 | run-average rule (2026-09-09): unresolved mystery box, drag is momentum |
+| **FROM** | 4★ S | 4★ S + B4 | run-average rule (2026-09-09): accumulating questions, no resolution |
+| **Dexter** | 4★ S | 4★ S + B3 | run-average rule (2026-09-09): late collapse is momentum, not quality |
+
+**Held deliberately** (momentum complaint absent or quality-only — the Crown
+precedent): Yellowstone 5 (Costner exit is a quality problem), Money Heist 5
+(heist parts resolve), Hijack 5 (S2 quality dip only), Line of Duty 5 (case per
+series), Younger 5 (Gilmore Girls, 7 seasons, scored 5), The White Lotus 5 and
+True Detective 4 (per-season closure), Peaky Blinders / Justified / The Expanse /
+Ozark / Mr. Robot / Succession / 12 Monkeys / Tulsa King / Resident Alien 4 (all
+already docked for length, and their late runs held up).

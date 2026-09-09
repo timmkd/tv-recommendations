@@ -1,0 +1,51 @@
+[
+  {
+    "tmdbId": 1973,
+    "title": "24",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: The real-time format ends every episode mid-crisis, so on hook alone this is top tier. But the score is a run average and nine seasons brings notorious formula fatigue - another mole, another countdown - which is a momentum complaint, not a quality one. Peak 5, whole run 4.",
+    "changeNote": "run-average rule (2026-09-09): 9-season formula fatigue is momentum decay"
+  },
+  {
+    "tmdbId": 56570,
+    "title": "Outlander",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Soap-tier romance momentum in the Bridgerton register where you scored 5, but eight seasons scores as a run average and the middle seasons are widely faulted for meandering. That is a momentum complaint, which is exactly what drags the average down. Front half 5, whole run 4.",
+    "changeNote": "run-average rule (2026-09-09): mid-run meander over 8 seasons"
+  },
+  {
+    "tmdbId": 56296,
+    "title": "Orphan Black",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Clone-conspiracy reveals make the first two seasons genuinely propulsive, but the run average is what counts and the conspiracy sprawls into fresh factions without resolving - the Westworld shape, which you scored 3. Short seasons and Maslany hold it at 4 rather than lower.",
+    "changeNote": "run-average rule (2026-09-09): conspiracy sprawls without resolving"
+  },
+  {
+    "tmdbId": 78191,
+    "title": "You",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Stalker-POV voiceover with a will-he-be-caught hook every episode is 5-tier momentum, but across five seasons the formula visibly repeats - new city, new obsession, same beats. Formula fatigue is a momentum complaint, so the run average lands at 4 rather than the peak.",
+    "changeNote": "run-average rule (2026-09-09): formula repeats across 5 seasons"
+  },
+  {
+    "tmdbId": 117488,
+    "title": "Yellowjackets",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A dual-timeline question engine is the strongest hook shape in your data, and I previously waved the drag off as a quality worry. Westworld corrects that: an accumulating mystery that stalls without resolving scored 3. Four seasons still unresolved, so 4 rather than 5.",
+    "changeNote": "run-average rule (2026-09-09): unresolved mystery box, drag is momentum"
+  },
+  {
+    "tmdbId": 124364,
+    "title": "FROM",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Mystery-box horror with a cliffhanger nearly every episode - the hook itself is genuinely 5. Docked one because four seasons of accumulating questions with no resolution contract is the Westworld shape, which you scored 3 for exactly that stall.",
+    "changeNote": "run-average rule (2026-09-09): accumulating questions, no resolution"
+  },
+  {
+    "tmdbId": 1405,
+    "title": "Dexter",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Seasons 1-4 are a propulsive case-plus-antagonist engine, Trinity especially. But the score is a run average over eight seasons and the late collapse is a momentum failure, not merely a quality one - the reveals stop landing. Westworld and Upload both scored 3 on that shape.",
+    "changeNote": "run-average rule (2026-09-09): late collapse is momentum, not quality"
+  }
+]
