@@ -368,3 +368,39 @@ series), Younger 5 (Gilmore Girls, 7 seasons, scored 5), The White Lotus 5 and
 True Detective 4 (per-season closure), Peaky Blinders / Justified / The Expanse /
 Ozark / Mr. Robot / Succession / 12 Monkeys / Tulsa King / Resident Alien 4 (all
 already docked for length, and their late runs held up).
+
+## 2026-09-09 — Prediction rescan (profile changes: 2026-09-09 RULE-CHANGE, 2026-09-09 NEW-MODIFIER)
+
+Screened 18 predictions; kept 16 unchanged.
+
+`stale-predictions.ts` reported only **2** timestamp-stale rows (Aladdin,
+Zootopia+, both `predictionsUpdatedAt=null` kids placeholders). That count was a
+masking artifact: today's bingeability writes bumped `predictionsUpdatedAt` on
+174 shows without touching their **star** reasons, and the default `since` is
+date-only (`2026-09-09`), so every genuinely unscreened star prediction sorted as
+fresh. Re-ran with `--since 2026-09-10` and screened on the RULE-CHANGE entry's
+own `affects:` keywords instead — 16 shows cite `slow burn` / `slow-burn` /
+`nothing happens` in their star reason. Those 16 plus the 2 placeholders are the
+18 screened here.
+
+The second pending entry (bingeability run-average) is **diagnostic only** — no
+star prediction depends on the bingeability weights, so it produced no star
+recomputes. It was already applied to the bingeability predictions earlier today.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Devs** | 4★ S | 4★ S | reason refresh: 2026-09-09 slow-start cap retired where a payoff signal exists |
+| **The Sandman** | 3.5★ S | 3.5★ S | reason refresh: 2026-09-09 slow-start cap retired where a payoff signal exists |
+
+**Kept — penalty correctly stands** (weak hook AND no payoff signal: the Monk
+shape, not the Dark shape): RIPLEY, Detectorists, A Spy Among Friends, Rectify,
+Invasion, Waiting for the Out, The Lying Life of Adults, Reservation Dogs,
+A Murder at the End of the World (divisive resolution is not a payoff signal).
+
+**Kept — no penalty was ever applied** (the phrase justifies the solo call or is
+flagged as a risk with trial guidance, not deducted): Breaking Bad, The Expanse,
+The Bureau, The Night Of, Am I Being Unreasonable?, plus Station Eleven and
+Somebody Somewhere (checked for adjacent phrasings — "too slow-paced for
+together" is a watch-mode note).
+
+**Kept — no pending entry matches:** Aladdin, Zootopia+ (kids-content placeholders).

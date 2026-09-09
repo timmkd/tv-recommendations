@@ -1,58 +1,18 @@
 [
   {
-    "tmdbId": 120998,
-    "title": "Poker Face",
-    "predictedRating": 3.5,
-    "predictedRatingReason": "Predicted 3.5★: Rian Johnson 'howcatchem' with Natasha Lyonne cracking a fresh case each week. Pure case-of-the-week is the known ceiling problem together — Monk 3★, Elementary 3★, Elsbeth 3★ and The Resident 3★ all landed there, because an episodic run gives Helen nothing to come back for. Lyonne's charisma lifts it above that floor, and Only Murders 4★ proves the lane works, but Only Murders carries a season-long mystery this lacks. CANCELLED after two seasons; episodic, so no cliffhanger. Together; 2 episodes is enough to know.",
-    "recommendedWatchPreference": "together",
-    "changeNote": "2026-08-31 procedural-spine: pure case-of-the-week loses the together bonus"
-  },
-  {
-    "tmdbId": 244978,
-    "title": "Return to Paradise",
-    "predictedRating": 3.5,
-    "predictedRatingReason": "Predicted 3.5★: Australian Death in Paradise spinoff — cosy island whodunit with a new case each episode. Australian content is a stated preference and Deadloch 3.5★ is the direct together comp for Australian crime-comedy. But pure case-of-the-week no longer earns a procedural bonus: Monk 3★ and Elsbeth 3★ show the format stalls once the novelty fades, and the quiet-abandonment risk is real on a long episodic run. Renewed, Returning. Together — light tone and a case engine suit Helen; 2 episodes is enough to know.",
-    "recommendedWatchPreference": "together",
-    "changeNote": "2026-08-31 procedural-spine: cosy episodic whodunit loses the bonus"
-  },
-  {
-    "tmdbId": 1447,
-    "title": "Psych",
-    "predictedRating": 3,
-    "predictedRatingReason": "Predicted 3★: Comedy-crime about a fake psychic detective, eight seasons of pure case-of-the-week. The decisive evidence is Monk, which this prediction always named as the better pick — Monk was just rated 3★ together, 'the show doesn't seem to go anywhere... storytelling feels dated', abandoned after eight episodes. Psych is the same format, same era, same episodic structure, and a cold start into eight seasons carries exactly that abandonment risk. COMPLETE. Together; 2 episodes is enough to know.",
-    "recommendedWatchPreference": "together",
-    "changeNote": "2026-08-31 procedural-spine: episodic; Monk 3★ actual confirms the class ceiling"
-  },
-  {
-    "tmdbId": 1422,
-    "title": "The Middle",
-    "predictedRating": 3,
-    "predictedRatingReason": "Predicted 3★: Working-class family sitcom, nine COMPLETE seasons. Family sitcom is a real together lane — Modern Family 3.5★ and The Big Bang Theory 3.5★ are the comps — but both were watched as they aired, and the longevity bonus no longer applies to a cold start into a long episodic back-catalogue. That is the Monk failure precisely ('perhaps it would have been better if we watched it when it was airing', 3★) plus the quiet-abandonment pattern: pleasant, never gripping. Together; 2 episodes is enough to know.",
-    "recommendedWatchPreference": "together",
-    "changeNote": "2026-08-31 longevity: cold start into 9 episodic seasons loses the bonus"
-  },
-  {
-    "tmdbId": 46952,
-    "title": "The Blacklist",
-    "predictedRating": 3,
-    "predictedRatingReason": "Predicted 3★: Long-running crime procedural with James Spader as Reddington, ten COMPLETE seasons. Mystery-crime is Helen's lane and the mythology thread gives it more spine than a pure case-of-the-week, which keeps it off the floor. But a cold start into ten seasons no longer earns the longevity bonus — that is the Monk 3★ lesson exactly — and the S2+ fatigue pattern (Elementary 3★, Night Agent 3★) compounds it. Person of Interest is the safer pick. Together; 2 episodes is enough to know.",
-    "recommendedWatchPreference": "together",
-    "changeNote": "2026-08-31 longevity: cold start into 10 episodic seasons loses the bonus"
-  },
-  {
-    "tmdbId": 158756,
-    "title": "Shoresy",
-    "predictedRating": 3,
-    "predictedRatingReason": "Predicted 3★: Letterkenny spinoff — crude Canadian hockey-bro comedy, five seasons and Returning. Schitt's Creek 4★ solo shows you invest in Canadian comedy worlds when the voice clicks, but that is gentle character comedy and this is dialect humour without the workplace-ensemble structure your solo wins share (Parks 5★, Office 5★, Brooklyn Nine-Nine 4.5★). Ghosts 3★ is the fresh precedent: 'a little bit funny' but never compelling enough to return to. Solo — crude humour is a Helen dealbreaker; 2 episodes is enough.",
-    "recommendedWatchPreference": "solo",
-    "changeNote": "2026-08-31 longevity: cold start into niche episodic comedy loses the bonus"
-  },
-  {
-    "tmdbId": 116799,
-    "title": "The Lincoln Lawyer",
+    "tmdbId": 81349,
+    "title": "Devs",
     "predictedRating": 4,
-    "predictedRatingReason": "Predicted 4★: Legal drama built on season-long case arcs, not case-of-the-week — that serialised spine is why it holds 4★ where purely episodic procedurals stall at 3★ (Monk, Elsbeth, Elementary). The Good Wife 4★ is the direct together comp: courtroom momentum with characters worth following, and Matlock 4★ has just validated the lane ('easy binge to get straight into... we enjoy the intrigue'). Four seasons and Returning, with tight arcs that avoid procedural fatigue. Together; 2 episodes is enough to know.",
-    "recommendedWatchPreference": "together",
-    "changeNote": "reason refresh: 2026-08-31 procedural-spine (has season arcs, keeps 4★)"
+    "predictedRatingReason": "Predicted 4★: Alex Garland sci-fi about a secretive tech division and a determinism conceit. Psychological complexity +0.5★ and a real jaw-drop reveal +0.5★ put it in the Severance 5★ / Dark 4.5★ solo lane. COMPLETE 8-episode limited series (+0.3★), fully resolved, so no unresolved risk. The slow-burn cap no longer applies - a deliberate pace is not a cap when the payoff is real. Style-over-substance is the live risk (-0.5★): mood is prioritised over plot and audience scores are middling. Solo - cerebral sci-fi is not Helen's lane. Commit to 4-5 episodes; the ideas do pay off.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: 2026-09-09 slow-start cap retired where a payoff signal exists"
+  },
+  {
+    "tmdbId": 90802,
+    "title": "The Sandman",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Neil Gaiman dark-fantasy adaptation with strong mythology and reveals that land (+0.5★ jaw-drop), sitting below Foundation 4.5★ in the solo fantasy lane. Ended after S2 with the Dream arc completed, so no cancelled-unresolved penalty. The slow-burn cap no longer applies - pace alone is not a cap when reveals land. The live risks are style-over-substance on fantasy (-0.5★) and a chaptered structure that resets momentum rather than builds it. Solo - Gaiman's tone and the fantasy genre are not Helen's lane. Commit to 4-5 episodes; the first two are atmospheric setup.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: 2026-09-09 slow-start cap retired where a payoff signal exists"
   }
 ]

@@ -6,7 +6,7 @@ You MAY hand-append `- [ ]` entries to the Pending section after manually editin
 `docs/taste-profile.md`; `/rescan-predictions` will pick them up.
 
 **Last ratings review:** 2026-08-31T01:50:57.356Z
-**Last prediction rescan:** 2026-09-09T08:40:41.683Z
+**Last prediction rescan:** 2026-09-09T13:02:03.201Z
 
 ## Pending prediction rescan
 
@@ -32,5 +32,5 @@ Examples of well-formed entries:
 - [x] 2026-08-31 | MODIFIER-CHANGE | 4+ seasons longevity bonus now requires a serialised arc or comfort-rewatch status — never on a cold start into an episodic back-catalogue (+0.3 -> +0.3 conditional; Monk 4★ -> 3★, Ghosts 4★ -> 3★) | affects: reason~"longevity", reason~"4+ seasons", reason~"seasons"
 - [x] 2026-08-31 | MODIFIER-CHANGE | Together procedural bonus now requires a serialised spine; pure case-of-the-week gets nothing (+0.2 -> +0.2 conditional; Matlock 4★ vs Monk/Elementary/Elsbeth/The Resident all 3★) | affects: crime, mystery, pref=together, reason~"procedural"
 - [x] 2026-08-31 | NEW-MODIFIER | Bingeability axis added (1-5, own column + UI): predicted 4-5 = +0.2/+0.3, 1-2 = -0.3/-0.5, never lifts a prediction above 4★. PROVISIONAL — no user-entered scores exist yet, weights derived only from inferred values in review notes. DO NOT apply to predictions until ~20-30 real scores exist and weights are re-derived. | affects: none
-- [ ] 2026-09-09 | RULE-CHANGE | Bingeability recalibrated on 78 real scores: axes are correlated (r=0.55) not orthogonal; sustain is necessary-not-sufficient for 4.5★+; hook predicts abandonment, NOT quality — so never cap a prediction for a slow start alone when a payoff signal exists (Dark 4.5★ weak hook vs Monk 3★ weak hook, no payoff). Negative bingeability weights RETIRED; positive weights stay out of the formula. | affects: reason~"slow burn", reason~"slow-burn", reason~"nothing happens"
-- [ ] 2026-09-09 | NEW-MODIFIER | Bingeability is a run-AVERAGE across seasons, not a peak: drop one level when the run is 4+ seasons (or 3 with a notorious collapse) AND the later-run complaint is momentum/resolution rather than quality (Westworld 3, Upload 3 vs The Crown 5). Per-season-closed structures exempt. Diagnostic axis only — does not touch star predictions. | affects: reason~"bingeable", reason~"momentum", reason~"cliffhanger", seasons<=1
+- [x] 2026-09-09 | RULE-CHANGE | Bingeability recalibrated on 78 real scores: axes are correlated (r=0.55) not orthogonal; sustain is necessary-not-sufficient for 4.5★+; hook predicts abandonment, NOT quality — so never cap a prediction for a slow start alone when a payoff signal exists (Dark 4.5★ weak hook vs Monk 3★ weak hook, no payoff). Negative bingeability weights RETIRED; positive weights stay out of the formula. | affects: reason~"slow burn", reason~"slow-burn", reason~"nothing happens"
+- [x] 2026-09-09 | NEW-MODIFIER | Bingeability is a run-AVERAGE across seasons, not a peak: drop one level when the run is 4+ seasons (or 3 with a notorious collapse) AND the later-run complaint is momentum/resolution rather than quality (Westworld 3, Upload 3 vs The Crown 5). Per-season-closed structures exempt. Diagnostic axis only — does not touch star predictions. | affects: reason~"bingeable", reason~"momentum", reason~"cliffhanger", seasons<=1
