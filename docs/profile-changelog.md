@@ -5,8 +5,8 @@ The two marker lines are updated ONLY by `scripts/mark-review-done.ts` — never
 You MAY hand-append `- [ ]` entries to the Pending section after manually editing
 `docs/taste-profile.md`; `/rescan-predictions` will pick them up.
 
-**Last ratings review:** 2026-07-13T13:19:42.512Z
-**Last prediction rescan:** 2026-07-13T13:00:50.044Z
+**Last ratings review:** 2026-08-31T01:50:57.356Z
+**Last prediction rescan:** 2026-09-09T08:40:41.683Z
 
 ## Pending prediction rescan
 
@@ -28,3 +28,8 @@ Examples of well-formed entries:
 `- [ ] 2026-02-25 | MODIFIER-CHANGE | New-series volatility weakened when show hits a core sweet spot (-0.3 -> -0.3 weak) | affects: seasons<=1, reason~"new-series volatility"`
 
 - [x] 2026-07-13 | RULE-CHANGE | (seed entry — profile state as of skill creation, already reflected in all predictions) | affects: none
+- [x] 2026-07-17 | LESSON | Cringe/icky premise doesn't force solo — dry-deadpan register + relatable stakes + binge momentum can flip comedy together (Alice and Steve pred 3.5★ solo -> 4★ together) | affects: comedy, pref=solo, reason~"Rosehaven"
+- [x] 2026-08-31 | MODIFIER-CHANGE | 4+ seasons longevity bonus now requires a serialised arc or comfort-rewatch status — never on a cold start into an episodic back-catalogue (+0.3 -> +0.3 conditional; Monk 4★ -> 3★, Ghosts 4★ -> 3★) | affects: reason~"longevity", reason~"4+ seasons", reason~"seasons"
+- [x] 2026-08-31 | MODIFIER-CHANGE | Together procedural bonus now requires a serialised spine; pure case-of-the-week gets nothing (+0.2 -> +0.2 conditional; Matlock 4★ vs Monk/Elementary/Elsbeth/The Resident all 3★) | affects: crime, mystery, pref=together, reason~"procedural"
+- [x] 2026-08-31 | NEW-MODIFIER | Bingeability axis added (1-5, own column + UI): predicted 4-5 = +0.2/+0.3, 1-2 = -0.3/-0.5, never lifts a prediction above 4★. PROVISIONAL — no user-entered scores exist yet, weights derived only from inferred values in review notes. DO NOT apply to predictions until ~20-30 real scores exist and weights are re-derived. | affects: none
+- [ ] 2026-09-09 | RULE-CHANGE | Bingeability recalibrated on 78 real scores: axes are correlated (r=0.55) not orthogonal; sustain is necessary-not-sufficient for 4.5★+; hook predicts abandonment, NOT quality — so never cap a prediction for a slow start alone when a payoff signal exists (Dark 4.5★ weak hook vs Monk 3★ weak hook, no payoff). Negative bingeability weights RETIRED; positive weights stay out of the formula. | affects: reason~"slow burn", reason~"slow-burn", reason~"nothing happens"

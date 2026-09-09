@@ -315,3 +315,27 @@ Star Wars: Andor (arrived marked COMPLETED on Trakt — needs a user rating, not
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **Alice and Steve** | — | 3.5★ S | New import: Alice and Steve — 3.5★ solo, Trakt 7.1 base, limited-series bonus, cringe comedy stays solo |
+
+## 2026-09-09 — Prediction rescan (profile changes: 2026-07-17, 2026-08-31 ×3)
+
+Screened 177 stale predictions against the pending profile changes; 21 flagged by
+keyword, 14 of those kept after recompute (the narrowed rules did not actually bite —
+serialised spine or single season present), 7 changed.
+
+Full 177-row screening table: all shows not listed below screened KEEP — no pending
+entry touched their prediction. The 2026-08-31 bingeability entry is `affects: none`
+(no user scores exist yet), so it drove no changes by design.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Poker Face** | 4★ T | 3.5★ T | 2026-08-31 procedural-spine: pure case-of-the-week loses the together bonus |
+| **Return to Paradise** | 4★ T | 3.5★ T | 2026-08-31 procedural-spine: cosy episodic whodunit loses the bonus |
+| **Psych** | 3.5★ T | 3★ T | 2026-08-31 procedural-spine: episodic; Monk 3★ actual confirms the class ceiling |
+| **The Middle** | 3.5★ T | 3★ T | 2026-08-31 longevity: cold start into 9 episodic seasons loses the bonus |
+| **The Blacklist** | 3.5★ T | 3★ T | 2026-08-31 longevity: cold start into 10 episodic seasons loses the bonus |
+| **Shoresy** | 3.5★ S | 3★ S | 2026-08-31 longevity: cold start into niche episodic comedy loses the bonus |
+| **The Lincoln Lawyer** | 4★ T | 4★ T | reason refresh: 2026-08-31 procedural-spine (has season arcs, keeps 4★) |
+
+Kept-after-recompute (flagged, no change): Mare of Easttown, Manhunt, Justified,
+Unforgotten, Line of Duty, Blue Lights, Outlander, Alone, Widow's Bay, Scarpetta,
+Smoke, Industry, Annika, Am I Being Unreasonable?

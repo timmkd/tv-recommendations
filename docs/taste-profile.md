@@ -2,15 +2,15 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (209 rated shows)
+## Rating Distribution (214 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
 | 4.5★ | 18 | Loved it - strong signal |
-| 4★ | 77 | Good solid show |
-| 3.5★ | 48 | Enjoy but don't love |
-| 3★ | 35 | Still good |
+| 4★ | 79 | Good solid show |
+| 3.5★ | 49 | Enjoy but don't love |
+| 3★ | 37 | Still good |
 | 2-2.5★ | 26 | Dropped or disappointed |
 
 ### Solo vs Together — it's about VARIANCE, not a lower ceiling (revised May 2026)
@@ -130,6 +130,7 @@ The old read ("solo allows deeper engagement → higher ratings") was a survivor
 5. **Punishing Difficulty** - Dark without purpose (Happy Valley 2★, MobLand 2.5★)
 6. **Cancelled/Unresolved** - (Big Door Prize 2.5★, Sunny 2.5★)
 7. **Comedy Killers** - Action + Comedy hybrid (Mr. & Mrs. Smith 2★, The Tick 2.5★), slow pacing in comedy, unlikeable characters (Bad Monkey 2.5★)
+8. **Quiet abandonment — the 3★ floor (Aug 2026)** - Distinct from every pattern above, which involve active dislike and land at 2-2.5★. Here the show is *fine* and simply loses to the backlog: several episodes in, never came back, no complaint beyond inertia. **Ghosts 3★** ("not terrible… just finding myself reaching for other shows") and **Monk 3★** ("not bad… so much more on offer that investing in it seemed like an effort"). Both were **partial watches**, so treat the rating as a verdict on the *hook*, not on the show's ceiling — and as a capped, not final, score.
 
 ---
 
@@ -214,14 +215,15 @@ Base: IMDB/2 minus 0.5★ (validated by 12-show sample showing -0.54★ overpred
 | Purposeful difficulty with cultural moment | +0.3★ |
 | True story | +0.3★ |
 | Limited/complete series | +0.3★ |
-| 4+ seasons (longevity signal) | +0.3★ |
+| 4+ seasons (longevity signal) — ONLY with a serialised arc or comfort-rewatch status; never on a cold start into an episodic back-catalogue | +0.3★ |
 | WWII setting (together) | +0.3★ |
 | Mockumentary style | +0.3★ |
 | Established 2000s/early 2010s classic | +0.2★ |
+| High predicted bingeability (4-5) — PROVISIONAL, see Bingeability | +0.2 to +0.3★ (never lifts a prediction above 4★) |
 | Mystery/spy/crime (together) | +0.2★ |
 | Pure comedy (no drama tag) | +0.2★ |
 | "Easy watch" (together) | +0.2★ |
-| Procedural format (together) | +0.2★ |
+| Procedural format (together) — requires a serialised spine (season arc / hidden identity / ongoing mystery); pure case-of-the-week gets nothing | +0.2★ |
 
 ### Negative Modifiers
 
@@ -238,6 +240,7 @@ Base: IMDB/2 minus 0.5★ (validated by 12-show sample showing -0.54★ overpred
 | Animation without franchise hook | -0.5★ |
 | Comedy + Action hybrid | -0.5★ |
 | Crude humor (together) | -0.5★ or switch to SOLO |
+| Low predicted bingeability (1-2) — PROVISIONAL, see Bingeability | -0.3 to -0.5★ |
 | New-series volatility (1 season, predicted 4.5★) | -0.3★ (weaker if core sweet spot) |
 
 ### Context Rules
@@ -248,6 +251,67 @@ Base: IMDB/2 minus 0.5★ (validated by 12-show sample showing -0.54★ overpred
 - **Dark prestige → default SOLO**
 - **True story preferred** over alt-history
 - **Show status:** Ended 3.66★, Returning 3.64★, Canceled 3.26★ (danger)
+
+---
+
+## Bingeability
+
+A second rating axis, tracked separately from the star rating since Aug 2026. **1-5 integers, user-entered in the app** (`bingeability` column; `predictedBingeability` holds the AI estimate). It measures how easily the show is watched — deliberately NOT how good it is.
+
+| | Label |
+|---|---|
+| **5** | Couldn't stop - wanted to keep going |
+| **4** | Very easy to keep watching |
+| **3** | Easy enough, watched steadily |
+| **2** | Needed effort to keep going |
+| **1** | A struggle to get into |
+
+**Recording convention (decided Sep 2026):** ONE score per show, not a hook/sustain split. The number is a **blend**; when a show's start and finish differ, that shape goes in the review note ("slow start, unstoppable finish"). Do not add a second numeric field — this was considered and rejected as over-engineering.
+
+> **STATUS (2026-09-09): 78 shows scored — the axis is VALIDATED as a distinct signal, the WEIGHTS are not.** The scored set is deliberately skewed to shows Tim rated 3.5-5★ (no 3★ or below, no dropped shows), and he has decided **not** to score the low end. Two consequences, both permanent: (1) the negative weights can never be validated, so they are **retired** rather than pending — low-hook risk is carried by the structural modifiers instead; (2) with only 3 of the 78 scored shows holding a stored Trakt score, whether bingeability adds anything **over** IMDB/Trakt is untestable, so the positive weights stay PROVISIONAL and out of the formula.
+
+### Why it is a separate axis
+
+Measured on the 78 scored shows (Sep 2026):
+
+| Metric | Value |
+|---|---|
+| r (bingeability vs star rating) | **0.55** (r² = 0.30) |
+| Bingeability spread (sd) | **0.81** — range 2-5 used |
+| Star spread (sd), same shows | **0.34** — nearly all on 4★ |
+
+**The axes are correlated, NOT orthogonal** — and since the scored set spans only 3.5-5★, range restriction *attenuates* r, so the true library-wide figure is likely higher. But bingeability still discriminates where the star scale cannot: on shows rated almost identically, it varies more than twice as much. That is the point of it. (Context: 128 of 214 rated shows sit at 3.5★ or 4★, so the star scale has ~1.5★ of usable range.)
+
+**CORRECTION — the earlier "orthogonal at the top" claim was wrong.** It was built by mining review notes for binge language and reading *silence* as evidence of low bingeability. Every show cited as proof went the other way once actually scored: Dark 4, Sherlock 4, and Foundation, The Crown, Murderbot and Pluribus all **5**. Absence of binge language in a note means nothing. Do not infer this axis from note text.
+
+### The real structure: sustain vs hook
+
+The single score blends **hook** (how fast it grabs) and **sustain** (whether you can stop once in). Three shows state the split explicitly: **Dark** 4.5★/binge 4 ("super bingeable at the end… the start took a little to get into — that's why bingeability isn't 5 star"), **Homeland** 4★/binge 4 ("start of seasons were often a slow grind but the end is always hard to stop watching"), **The Handmaid's Tale** 4★/binge 5 ("five star bingeable at the end of seasons although not always at the start").
+
+The two halves predict **opposite** things:
+
+- **Sustain is NECESSARY for a top rating.** All 21 shows rated ≥4.5★ score binge ≥4 — no exceptions. The three at 4 rather than 5 (Dark, Sherlock, The Great) are hook-limited, not sustain-limited.
+- **Sustain is NOT SUFFICIENT.** Binge 5 spans 4★ (17 shows), 4.5★ (13) and 5★ (5). A compulsive watch is often just a 4★.
+- **Hook predicts ABANDONMENT, not quality.** Monk 3★ ("haven't been able to jump on board after about 8 episodes") and Ghosts 3★ ("reaching for other shows") both failed on hook. But **Dark had a weak hook and still landed 4.5★** — because the payoff was real.
+
+**Therefore: a weak hook is only a drag when there is no payoff waiting.** Never cap a prediction for slow-start alone — check the payoff signal first (jaw-drop reveals/resolution is a stated core love). This is exactly what the stick-with-it verdict in the prediction reason exists to express: "weak hook, but commit — the payoff is real" (Dark) vs "weak hook, nothing coming — don't force it" (Monk).
+
+Observed mean star rating by level, for reference (selection-biased, do not read as weights): binge 3 → 3.91★ (n=16) · binge 4 → 4.04★ (n=26) · binge 5 → 4.33★ (n=35).
+
+### Weights — NOT in the formula
+
+| Predicted bingeability | Status |
+|---|---|
+| 5 | +0.3★ **provisional, not applied** (observed gap over binge-3 baseline: +0.42) |
+| 4 | +0.2★ **provisional, not applied** (observed: +0.13) |
+| 3 | 0 |
+| 2 / 1 | **RETIRED** — cannot be validated (low end will not be scored); use the structural hook proxies below instead |
+
+**Do not add a bingeability term to the prediction formula.** It would risk double-counting what the IMDB/Trakt base already captures, and that overlap is currently untestable. Bingeability's role is **diagnostic and interpretive**: it explains prediction misses and sharpens the stick-with-it verdict.
+
+**Hook proxies (these ARE in the formula).** Low-hook risk is already carried by the structural modifiers, which is why no separate bingeability penalty is needed: the conditional 4+ seasons longevity bonus, the conditional together-procedural bonus (serialised spine required), the "nothing happens"/weak-payoffs penalty, and drop pattern 8 (quiet abandonment). Estimate `predictedBingeability` from the same structure — serialised spine vs pure case-of-the-week, episode length, cold-start back-catalogue size, momentum — and record it as commentary only.
+
+**Ceiling rule (retained):** high bingeability alone never justifies a prediction above 4★. A 4.5★+ call needs a separate craft/payoff signal — that is the "not sufficient" half above.
 
 ---
 
@@ -287,6 +351,7 @@ RT scores measure consensus, not quality. Many dropped shows had 95%+ RT scores.
   - Procedurals/comedies: "2 episodes is enough to know"
   - Together with Helen-risk factors: "Strict 2-episode test"
 - **Explain solo/together reasoning**
+- **Give a stick-with-it verdict** — say whether persisting past a slow start is worth it, and why. This is separate from bingeability: a low-binge show with real payoffs earns "commit, it pays off" (Dark 4.5★, an explicit slow burn); a low-binge show with no arc earns "don't force it" (Monk 3★). Where the two disagree, say so.
 - **DO NOT mention streaming platform names** (predictions are platform-agnostic)
 
 **Example** (490 chars):
@@ -316,7 +381,9 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 
 ## Prediction Accuracy (May 2026)
 
-**18-show validated sample (Jul 2026):** MAE: 0.56★ (target ~0.5★) | Bias: -0.39★ (formula already corrects via -0.5★ term) | Within 0.5★: 78%
+**23-show validated sample (Aug 2026):** MAE: 0.57★ (target ~0.5★) | Bias: -0.35★ (formula already corrects via -0.5★ term) | Within 0.5★: 74%
+
+**Range restriction (measured Aug 2026):** 128 of 214 rated shows sit at 3.5★ or 4★ — 60% inside a half-star band, with only 5 shows ever at 5★. The star scale has ~1.5★ of usable range in practice, so an MAE of 0.57★ is worse than it looks. This is the main argument for tracking bingeability as a second, less compressed axis (see **Bingeability**).
 
 **Key lessons:**
 - Happy Valley (-2.5★): Led to "purposeful difficulty" framework
@@ -331,6 +398,11 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 - **Rosehaven (together rec missed)**: Recommended together on "Australian + light tone"; Helen hated it (pointless/boring, annoying lead). Pure character comedy with no genre backbone = SOLO. Corrected to solo. Don't over-apply the Schur warm-exception to backbone-less comedies.
 - **Wonder Man (+0.5)**: predicted 3.5★ → rated 4★ solo (call exact). Marvel completionist plus *personal relatability* (film sets, self-tapes — "felt like I was watching an acting class") lifted it above prediction; "the right amount of quirky" confirms quirky is fine SOLO — the quirky penalty is a together/Helen problem (Rosehaven), not a Tim problem.
 - **Broadchurch (exact)**: predicted 4★ → rated 4★ together. Together crime-procedural sweet spot validated at its 4★ ceiling — "I would not watch it on my own but love watching with Helen" is the together-lane thesis in one quote.
+- **Alice and Steve (+0.5, pref flip)**: predicted 3.5★ solo → rated 4★ **together** ("really easy binge"; Helen "laughed her head off... loves the Kiwi humor of Jemaine Clement"). Cringe/icky premise ≠ Rosehaven-quirky — the operative dial is the humor register: dry-deadpan leads + relatable midlife friendship/parent stakes + 6-ep binge momentum are together strengths. Don't let critic tone-reads ("icky", "exasperating") outrank the silliness dial and momentum signals.
+- **Ghosts (-1.0, pref flip)**: predicted 4★ together → rated 3★ **solo**. Pure validation of two existing rules the Feb-2026 prediction predated: the `Sci-Fi + Comedy → SOLO` branch, and the silliness dial ("the premise is too silly for Helen" — verbatim). Second error: it justified 4★ with **Fisk, a *together* comp**, for a show that is solo. Match the comp class to the watch mode — Tim's solo-comedy bar is Parks/Office/B99, and against that bar "a little bit funny" is 3★.
+- **Monk (-1.0)**: predicted 4★ → rated 3★ together, watch mode correct. Three modifiers over-fired at once (4+ seasons +0.3, established classic +0.2, procedural +0.2) on a show that is **purely episodic**. "The show doesn't seem to go anywhere… storytelling feels dated… perhaps it would have been better if we watched it when it was airing." Note the hypothesis this *refutes*: old + long-running is NOT a penalty — The West Wing 5★, Parks 5★, Office 5★, Sherlock 4.5★, Grey's 4★ (22 seasons), Gilmore Girls 4★, The Good Wife 4★ are all pre-2015 with 4+ seasons. The discriminator is the **serialised spine**, not age or length.
+- **Matlock (+0.5)**: predicted 3.5★ → rated 4★ together. Same lane and same week as Monk, opposite result, and the reason is explicit in the note: "an easy binge to get straight into… we enjoy the intrigue" vs Monk's "doesn't seem to go anywhere". Also the **first counter-example to the Mystery/Crime "side with audience" rule** (RT 91 critics / 65 audience, still 4★) — record now 1-4. Noted, not overturned.
+- **Star Trek: Starfleet Academy (exact)**: predicted 3.5★ → rated 3.5★ solo. Validates holding the Trek franchise floor against a cold audience signal (Trakt 6.3) rather than following it down, and the "sci-fi is never Helen's lane" default.
 
 ### Library audit (May 2026)
 
