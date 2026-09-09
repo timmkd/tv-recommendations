@@ -46,3 +46,7 @@ next-env.d.ts
 # sensitive data (contains auth tokens)
 data/settings.json
 data/shows.json.bak
+
+# Trakt session captures + resync logs (local only, regenerate as needed)
+.trakt-*.json
+.streaming-resync-log.txt
