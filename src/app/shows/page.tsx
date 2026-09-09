@@ -31,7 +31,7 @@ const STREAMING_BRANDS: Record<string, { bg: string; activeBg: string; logo: str
   'amc-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-600', logo: '/ovmu6uot1XVvsemM2dDySXLiX57.jpg' },
 };
 
-type SortOption = 'updated' | 'added' | 'title' | 'title-desc' | 'year' | 'year-asc' | 'rating' | 'predicted' | 'rt-critics' | 'rt-audience';
+type SortOption = 'updated' | 'added' | 'title' | 'title-desc' | 'year' | 'year-asc' | 'rating' | 'predicted' | 'bingeability' | 'rt-critics' | 'rt-audience';
 
 const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'updated', label: 'Recently Updated' },
@@ -42,6 +42,7 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'year-asc', label: 'Year (Oldest)' },
   { value: 'rating', label: 'Your Rating' },
   { value: 'predicted', label: 'Predicted Rating' },
+  { value: 'bingeability', label: 'Bingeability' },
   { value: 'rt-critics', label: '🍅 Tomatometer' },
   { value: 'rt-audience', label: '🍿 Popcornmeter' },
 ];
@@ -344,6 +345,16 @@ function ShowsContent() {
         const aScore = a.rating || a.predictedRating || 0;
         const bScore = b.rating || b.predictedRating || 0;
         return bScore - aScore;
+      case 'bingeability': {
+        // Prefer the user's own score, fall back to the prediction.
+        // Shows with neither sort last; ties break on predicted rating.
+        const aBinge = a.bingeability ?? a.predictedBingeability ?? 0;
+        const bBinge = b.bingeability ?? b.predictedBingeability ?? 0;
+        if (aBinge !== bBinge) return bBinge - aBinge;
+        const aTie = a.rating ?? a.predictedRating ?? 0;
+        const bTie = b.rating ?? b.predictedRating ?? 0;
+        return bTie - aTie;
+      }
       case 'rt-critics':
         if (a.rtCriticsScore && !b.rtCriticsScore) return -1;
         if (!a.rtCriticsScore && b.rtCriticsScore) return 1;
