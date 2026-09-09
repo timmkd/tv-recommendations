@@ -404,3 +404,34 @@ Somebody Somewhere (checked for adjacent phrasings — "too slow-paced for
 together" is a watch-mode note).
 
 **Kept — no pending entry matches:** Aladdin, Zootopia+ (kids-content placeholders).
+
+## 2026-09-10 — New show predictions (/predict-new-shows)
+
+11 of 12 shows recovered from the Trakt watchlist after the API credential was
+found unregistered. Bases come from Trakt community ratings captured via an
+authenticated browser session (`scripts/backfill-trakt-meta.ts`), since
+`enrich-new-show-ratings.ts` skipped all 12 for having no `traktSlug`.
+
+Two modifiers were deliberately WITHHELD, both the Monk lesson: Tracker's family
+thread is too thin to count as a serialised spine (so no procedural bonus), and
+Madam Secretary's 120 episodes are a cold start into an episodic back catalogue
+(so no 4+ seasons longevity bonus).
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **A Knight of the Seven Kingdoms** | — | 3.5★ S | new show recovered from Trakt watchlist via browser session |
+| **Lanterns** | — | 4★ S | new show recovered from Trakt watchlist via browser session |
+| **High Potential** | — | 4★ T | new show recovered from Trakt watchlist via browser session |
+| **Tracker** | — | 3.5★ T | new show recovered from Trakt watchlist via browser session |
+| **All Her Fault** | — | 4★ T | new show recovered from Trakt watchlist via browser session |
+| **Madam Secretary** | — | 3.5★ T | new show recovered from Trakt watchlist via browser session |
+| **Spider-Noir** | — | 3★ S | new show recovered from Trakt watchlist via browser session |
+| **Not Suitable for Work** | — | 3.5★ S | new show recovered from Trakt watchlist via browser session |
+| **Boiling Point** | — | 3.5★ S | new show recovered from Trakt watchlist via browser session |
+| **My Brilliant Career** | — | 4★ T | new show recovered from Trakt watchlist via browser session |
+| **Stuart Fails to Save the Universe** | — | 3.5★ S | new show recovered from Trakt watchlist via browser session |
+
+**Not predicted — Last Seen (2026, tmdb=258230).** No usable rating base: Trakt
+9.13 on **8 votes**, TMDB 9.0 on a similarly tiny sample, IMDB behind a CAPTCHA
+and no Wikipedia article. Per the worksheet, a base is never invented, so this
+one is held pending a decision from the user.
