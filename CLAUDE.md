@@ -258,6 +258,37 @@ formula.
 
 ---
 
+## Who Makes the Call
+
+**Claude is the predictor. The user is the validator.** This is not a collaboration
+on each prediction — it is a division of roles:
+
+| Role | Does | Does NOT |
+| ---- | ---- | -------- |
+| **Claude** | Weighs all evidence, commits to a final rating + watch mode, writes it to the DB | Ask which option to pick, present a menu, wait for sign-off |
+| **User** | Supplies information, raises hypotheses, challenges the reasoning | Choose the number, approve the write |
+
+**Rules:**
+
+1. **Never end a prediction with a question or an offer.** No "say the word and
+   I'll apply it", no "which would you prefer", no A/B options. Decide, apply,
+   report. If the record is wrong, fix the record.
+2. **A user hypothesis is input, not an instruction.** "Maybe it's the dark
+   humour" is a lead to test against the profile and the comps — and to reject
+   out loud, with evidence, when it does not hold. Agreeing to be agreeable is
+   the failure mode.
+3. **Explain the call after making it, not instead of making it.** Surface the
+   tensions, name the strongest counter-argument, and say what would flip it —
+   then still commit to one number.
+4. **Being overruled is fine and expected.** The user pushing back is the
+   validation loop working, not a sign the process was wrong. Update the profile,
+   not the deference level.
+
+See also the prediction-reason guidelines in
+[docs/taste-profile.md](docs/taste-profile.md).
+
+---
+
 ## Generating Recommendations
 
 ### Two Types
@@ -329,14 +360,20 @@ Include `tmdbId` and `posterPath` when possible so poster images display.
 
 ### Current Subscriptions
 
-The `streamingServices` table (`isSubscribed` column) is the source of truth — the
-app reads it, so always check it rather than trusting a list here.
+The `streamingServices` table (`isSubscribed` column) is the source of truth.
+Confirmed with the user 2026-09-10: **Prime Video, Paramount+, ABC iview,
+SBS On Demand**. (Disney+ was wrongly flagged and has been corrected; the older
+note here claiming Stan and Max was stale.)
 
-As of 2026-09-10 the table holds: **Disney+, Prime Video, Paramount+, ABC iview,
-SBS On Demand**. ⚠️ This disagrees with the note previously recorded here (Stan,
-Prime Video, Max, ABC iview, SBS On Demand) — Disney+/Paramount+ vs Stan/Max.
-Which side is stale is **unconfirmed**; it materially changes recommendations, so
-confirm with the user before relying on either.
+Set it with `npx tsx scripts/set-subscriptions.ts <full list of slugs>` — it
+unsubscribes anything not named, so always pass the complete list.
+
+**What the flag actually affects** (checked 2026-09-10 — it is narrower than it
+looks): the `/recommendations` page, `/api/recommendations` and `openai.ts`, which
+the user reports no longer using; and the `/shows` filter bar, where it is purely
+**cosmetic** — unsubscribed services render at `opacity-50` but stay clickable and
+filter normally. It gates nothing. Its main live use is agent-side reasoning about
+what is watchable now, so keep it accurate, but do not treat it as load-bearing.
 
 ### Guidelines
 
@@ -388,6 +425,7 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `resync-watch-status.ts [--dry-run]` | Rewrite `status` from captured Trakt progress, using the **Status/Sync Logic** rule above |
 | `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch |
 | `delete-show.ts <tmdbId> [--confirm]` | Tombstone in `deletedShows` + remove. Dry-run by default; warns if rated |
+| `set-subscriptions.ts <slug>...` | Set subscribed services. Pass the FULL list — anything omitted is unsubscribed |
 | `trakt-reauth.ts` | OAuth device flow — **only works once the app is re-registered** |
 
 ### Known caveat: `stale-predictions.ts` staleness is timestamp-based
