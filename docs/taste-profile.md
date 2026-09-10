@@ -34,6 +34,35 @@ The old read ("solo allows deeper engagement → higher ratings") was a survivor
 - **Chernobyl** (together) - WWII-era true story, prestige limited series
 - **The West Wing** (together) - prestige political drama
 
+### Predicting a 5★ (added Sep 2026)
+
+Two routes reach 5★, and until Sep 2026 **neither had ever been predicted** — 220
+predictions sat under a 4.5★ wall while the formula's own arithmetic cleared 5.0 for
+two shows. The wall was habit. Breaking Bad (5★ solo) and Band of Brothers (5★
+together) were the corrections.
+
+1. **Prestige route — peak execution + a delivered payoff** (Chernobyl, Severance, The
+   West Wing). Predictable, and the one to actually use. Requires: no
+   cancelled/unresolved risk, no known weak season, and a real payoff — this user
+   rates the *landing* hardest (Dark 4.5★ *for* being "beautifully resolved"; Sherlock
+   capped at 4.5★ because "the last season wasn't quite as good").
+2. **Comedy route** (Parks, The Office US). **Not a rewatch artefact** — user-corrected
+   2026-09-10: *"they would have been five stars even on original watch… I haven't
+   found a show to rival them."* The rewatch notes are a consequence of the 5★, not
+   its cause. So a first-watch 5★ comedy is possible in principle.
+
+**But the comedy route is empirically closed: the base rate is 0 for 38.** Every
+comedy after 2009 caps at 4.5★ (B99, Lower Decks), with a dense 4★ wall beneath it
+(Abbott Elementary, Superstore, Schitt's Creek, Veep, Community, Mrs. Maisel). The
+format has been deliberately restaged twice and did not reproduce — **The Paper 4★**
+(Greg Daniels, mockumentary workplace ensemble, same universe: the closest possible
+comp, a full star short) and **The Office AU 2024 2★**.
+
+**Rule: never predict a new comedy above 4.5★.** What would flip it: a 7+ season
+ensemble workplace comedy with genuine multi-season character-growth arcs in a warm —
+not cynical, not zany — register. The modern release model rarely commissions one,
+which is why the slot has stayed empty; it is *not* a limit on the user's scale.
+
 ---
 
 ## Solo Profile
@@ -185,6 +214,7 @@ User-flagged and validated (May 2026; Daisy Jones confirmed Jun 2026). Every rat
 
 ### Schur / Greg-Daniels "Office-lineage" workplace comedy → near-lock SOLO, ~4.4★
 - The Office (US) 5★ · Parks and Recreation 5★ · Brooklyn Nine-Nine 4.5★ · The Good Place 4★ · The Paper 4★ · Superstore 4★ (Office-alum Justin Spitzer)
+- **The two 5★s are the ceiling of this lane, not its average — and they are closed.** The Paper is the same creator, format and universe and landed 4★. Predict new entries at 4-4.5★; see **Predicting a 5★** above.
 - **Exception:** a heartwarming/gentle (NOT silly) register flips it TOGETHER — A Man on the Inside S1 4★. The crime backbone is incidental; B99 is a silly crime-comedy and stays solo (see Schur exception above).
 
 ### The guardrail: it's the FORMAT, not the byline
@@ -305,6 +335,35 @@ The two halves predict **opposite** things:
 - **Length alone is not decay.** Seven-plus seasons still score 5 when momentum holds: Gilmore Girls 5 (7 seasons, weak S7), The West Wing 5, The Office 5, Parks and Recreation 5, The Rookie 5, Brooklyn Nine-Nine 5. Do not dock for season count — dock only for a momentum complaint.
 - **The 4/5 boundary is noisy.** **The Diplomat** (binge **4**) and **The Handmaid's Tale** (binge **5**) carry near-identical notes ("five star bingeable at the end of seasons although not always at the start"). Treat a one-level difference at the top as within noise, and do not fine-tune predictions there.
 
+### The ramp — every bingeability reason must say WHEN it picks up
+
+User-requested, Sep 2026: *"sometimes it's helpful if I need to get through the first
+few episodes before it starts to get good."* Hook and sustain are already tracked
+above, but the single 1-5 score hides the thing that actually decides whether a slow
+show gets watched — **how long the patience window is, and whether it pays**.
+
+**Every `predictedBingeabilityReason` MUST end with a ramp clause in one of these four
+fixed forms.** No improvising a fifth:
+
+| Form | Use when | Example |
+| ---- | -------- | ------- |
+| `Grabs from ep 1.` | hook ≈ sustain, no patience needed | most comedies, procedurals |
+| `Slow open — picks up from ep N; worth it.` | weak hook, real payoff waiting | Dark (binge 4, "the start took a little to get into") |
+| `Slow open — picks up from ep N, but the payoff is thin.` | weak hook, no arc behind it | Monk (binge-equivalent 3, abandoned at ep 8) |
+| `Front-loaded — strongest early, fades from S N.` | hook fine, run-average drags it down | Upload, Westworld (both scored 3 on exactly this) |
+
+Rules for the clause:
+
+- **Give a number, not an adjective.** "Picks up from ep 3" is usable; "picks up
+  eventually" is not. If the real answer is a season boundary, say `picks up from S2`.
+- **The ramp is about the HOOK; the verdict is about the PAYOFF.** They can disagree,
+  and when they do that disagreement is the useful part — a weak hook with a real
+  payoff is *commit*, a weak hook with nothing behind it is *don't force it*. This is
+  the same split the stick-with-it verdict in the star reason expresses; keep the two
+  consistent within a show.
+- **Never dock the star rating for a slow start alone** — the ceiling rule and the
+  payoff check below still govern. The ramp is navigation, not a penalty.
+
 **Therefore: a weak hook is only a drag when there is no payoff waiting.** Never cap a prediction for slow-start alone — check the payoff signal first (jaw-drop reveals/resolution is a stated core love). This is exactly what the stick-with-it verdict in the prediction reason exists to express: "weak hook, but commit — the payoff is real" (Dark) vs "weak hook, nothing coming — don't force it" (Monk).
 
 Observed mean star rating by level, for reference (selection-biased, do not read as weights): binge 3 → 3.83★ (n=18) · binge 4 → 4.04★ (n=26) · binge 5 → 4.33★ (n=35).
@@ -362,7 +421,7 @@ RT scores measure consensus, not quality. Many dropped shows had 95%+ RT scores.
   - Procedurals/comedies: "2 episodes is enough to know"
   - Together with Helen-risk factors: "Strict 2-episode test"
 - **Explain solo/together reasoning**
-- **Give a stick-with-it verdict** — say whether persisting past a slow start is worth it, and why. This is separate from bingeability: a low-binge show with real payoffs earns "commit, it pays off" (Dark 4.5★, an explicit slow burn); a low-binge show with no arc earns "don't force it" (Monk 3★). Where the two disagree, say so.
+- **Give a stick-with-it verdict** — say whether persisting past a slow start is worth it, and why. State the patience window as an episode number where one exists ("slow until ep 3, then commit"), and keep it consistent with the ramp clause in the bingeability reason (see **The ramp**). This is separate from bingeability: a low-binge show with real payoffs earns "commit, it pays off" (Dark 4.5★, an explicit slow burn); a low-binge show with no arc earns "don't force it" (Monk 3★). Where the two disagree, say so.
 - **DO NOT mention streaming platform names** (predictions are platform-agnostic)
 
 **Example** (490 chars):

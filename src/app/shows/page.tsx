@@ -340,11 +340,16 @@ function ShowsContent() {
         if (a.rating && !b.rating) return -1;
         if (!a.rating && b.rating) return 1;
         return (b.rating || 0) - (a.rating || 0);
-      case 'predicted':
-        // Shows with predicted ratings first, then by value
+      case 'predicted': {
+        // Shows with predicted ratings first, then by value.
+        // Ties break on bingeability (own score, falling back to the prediction).
         const aScore = a.rating || a.predictedRating || 0;
         const bScore = b.rating || b.predictedRating || 0;
-        return bScore - aScore;
+        if (aScore !== bScore) return bScore - aScore;
+        const aTie = a.bingeability ?? a.predictedBingeability ?? 0;
+        const bTie = b.bingeability ?? b.predictedBingeability ?? 0;
+        return bTie - aTie;
+      }
       case 'bingeability': {
         // Prefer the user's own score, fall back to the prediction.
         // Shows with neither sort last; ties break on predicted rating.

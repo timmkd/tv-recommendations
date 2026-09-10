@@ -243,7 +243,7 @@ formula.
   "predictedRatingReason": "Predicted 4★: [detailed 400-600 char reasoning]",
   "recommendedWatchPreference": "solo",
   "predictedBingeability": 4,
-  "predictedBingeabilityReason": "Binge 4/5: [120-400 char reasoning]",
+  "predictedBingeabilityReason": "Binge 4/5: [120-400 chars, MUST end with a ramp clause]",
   "predictionsUpdatedAt": "2026-01-11T10:00:00Z",
   "hidden": false,
   "dropped": false,
@@ -317,7 +317,7 @@ See also the prediction-reason guidelines in
   "predictedRatingReason": "Predicted 4★: [detailed 400-600 char reasoning]",
   "recommendedWatchPreference": "solo",
   "predictedBingeability": 4,
-  "predictedBingeabilityReason": "Binge 4/5: [120-400 char reasoning]",
+  "predictedBingeabilityReason": "Binge 4/5: [120-400 chars, MUST end with a ramp clause]",
   "predictionsUpdatedAt": "2026-01-11T10:00:00Z"
 }
 ```
@@ -326,6 +326,21 @@ See also the prediction-reason guidelines in
 never raw SQL, never a one-off script. It validates every row and is all-or-nothing;
 `--dry-run` validates and writes nothing. It refuses rows for **dropped** shows, and
 needs `--allow-rated` for shows that already carry a user rating.
+
+**A prediction must never contradict a recorded `watchPreference`.** If a show already
+carries a user-set watch mode, `recommendedWatchPreference` matches it — the user's log
+is ground truth and outranks any rule. (The White Lotus sat at predicted-together for
+months while its own note recorded that Helen had already bailed.) Audit with a
+`watchPreference != recommendedWatchPreference` query before any bulk prediction run.
+
+**Every bingeability reason must end with a ramp clause** saying *when* the show picks
+up, so a slow start can be navigated rather than guessed at. Four fixed forms, no
+improvising a fifth: `Grabs from ep 1.` / `Slow open — picks up from ep N; worth it.` /
+`Slow open — picks up from ep N, but the payoff is thin.` / `Front-loaded — strongest
+early, fades from S N.` Give a number, never "eventually". The ramp describes the
+**hook**; the stick-with-it verdict describes the **payoff** — they may disagree, and
+that disagreement is the useful part. See **The ramp** in
+[docs/taste-profile.md](docs/taste-profile.md).
 
 **Bingeability-only rows** omit `predictedRating` / `predictedRatingReason` /
 `recommendedWatchPreference` and supply just the two bingeability fields; the show

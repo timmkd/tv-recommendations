@@ -459,3 +459,354 @@ the axis stays out of the star formula.
 **Not predicted:** All Her Fault (user has already scored it binge 4) and
 Space Force (dropped — `apply-predictions.ts` refuses dropped shows, which is
 also why the original 174-show run excluded it; it was never a coverage gap).
+
+## 2026-09-10 — Justified reason rewrite (rating unchanged)
+
+User challenged the solo call on Justified ("it's a procedural crime drama,
+which is often together — maybe it's the dark humour"). Rating and watch mode
+**hold at 4★ solo**; the stored *reason* was wrong and has been rewritten.
+
+What the old reason got wrong:
+
+- It said **"dark crime without comedy buffer for Helen"** three sentences after
+  praising the show's "sharp dialogue and dark humor" — internally contradictory.
+- Helen's dial is **silliness, not darkness of humour** (taste-profile: DRY WIT +
+  GROUNDED). Raylan/Leonard dry-deadpan is the same register as Jackson Lamb
+  (Slow Horses 4.5★ together), so the dark humour is an argument *for* together.
+- The "procedural-ish" framing also doesn't send it solo: Justified has a
+  serialised spine (Boyd Crowder), which is exactly why the 2026-08-31
+  procedural-spine rescan flagged it and **kept** it while Poker Face and Return
+  to Paradise were docked.
+
+What actually carries the solo call:
+
+1. **Fargo 3.5★ solo, `watchPrefNote: "Bit slow paced for Helen"`** — same
+   dialogue-driven talk-then-draw rhythm; Fargo is named in Helen's dislikes.
+2. **Antihero gunplay cluster is uniformly solo** — Peaky Blinders 4★ S,
+   Boardwalk Empire 4★ S, Ozark 4.5★ S. Contrast the together crime wins, which
+   are victim-centred (Broadchurch 4★ T) or comedy-forward (Slow Horses).
+3. **78 episodes, cold start** — the together lane rewards low commitment;
+   Broadchurch runs 8-ep seasons, Slow Horses 6.
+
+**Would flip it:** if Raylan reads to Helen as a Lamb-style dry anchor, this is a
+Broadchurch-shaped together 4★. The Fargo pacing note is why that bet isn't taken.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Justified** | 4★ S | 4★ S | Reason rewrite: solo is pace/violence/length (Fargo comp), not the dark humour |
+
+## 2026-09-10 — Watch-mode revisit: 4 user-raised challenges
+
+User raised four shows as *questions* on solo/together (explicitly not instructions).
+Screened all four; **2 flipped, 1 rating cut, 1 held**.
+
+### The finding that drove two of them: "no one to root for" is a validated together-drop
+
+Three together drops in the library, all 2-2.5★, all the same note:
+
+- **A Very British Scandal 2★** — "we didn't like the characters, nothing redeeming about any of them"
+- **A Very English Scandal 2★** — "no one to root for, unlikeable real people, nothing redeeming"
+- **Happy Valley 2★** — "deliberately repulsive with no redemption… dark character study, NOT a mystery"
+
+This is *not* refuted by the COMPELLING-beats-LIKEABLE rule — that rule's own evidence
+(American Crime Story 3.5★ together) had a case/trial engine. The discriminator is
+**propulsion**, and where propulsion is absent, unlikeable ensembles drop hard.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Your Friends & Neighbors** | 4★ T | 4★ S | Flip together->solo: dark-satire cluster is solo (Barry/BEEF/Fleabag); old reason used a solo comp |
+| **Presumed Innocent** | 4★ T | 3.5★ T | 4->3.5: elite-whodunit together cluster (Defending Jacob 3, Undoing 3.5, BLL 3.5) caps below 4 |
+| **The White Lotus** | 4★ T | 4★ S | Flip together->solo: contradicted the recorded watchPreference note (Helen already bailed) |
+| **Maid** | 4★ T | 4★ T | Held 4 together: bleak-but-purposeful carve-out, not the Happy Valley punishing shape |
+
+**Your Friends & Neighbors → SOLO.** The whole acid-satire cluster is solo in this
+library — Barry 4★ S, BEEF 4★ S, The Great 4.5★ S, Fleabag 4★ S, Succession 4.5★ S
+predicted — and "sharp satire/dark comedy" is listed under the *Solo* profile. The old
+reason committed the Ghosts error in mirror image: it justified a **together** call with
+**Barry**, a solo comp. Its reason also named a streaming platform, which the current
+validator rejects. Rating holds at 4★ — the heist engine answers the propulsion test.
+
+**Presumed Innocent → 3.5★, together holds.** Crude content is friction, not a flip:
+Helen's canonical list tolerates graphic sex "if the show is gripping enough", and a
+withheld-answer legal whodunit grips (All Her Fault 4★ validated that shape end to end).
+But the closest *rated* comps cap it — Defending Jacob 3★, The Undoing 3.5★, Big Little
+Lies 3.5★ are all together, all prestige murder-among-elites, none reached 4★.
+
+**The White Lotus → SOLO. This was a data bug, not a judgement call.** The show already
+carries `watchPreference=solo` with the note: *"Started with Helen but she didn't enjoy
+it was too slow and none of the characters were interesting enough. I'll try again solo
+at some point."* The stored prediction said **together**, contradicting the user's own
+log. Audit of the whole library found **4** such conflicts; the other three (Mad Men,
+Ghosts, Alice and Steve) are all *rated* and already written up as documented misses, so
+White Lotus was the only one still actively feeding a wrong recommendation.
+
+**Maid → held at 4★ together — the one challenge rejected.** "Too depressing" is the
+Happy Valley worry, and Happy Valley's failure was specific: punishing from episode one,
+open-ended runway, repulsive antagonist, no intrigue. Maid is a contained 10-episode
+escape-and-rebuild arc with a hopeful spine and a definitive ending — the together
+lane's *best*-performing shape: Unbelievable 4★, Unorthodox 4★, Little Fires Everywhere
+4★, Lessons in Chemistry 4.5★, and Handmaid's Tale 4★ is far bleaker over far longer.
+Real risk is the grinding opener (cf. The Artful Dodger 2.5★, "nothing happens early") —
+that's a strict 2-episode test, not a mode flip.
+
+### Proposed taste-profile changes (NOT applied — profile edits keep their approval gate)
+
+1. Generalise the no-one-to-root-for rule beyond true-crime: **unlikeable ensemble +
+   no propulsion engine = together drop ~2★**, now n=3 (VBS, VES, Happy Valley).
+2. New cluster ceiling: **prestige murder-among-elites, together = 3-3.5★** (Defending
+   Jacob 3, The Undoing 3.5, Big Little Lies 3.5). Distinct from the crime-procedural
+   4★ ceiling (Broadchurch).
+3. Note that **acid/class satire sits in the Solo profile** even with a crime backbone —
+   same shape as the B99 correction to the Schur rule.
+
+## 2026-09-10 — The White Lotus: anthology caveat (mode unchanged)
+
+User pushed back on the same-day solo write: the S1 abandonment may have been
+circumstantial, and White Lotus is an **anthology** — new cast, new location, new
+tone each season — so an S1 bounce needn't generalise. Correct on both counts, and
+the previous entry overstated its case by calling the whole thing "recorded fact".
+Split the two claims:
+
+- **Fact:** the stored prediction contradicted a recorded `watchPreference`. Unchanged.
+- **Judgement (overstated):** that S1 settles the anthology. It does not. Per **drop
+  pattern 8**, a partial watch is a verdict on the *hook*, capped, not final.
+
+**Still solo, on a narrower basis.** The DB holds one row per show — no per-season
+rows exist for any anthology (Fargo, True Detective, Black Mirror, American Crime
+Story all single rows) — so the field must carry the *modal* call, and 2 of 3 seasons
+are the slow, static, low-propulsion kind that produced the bounce. Note also that
+"we just didn't continue" is not neutral evidence: quiet abandonment is itself drop
+pattern 8. And this note carries an active complaint on top of the inertia — "too
+slow" + "none of the characters were interesting enough" is pattern 1 + 2 language
+(Character Investment Failure + Momentum Loss), which is the 2-2.5★ together band.
+
+**The live carve-out: S2 (Sicily).** The one season with a real together case — an
+actual plot engine (infidelity farce plus a caper thread) and in Tanya the only
+rootable, tragicomic lead in the run. Counterweight: it is also by far the most
+sexually explicit season, which is Helen-friction tolerated only when the show grips.
+S3 (Thailand) is the worst together fit of the three. Precedent for tracking
+per-season divergence in the reason text rather than the schema: A Man on the Inside
+S1 vs S2.
+
+**Practical read:** keep solo as the default recommendation; if a together attempt
+happens, start at S2, not a re-run of S1, and apply the strict 2-episode test.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **The White Lotus** | 4★ S | 4★ S | Reason narrowed: S1 partial watch judges the hook only; S2 Sicily is a live together carve-out |
+
+## 2026-09-10 — Template change: the ramp, + DMV added and predicted
+
+### Template change (user-requested): every bingeability reason states its ramp
+
+*"Sometimes it's helpful if I need to get through the first few episodes before it
+starts to get good."* Added **The ramp** to `docs/taste-profile.md` and the prediction
+template in `CLAUDE.md`. Every `predictedBingeabilityReason` must now END with one of
+four fixed clauses — `Grabs from ep 1.` / `Slow open — picks up from ep N; worth it.` /
+`Slow open — picks up from ep N, but the payoff is thin.` / `Front-loaded — strongest
+early, fades from S N.` Give a number, never "eventually". The ramp describes the
+**hook**; the stick-with-it verdict describes the **payoff**; they may disagree.
+
+Applies going forward — the 174 existing bingeability reasons have no ramp clause and
+are NOT being backfilled in this pass.
+
+### DMV — added and predicted
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **DMV** | — | 3.5★ S + B4 | New show added via TMDB (Trakt 403); solo on the Colin from Accounts precedent |
+
+Added with `scripts/add-show-by-tmdb.ts 289567` — the Trakt outage path. Chrome
+DevTools could not attach ("browser is already running for the chrome-profile"), so
+the watchlist was not read from the browser; DMV was resolved on TMDB directly.
+
+**Metadata:** CBS single-camera workplace comedy, creator Dana Klein, 20 eps × ~22 min,
+one season, **status Canceled**. Harriet Dyer, Tim Meadows, Molly Kearney.
+
+**Solo — the strongest signal is the lead actor.** Harriet Dyer's own **Colin from
+Accounts 4★** is in the library at `watchPreference=solo`, and its note records the
+exact migration: *"We started this together but some of the episodes got a bit boring
+and crude language for Helen. She also thought a few of the characters were a bit
+wierd… so halfway through season 2 I switched to watching this on my own."* Same lead,
+same register, already resolved once. Reinforced by the decision tree (workplace
+comedy, non-family → SOLO) and the backbone-less-comedy rule. The warm-ensemble blurb
+("quirky and lovable… good thing they have each other") is NOT a together case — the
+Rosehaven correction says warm tone alone doesn't flip a backbone-less comedy, and
+"quirky" is the specific word attached to that miss.
+
+**3.5★, not 4★.** The workplace-ensemble cluster is Tim's most reliable comfort genre
+and runs at 4★ — Superstore 4★ ("easy watch comedy"), Abbott Elementary 4★, The Paper
+4★ — but all three earned long runs on strong reception. DMV was cancelled after one
+season on soft reception (TMDB 6.2). Ghosts 3★ is the floor: also a 22-minute network
+sitcom, and it failed on hook. Dyer + Meadows is a real lift off that floor.
+
+⚠️ **Base-rating caveat.** The formula wants IMDB/2 − 0.5 and there is **no IMDB
+figure**: Trakt returns 403, and `OMDB_API_KEY` is unset, so both `fetch-imdb-for-new`
+and `enrich-new-show-ratings` are dead ends. The only signal is TMDB 6.2 on **31
+votes**, which is too thin to lean on. 3.5★ is therefore a structure-and-comps call,
+not a base-plus-modifiers call — re-check it once a real IMDB number is available.
+
+## 2026-09-10 — Trakt watchlist recovered via browser; 7 new shows predicted
+
+Chrome DevTools attached on retry (the earlier "browser is already running" error
+cleared). Trakt's own API is still 403, but the browser-session stopgap works: the
+OIDC token in `localStorage['oidc.user:https://auth.trakt.tv:<clientId>']` against
+`apiz.trakt.tv`. **Note the pagination trap** — `/users/me/watchlist/show` returns
+only 100 rows by default and the list is 143, so the newest additions were invisible
+on the first pull. Always page with `x-pagination-page-count`.
+
+Full watchlist diff against the local DB: **6 shows missing, 1 in-DB unpredicted**,
+plus 2 more added by the user mid-session. All 7 now added via
+`scripts/add-show-by-tmdb.ts` and predicted; Trakt community ratings backfilled with
+`scripts/backfill-trakt-meta.ts` (IMDB remains unavailable — no `OMDB_API_KEY`).
+Post-run the diff is clean: 0 missing, 0 unpredicted.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Friday Night Lights** | — | 4★ T + B4 | New: together on the Swagger/Parenthood note — Katims ran FNL and created Parenthood |
+| **Star City** | — | 4★ T + B4 | New: For All Mankind is already a 4 together here; the sci-fi tag is a red herring |
+| **Last Seen** | — | 4★ T + B4 | New: the All Her Fault shape; ratings unusable at 9 votes |
+| **The Twelve** | — | 3.5★ T + B3 | New: trial engine clears propulsion; subtitles cap bingeability |
+| **High Country** | — | 3.5★ T + B3 | New: AU preference + mystery engine carry a weak 6.0/6.75 base |
+| **Lucky** | — | 3.5★ T + B4 | New: chase propulsion, capped by the Lupin 2.5 style-over-substance comp |
+| **Brilliant Minds** | — | 3★ T + B3 | New: nearest comp is The Resident 3, not The Pitt/Grey's 4 |
+
+### The two calls that turned on a library note rather than a genre rule
+
+**Friday Night Lights → together, against two sports-drama drops.** A League of Their
+Own 2.5★ and Swagger 3★ were both together, both dropped, both sports. The Swagger
+note is what overrides them: *"If the drama was more compelling, it would have been an
+excellent joint show… We like that it did have a bit of drama, a bit like a
+Parenthood."* That names the failure as **insufficiently compelling drama**, not the
+sport — and **Jason Katims ran Friday Night Lights and created Parenthood**. The
+user's own stated counterfactual is this exact show, by the same showrunner, at Trakt
+8.5 on 2762 votes. Held at 4★ rather than 4.5★ by a 76-episode cold start and the
+notorious S2.
+
+**Star City → together, despite the sci-fi tag.** "Sci-fi is not a Helen show"
+(Foundation) would send this solo on genre alone, but **For All Mankind is already in
+the library at 4★ together** — the frame is political-historical, not spacecraft.
+Star City leans further that way (Iron Curtain, intelligence services), landing near
+Chernobyl 5★ and The West Wing 5★. Genre tags lose to a rated show in the same
+franchise.
+
+**Note on bingeability:** all 7 carry ramp clauses under the template added earlier
+today — the first predictions written to the new format.
+
+## 2026-09-10 — 4 more watchlist additions (same session)
+
+Four further shows added to Trakt mid-session, all Apple originals. Added via
+`scripts/add-show-by-tmdb.ts`, Trakt ratings backfilled, predicted below.
+**Final diff is clean: 147 on the watchlist, 0 missing, 0 unpredicted, 0 without a
+bingeability score.**
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Shining Girls** | — | 3.5★ S + B4 | New: twist hook lifts it off Mindhunter 2.5, weak-payoff risk caps it |
+| **The Essex Serpent** | — | 3★ T + B2 | New: period-drama fit vs a 6.33 base and the nothing-happens drop shape |
+| **The Big Cigar** | — | 3★ T + B3 | New: half a star under Manhunt/Quiz 3.5, whose 4★ calls both over-predicted |
+| **Shantaram** | — | 2.5★ T + B2 | New: cancelled unresolved is a stated avoid; Big Door Prize/Sunny are the anchors |
+
+**Shining Girls — the batch's only solo.** Serial killer *and* a time-slip conceit;
+either alone sends it solo. What lifts it above the Mindhunter 2.5★ / Black Bird 3★
+floor is that the shifting-reality mechanic is a stated core love (jaw-drop reveals,
+Dark 4.5★). What caps it at 3.5★ is the ending — widely read as under-explained, and
+weak payoffs are drop pattern 4.
+
+**Shantaram — the lowest call made today, deliberately.** The premise is together-lane
+and there are no Helen blockers, but it was cancelled after 12 episodes with threads
+open, and *"I hate when cancelled unresolved"* is an explicit stated avoid. The two
+anchors are Big Door Prize 2.5★ and Sunny 2.5★ (also cancelled, also dropped). Twelve
+hours that don't finish is not a 3★ risk, it's the thing the user has already told us
+he hates.
+
+**The Big Cigar — applying a logged miss rather than repeating it.** The
+true-story + cultural-moment + low-commitment shape produced Manhunt 3.5★ and Quiz
+3.5★, and the accuracy log records BOTH as **predicted 4★, landed 3.5★**. With
+weaker reception than either (Trakt 6.03, TMDB 5.3), predicting 3.5★ here would repeat
+that error with less justification. 3★.
+
+**The Essex Serpent — period drama is not enough on its own.** The Gilded Age 4★ and
+A Gentleman in Moscow 4★ say the genre works together, but a 6.33 base on 621 votes
+plus an atmosphere-over-plot structure is the Normal People 2.5★ / Artful Dodger 2.5★
+shape, and both of those were together drops. The 6-episode run is what keeps it at 3★
+rather than lower.
+
+---
+
+## 2026-09-10 — First 5★ predictions (ceiling audit)
+
+The library had **zero** 5★ predictions against 5 rated 5★ shows. Audit found the
+ceiling was habit, not arithmetic: the formula already produced ≥5.0 for two shows
+that were being written down to 4.5★, and both of their old reasons said so out loud
+("Ceiling is 5★ if the character work lands", "similar to Chernobyl (5★) quality level").
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Breaking Bad** | 4.5★ S | 5★ S | 4.5 -> 5: the formula already said 5; the old reason itself named 5 as the ceiling |
+| **Band of Brothers** | 4.5★ T | 5★ T | 4.5 -> 5: exact Chernobyl comp (true-story WWII prestige limited, together) |
+
+**Why nothing else clears 5★:** the 5★ set splits into two routes. Both are
+predictable in principle; one of them is empirically closed.
+
+- **Comedy route** (Parks and Recreation, The Office US). ~~Emergent from years of
+  rewatch, therefore unpredictable~~ — **WRONG, corrected by the user 2026-09-10:**
+  "I feel like Parks and Recreation and The Office would have been five stars even on
+  original watch. I loved them when they were out. They were my favourite shows. I
+  haven't found a show to rival them." The rewatch notes describe a *consequence* of
+  the 5★, not its cause. So a first-watch 5★ comedy is possible — the ceiling is
+  **empirical, not mechanistic**: see the comedy base rate below.
+- **Prestige route — peak execution with a payoff** (Chernobyl, Severance, The West
+  Wing). Breaking Bad + Band of Brothers are its two unclaimed members.
+
+### The comedy 5★ base rate is 0 for 38
+
+40 rated comedies. Two are 5★ (**Parks 2009 · 7 seasons**, **The Office US 2005 ·
+9 seasons**). Every comedy since caps at **4.5★**, and the wall is dense:
+
+| Rating | Long-runway comedies (≥5 seasons) |
+| ------ | --------------------------------- |
+| 5★ | Parks and Recreation · The Office (US) |
+| 4.5★ | Brooklyn Nine-Nine · Star Trek: Lower Decks |
+| 4★ | Abbott Elementary · Superstore · Schitt's Creek · Veep · Community · Mrs. Maisel · Gilmore Girls · Only Murders |
+| 3.5★ | Modern Family · Silicon Valley · OITNB · Big Bang Theory · 30 Rock |
+
+**The format has been re-tested directly, twice, and did not reproduce:**
+**The Paper (2025) 4★** is Greg Daniels doing mockumentary workplace ensemble again in
+the same universe — the closest possible comp, and it landed a full star short.
+**The Office (2024) 2★** is the other re-test and it failed hard. **Abbott Elementary
+4★** is the live mockumentary-workplace contender at 5 seasons.
+
+**Rule: do not predict a new comedy above 4.5★.** Not because a 5★ comedy is
+unpredictable — because 38 rated comedies over 15 years, including two deliberate
+restagings of the exact format, have produced no rival. **What would flip it:** a
+7+ season ensemble workplace comedy with genuine multi-season character-growth arcs in
+a warm (not cynical, not zany) register. The modern release model rarely commissions
+one, which is the real reason the slot has stayed empty — not a limit on the user's
+scale. **No such candidate currently exists in the library or outside it**; the best
+genuinely-absent comfort-workplace add is **Scrubs** (9 seasons, ensemble, warm) at a
+predicted **4.5★ solo**, not 5.
+
+**Held at 4.5★ deliberately** (each fails one Route-B requirement):
+
+| Show | Why not 5★ |
+| ---- | ---------- |
+| Mr. Robot | Formula reaches 4.77, but S2 is the known slog — the Sherlock cap (4.5★ because "the last season wasn't quite as good") |
+| The Expanse | Ends mid-story with Laconia unadapted → cancelled/unresolved, the stated dealbreaker |
+| Succession | Satire lane peaks at 4.5★ (The Great 4.5★); no reveal/payoff engine |
+| True Detective | Anthology variance — S1 is 5★-shaped, the average is not |
+
+**Held at 4★:** The Wire and The Sopranos have the top community scores in the library
+(9.20, 9.10) but are bleak institutional character studies with no twist payoff and
+binge=3 — the Happy Valley lane, not the Chernobyl lane.
+
+**Best genuinely-absent Route-B candidate: Battlestar Galactica (2004).** Solo
+psychological sci-fi with the biggest reveal engine in the genre and a serialised
+4-season arc — the Severance/Dark/Silo shape, all 4.5-5★. Formula lands 4.95. It is
+**not** a 5★ because its finale is the most-contested payoff in television and weak
+payoffs are the single hardest-penalised failure here (Dark earned 4.5★ *for*
+resolving well). Predict **4.5★ solo** if added.
+
+**Data gap found:** `Fringe` is cited at **4★** in `docs/taste-profile.md` and
+`docs/llm-review-prompt.md` but is **absent from the shows table entirely**, so it
+contributes to no stats. Needs adding + re-rating.
