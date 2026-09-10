@@ -2,13 +2,13 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (216 rated shows)
+## Rating Distribution (217 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
 | 4.5★ | 18 | Loved it - strong signal |
-| 4★ | 81 | Good solid show |
+| 4★ | 82 | Good solid show |
 | 3.5★ | 49 | Enjoy but don't love |
 | 3★ | 37 | Still good |
 | 2-2.5★ | 26 | Dropped or disappointed |
@@ -102,7 +102,7 @@ which is why the slot has stayed empty; it is *not* a limit on the user's scale.
 - Easy watches (Nobody Wants This 4★, Gilmore Girls 4★, The Four Seasons 4★ - "good pace and an easy watch")
 - Family sitcoms — broader appeal for Helen (Modern Family 3.5★, Big Bang Theory 3.5★)
 - WWII + True Story + Uplifting = near-guaranteed hit (A Small Light 4★, All the Light We Cannot See 4★)
-- Procedural/case-of-the-week formats (The Rookie 4.5★, The Pitt 4★, Fringe 4★)
+- Procedural/case-of-the-week formats (The Rookie 4.5★, The Pitt 4★, Fringe 4★ — abandoned in its final season, see **Late-run fizzle** below)
 - Low-commitment limited series (Manhunt 3.5★, Quiz 3.5★ - "low intensity, low commitment")
 - Legal/political dramas (The Good Wife 4★, The West Wing 5★, Total Control 4★)
 
@@ -160,6 +160,11 @@ which is why the slot has stayed empty; it is *not* a limit on the user's scale.
 6. **Cancelled/Unresolved** - (Big Door Prize 2.5★, Sunny 2.5★)
 7. **Comedy Killers** - Action + Comedy hybrid (Mr. & Mrs. Smith 2★, The Tick 2.5★), slow pacing in comedy, unlikeable characters (Bad Monkey 2.5★)
 8. **Quiet abandonment — the 3★ floor (Aug 2026)** - Distinct from every pattern above, which involve active dislike and land at 2-2.5★. Here the show is *fine* and simply loses to the backlog: several episodes in, never came back, no complaint beyond inertia. **Ghosts 3★** ("not terrible… just finding myself reaching for other shows") and **Monk 3★** ("not bad… so much more on offer that investing in it seemed like an effort"). Both were **partial watches**, so treat the rating as a verdict on the *hook*, not on the show's ceiling — and as a capped, not final, score.
+
+9. **Late-run fizzle — abandonment WITHOUT a rating penalty (Sep 2026)** - The mirror image of quiet abandonment, and the one pattern where *not finishing a show says nothing bad about it*. A long run is genuinely loved, the final season peters out, the show is abandoned there, and the rating stays **high** because it grades the strong seasons. **Fringe 4★ together** ("really enjoyed the whole thing up until the last season, when it petered out… never finished S5, and by now it's so long ago that starting again just to finish the last season isn't worth it"). Same shape as **Sherlock 4.5★** ("would have been 5★ if the last season…") and **The Crown 4.5★** — both loved, both late-declining, both rated near the top.
+   - **Do NOT read an unfinished show as a negative signal.** Check *where* it was abandoned. Bailing in ep 2-4 is a hook failure (patterns 1-8); bailing in a final season after four strong ones is a completion failure, and the show still earns 4-4.5★.
+   - **Do NOT mark these `dropped`.** `dropped` means "decided against", drives a Trakt list, hides the show from every view, and its cohort (28 shows, together avg 2.56★) is the evidence base for together drop-risk. A late-run abandonment is not a Helen-fit failure and would corrupt that average. Record it as `status: watching` with the story in `reviewNote` — see `scripts/record-fringe.ts`.
+   - **The re-entry cost is real and permanent.** Once a serialised show is years cold, the user will not restart it to close out one season. Treat a stalled late-season serialised show as *finished in practice* — never recommend "go back and finish it".
 
 ---
 

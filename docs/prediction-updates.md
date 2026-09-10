@@ -759,6 +759,15 @@ predictable in principle; one of them is empirically closed.
 - **Prestige route — peak execution with a payoff** (Chernobyl, Severance, The West
   Wing). Breaking Bad + Band of Brothers are its two unclaimed members.
 
+**Band of Brothers was already predicted 5★ once.** The "All Predicted Ratings"
+section above (Feb 2026) has a `### 5★ Predictions` table containing exactly one row:
+*Band of Brothers · 5★ · Together · IMDB 9.4 · "WWII + True Story + Prestige = peak
+Helen combo."* It was written down to 4.5★ some time after, most likely swept up in the
+Feb 2026 "over-prediction bias correction" that also took Masters of the Air 4.5★ → 4★.
+That correction was calibrated on **together over-prediction** in ordinary shows and
+should never have touched the top of the scale. So this is a restoration, not a new
+claim — and it confirms the 4.5★ wall was drift rather than judgment.
+
 ### The comedy 5★ base rate is 0 for 38
 
 40 rated comedies. Two are 5★ (**Parks 2009 · 7 seasons**, **The Office US 2005 ·
@@ -810,3 +819,39 @@ resolving well). Predict **4.5★ solo** if added.
 **Data gap found:** `Fringe` is cited at **4★** in `docs/taste-profile.md` and
 `docs/llm-review-prompt.md` but is **absent from the shows table entirely**, so it
 contributes to no stats. Needs adding + re-rating.
+
+---
+
+## 2026-09-10 — Fringe added and recorded (data gap closed)
+
+`Fringe` had been cited at **4★** in `docs/taste-profile.md` and
+`docs/llm-review-prompt.md` for months while being **absent from the shows table
+entirely** — it fed no stats and appeared in no view. Added via
+`add-show-by-tmdb.ts 1705 --status watching`, user fields written by
+`scripts/record-fringe.ts`.
+
+**User's account (2026-09-10):** rated 4★, "really enjoyed the whole thing up until
+the last season, when it petered out", never finished S5, and it is now too long ago
+to restart just to close it out.
+
+| Field | Value | Why |
+| ----- | ----- | --- |
+| `rating` | 4★ | User's own, previously only in prose |
+| `status` | `watching` | A genuine partial watch — not `completed`, S5 unfinished |
+| `dropped` | **false** | `dropped` hides a show from every view (defeating the point of adding it) and its cohort is the evidence base for together drop-risk (28 shows, together avg 2.56★). A loved-then-abandoned 4★ is not a Helen-fit failure and would corrupt that average |
+| `watchPreference` | `together` | Per the existing citation — Helen likes procedurals, same lane as The Rookie 4.5★ |
+| `bingeability` | null | User-entered field; not fabricated. **Needs entering in the app** |
+| predictions | none | The show is rated; predictions are for unrated shows |
+
+**New profile pattern — "Late-run fizzle", failure mode #9.** This is the first
+recorded case of abandonment that carries **no rating penalty**, and it needed
+distinguishing from quiet abandonment (#8, the 3★ floor). Rule added: check *where* a
+show was abandoned before reading it as a negative — an ep 2-4 bail is a hook failure,
+a final-season bail after four strong seasons is a completion failure and still earns
+4-4.5★ (cf. Sherlock 4.5★, The Crown 4.5★). Also: never recommend going back to finish
+a years-cold serialised show; the re-entry cost is permanent.
+
+Distribution refreshed: **217 rated shows**, 4★ count 81 → 82.
+
+**Outstanding:** the 4★ rating needs pushing to Trakt once the app is re-registered
+(ratings are a two-way sync field; `syncRatingToTrakt` would 403 today).
