@@ -2,13 +2,13 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (214 rated shows)
+## Rating Distribution (216 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
 | 4.5★ | 18 | Loved it - strong signal |
-| 4★ | 79 | Good solid show |
+| 4★ | 81 | Good solid show |
 | 3.5★ | 49 | Enjoy but don't love |
 | 3★ | 37 | Still good |
 | 2-2.5★ | 26 | Dropped or disappointed |
@@ -270,7 +270,7 @@ A second rating axis, tracked separately from the star rating since Aug 2026. **
 
 > **STATUS (2026-09-09, rev 2): 80 shows scored — the axis is VALIDATED as a distinct signal, the WEIGHTS are not.** The scored set is deliberately skewed to shows Tim rated 3-5★ (only one show at 3★, none below, no dropped shows), and he has decided **not** to score the low end. Two consequences, both permanent: (1) the negative weights can never be validated, so they are **retired** rather than pending — low-hook risk is carried by the structural modifiers instead; (2) with only 3 of the 80 scored shows holding a stored Trakt score, whether bingeability adds anything **over** IMDB/Trakt is untestable, so the positive weights stay PROVISIONAL and out of the formula.
 >
-> **The axis has never been validated against a prediction — the overlap is ZERO.** All 174 stored `predictedBingeability` values sit on shows with no user score, and all 80 user scores sit on shows that were never predicted. Bingeability MAE is therefore **unmeasurable**, not merely poor. Do NOT read the gap between the predicted distribution (mean 3.74; 16% at 5) and the scored distribution (mean 4.19; 44% at 5) as predictor bias: the scored set is **completion-selected** — Tim scores only shows he finished, and finishing is itself selected on high bingeability — while the predicted set is mostly unwatched watchlist. No blanket recalibration is justified from that comparison; only rule-driven, per-show changes are.
+> **The axis has one validation point (updated 2026-09-10): n=1, exact.** Malcolm in the Middle: Life's Still Unfair was predicted binge **5** and scored **5** — the first time a stored `predictedBingeability` has ever met a user score, and the note matches the predicted reasoning ("Super easy binge... very easy to watch quickly" vs "four episodes total, the lowest commitment in the entire library"). Before this the overlap was ZERO. **One point derives nothing**: it cannot move the weights, cannot establish MAE, and does not lift the PROVISIONAL status above. Do NOT read the gap between the predicted distribution (mean 3.74; 16% at 5) and the scored distribution (mean 4.19; 44% at 5) as predictor bias: the scored set is **completion-selected** — Tim scores only shows he finished, and finishing is itself selected on high bingeability — while the predicted set is mostly unwatched watchlist. No blanket recalibration is justified from that comparison; only rule-driven, per-show changes are. The overlap grows only as scored shows happen to carry an earlier prediction, so treat each new one as a data point to log, not as licence to re-weight.
 
 ### Why it is a separate axis
 
@@ -392,7 +392,7 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 
 ## Prediction Accuracy (May 2026)
 
-**23-show validated sample (Aug 2026):** MAE: 0.57★ (target ~0.5★) | Bias: -0.35★ (formula already corrects via -0.5★ term) | Within 0.5★: 74%
+**25-show validated sample (Sep 2026):** MAE: 0.54★ (target ~0.5★) | Bias: -0.30★ (formula already corrects via -0.5★ term) | Within 0.5★: 76%
 
 **Range restriction (measured Aug 2026):** 128 of 214 rated shows sit at 3.5★ or 4★ — 60% inside a half-star band, with only 5 shows ever at 5★. The star scale has ~1.5★ of usable range in practice, so an MAE of 0.57★ is worse than it looks. This is the main argument for tracking bingeability as a second, less compressed axis (see **Bingeability**).
 
@@ -414,6 +414,8 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 - **Monk (-1.0)**: predicted 4★ → rated 3★ together, watch mode correct. Three modifiers over-fired at once (4+ seasons +0.3, established classic +0.2, procedural +0.2) on a show that is **purely episodic**. "The show doesn't seem to go anywhere… storytelling feels dated… perhaps it would have been better if we watched it when it was airing." Note the hypothesis this *refutes*: old + long-running is NOT a penalty — The West Wing 5★, Parks 5★, Office 5★, Sherlock 4.5★, Grey's 4★ (22 seasons), Gilmore Girls 4★, The Good Wife 4★ are all pre-2015 with 4+ seasons. The discriminator is the **serialised spine**, not age or length.
 - **Matlock (+0.5)**: predicted 3.5★ → rated 4★ together. Same lane and same week as Monk, opposite result, and the reason is explicit in the note: "an easy binge to get straight into… we enjoy the intrigue" vs Monk's "doesn't seem to go anywhere". Also the **first counter-example to the Mystery/Crime "side with audience" rule** (RT 91 critics / 65 audience, still 4★) — record now 1-4. Noted, not overturned.
 - **Star Trek: Starfleet Academy (exact)**: predicted 3.5★ → rated 3.5★ solo. Validates holding the Trek franchise floor against a cold audience signal (Trakt 6.3) rather than following it down, and the "sci-fi is never Helen's lane" default.
+- **All Her Fault (exact)**: predicted 4★ together → rated 4★ **together**, both rating and watch mode right. Validates the domestic-thriller-together shape end to end: a withheld-answer abduction hook + a relatable mother lead + a contained 8-episode ENDED run, with **no bleak penalty applied** despite child-abduction content. Confirms the "dark but purposeful and contained" carve-out (Adolescence 4★, Little Fires Everywhere 4★) rather than the bleak→solo default.
+- **Malcolm in the Middle: Life's Still Unfair (+0.5)**: predicted 3.5★ → rated 4★ solo, watch mode correct. Under-predicted because nothing in the modifier table rewards **nostalgia revival at very low commitment** — "Super easy binge and fun nostalgia it was very easy to watch quickly". A four-episode revival of a comfort show is closer to the comfort-rewatch register (Parks 5★, Office 5★) than to an unproven new comedy. Calibration note only, n=1 — do not add a modifier until a second revival lands.
 
 ### Library audit (May 2026)
 

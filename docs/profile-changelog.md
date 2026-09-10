@@ -5,7 +5,7 @@ The two marker lines are updated ONLY by `scripts/mark-review-done.ts` — never
 You MAY hand-append `- [ ]` entries to the Pending section after manually editing
 `docs/taste-profile.md`; `/rescan-predictions` will pick them up.
 
-**Last ratings review:** 2026-08-31T01:50:57.356Z
+**Last ratings review:** 2026-09-10T00:13:49.844Z
 **Last prediction rescan:** 2026-09-09T13:02:03.201Z
 
 ## Pending prediction rescan

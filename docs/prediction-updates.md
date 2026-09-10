@@ -435,3 +435,27 @@ Madam Secretary's 120 episodes are a cold start into an episodic back catalogue
 9.13 on **8 votes**, TMDB 9.0 on a similarly tiny sample, IMDB behind a CAPTCHA
 and no Wikipedia article. Per the worksheet, a base is never invented, so this
 one is held pending a decision from the user.
+
+## 2026-09-10 — Bingeability for recovered watchlist shows
+
+Bingeability predictions for the 10 recovered shows that had a star prediction
+but no binge estimate. Structural estimation only (serialised spine vs weekly
+reset, episode length, back-catalogue size), per the Bingeability section —
+the axis stays out of the star formula.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **High Potential** | 4★ T | 4★ T + B4 | bingeability for recovered watchlist show |
+| **Lanterns** | 4★ S | 4★ S + B4 | bingeability for recovered watchlist show |
+| **My Brilliant Career** | 4★ T | 4★ T + B4 | bingeability for recovered watchlist show |
+| **A Knight of the Seven Kingdoms** | 3.5★ S | 3.5★ S + B4 | bingeability for recovered watchlist show |
+| **Stuart Fails to Save the Universe** | 3.5★ S | 3.5★ S + B4 | bingeability for recovered watchlist show |
+| **Not Suitable for Work** | 3.5★ S | 3.5★ S + B4 | bingeability for recovered watchlist show |
+| **Spider-Noir** | 3★ S | 3★ S + B3 | bingeability for recovered watchlist show |
+| **Tracker** | 3.5★ T | 3.5★ T + B3 | bingeability for recovered watchlist show |
+| **Madam Secretary** | 3.5★ T | 3.5★ T + B3 | bingeability for recovered watchlist show; run-average rule |
+| **Boiling Point** | 3.5★ S | 3.5★ S + B2 | bingeability for recovered watchlist show |
+
+**Not predicted:** All Her Fault (user has already scored it binge 4) and
+Space Force (dropped — `apply-predictions.ts` refuses dropped shows, which is
+also why the original 174-show run excluded it; it was never a coverage gap).
