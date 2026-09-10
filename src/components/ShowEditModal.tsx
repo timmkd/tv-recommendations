@@ -173,9 +173,13 @@ export default function ShowEditModal({
   const [notes, setNotes] = useState('');
   const [hidden, setHidden] = useState(false);
   const [dropped, setDropped] = useState(false);
+  const [overviewExpanded, setOverviewExpanded] = useState(false);
 
   useEffect(() => {
     if (!isOpen || !showId) return;
+
+    // Collapse the overview again for each show opened, not just the first
+    setOverviewExpanded(false);
 
     // If initialShow is provided, use it directly (no fetch needed)
     if (initialShow) {
@@ -545,10 +549,22 @@ export default function ShowEditModal({
               </div>
             </div>
 
-            {/* Overview - hidden on mobile to save space */}
+            {/* Overview - clamped to 3 lines on mobile with a tap to expand, always full on sm+ */}
             {show.overview && (
-              <div className="hidden sm:block mb-5 p-3 bg-gray-800/50 rounded-lg">
-                <p className="text-sm text-gray-300 leading-relaxed">{show.overview}</p>
+              <div className="mb-3 sm:mb-5 p-2.5 sm:p-3 bg-gray-800/50 rounded-lg">
+                <p className={`text-xs sm:text-sm text-gray-300 leading-relaxed sm:line-clamp-none ${overviewExpanded ? '' : 'line-clamp-3'}`}>
+                  {show.overview}
+                </p>
+                {/* Only worth a toggle when there's actually more than ~3 lines to reveal */}
+                {show.overview.length > 140 && (
+                  <button
+                    type="button"
+                    onClick={() => setOverviewExpanded(v => !v)}
+                    className="sm:hidden mt-1 text-[11px] text-purple-400 hover:text-purple-300"
+                  >
+                    {overviewExpanded ? 'Show less' : 'Show more'}
+                  </button>
+                )}
               </div>
             )}
 
