@@ -107,6 +107,12 @@ if (progress.completed >= progress.aired && progress.aired > 0) {
 
 **Why:** A bug with the bad pattern caused 93 watchlist shows to be incorrectly marked as "completed" because they had no progress data and the default was wrong.
 
+`scripts/resync-watch-status.ts` implements this rule and is the reference
+example: it also leaves a show's existing status **untouched** when there is no
+evidence either way, rather than defaulting it to anything. On its 2026-09-10 run
+that applied to 29 of 403 shows. Always `--dry-run` it first and read the move
+table before writing.
+
 ---
 
 ## Trakt Sync
@@ -145,6 +151,51 @@ Streaming availability uses 3-layer fallback (in order):
 2. **JustWatch by TMDB ID** - backup
 3. **JustWatch by title** - final fallback
 
+In practice layer 1 has been returning empty, so `scripts/resync-streaming.ts`
+treats JustWatch as primary and Trakt as last resort. That is why streaming still
+works during the outage below.
+
+### ⚠️ Trakt is BROKEN (as of 2026-09-10) — the app is no longer registered
+
+`TRAKT_CLIENT_ID` is well-formed (64-char lowercase hex) but Trakt no longer
+recognises it. `api.trakt.tv` returns **403 for any call**, byte-identical to a
+deliberately bogus key, and the OAuth device-code endpoint returns
+`{"error":"invalid_client","error_description":"client not found"}`.
+
+**`scripts/trakt-reauth.ts` cannot fix this.** It re-authorises an app that still
+exists; here the app registration itself is gone. The token errors you see first
+(`invalid_grant`, "session not found") are a *symptom*, not the cause — do not
+spend time on them.
+
+**The fix (requires the account owner):**
+1. Re-register the app at <https://trakt.tv/oauth/applications>.
+2. Put the new client id/secret in `.env.local` **and** in Vercel's production env.
+3. Run `npx tsx scripts/trakt-reauth.ts` (device flow, prints a code for
+   trakt.tv/activate).
+
+**DANGER — the outage fails silently.** `scripts/check-new-trakt-shows.ts` catches
+the 403, gets zero shows, and prints `=== 0 shows on Trakt but not in local DB ===`
+— indistinguishable from "fully synced". `/review-ratings` Step 5 branches on that
+output and will skip the sync entirely. This hid ~6 weeks of missing shows (11 of
+them, from 2026-07-30 on). **Never read a 0 from that script as an all-clear
+without checking the lines above it for `Got 0 shows from Trakt`.**
+
+**Browser-session recovery (read-only stopgap).** While logged in to
+`app.trakt.tv`, the SPA's own endpoints work with the OIDC token in
+`localStorage['oidc.user:<clientId>']`, using `Authorization: Bearer <token>` plus
+`trakt-api-key: <clientId>` against `https://apiz.trakt.tv`:
+
+| Need | Endpoint |
+|------|----------|
+| Watchlist | `/users/me/watchlist/show?extended=full` |
+| Ratings | `/users/me/ratings/shows` |
+| Watched shows | `/users/me/watched/shows` (note: **never** returns a `seasons` array) |
+| Per-show progress | `/shows/{slug}/progress/watched` → `{aired, completed}` |
+| Look up by TMDB id | `/search/tmdb/{id}?type=show&extended=full` |
+
+This is read-only: it cannot push ratings back to Trakt, and it dies when the
+session expires. It is a stopgap, not a replacement for re-registering the app.
+
 ---
 
 ## Rating System
@@ -156,8 +207,17 @@ Each show has a simple rating structure:
 | `watchPreference` | "solo" or "together" | Filters recommendations by context |
 | `watchPreferenceNote` | WHY this preference | Learns context patterns |
 | `rating` | 0.5-5 stars | Weights show importance |
+| `bingeability` | 1-5 integer, how EASILY watched (not how good) | Diagnostic only — deliberately NOT in the prediction formula |
 | `reviewNote` | What you liked/disliked, or why you dropped | Learns taste preferences |
 | `notes` | General notes | Not used for AI |
+
+**Bingeability is a second, independent axis** added Aug 2026 and recalibrated
+Sep 2026. It is user-entered in the app; `predictedBingeability` holds the AI
+estimate. It correlates with the star rating (r=0.58) but discriminates where the
+star scale cannot — 60% of rated shows sit in a half-star band. See the
+**Bingeability** section of [docs/taste-profile.md](docs/taste-profile.md) for the
+hook/sustain split, the run-average rule, and why its weights stay out of the
+formula.
 
 ### Show Data Format
 
@@ -175,12 +235,15 @@ Each show has a simple rating structure:
   "watchPreference": "solo",
   "watchPreferenceNote": "Too intense for watching together",
   "rating": 4.5,
+  "bingeability": 4,
   "ratedAt": "2026-01-11T10:00:00Z",
   "reviewNote": "Incredible tension, amazing character arc",
   "notes": "General notes",
   "predictedRating": 4.0,
   "predictedRatingReason": "Predicted 4★: [detailed 400-600 char reasoning]",
   "recommendedWatchPreference": "solo",
+  "predictedBingeability": 4,
+  "predictedBingeabilityReason": "Binge 4/5: [120-400 char reasoning]",
   "predictionsUpdatedAt": "2026-01-11T10:00:00Z",
   "hidden": false,
   "dropped": false,
@@ -222,9 +285,20 @@ Each show has a simple rating structure:
   "predictedRating": 4,
   "predictedRatingReason": "Predicted 4★: [detailed 400-600 char reasoning]",
   "recommendedWatchPreference": "solo",
+  "predictedBingeability": 4,
+  "predictedBingeabilityReason": "Binge 4/5: [120-400 char reasoning]",
   "predictionsUpdatedAt": "2026-01-11T10:00:00Z"
 }
 ```
+
+**Predictions are written ONLY via `npx tsx scripts/apply-predictions.ts <file.json>`** —
+never raw SQL, never a one-off script. It validates every row and is all-or-nothing;
+`--dry-run` validates and writes nothing. It refuses rows for **dropped** shows, and
+needs `--allow-rated` for shows that already carry a user rating.
+
+**Bingeability-only rows** omit `predictedRating` / `predictedRatingReason` /
+`recommendedWatchPreference` and supply just the two bingeability fields; the show
+must already have a star prediction, which is left untouched.
 
 ### Recommendation Format
 
@@ -255,7 +329,14 @@ Include `tmdbId` and `posterPath` when possible so poster images display.
 
 ### Current Subscriptions
 
-Check `streamingServices` table. As of last update: Stan, Prime Video, Max, ABC iview, SBS On Demand.
+The `streamingServices` table (`isSubscribed` column) is the source of truth — the
+app reads it, so always check it rather than trusting a list here.
+
+As of 2026-09-10 the table holds: **Disney+, Prime Video, Paramount+, ABC iview,
+SBS On Demand**. ⚠️ This disagrees with the note previously recorded here (Stan,
+Prime Video, Max, ABC iview, SBS On Demand) — Disney+/Paramount+ vs Stan/Max.
+Which side is stale is **unconfirmed**; it materially changes recommendations, so
+confirm with the user before relying on either.
 
 ### Guidelines
 
@@ -277,8 +358,58 @@ Check `streamingServices` table. As of last update: Stan, Prime Video, Max, ABC 
 
 For the full taste profile, prediction formula, modifiers, solo/together decision logic, and prediction reason guidelines, see **[docs/taste-profile.md](docs/taste-profile.md)**.
 
+## Operational Scripts
+
+Run from the repo root with `npx tsx scripts/<name>.ts`. All read `.env.local`.
+Most support `--dry-run`; prefer it first on anything that writes.
+
+### Writing predictions
+| Script | Purpose |
+|--------|---------|
+| `apply-predictions.ts <file.json> [--dry-run] [--allow-rated]` | **The only approved write path for predictions.** Validates all rows, all-or-nothing, prints a markdown table for `docs/prediction-updates.md` |
+| `mark-review-done.ts ratings\|rescan [--check-all]` | The only writer of the marker lines / checkboxes in `docs/profile-changelog.md` |
+
+### Reading state
+| Script | Purpose |
+|--------|---------|
+| `latest-ratings.ts` | New ratings since the last review + completed-but-unrated. `SUMMARY:` footer |
+| `profile-stats.ts` | Distribution, solo/together averages, MAE, bias, within-0.5★ |
+| `bingeability-report.ts [--since <ISO>]` | Scored set, r vs star rating, distribution, prediction accuracy, predicted-only set |
+| `find-shows-needing-predictions.ts` | Shows with no prediction and no rating |
+| `stale-predictions.ts [--since <ISO>]` | Pending profile changes + predictions older than them (see caveat below) |
+| `check-new-trakt-shows.ts` | Trakt vs local diff — **fails silently, see the Trakt warning above** |
+| `lookup-show.ts <query>` | Find shows by title substring |
+
+### Maintenance
+| Script | Purpose |
+|--------|---------|
+| `add-show-by-tmdb.ts <tmdbId> [--status ...]` | Add a show from TMDB alone, no Trakt. Idempotent; never nulls existing fields |
+| `backfill-trakt-meta.ts [--dry-run]` | Write cached Trakt slug/rating/votes/imdbId from a browser-session capture |
+| `resync-watch-status.ts [--dry-run]` | Rewrite `status` from captured Trakt progress, using the **Status/Sync Logic** rule above |
+| `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch |
+| `delete-show.ts <tmdbId> [--confirm]` | Tombstone in `deletedShows` + remove. Dry-run by default; warns if rated |
+| `trakt-reauth.ts` | OAuth device flow — **only works once the app is re-registered** |
+
+### Known caveat: `stale-predictions.ts` staleness is timestamp-based
+
+It selects on `predictionsUpdatedAt < since`, and `since` defaults to the newest
+unchecked changelog entry **date** (midnight). Any write that touches
+`predictionsUpdatedAt` — including a **bingeability-only** write, which by design
+leaves star predictions alone — therefore hides those star predictions from the
+next rescan. This has already produced a false `staleCount=2`.
+
+When a rescan's stale set looks suspiciously small, re-screen on the pending
+entry's own `affects:` keywords instead, e.g.
+`npx tsx scripts/stale-predictions.ts --since <tomorrow>` and grep the `REASON:`
+lines. A durable fix would be a separate `bingeabilityUpdatedAt` column.
+
+---
+
 ## Reference Documents
 
 - [docs/taste-profile.md](docs/taste-profile.md) - Taste preferences, prediction formula, and recommendation logic
 - [docs/rating-analysis.md](docs/rating-analysis.md) - Full correlation analysis with disagreement patterns
 - [docs/prediction-updates.md](docs/prediction-updates.md) - All current predictions with reasoning
+- [docs/prediction-worksheet.md](docs/prediction-worksheet.md) - The canonical per-show prediction procedure (followed by all three skills)
+- [docs/profile-changelog.md](docs/profile-changelog.md) - Review state + pending prediction-rescan queue (marker lines written ONLY by `scripts/mark-review-done.ts`)
+- [docs/prediction-review-report.md](docs/prediction-review-report.md) - Historical review report (do not edit)
