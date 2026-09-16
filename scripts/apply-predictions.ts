@@ -65,10 +65,11 @@ async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const allowRated = args.includes('--allow-rated');
+  const allowLegacyRamp = args.includes('--allow-legacy-ramp');
   const file = args.find((a) => !a.startsWith('--'));
 
   if (!file) {
-    console.error('Usage: npx tsx scripts/apply-predictions.ts <file.json> [--dry-run] [--allow-rated]');
+    console.error('Usage: npx tsx scripts/apply-predictions.ts <file.json> [--dry-run] [--allow-rated] [--allow-legacy-ramp]');
     process.exit(1);
   }
   if (!fs.existsSync(file)) {
@@ -139,7 +140,10 @@ async function main() {
       // The ramp clause: four fixed forms, each ending the reason, each naming a
       // NUMBER rather than "eventually". Enforced here because it is a documented
       // MUST (CLAUDE.md + the worksheet Step 6) that was previously unchecked.
-      if (!RAMP_FORMS.some((re) => re.test(bingeReason)))
+      // --allow-legacy-ramp exists ONLY to replay a rollback snapshot of reasons
+      // written before the ramp clause was required (2026-09-14). Never use it for
+      // a new prediction.
+      if (!allowLegacyRamp && !RAMP_FORMS.some((re) => re.test(bingeReason)))
         errors.push(
           `${label}: predictedBingeabilityReason must END with one of the four ramp clauses — ` +
             `"Grabs from ep 1." | "Slow open — picks up from ep N; worth it." | ` +

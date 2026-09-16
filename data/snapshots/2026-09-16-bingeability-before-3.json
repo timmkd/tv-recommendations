@@ -1,0 +1,352 @@
+[
+  {
+    "tmdbId": 153312,
+    "title": "Tulsa King",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Build-the-empire spine with Stallone's fish-out-of-water charisma and comic beats keeping it light and moving. Sprawling side plots across four seasons dilute it, so 4 rather than 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 61222,
+    "title": "BoJack Horseman",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Short episodes and a serialised depression arc help, but the show gets progressively heavier and the no-franchise-hook problem is a real engagement barrier for you specifically — your animated wins are all IP-driven.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 220564,
+    "title": "The Perfect Couple",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Six-episode wedding whodunit with soap-opera twists and a fixed suspect list — the closed-question structure that reliably scores 5 for you. Reviews say implausible and glossy, which is a quality problem, not a momentum one.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 62117,
+    "title": "Younger",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Breezy romantic workplace comedy-drama with a secret-identity hook running the whole series and half-hour episodes — Gilmore Girls (your binge 5) is the register. Light, propulsive, zero friction across seven seasons.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 61828,
+    "title": "Detectorists",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Deliberately becalmed gentle comedy where very little happens — its own prediction says it is the antithesis of momentum-driven TV. Half-hour episodes make it frictionless, but there is no pull whatsoever, only warmth.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 1447,
+    "title": "Psych",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Eight seasons of pure case-of-the-week with a full reset each episode. Monk is the stated comp and you abandoned it after eight episodes — 'the show doesn't seem to go anywhere'. Breezy and light, but no hook and a huge cold-start back catalogue.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 1422,
+    "title": "The Middle",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Nine seasons of self-contained family sitcom episodes with no serialisation — pleasant and frictionless in ones, but zero pull, and the back-catalogue bulk is the quiet-abandonment shape.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 244978,
+    "title": "Return to Paradise",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Death in Paradise formula — a self-contained cosy case every episode with nothing carried over. Comfortable and easy but structurally the low-hook shape, the same reason its star prediction just came down to 3.5★.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 254953,
+    "title": "Rooster",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Bill Lawrence warm half-hour comedy, the lane where you scored Shrinking 4 and Ted Lasso 4. Low-friction, high-laugh episodes stack easily; a new series with no track record, so 4 rather than 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 254071,
+    "title": "Steal",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Six-episode heist thriller — short, plot-forward and structurally built to pull. Reviews flagging thin writing and weak characters are the reason it stops at 4: momentum without investment tends to stall.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 68507,
+    "title": "His Dark Materials",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Quest narrative with cliffhanger episode endings across three tight complete seasons — real forward drive. Held at 4 because the fantasy has no psychological-sci-fi hook, which its own prediction flags as your engagement risk.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 85853,
+    "title": "Perry Mason",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Handsome 1930s noir, but deliberately moody and slow-moving, with more atmosphere than plot velocity. Each season carries one case so there is a spine, yet the register asks for attention rather than pulling you along.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 94605,
+    "title": "Arcane",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Nine episodes in three-episode acts, each ending on a deliberate escalation, and short enough to clear quickly. Held at 4 because the no-franchise-hook problem is an engagement risk for you specifically — your animated wins are all IP-driven.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 63646,
+    "title": "Counterpart",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Tight two-season spy mystery with a doppelganger conceit that generates constant reveals. Cold, deliberate direction and a cancelled ending hold it just below 5, but the episode count is small enough to clear fast.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 1436,
+    "title": "Justified",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Case-of-the-week surface over genuine season-long villain arcs (Mags Bennett, Boyd Crowder) — that serialised spine is what separates it from the 3★ episodic procedurals. Elmore Leonard dialogue makes episodes fly. Six seasons is a long runway, hence 4 not 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 245256,
+    "title": "Say Nothing",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Nine-episode true-crime history built on a disappearance and its cover-up, so it carries a genuine mystery spine rather than being a straight chronicle. Grim Troubles subject matter caps consecutive viewing at 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 62476,
+    "title": "The Bureau",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Serialised tradecraft with real pull, but subtitled French across five seasons is genuine friction — subtitles block the half-attention viewing that drives high scores, and the realism is deliberately understated rather than cliffhanger-driven.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 96580,
+    "title": "Resident Alien",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Light sci-fi comedy with a murder-mystery thread giving it a spine, plus Tudyk's fish-out-of-water gags carrying episodes. Broad small-town comedy with some repetition across four seasons, so 4 not 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 81349,
+    "title": "Devs",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Only eight episodes, but deliberately hypnotic and slow — its own prediction already carries a slow-burn/experimental penalty and a style-over-substance risk. Garland prioritises mood over momentum, so it watches in ones rather than runs.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 66276,
+    "title": "The Night Of",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Eight-episode closed murder case with a genuine did-he-do-it hook. Deliberately methodical and grim about process rather than thriller-paced, so it sits below the propulsive whodunits at 5 — closest to Adolescence, which you scored 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 62505,
+    "title": "Unforgotten",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Each series is one cold case across six episodes, so there is a genuine serialised spine and a natural stopping point — not case-of-the-week. Measured British investigative pacing rather than thriller velocity, so 4 not 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 130273,
+    "title": "Annika",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Case-of-the-week marine homicide with only a light serial thread — the low-hook shape, and its own stated comp is Elsbeth at 3★. Pleasant and light with a distinctive narration gimmick, but nothing pulls to the next episode.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 155243,
+    "title": "Sherwood",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A manhunt through a mining community across six episodes, so the case engine is genuine. Grim, politically heavy register without a comedy buffer caps consecutive viewing at 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 34379,
+    "title": "Rake",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Episodic legal comedy-drama — a new case and a new self-inflicted disaster each week across five seasons, with little carried forward. That is the low-hook shape, and a deliberately exasperating lead adds friction rather than pull.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 198102,
+    "title": "Hijack",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Real-time single-incident thriller — the 24 structure, where every episode ends mid-crisis. Seven episodes with Elba anchoring makes it the easiest kind of together watch, even though S2 reportedly dips in quality.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 82782,
+    "title": "The Righteous Gemstones",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Family-crime farce with serialised season plots and escalating set-pieces, so it does pull forward. McBride's raunchy register is friction rather than comfort, which caps it at 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 250505,
+    "title": "Agatha Christie's Seven Dials",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Three episodes only, so it is finishable in a sitting, with a Christie puzzle structure supplying the hook. Weak reception (IMDB 6.6, audience 50%) suggests the execution may not compel, hence 4 not 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 63726,
+    "title": "Alone",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Each season is a genuine attrition arc, which sustains, but the meditative pace and absence of manufactured drama mean no cliffhanger pull — its own prediction flags exactly this against Survivor. Comfortable steady viewing.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 87340,
+    "title": "Race Across the World",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A race format supplies a natural leaderboard cliffhanger each episode, which is why it sustains across six series. Gentler and more contemplative than Survivor (your 4), so no higher.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 222766,
+    "title": "The Day of the Jackal",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Assassin-versus-hunter chase structure is one of the most compulsive shapes there is, and every episode ends on a near-miss. Slow Horses (your 5) and Bodyguard (4) are the comps; this is more action-forward than either.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 138624,
+    "title": "A Spy Among Friends",
+    "predictedBingeability": 2,
+    "predictedBingeabilityReason": "Binge 2/5: Literary Cold War espionage told largely through interrogation conversations — its own prediction calls it more Tinker Tailor than Slow Horses, which is precisely the low-momentum end. Talky, elliptical and needing full attention.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 291506,
+    "title": "Big Mistakes",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Farcical crime comedy with an escalating blackmail predicament — a spine plus short episodes makes it easy going. Zany register is friction for sustained viewing and it is unproven, so 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 90802,
+    "title": "The Sandman",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Structurally anthology-like — the Dream mythology proceeds in discrete self-contained chapters, several of them bottle episodes, which repeatedly breaks momentum. Visually rich but its own prediction flags slow-burn and style-over-substance.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 73157,
+    "title": "Future Man",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Short half-hour episodes with a time-travel mission arc and constant gags — structurally quick and easy. Raunchy-bro register is real friction for you, which is why the star prediction sits at 2.5★ while momentum stays decent.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 1411,
+    "title": "Person of Interest",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Split personality. S1-2 are case-of-the-week, the weakest hook shape in your data (Monk, Elsbeth, Elementary all 3★), and the AI mythology that delivers the payoff takes ~two seasons to arrive. High sustain once there, but a long low-hook runway — a bigger ask than Dark's slow start.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 128098,
+    "title": "Interview with the Vampire",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Framed as an interrogation of an unreliable narrator, so it withholds and reveals steadily — a decent hook, with lush melodrama helping. Style-over-substance risk and a talky register keep it off 5.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 39852,
+    "title": "The Sinner",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Each season is a self-contained why-did-they-do-it with a withheld motive, which is a strong hook, and the anthology reset avoids decline. Dark psychological register and drawn-out reveals keep it at 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 102621,
+    "title": "KAOS",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Eight episodes of interweaving Greek-myth plots with a prophecy engine pulling forward, and Goldblum is watchable throughout. Cancelled on a cliffhanger, so the payoff never arrives — that is the rating problem, not the pull.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 116799,
+    "title": "The Lincoln Lawyer",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Season-long case arcs give it the serialised spine that separates it from the 3★ episodic procedurals, and courtroom beats resolve satisfyingly each week. The Good Wife (your binge 4) is the direct comp — same structure, same score.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 131488,
+    "title": "The Empress",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Lush romantic court drama — the exact register where your scores go top: Bridgerton 5, The Crown 5, The Gilded Age 5. Six-episode German seasons with soap-paced romance and intrigue, which is the easiest possible together watch.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 78191,
+    "title": "You",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Stalker-POV voiceover with a will-he-be-caught hook every episode is 5-tier momentum, but across five seasons the formula visibly repeats - new city, new obsession, same beats. Formula fatigue is a momentum complaint, so the run average lands at 4 rather than the peak.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 46952,
+    "title": "The Blacklist",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Blacklister-of-the-week with a mythology thread — the thread gives some pull, but ten seasons of episodic back catalogue on a cold start is the Monk shape exactly, plus the known S2+ fatigue pattern.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 56570,
+    "title": "Outlander",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Soap-tier romance momentum in the Bridgerton register where you scored 5, but eight seasons scores as a run average and the middle seasons are widely faulted for meandering. That is a momentum complaint, which is exactly what drags the average down. Front half 5, whole run 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 217667,
+    "title": "Eric",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: A missing-child hook should drive hard, but execution splits attention across grief, addiction and an imaginary puppet, diluting the search. Bleak 1980s register makes consecutive episodes heavy going.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 1405,
+    "title": "Dexter",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Seasons 1-4 are a propulsive case-plus-antagonist engine, Trinity especially. But the score is a run average over eight seasons and the late collapse is a momentum failure, not merely a quality one - the reveals stop landing. Westworld and Upload both scored 3 on that shape.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 131927,
+    "title": "Dexter: New Blood",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Ten-episode revival with a single closing-in investigation and a father-son time bomb — a tight serialised spine. Grim tone and a divisive ending keep it at 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 219937,
+    "title": "Dexter: Original Sin",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Origin-story season with a serialised case and known destination, which sustains, over a short run. Prequel inevitability lowers suspense — you know where it ends — so it lands at 4.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 240740,
+    "title": "Scarpetta",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A cold case tied to the protagonist's own history gives a serialised spine across a short first season. Kidman-led prestige crime has landed at 3.5★ twice for you (Big Little Lies, The Undoing), suggesting solid rather than compulsive.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 114922,
+    "title": "Citadel",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Amnesia-spy spectacle with six episodes, twist-driven plotting and constant action — structurally very easy to keep going. Its closest comp is Mr. & Mrs. Smith, which you dropped for slow pacing, so the pull may not survive contact.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  },
+  {
+    "tmdbId": 257994,
+    "title": "Half Man",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Richard Gadd's register is dark psychological character study, and you scored his Baby Reindeer a 3 — the closest possible comp, same writer, same intensity. Compelling but heavy; it asks to be absorbed rather than consumed in runs.",
+    "changeNote": "ROLLBACK to pre-2026-09-16 bingeability reason"
+  }
+]
