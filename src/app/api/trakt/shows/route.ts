@@ -304,8 +304,14 @@ export async function PUT(request: NextRequest) {
 
     // Check what changed for timestamps and Trakt sync.
     // NOTE: `hidden` is a local-only flag and is intentionally NOT synced to Trakt.
-    const ratingChanged = updates.rating !== undefined && updates.rating !== existingOverlay?.rating;
-    const droppedChanged = updates.dropped !== undefined && updates.dropped !== existingOverlay?.dropped;
+    // Compare null and undefined as equal: a never-rated show has no `rating`
+    // key at all, while the edit UI sends `rating: null`. Treating those as a
+    // change stamped a ratedAt on shows that were never rated, which
+    // latest-ratings.ts then reported as a new rating with a null value.
+    const ratingChanged =
+      updates.rating !== undefined && (updates.rating ?? null) !== (existingOverlay?.rating ?? null);
+    const droppedChanged =
+      updates.dropped !== undefined && (updates.dropped ?? null) !== (existingOverlay?.dropped ?? null);
     const removedFromWatchlist = updates.status === null && existingOverlay?.status === 'watchlist';
 
     // Check if predictions changed - set predictionsUpdatedAt timestamp

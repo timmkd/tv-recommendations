@@ -1180,3 +1180,48 @@ live apply-then-restore cycle on Marvel's Luke Cage, which came back byte-identi
 episode numbers on slow-open shows are judgement, not measurement. The season-boundary
 ones rest on widely-held consensus (Person of Interest S3, Clone Wars S3, The Leftovers
 S2) and the front-loaded fade points are the least certain of the set.
+
+## 2026-09-16 — Orphan ratedAt repair + platform-name sweep
+
+**Orphan `ratedAt`.** Widow's Bay carried a `ratedAt` with `rating = null`, which
+`latest-ratings.ts` reported as `newRatings=1` with a `null★` value — enough to make
+`/review-ratings` branch wrong on its next run. Cleared; the count is back to 0.
+
+Cause, and it was self-inflicted: a no-op save test against `PUT /api/trakt/shows`
+during the API repair. That route computed
+`ratingChanged = updates.rating !== undefined && updates.rating !== existing?.rating`.
+A never-rated show has no `rating` key at all, while the edit UI sends `rating: null`,
+so `null !== undefined` was true and a `ratedAt` got stamped with no rating behind it.
+**Fixed at source** (null and undefined now compare equal, same fix applied to
+`dropped`), so saving an unrated show from ShowEditModal no longer fabricates one.
+`scripts/fix-orphan-ratedat.ts` is the repair tool — dry-run by default, and it only
+ever writes null, and only where no rating exists for the date to belong to.
+
+**Four historical orphans left untouched** — Space Force, Wellington Paranormal,
+The White Lotus, Marvel's Luke Cage, all stamped Jan 2026 by the same bug before this
+session. `ratedAt` is a user field and their prior state is unverifiable, so they need
+an explicit go-ahead: `npx tsx scripts/fix-orphan-ratedat.ts --confirm`.
+
+**Platform-name sweep.** Worksheet rule 7 forbids naming a streaming service in a
+prediction reason (predictions are platform-agnostic). 20 unrated shows breached it —
+18 in the star reason, 2 in both star and bingeability. All now clean: **0 remaining in
+either field.** No rating or bingeability score changed.
+
+Edits were surgical, and real signal was kept where the platform was load-bearing:
+Steal's "Prime Video is lowest-tier platform (avg 3.31★)" became "It sits on the lowest
+platform tier (avg 3.31★)", preserving the Platform Quality Tiers argument without the
+brand name.
+
+**Eight of the 20 also breached the length rule** independently — six under 400 chars
+(Annika 311, Sherwood 308, Hijack 302, The Perfect Couple 380, See 394, Unforgotten
+394) and two over 600 (Chief of War 738, Eric 710). These predate the 400-600 rule.
+Rather than write knowingly-invalid rows, all eight were properly rewritten: the short
+ones gained substantive content (comps with ratings, the systemic-villain read on
+Sherwood, the case-of-the-week cluster on Annika) and the long ones were trimmed.
+
+**Still outstanding: 36 star reasons sit outside 400-600 chars.** Same class of latent
+backlog as the ramp clauses — legacy reasons written before the rule, never revalidated
+because `apply-predictions.ts` only checks rows it is writing. Not actioned.
+
+Rollback: `data/snapshots/2026-09-16-platform-sweep-before.json` holds the prior text
+for all 20, replayable through `apply-predictions.ts`.
