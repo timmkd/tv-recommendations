@@ -26,12 +26,14 @@ while leaving the star prediction untouched (see the `stale-predictions.ts` cave
 CLAUDE.md). Date the star prediction from the batch file or
 `git log -S"<title>" -- docs/prediction-updates.md`, not from the column.
 
-**(b) Are the genres complete?** Local genres come from TMDB and can omit a tag that
-decides the watch mode. Widow's Bay was stored `Drama/Mystery/Comedy` while Trakt had
-**horror**, and horror is what flips it solo. For any show predicted pre-air, check
-Trakt's genre list and certification (`/shows/{slug}?extended=full`) before Step 5.
-A `horror`, `science-fiction`, `fantasy` or `superhero` tag missing locally is a
-watch-mode bug, not a cosmetic one — those are Helen's canonical dislikes.
+**(b) Are the genres complete?** Trakt genres were merged into the whole library on
+2026-09-16 (`scripts/merge-trakt-genres.ts`), so local genres now carry `Horror`,
+`Thriller`, `Romance`, `Superhero`, `History` and `Musical` — labels TMDB's TV set
+cannot express. **But a show added since that run has TMDB genres only**, and a
+missing `Horror`/`Sci-Fi & Fantasy`/`Superhero` tag is a watch-mode bug, not a
+cosmetic one: those are Helen's canonical dislikes. For any show added or predicted
+pre-air, re-run the merge (or check `/shows/{slug}?extended=full` directly) and read
+the certification before Step 5.
 
 ## Step 1 — Base rating source
 

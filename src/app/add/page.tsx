@@ -68,8 +68,7 @@ export default function AddShowPage() {
       });
 
       if (response.ok) {
-        const show = await response.json();
-        router.push(`/show/${show.id}`);
+        router.push('/shows');
       } else {
         const data = await response.json();
         setError(data.error || 'Failed to add show');
@@ -161,12 +160,9 @@ export default function AddShowPage() {
                   )}
 
                   {result.inLibrary ? (
-                    <Link
-                      href={`/show/${result.existingId}`}
-                      className="inline-block mt-3 text-blue-400 hover:text-blue-300 text-sm"
-                    >
-                      Already in library &rarr;
-                    </Link>
+                    <span className="inline-block mt-3 text-gray-400 text-sm">
+                      Already in library
+                    </span>
                   ) : (
                     <div className="mt-3 flex flex-wrap gap-2">
                       <AddButton

@@ -4,8 +4,8 @@ import type { Show, ShowOverlay } from '@/types';
  * Map a stored overlay row to the Show shape the UI consumes.
  *
  * NOTE: `Show.id` is a synthetic `overlay-<tmdbId>` string, not a database row
- * id. Anything that round-trips an id through a URL (e.g. /show/[id]) must run
- * it back through `tmdbIdFromShowId` before querying.
+ * id. Anything that passes an id to the API (ShowEditModal does) must run it
+ * back through `tmdbIdFromShowId` before querying.
  *
  * Lives here rather than in an API route so both /api/shows and
  * /api/trakt/shows return an identical shape — they previously diverged, which
