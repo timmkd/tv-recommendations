@@ -31,9 +31,10 @@ CLAUDE.md). Date the star prediction from the batch file or
 `Thriller`, `Romance`, `Superhero`, `History` and `Musical` — labels TMDB's TV set
 cannot express. **But a show added since that run has TMDB genres only**, and a
 missing `Horror`/`Sci-Fi & Fantasy`/`Superhero` tag is a watch-mode bug, not a
-cosmetic one: those are Helen's canonical dislikes. For any show added or predicted
-pre-air, re-run the merge (or check `/shows/{slug}?extended=full` directly) and read
-the certification before Step 5.
+cosmetic one: those are Helen's canonical dislikes. `/predict-new-shows` **Step 3b**
+runs the merge automatically for each new show; if you are predicting outside that
+skill, run `npx tsx scripts/merge-trakt-genres.ts --check --tmdb <ids>` yourself and
+read the certification before Step 5.
 
 ## Step 1 — Base rating source
 

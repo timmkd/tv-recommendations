@@ -267,8 +267,9 @@ formula.
 supplies — `Horror`, `Thriller`, `Romance`, `Superhero`, `History`, `Musical` (also
 `Music`, `Holiday`). TMDB's TV genres cannot express any of them, which is how
 Widow's Bay sat as Drama/Mystery/Comedy while being a horror show. Backfilled across
-the library 2026-09-16 via `scripts/merge-trakt-genres.ts`; **a newly added show has
-TMDB genres only until that script is re-run.**
+the library 2026-09-16 via `scripts/merge-trakt-genres.ts`. `/predict-new-shows`
+**Step 3b** now runs that merge for each new show before predicting, and STOPs
+rather than predicting on incomplete genres — a missing tag flips the watch mode.
 
 **Note on `dropped`:** Shows with `dropped: true` are hidden from all views but kept in the data for taste analysis.
 
@@ -459,7 +460,7 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `backfill-trakt-meta.ts [--dry-run]` | Write cached Trakt slug/rating/votes/imdbId from a browser-session capture |
 | `resync-watch-status.ts [--dry-run]` | Rewrite `status` from captured Trakt progress, using the **Status/Sync Logic** rule above |
 | `backfill-show-data.ts [--tmdb a,b] [--all-missing] [--dry-run] [--refresh]` | Fill any EMPTY field on a show: TMDB stub metadata, streaming, RT. Defaults to the shows needing predictions. Never overwrites. Reports what it can't fill (Trakt/IMDB) |
-| `merge-trakt-genres.ts [--dry-run] [--touch-updated-at]` | Merge Trakt genre tags into local genres from a browser capture. **Additive only.** TMDB's TV set cannot express Horror/Thriller/Romance/Superhero/History/Musical — run after adding shows |
+| `merge-trakt-genres.ts [--check] [--tmdb a,b] [--dry-run] [--touch-updated-at]` | Merge Trakt genre tags into local genres. **Additive only**; reads every `.trakt-genres*.json` capture. TMDB's TV set cannot express Horror/Thriller/Romance/Superhero/History/Musical. `--check` reports which shows lack capture data and prints their slugs. Wired into `/predict-new-shows` Step 3b |
 | `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch |
 | `delete-show.ts <tmdbId> [--confirm]` | Tombstone in `deletedShows` + remove. Dry-run by default; warns if rated |
 | `set-subscriptions.ts <slug>...` | Set subscribed services. Pass the FULL list — anything omitted is unsubscribed |
