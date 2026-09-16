@@ -1,0 +1,310 @@
+[
+  {
+    "tmdbId": 128098,
+    "title": "Interview with the Vampire",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Framed as an interrogation of an unreliable narrator, so it withholds and reveals steadily — a decent hook, with lush melodrama helping. Style-over-substance risk and a talky register keep it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 39852,
+    "title": "The Sinner",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Each season is a self-contained why-did-they-do-it with a withheld motive, which is a strong hook, and the anthology reset avoids decline. Dark psychological register and drawn-out reveals keep it at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 102621,
+    "title": "KAOS",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Eight episodes of interweaving Greek-myth plots with a prophecy engine pulling forward, and Goldblum is watchable throughout. Cancelled on a cliffhanger, so the payoff never arrives — that is the rating problem, not the pull. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 116799,
+    "title": "The Lincoln Lawyer",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Season-long case arcs give it the serialised spine that separates it from the 3★ episodic procedurals, and courtroom beats resolve satisfyingly each week. The Good Wife (your binge 4) is the direct comp — same structure, same score. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 131488,
+    "title": "The Empress",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Lush romantic court drama — the exact register where your scores go top: Bridgerton 5, The Crown 5, The Gilded Age 5. Six-episode German seasons with soap-paced romance and intrigue, which is the easiest possible together watch. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 78191,
+    "title": "You",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Stalker-POV voiceover with a will-he-be-caught hook every episode is 5-tier momentum, but across five seasons the formula visibly repeats - new city, new obsession, same beats. Formula fatigue is a momentum complaint, so the run average lands at 4 rather than the peak. Front-loaded — strongest early, fades from S4.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 46952,
+    "title": "The Blacklist",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Blacklister-of-the-week with a mythology thread — the thread gives some pull, but ten seasons of episodic back catalogue on a cold start is the Monk shape exactly, plus the known S2+ fatigue pattern. Front-loaded — strongest early, fades from S2.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 56570,
+    "title": "Outlander",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Soap-tier romance momentum in the Bridgerton register where you scored 5, but eight seasons scores as a run average and the middle seasons are widely faulted for meandering. That is a momentum complaint, which is exactly what drags the average down. Front half 5, whole run 4. Front-loaded — strongest early, fades from S4.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 217667,
+    "title": "Eric",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: A missing-child hook should drive hard, but execution splits attention across grief, addiction and an imaginary puppet, diluting the search. Bleak 1980s register makes consecutive episodes heavy going. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 1405,
+    "title": "Dexter",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Seasons 1-4 are a propulsive case-plus-antagonist engine, Trinity especially. But the score is a run average over eight seasons and the late collapse is a momentum failure, not merely a quality one - the reveals stop landing. Westworld and Upload both scored 3 on that shape. Front-loaded — strongest early, fades from S5.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 131927,
+    "title": "Dexter: New Blood",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Ten-episode revival with a single closing-in investigation and a father-son time bomb — a tight serialised spine. Grim tone and a divisive ending keep it at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 219937,
+    "title": "Dexter: Original Sin",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Origin-story season with a serialised case and known destination, which sustains, over a short run. Prequel inevitability lowers suspense — you know where it ends — so it lands at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 240740,
+    "title": "Scarpetta",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A cold case tied to the protagonist's own history gives a serialised spine across a short first season. Kidman-led prestige crime has landed at 3.5★ twice for you (Big Little Lies, The Undoing), suggesting solid rather than compulsive. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 114922,
+    "title": "Citadel",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Amnesia-spy spectacle with six episodes, twist-driven plotting and constant action — structurally very easy to keep going. Its closest comp is Mr. & Mrs. Smith, which you dropped for slow pacing, so the pull may not survive contact. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 257994,
+    "title": "Half Man",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Richard Gadd's register is dark psychological character study, and you scored his Baby Reindeer a 3 — the closest possible comp, same writer, same intensity. Compelling but heavy; it asks to be absorbed rather than consumed in runs. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 158756,
+    "title": "Shoresy",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Very short episodes and a season-long hockey campaign arc make it structurally easy to keep going. Niche dialect humour is the risk to engagement rather than momentum — hence 4 on this axis despite the 3★ rating call. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 290724,
+    "title": "Waiting for the Out",
+    "predictedBingeability": 2,
+    "predictedBingeabilityReason": "Binge 2/5: Weekly philosophical discussions with prison inmates — a conversation format with no plot engine at all. Cerebral and static by design; Black Bird (3★, 'didn't mind it') is the nearest comp and had far more narrative drive. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 273866,
+    "title": "The Other Bennet Sister",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Austen-adjacent witty period romance — Bridgerton is the tonal comp and you scored it 5. Short BBC run, warm tone, romantic plot engine: the lowest-friction together shape in your data. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 259909,
+    "title": "Dexter: Resurrection",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Serial-killer case engine plus a season-long pursuit arc is propulsive, and Trakt heat is high. Held at 4 by revival-fatigue risk and the fact that your serial-killer adjacents underperformed on engagement (Mindhunter, Killing Eve). Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 204284,
+    "title": "The Rehearsal",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Slow-by-design constructed reality where the pleasure is watching an elaborate setup accrete. You scored Jury Duty's warmer, funnier cousin 4 as a rating, but Fielder's colder register plus deliberate cringe makes episodes something you absorb one at a time. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 134095,
+    "title": "A Murder at the End of the World",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Closed-circle murder at a remote retreat with a fixed suspect list — a strong seven-episode hook. Marling's cerebral, slower register and mild audience heat (Trakt 6.9) keep it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 273247,
+    "title": "The Lowdown",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Meandering Reservation Dogs DNA applied to a neo-noir investigation — its own prediction calls it an eccentric-character study rather than a propulsive case. Interesting texture, weak pull; Reservation Dogs sits at the same level. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 287527,
+    "title": "The Testaments",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Direct sequel to The Handmaid's Tale, which you scored binge 5 with the note 'five star bingeable at the end of seasons'. Same dystopian escape-and-resistance engine, same cliffhanger habit — the strongest possible comp for this axis. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 207411,
+    "title": "Good American Family",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Built on a perspective-flip — each episode re-tells events from another side, which is a strong structural hook — over a short complete run. Distressing subject matter and an unreliable-narrator device that frustrates some viewers keep it at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 258742,
+    "title": "All's Fair",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Ryan Murphy glossy legal soap — a case-and-scandal-per-episode format that is deliberately easy to keep playing. Brutal quality signals (Trakt 5.6, TMDB 4.8) mean the pull may not survive the writing, so 4 not 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 247168,
+    "title": "Chad Powers",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Broad half-hour sports comedy with a disguise premise that generates episodic near-misses, plus an underdog arc. Easy low-friction viewing in the Superstore lane; a slight one-joke risk keeps it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 211178,
+    "title": "The Gray House",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Civil War spy-ring premise has a covert-mission engine, but the early signal is genuinely weak (Trakt 6.5 on a tiny sample, soft TMDB), suggesting execution that does not carry momentum. Unproven. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 124364,
+    "title": "FROM",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Mystery-box horror with a cliffhanger nearly every episode - the hook itself is genuinely 5. Docked one because four seasons of accumulating questions with no resolution contract is the Westworld shape, which you scored 3 for exactly that stall. Front-loaded — strongest early, fades from S3.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 257519,
+    "title": "Bait",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Conspiracy thriller that escalates from an audition into an existential chase, so it has a real spine, and it is a short complete run. Trippy, disorienting execution and mild audience heat (Trakt 6.5) cap it at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 243360,
+    "title": "Ludwig",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Cosy case-of-the-week, which normally caps the hook, but short British seasons and a dry David Mitchell lead make episodes effortless. Comps Only Murders (4★) and the mystery-comedy lane; the episodic reset stops it reaching 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 43982,
+    "title": "Line of Duty",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Built around interrogation set-pieces and end-of-episode reversals, with each season a self-contained case — Mercurio's engine is pure momentum, and you scored his Bodyguard a 4 in a shorter form. British police thriller with a spine is your strongest together binge shape. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 61697,
+    "title": "Wolf Hall",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Austere, candlelit Tudor drama built on whispered political manoeuvring — its own prediction flags the slower register versus The Crown. Short runs help, but the deliberate quiet is the opposite of the soap momentum that scores 5 for you. Slow open — picks up from ep 3; worth it.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 60948,
+    "title": "12 Monkeys",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Time-loop plotting is a payoff machine with twisty episode-end hooks across four complete seasons — structurally very bingeable. Mid-budget execution and occasional expository filler keep it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 81358,
+    "title": "Mr Inbetween",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Lean half-hour episodes across three short seasons — the whole run is small, which makes it very easy to keep going. Deadpan, low-stakes vignette structure rather than a cliffhanger engine, so 4 not 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 220102,
+    "title": "Spider-Noir",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Period noir detective work is moody and atmosphere-led rather than propulsive, which is exactly where Perry Mason and The Alienist both landed at 3. Eight episodes keeps commitment low, but cancellation leaves no larger payoff to pull toward. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 309798,
+    "title": "My Brilliant Career",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Six-episode period coming-of-age with a defiant lead and a complete arc, so commitment is low and the push forward is clear. Below the Bridgerton and Crown tier of 5 because it runs on character rather than a romance-and-scandal soap engine. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 95350,
+    "title": "Lanterns",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A murder investigation with a withheld answer is a strong hook and the prestige seasons are short. Docked one because the register is a deliberate slow-burn crime drama rather than a page-turner, the same thing holding True Detective at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 219443,
+    "title": "Boiling Point",
+    "predictedBingeability": 2,
+    "predictedBingeabilityReason": "Binge 2/5: A relentless near-single-take kitchen pressure cooker. The Bear is the direct comp and you scored it 2, your lowest of all 82 — this register grips but exhausts, so it watches one at a time. Four episodes is the only thing making it easy. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 284725,
+    "title": "Not Suitable for Work",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Half-hour workplace ensemble comedy with high joke density and near-zero friction — the register where The Paper sits at 4, and nine short episodes clear fast. Episodic with no plot engine, so nothing actively pulls you to the next one. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 61378,
+    "title": "Madam Secretary",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Crisis-of-the-week diplomacy with season-long arcs gives some pull, but 120 episodes over six seasons is a cold-start back catalogue — the Monk shape. Run-average rule applies: the later seasons drift formulaic, pulling the whole run down. Front-loaded — strongest early, fades from S4.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 211288,
+    "title": "Tracker",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: A new case each week with a full reset — the weak-hook shape that put Poker Face, Annika and Return to Paradise all at 3. Action beats move individual episodes, but 55 episodes of back catalogue give nothing to pull forward. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 226637,
+    "title": "High Potential",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A consultant case per week, but a genuine serialised spine underneath — her first husband's disappearance. Matlock is the direct comp at 5; this sits a notch below because the weekly reset dominates more and the arc stays backgrounded. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 224372,
+    "title": "A Knight of the Seven Kingdoms",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Six short episodes make the whole run clearable in a sitting or two, and the Westeros hook is real. It is a warm self-contained adventure rather than a cliffhanger engine, so it lacks the end-of-episode reversals that reach 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 287620,
+    "title": "Stuart Fails to Save the Universe",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Seven 24-minute episodes with a multiverse quest arc and constant gags — structurally the Future Man shape, which sits at 4. The whole run is tiny so it clears fast; a spinoff register with no real stakes stops it reaching 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  }
+]

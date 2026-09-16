@@ -1,0 +1,317 @@
+[
+  {
+    "tmdbId": 62126,
+    "title": "Marvel's Luke Cage",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: The Netflix-Marvel thirteen-episode format is notorious for mid-season sag, and its own prediction says S2 drags. Completionist pull rather than momentum; Jessica Jones is the stronger entry in this universe. Front-loaded — strongest early, fades from S2.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 62285,
+    "title": "Marvel's The Defenders",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Only eight episodes with a crossover team-up structure that moves fast — the shortest and most plot-driven entry in the Netflix-Marvel run. Weak Hand storyline caps the pull, but the low commitment makes it easy to clear. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 99940,
+    "title": "Operation Buffalo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Short Australian period limited series, but its tonal mix of nuclear-testing satire and drama is uneven, and the pacing is discursive rather than driving. Steady watching, no strong pull to the next episode. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 79788,
+    "title": "Watchmen",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Nine episodes of dense mythology with real jaw-drop reveals — high sustain in your Dark cluster. Docked one because early episodes are deliberately cryptic, so the hook takes two or three episodes to bite. Slow open — picks up from ep 3; worth it.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 80752,
+    "title": "See",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Quest-and-pursuit structure across short seasons with regular action beats, so it does move. Action-over-character focus means low investment, which caps the pull at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 88166,
+    "title": "I Know This Much Is True",
+    "predictedBingeability": 2,
+    "predictedBingeabilityReason": "Binge 2/5: Six episodes of unrelenting emotional punishment — its own prediction calls it draining and 'dark without hope'. Superb acting, but this is the clearest case in the library of a show you watch one episode of and need a break from. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 1920,
+    "title": "Twin Peaks",
+    "predictedBingeability": 2,
+    "predictedBingeabilityReason": "Binge 2/5: Deliberately dreamlike and digressive, with a notorious mid-S2 collapse and a Return season that is actively anti-narrative. Its own prediction stacks experimental and slow penalties — a show to study, not to be pulled through. Front-loaded — strongest early, fades from S2.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 71446,
+    "title": "Money Heist",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: A heist in progress with a cliffhanger ending nearly every episode — one of the most aggressively bingeable structures ever made. The known later-parts fizzle is a quality problem, not a momentum one; subtitles are the only real friction. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 111141,
+    "title": "Maid",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A ten-episode escape narrative with constant setbacks generates real 'will she get out' propulsion, and Little Fires Everywhere (your binge 5) is the adjacent shape. Grinding poverty and repeated cruelty cap it at 4 for consecutive viewing. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 81290,
+    "title": "The Kominsky Method",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Gentle half-hour comfort comedy with witty dialogue and very likeable leads — the frictionless easy-watch register, closest to Shrinking at your binge 4. Low stakes and no plot engine keep it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 215995,
+    "title": "Smoke",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Arson investigation with a serialised hunt across a short complete run — a case engine with a genuine spine. Soft audience reception (49%) suggests the execution may not fully deliver on that structure. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 98178,
+    "title": "Amazing Stories",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Standalone anthology episodes with no connecting thread, and reviews call the entries forgettable (41% critics). Easy to sample, nothing to continue — anthologies without a frame reset momentum every time. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 95665,
+    "title": "Inventing Anna",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A con unravelling is a propulsive true-crime shape and Garner's performance carries it, but its own prediction flags the nine-episode runtime as stretched — the padding is what keeps it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 200908,
+    "title": "We Were the Lucky Ones",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: WWII family-survival story cross-cutting between separated siblings, which builds natural 'what happened to them' momentum. Heavy subject matter caps consecutive viewing — the same ceiling as your other WWII together watches rather than a soap-tier 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 69740,
+    "title": "Ozark",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Cliffhanger-driven crime escalation across four complete seasons, engineered for continuation. Kept off 5 by relentless bleakness — the grim tone caps how many you want consecutively, the same ceiling that holds Breaking Bad at 4 rather than a comfort-tier 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 108664,
+    "title": "Five Days at Memorial",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Eight episodes, but the back half turns into an investigative inquiry after the hurricane crisis resolves, which drains urgency. Harrowing medical-triage content makes consecutive episodes hard going — high purpose, low compulsion. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 85552,
+    "title": "Euphoria",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Visually hypnotic with real melodramatic pull, but structurally episodic character portraits and relentlessly bleak addiction content make consecutive viewing heavy. Style-forward rather than plot-driven. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 46619,
+    "title": "Rectify",
+    "predictedBingeability": 2,
+    "predictedBingeabilityReason": "Binge 2/5: Famously the slowest prestige drama of its era — long silences, interior stillness, almost no plot velocity, across four seasons. Its own prediction stacks slow-burn and dark-without-hope penalties. Genuinely hard to keep going. Slow open — picks up from ep 4, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 68248,
+    "title": "Rosehaven",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Gentle low-stakes Australian character comedy with no plot engine, across five seasons of short episodes. Easy to watch but nothing pulls you forward — closest to your Fisk score of 3, the same deadpan Australian comedy register. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 106116,
+    "title": "Echo 3",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: A hostage-rescue premise should drive hard, but reviews call it overlong 'dad television' that delivers action while falling short on character across ten episodes. Stretched pacing blunts the hook. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 71912,
+    "title": "The Witcher",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: S1's scrambled non-linear timelines are actively confusing, which its own prediction flags, and the early structure is monster-of-the-week. Recasting mid-run breaks investment further. Some action pull, weak coherence. Slow open — picks up from ep 4, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 4194,
+    "title": "Star Wars: The Clone Wars",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Seven seasons of largely standalone episodes with wildly variable early quality — the multi-episode arcs are excellent but scattered through a 130-episode back catalogue. That cold-start bulk is the abandonment shape, franchise pull notwithstanding. Slow open — picks up from S3; worth it.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 99652,
+    "title": "KEVIN CAN F**K HIMSELF",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: The tonal whiplash between garish multi-cam and bleak drama is deliberately jarring, which works against easy consecutive viewing. An escape plot gives some spine, but its own prediction notes the concept is sharper than the execution sustains. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 117488,
+    "title": "Yellowjackets",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A dual-timeline question engine is the strongest hook shape in your data, and I previously waved the drag off as a quality worry. Westworld corrects that: an accumulating mystery that stalls without resolving scored 3. Four seasons still unresolved, so 4 rather than 5. Front-loaded — strongest early, fades from S3.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 208596,
+    "title": "Modern Love Tokyo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Standalone anthology romance — every episode resets, so there is no forward pull by design. Very low commitment and easy to dip into, which is its appeal, but structurally the opposite of a binge engine. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 106393,
+    "title": "Star Trek: Prodigy",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Serialised kids' Trek with a continuous quest arc and short episodes, and the franchise hook is real for you (Lower Decks 5, Discovery, Strange New Worlds 4). YA pitch keeps it below the top tier. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 65495,
+    "title": "Atlanta",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Loosely connected surreal vignettes with standalone bottle episodes and little forward plot — deliberately anti-serial. Short episodes make it easy, but the experimental structure gives no momentum. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 1398,
+    "title": "The Sopranos",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: The founding prestige-antihero show, built on episodic vignettes and psychotherapy rather than serialised cliffhangers, across six seasons. This is the class where your own scores sit at 3 (Better Call Saul, Veep) — craft over compulsion. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 80475,
+    "title": "Wellington Paranormal",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Case-of-the-week deadpan mockumentary in very short episodes — frictionless to start, but its own prediction calls it thin and repetitive across a full run. Funny in bursts, no forward pull. Front-loaded — strongest early, fades from S2.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 60574,
+    "title": "Peaky Blinders",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Tight six-episode seasons with a clear antagonist arc each series, so momentum is high and commitment per season is low. Stylised, occasionally repetitive plotting across six seasons keeps it below 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 62560,
+    "title": "Mr. Robot",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Puzzle-box with unreliable-narrator reveals gives it high sustain — the Dark shape, which you scored 4 for exactly this reason. Dense, stylised early episodes slow the hook before the first big twist lands, so the front end asks for patience the back end repays. Slow open — picks up from ep 4; worth it.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 2706,
+    "title": "Roseanne",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Classic multi-cam family sitcom — self-contained episodes, no serialisation, and ten seasons of cold-start back catalogue. Easy comfort viewing in bursts, but nothing pulls forward and late seasons are uneven. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 1621,
+    "title": "Boardwalk Empire",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Stately Sopranos-lineage period crime — lavish and slow, built on political manoeuvring rather than cliffhangers, across five seasons. This is the prestige-heavy class where your own scores cluster at 3 (Better Call Saul, Boardwalk's closest tonal relative). Slow open — picks up from ep 4; worth it.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 228305,
+    "title": "Task",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Mare of Easttown's creator running a manhunt engine, which is inherently propulsive, across a short first season. Critics call it 'unrelentingly bleak but riveting' — the bleakness is what holds it at 4 rather than Mare's 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 90228,
+    "title": "Dune: Prophecy",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Six episodes but dense Bene Gesserit politics and heavy exposition dominate over plot momentum — its own prediction notes it is more political drama than action. Handsome and slow-moving. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 251597,
+    "title": "Bookish",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Cosy post-war case-of-the-week mystery — the low-hook structure, and IMDB 6.8 suggests execution lags the premise. Light and easy but with no serial pull; closest to Annika and Elsbeth at this level. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 194764,
+    "title": "The Penguin",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Eight-episode gangster rise with betrayals landing at episode ends, so it moves. Grimy, oppressive noir atmosphere caps consecutive viewing — the same bleakness ceiling that holds Ozark and Breaking Bad at 4. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 4613,
+    "title": "Band of Brothers",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Ten-part WWII miniseries with a hard forward drive, but each episode rotates to a different soldier's viewpoint, which loosens the ep-to-ep pull. Chernobyl (your binge 5) is tighter and shorter. Heavy combat also limits how many you'll take in one sitting. Strong sustain, moderate hook. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 76331,
+    "title": "Succession",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Serialised power struggle where nearly every episode ends on a shifted alliance, so it pulls forward hard. Veep (your binge 3) is looser and more episodic by comparison. Dialogue density and unlikeable company keep it off 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 94997,
+    "title": "House of the Dragon",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Game of Thrones political intrigue with strong episode-end escalations and a civil war building. Held at 4 by the multi-year time jumps and recasting in S1, which repeatedly reset investment and interrupted momentum. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 221079,
+    "title": "The Last Frontier",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Manhunt-in-the-wilderness premise with escaped-convict jeopardy is inherently propulsive across a short season. Critics panned it (29%), so the execution likely undercuts the structure — hence 4, not higher. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 241609,
+    "title": "Your Friends & Neighbors",
+    "predictedBingeability": 5,
+    "predictedBingeabilityReason": "Binge 5/5: Heist-of-the-week escalation with a will-he-get-caught spine, played witty rather than bleak — that comedy buffer is what lets it hit 5 where Breaking Bad's grimness caps at 4. Short Apple seasons and Hamm's charm make it effortless. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 46518,
+    "title": "Masters of the Air",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Reviews specifically cite pacing problems and thin characterisation, and the structure is mission-of-the-week air combat with a rotating cast — episodic repetition rather than accumulating pull. Notably weaker on this axis than Band of Brothers. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 196890,
+    "title": "Chief of War",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Handsome historical epic, but largely subtitled Hawaiian with dense unfamiliar political context, and battle-campaign pacing rather than a mystery hook. Requires full attention, which suppresses momentum. Slow open — picks up from ep 3, but the payoff is thin.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  },
+  {
+    "tmdbId": 113962,
+    "title": "Lioness",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Undercover-mission spine with real jeopardy and short eight-episode seasons, so it moves quickly. Action-forward rather than character-driven and a soft S1 reception (RT 56%) keep it below 5. Grabs from ep 1.",
+    "changeNote": "Ramp-clause backfill: added the missing when-it-picks-up clause"
+  }
+]

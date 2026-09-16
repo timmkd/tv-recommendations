@@ -1139,3 +1139,44 @@ DTF St. Louis error. The average was computed over a mislabelled, mode-mixed set
 **What would flip it to 4★:** Trakt would need to reach roughly **8.1** (8.1/2 − 0.5 +
 0.2 = 3.75, the rounding boundary). It sits at 7.63 on 1,680 votes and has been stable
 — 7.62 → 7.63 as votes grew from 1,225. Worth a re-check after S2 airs.
+
+## 2026-09-16 — Ramp-clause backfill (179 shows)
+
+The ramp clause became a documented MUST on 2026-09-14, but `apply-predictions.ts`
+only validates rows it is **writing** — so every bingeability reason written before
+that date was never checked. 179 of 197 unrated reasons had no ramp clause and would
+have failed validation. All 179 now carry one; **0 remain**.
+
+No bingeability SCORE was changed — this is reason text only. The ramp answers the
+question the user asked for it to answer: *"sometimes it's helpful if I need to get
+through the first few episodes before it starts to get good."*
+
+| Ramp form | Count |
+| --------- | ----- |
+| `Grabs from ep 1.` | 137 |
+| `Slow open — picks up from ep N, but the payoff is thin.` | 26 |
+| `Slow open — picks up from ep N; worth it.` | 21 |
+| `Front-loaded — strongest early, fades from S N.` | 13 |
+
+**Derived from evidence already in each record**, not invented: each show's own
+bingeability reason states its hook behaviour, and the worksheet requires the ramp to
+stay consistent with the star reason's stick-with-it verdict. Worked examples —
+**The Wire** "famously demands patience… the payoff is enormous" → *picks up from ep 5;
+worth it*. **Person of Interest** "the AI mythology that delivers the payoff takes ~two
+seasons to arrive" → *picks up from S3; worth it*. **Dexter** "S1-4 propulsive… the late
+collapse is a momentum failure" → *fades from S5*. **Mare of Easttown** "every episode
+ends wanting the next" → *Grabs from ep 1*.
+
+**The ramp describes the HOOK, not overall ease.** A punishing show with a strong
+opening still gets `Grabs from ep 1` — I Know This Much Is True and Boiling Point both
+grip immediately and exhaust on sustain, which their reasons already say.
+
+**Rollback.** `data/snapshots/2026-09-16-bingeability-before-{1..4}.json` holds the
+exact prior text for all 179 rows in apply-predictions batch format. Replaying those
+four files with `--allow-legacy-ramp` restores them — verified before the write by a
+live apply-then-restore cycle on Marvel's Luke Cage, which came back byte-identical.
+
+**Lower-confidence calls**, flagged for correction as shows get watched: the specific
+episode numbers on slow-open shows are judgement, not measurement. The season-boundary
+ones rest on widely-held consensus (Person of Interest S3, Clone Wars S3, The Leftovers
+S2) and the front-loaded fade points are the least certain of the set.
