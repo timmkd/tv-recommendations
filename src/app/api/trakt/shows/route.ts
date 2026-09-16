@@ -15,7 +15,7 @@ import {
 } from '@/lib/trakt';
 import { enrichShowWithTMDB } from '@/lib/tmdb';
 import { getStreamingAvailability, getStreamingByTitle } from '@/lib/justwatch';
-import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
+import { overlayToShow } from '@/lib/showMapper';
 
 // Merge Trakt data with local overlay to create a Show object
 // Uses stored status from overlay if available, otherwise falls back to Trakt's computed status
@@ -64,47 +64,7 @@ function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show
     updatedAt: overlay?.updatedAt || new Date().toISOString()
   };
 }
-
-// Convert overlay to Show (fallback when Trakt is unavailable)
-function overlayToShow(overlay: ShowOverlay): Show {
-  return {
-    id: `overlay-${overlay.tmdbId}`,
-    tmdbId: overlay.tmdbId,
-    title: overlay.title || `Show ${overlay.tmdbId}`,
-    year: overlay.year,
-    // Use stored status (null = removed from watchlist), fallback for legacy data only
-    status: overlay.status !== undefined ? overlay.status : (overlay.rating ? 'completed' : 'watchlist'),
-    posterPath: overlay.posterPath,
-    overview: overlay.overview,
-    watchPreference: overlay.watchPreference,
-    watchPreferenceNote: overlay.watchPreferenceNote,
-    rating: overlay.rating,
-    bingeability: overlay.bingeability,
-    reviewNote: overlay.reviewNote,
-    predictedRating: overlay.predictedRating,
-    predictedRatingReason: overlay.predictedRatingReason,
-    predictedBingeability: overlay.predictedBingeability,
-    predictedBingeabilityReason: overlay.predictedBingeabilityReason,
-    recommendedWatchPreference: overlay.recommendedWatchPreference,
-    predictionsUpdatedAt: overlay.predictionsUpdatedAt,
-    notes: overlay.notes,
-    hidden: overlay.hidden,
-    dropped: overlay.dropped,
-    genres: overlay.genres || [],
-    tmdbRating: overlay.tmdbRating,
-    tmdbVoteCount: overlay.tmdbVoteCount,
-    rtCriticsScore: overlay.rtCriticsScore,
-    rtAudienceScore: overlay.rtAudienceScore,
-    rtFetchedAt: overlay.rtFetchedAt,
-    streamingServices: overlay.streamingServices || [],
-    streamingFetchedAt: overlay.streamingFetchedAt,
-    justWatchUrl: overlay.justWatchUrl,
-    numberOfSeasons: overlay.numberOfSeasons,
-    showStatus: overlay.showStatus,
-    createdAt: overlay.createdAt || new Date().toISOString(),
-    updatedAt: overlay.updatedAt || new Date().toISOString()
-  };
-}
+import type { Show, ShowStatus, WatchPreference, ShowOverlay } from '@/types';
 
 // GET shows from Trakt, merged with local overlays
 // Falls back to overlays-only mode if Trakt is rate limited

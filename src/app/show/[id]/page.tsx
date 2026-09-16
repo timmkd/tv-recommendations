@@ -137,7 +137,13 @@ export default function ShowDetailPage({ params }: { params: Promise<{ id: strin
 
     setFetchingRatings(true);
     try {
-      const response = await fetch(`/api/ratings?id=${show.id}&refresh=true`);
+      const params = new URLSearchParams({
+        tmdbId: String(show.tmdbId),
+        title: show.title,
+        refresh: 'true'
+      });
+      if (show.year) params.set('year', String(show.year));
+      const response = await fetch(`/api/ratings?${params}`);
       const data = await response.json();
 
       if (data.criticsScore || data.audienceScore) {
@@ -159,11 +165,11 @@ export default function ShowDetailPage({ params }: { params: Promise<{ id: strin
 
     setSaving(true);
     try {
-      const response = await fetch('/api/shows', {
+      const response = await fetch('/api/trakt/shows', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id: show.id,
+          tmdbId: show.tmdbId,
           status,
           watchPreference: watchPreference || null,
           watchPreferenceNote: watchPreferenceNote || null,
@@ -177,8 +183,8 @@ export default function ShowDetailPage({ params }: { params: Promise<{ id: strin
         throw new Error('Failed to save');
       }
 
-      const updated = await response.json();
-      setShow(updated);
+      const { overlay } = await response.json();
+      setShow({ ...show, ...overlay });
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to save changes');
     } finally {
@@ -190,7 +196,7 @@ export default function ShowDetailPage({ params }: { params: Promise<{ id: strin
     if (!show || !confirm('Are you sure you want to delete this show?')) return;
 
     try {
-      await fetch(`/api/shows?id=${show.id}`, { method: 'DELETE' });
+      await fetch(`/api/shows?tmdbId=${show.tmdbId}`, { method: 'DELETE' });
       router.push('/shows');
     } catch {
       setError('Failed to delete show');

@@ -62,7 +62,7 @@ Database access is centralized through `src/lib/db`:
 ### API Routes
 
 All under `src/app/api/`:
-- `/api/shows` - CRUD operations for show library
+- `/api/shows` - CRUD for the show library, all local DB (no Trakt): `GET ?id=overlay-<tmdbId>|?tmdbId=` one show, `POST {tmdbId,status}` add/enrich from TMDB (idempotent, never nulls existing fields), `DELETE ?id=|?tmdbId=` tombstone + remove. **Updates go to `PUT /api/trakt/shows` with `tmdbId`** — that is the single writer for user fields and owns the `ratedAt`/`predictionsUpdatedAt` timestamps
 - `/api/ratings` - Update show ratings
 - `/api/settings` - Manage settings and subscriptions
 - `/api/recommendations` - Generate AI recommendations
@@ -167,11 +167,20 @@ exists; here the app registration itself is gone. The token errors you see first
 (`invalid_grant`, "session not found") are a *symptom*, not the cause — do not
 spend time on them.
 
-**The fix (requires the account owner):**
-1. Re-register the app at <https://trakt.tv/oauth/applications>.
-2. Put the new client id/secret in `.env.local` **and** in Vercel's production env.
-3. Run `npx tsx scripts/trakt-reauth.ts` (device flow, prints a code for
-   trakt.tv/activate).
+**There is no fix. This is permanent (confirmed by the account owner 2026-09-16).**
+Trakt now requires a paid subscription to create an API key, and the user has
+decided not to pay. The app will not be re-registered. Do **not** propose
+re-registering, `scripts/trakt-reauth.ts`, or "add the key to `.env.local`" as a
+remedy — `trakt-reauth.ts` is dead code kept only for reference.
+
+**The browser-session capture below is now the permanent read path**, not a
+stopgap. Anything needing Trakt data goes: open `app.trakt.tv` in Chrome (the user
+logs in), read via the SPA endpoints, write the capture to `.trakt-*.json`, then
+feed it to `scripts/backfill-trakt-meta.ts`. Anything that needs to *write* to
+Trakt is simply gone — local is the sole source of truth for ratings, and
+`syncRatingToTrakt` / `addToDroppedList` / `removeFromWatchlist` will always fail.
+That failure is harmless: those calls are fire-and-forget inside their own
+try/catch in `PUT /api/trakt/shows`, so DB writes still succeed.
 
 **DANGER — the outage fails silently.** `scripts/check-new-trakt-shows.ts` catches
 the 403, gets zero shows, and prints `=== 0 shows on Trakt but not in local DB ===`
