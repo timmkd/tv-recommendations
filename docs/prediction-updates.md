@@ -912,3 +912,44 @@ unusable. **Lanterns** recomputes to **4★ S** unchanged. A genre-gap scan acro
 whole together-predicted cohort found Widow's Bay was the **only** show whose local
 genres omitted a Helen-dislike tag; **Star City** keeps 4★ T (its sci-fi tag was known
 and reasoned about, and parent show For All Mankind is a verified 4★ **together**).
+
+## 2026-09-16 — 2026 Emmy series-category nominees: coverage audit + Love Story added
+
+Audited all **21** shows nominated in the three series-level categories at the 78th
+Primetime Emmys (Outstanding Comedy Series, Outstanding Drama Series, Outstanding
+Limited or Anthology Series). Acting and craft nominations were deliberately excluded.
+**20 of 21** were already in the library and rated or predicted; one was missing.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Love Story** | — | 3.5★ T + B4 | New show: 2026 Emmy Limited/Anthology Series nominee, added and predicted |
+
+**Love Story** (tmdb=131142) is the FX/Hulu Ryan Murphy anthology; S1 is
+*John F. Kennedy Jr. & Carolyn Bessette*, 9 eps × 50min, TV-MA, aired Feb 2026. TMDB
+lists it under the anthology title "Love Story", which is why a title search for the
+Emmy name found nothing. Base came from Trakt **7.77 (997 votes)**, not TMDB's 8.3 (65
+votes). Modifiers: +0.3 true story, +0.3 limited/complete (anthology season closes),
+−0.5 style-over-substance (RT 81%/48 reviews; "adds nothing new" and "nothing is
+illuminated" recur). Purposeful-difficulty +0.3 was considered and **not** applied —
+that modifier is for dark content earning its keep, and this is a glossy romance.
+3.39 + 0.1 = **3.5★**, landing exactly on American Crime Story 3.5★ together, Murphy's
+other true-story anthology, which had a stronger case engine than this has.
+
+**Together, with the Scandals as the named risk.** A Very British Scandal and A Very
+English Scandal were both dropped at 2★ together — "no one to root for, unlikeable real
+people". The distinguishing factor here is that reviews call the leads magnetic and
+the couple sympathetic, so it fails the Scandals' Character-Investment trigger rather
+than matching it. Flagged strict 2-episode test. Bingeability held at 4 rather than
+docked: the recurring critical complaint is about **quality** ("adds nothing new"), not
+**momentum**, and per the 2026-09-09 run-average rule a quality-only complaint holds
+the level (the Crown precedent).
+
+**Coverage after this run:** Comedy 8/8, Drama 8/8, Limited/Anthology 5/5.
+
+## 2026-09-16 — Bug fix: prediction writes now bump `updatedAt`
+
+`scripts/apply-predictions.ts` set `predictionsUpdatedAt` but never `updatedAt`, while
+the `/shows` "Recently Updated" sort reads `updatedAt` (`src/app/shows/page.tsx:375`).
+Every prediction ever written was therefore invisible to that sort — user-reported when
+Widow's Bay failed to appear at the top straight after being changed. Fixed, and the
+Widow's Bay row was re-applied to correct its timestamp.

@@ -248,6 +248,10 @@ async function main() {
           }
         : {}),
       predictionsUpdatedAt: now,
+      // keep the generic row timestamp in step, so a prediction change surfaces
+      // in the app's "Recently Updated" sort (which reads updatedAt, not
+      // predictionsUpdatedAt)
+      updatedAt: now,
     });
     console.log(`saved tmdb=${row.tmdbId} ${existing.title}`);
   }
