@@ -953,3 +953,139 @@ the `/shows` "Recently Updated" sort reads `updatedAt` (`src/app/shows/page.tsx:
 Every prediction ever written was therefore invisible to that sort — user-reported when
 Widow's Bay failed to appear at the top straight after being changed. Fixed, and the
 Widow's Bay row was re-applied to correct its timestamp.
+
+## 2026-09-16 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Big Love** | — | 3.5★ S | New show from Trakt watchlist; LDS-critique prestige drama, solo per Under the Banner precedent |
+
+Added from the Trakt watchlist (listed 2026-09-16) via `add-show-by-tmdb.ts` — the
+Step 1 escape hatch's dev-server Trakt sync is permanently impossible, so the
+no-Trakt add path was used instead. Base from Trakt **7.52 (604 votes)**; no IMDB
+(no `OMDB_API_KEY`) and RT unavailable (scraper broken — treated as UNKNOWN, not low).
+
+**Step 3b fired as designed on its first real run:** `CHECK INCOMPLETE — 1 show(s)
+need a capture`, printed `["big-love"]`, captured to `.trakt-genres-2026-09-16.json`,
+re-checked `CHECK OK`. Trakt agrees the genre is `drama` only, so nothing was added —
+the gate confirmed clean data rather than finding a gap. That is the intended outcome.
+
+**Modifier walk:** +0.3 longevity (5 seasons, serialised arc — passes the Aug 2026
+condition, which only bars cold starts into *episodic* back-catalogues), +0.2
+established 2000s classic, −0.5 weak payoffs. Net 3.26 → **3.5★**.
+
+The −0.5 is the load-bearing one. S4 is widely held to have jumped the shark
+("kind of a mess", "embarrassing plotlines"), and the finale drew "a tired finale"
+and "one of the most banal resolutions" (Variety). This user rates the *landing*
+hardest — Dark 4.5★ **for** being "beautifully resolved", Sherlock and The Crown both
+capped at 4.5★ purely on weak final seasons, and drop pattern #4 is Weak Payoffs.
+
+**Considered and rejected:** the longevity bonus was nearly withheld on the grounds
+that a shark-jump inverts the quality signal, which would have produced 3★. Rejected
+as double-counting — the S4 slide and the weak finale are one body of evidence, and
+it is already priced in once via −0.5. Counting it twice would also contradict the
+rule's own text, which permits the bonus for serialised runs.
+
+**Solo, not together.** Cited: "Dark prestige → default SOLO", plus "Crude humor
+(together) → −0.5★ or switch to SOLO" for TV-MA sexual content across three
+marriages. Precedent is **Under the Banner of Heaven 3.5★ solo**, whose recorded
+watch-preference note is "critical of lds religion" — the same territory, already
+decided solo by the user. **The Sopranos** carries "Helen wasn't a fan of this after
+a couple of episodes". The together family-drama comps (This Is Us 3.5★, Parenthood
+3.5★) both turn on "easy watch", which a TV-MA polygamy drama is not.
+
+Streaming: prime-video (subscribed), plus two unsubscribed services.
+
+## 2026-09-16 — DTF St. Louis recheck (user-raised, post-Emmy)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **DTF St. Louis** | 3.5★ S | 4★ S | Post-Emmy recheck: Bad Monkey was a together-drop comp; Trakt double-counted. 3.5->4 |
+
+Predicted **2026-07-13** (`2026-07-13-new-shows.json`). Unlike Widow's Bay the season
+had already finished airing, and the reason already priced in "13 Emmy noms" — so the
+thin-data trigger here was `tmdbVoteCount=101`, not a pre-air call. **The Emmy result
+is NOT what moved the number.** Awards are a consensus signal of the same class as RT
+(r=0.18, "ignore"), and the profile is explicit that consensus is not quality. The
+7-from-13 haul (Limited Series, Conrad for Writing AND Directing, Harbour, Cardellini)
+only removed the execution doubt the old reason leaned on; it earned no modifier.
+
+**Two genuine errors in the original reasoning, both now corrected:**
+
+1. **Comp/watch-mode mismatch.** The character-investment risk was anchored on
+   **Bad Monkey 2.5★ — a TOGETHER drop** ("Helen and I ... didn't like any of the
+   characters"). Using a together-drop against a **solo** prediction reports Helen-fit,
+   not this user's taste, and is the exact failure the comp-matching rule exists to
+   prevent. The correct solo comps for hard-to-love leads are **BEEF 4★ solo** (two
+   unpleasant people escalating a feud) and **Barry 4★ solo** — both landed at 4★.
+2. **Double-counted the base.** "Trakt sits at 7.4 — mid audience heat is a real
+   warning" was applied as a penalty on top of a base *derived from that same 7.4*.
+   The RT critics-vs-audience divergence rule could not apply either: `rtAudienceScore`
+   is null and the scraper is broken, so it is UNKNOWN, not low.
+
+Also noted: the old reason cited **Patriot** as the Conrad comp, but Patriot carries no
+user rating — only a 3★ *prediction*. A prediction is not evidence, and the worksheet
+requires comps to carry real ratings.
+
+**Recompute.** Base Trakt 7.45 → 3.225, +0.5 jaw-drop reveals (non-linear structure
+withholding how the death happened), +0.3 limited/complete (7-ep LIMITED) = 4.025 →
+**4★**. Slow-burn/experimental −0.5 was considered and rejected: a Writing and
+Directing Emmy is direct evidence the digressive style landed, and the Sep 2026 rule
+says never cap for pacing alone when a payoff signal exists.
+
+**Solo unchanged** — crude premise and dark/satirical register; Bad Monkey remains
+useful as evidence that *the together version of this material fails*, which is a
+watch-mode finding, not a rating one. Bingeability held at **4**: the old reason capped
+it on "mid audience heat", which is a quality complaint, and the Crown precedent says
+quality-only complaints hold the level — but Conrad's discursive style is a real
+momentum drag, so it does not reach 5 either.
+
+## 2026-09-16 — Emmy nominee reasoning audit (user-raised)
+
+Prompted by "why did only one need re-predicting?". The earlier cohort screen tested
+**data staleness** (has the evidence moved since the prediction?). It did not test
+**reasoning soundness**, which is what actually caught DTF St. Louis. Two different
+tests; this run applies the second to every unrated nominee.
+
+Of the 21 series-category nominees, **14 are already rated by the user** — a prediction
+is moot once a real rating exists, so there is nothing to re-derive. That leaves 7.
+Widow's Bay and DTF St. Louis were re-derived earlier today and Love Story was written
+today from current data, leaving 4 to audit against the three error classes found in
+DTF: comp/watch-mode mismatch, double-counting the rating source, and comps that are
+predictions rather than ratings.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Margo's Got Money Troubles** | 4★ T | 3.5★ T | Audit: 4* rested on an invented Apple-TV category average; formula gives 3.5 |
+| **The Beast in Me** | 4★ T | 4★ T | Reason refresh (rating unchanged): removed platform name, added the modifier walk |
+
+**Margo's Got Money Troubles — genuinely wrong.** The 4★ rested on "Apple TV character
+dramedy is one of your highest-yielding categories (avg 4.07★)". **That category does
+not exist in the taste profile.** The only Apple reference is the Platform Quality
+Tiers line, which puts Apple TV+ **MID at 3.55-3.58★** and labels the whole dimension a
+"minor consideration" — so the reason invented a modifier that contradicts the
+documented one. Walking the real table: base 7.63 → 3.315, +0.2 easy-watch (together),
+nothing else applies (Drama tag blocks pure-comedy; Returning blocks limited/complete;
+new-series volatility only bites at 4.5★) = **3.5★**. Together is unchanged — warm,
+likeable, the Four Seasons 4★ / Shrinking 4★ register.
+
+**The Beast in Me — rating survives, reason did not.** The old text named a streaming
+service (breaking the platform-agnostic rule) and showed no modifier walk, citing its
+leads' other shows as pedigree rather than tonal comps. Re-derived properly: base Trakt
+7.73 → 3.365, +0.3 COMPLETE 8-ep LIMITED, +0.2 together mystery/crime = 3.865 → **4★**.
+Rating confirmed, reason rewritten.
+
+**Clean, no change:**
+- **A Knight of the Seven Kingdoms 3.5★ S** — arithmetic is explicit and correct
+  (Trakt 8.46 → base 3.73 → 3.5★, no modifier applies), comps are rated, and solo is
+  justified by a profile rule ("fantasy is never Helen's lane") rather than vibes.
+- **Your Friends & Neighbors 4★ S** — already had this exact error class caught and
+  fixed in an earlier session; its reason documents the correction ("the old reason
+  cited Barry, a SOLO comp, to argue together"). All comps are solo AND rated
+  (Barry 4★, BEEF 4★, The Great 4.5★, Fleabag 4★), and it correctly separates the
+  Scandal drop-shape as affecting "the rating, not the watch mode".
+
+**Systemic finding, not actioned.** A scan of all unrated predictions found **22**
+reasons naming a streaming service, which rule 7 of the worksheet forbids (three more
+hits were false positives on "bingeable"/"easy binge"). Only the one in this batch was
+fixed. The other 21 are a separate cleanup and need the user's go-ahead.

@@ -1,0 +1,18 @@
+[
+  {
+    "tmdbId": 245318,
+    "title": "Margo's Got Money Troubles",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Dramedy from Rufi Thorpe's novel — a young single mother and her ex-wrestler father improvising through money trouble. Lowered from 4★: that call rested on a \"character dramedy averages 4.07★\" category that does not exist in the profile, which instead rates this service MID (3.55-3.58★) and calls platform tier a minor consideration. Walking the real table, base 7.63 gives 3.3 and only easy-watch (+0.2) applies. Together — warm and likeable, the Four Seasons 4★ and Shrinking 4★ register. Returning, S1. Give it 3-4 episodes.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "Audit: 4* rested on an invented Apple-TV category average; formula gives 3.5"
+  },
+  {
+    "tmdbId": 250504,
+    "title": "The Beast in Me",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Psychological thriller — a grieving author becomes convinced her new neighbour killed his wife. Claire Danes and Matthew Rhys carry it, and you rated Homeland 4★ and The Americans 4★ together. Reason refresh only, rating unchanged: the old text named a streaming service and showed no working. Base Trakt 7.73 = 3.37, +0.3 COMPLETE 8-ep LIMITED, +0.2 together mystery = 3.87, so 4★ holds. RT 83%. Together — drawn-out mystery is Helen's known risk, so a strict 2-episode test.",
+    "recommendedWatchPreference": "together",
+    "changeNote": "Reason refresh (rating unchanged): removed platform name, added the modifier walk"
+  }
+]

@@ -40,15 +40,28 @@ apply script and log them.
 npx tsx scripts/check-new-trakt-shows.ts
 ```
 
-If it reports shows on Trakt that are NOT in the local DB:
+**This script fails silently.** Trakt's API is permanently gone, so every call
+403s, the script catches it, gets zero shows, and prints
+`=== 0 shows on Trakt but not in local DB ===` — identical to "fully synced".
+**Read the lines ABOVE that count.** If you see `Got 0 shows from Trakt`, the check
+did not run; treat the result as UNKNOWN, not as an all-clear.
 
-- If the user's request explicitly names one of the missing shows, import it:
-  follow the dev-server sync lifecycle in review-ratings Step 6 EXACTLY
-  (reuse or start the server → trigger sync → converge → enrichment wait →
-  stop only a server you started), then continue with Step 2.
-- Otherwise tell the user "N shows are on Trakt but not yet imported — run
-  /review-ratings to sync them first, or continue with what's in the DB?"
-  and WAIT for their answer.
+If the user named a show that is not in the local DB (confirm with
+`npx tsx scripts/lookup-show.ts "<title>"`), import it as follows. Do **NOT** use
+the dev-server Trakt sync from review-ratings Step 6 — it depends on the dead API
+and cannot work:
+
+1. Find the tmdbId. If the user added it to their Trakt watchlist, read it from a
+   logged-in browser session (`/users/me/watchlist/show?extended=full`); otherwise
+   search TMDB. Confirm title AND year before trusting the id.
+2. `npx tsx scripts/add-show-by-tmdb.ts <tmdbId> --status watchlist`
+   (idempotent, TMDB-only, never nulls existing fields).
+3. If the browser session gave you Trakt slug/rating/votes/imdbId, write them with
+   `npx tsx scripts/backfill-trakt-meta.ts` — the Trakt rating is usually the Step 1
+   base, since `imdbRating` needs `OMDB_API_KEY` which is not configured.
+
+Then continue with Step 2. If shows are missing and the user did NOT name one, say
+so and ask whether to continue with what is in the DB — do not bulk-import.
 
 ### Step 2 — Build the working list
 
