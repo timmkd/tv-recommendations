@@ -46,6 +46,15 @@ const PLATFORM_ERROR =
 // so capitalized-word matches only WARN — a human must eyeball them:
 const PLATFORM_WARN = /\b(Max|Stan|Binge)\b/;
 
+// The four fixed ramp forms a predictedBingeabilityReason may end with.
+// Em dash or hyphen accepted; N/S N must be a number, never "eventually".
+const RAMP_FORMS = [
+  /Grabs from ep 1\.$/,
+  /Slow open [—-] picks up from (ep|S) ?\d+; worth it\.$/,
+  /Slow open [—-] picks up from (ep|S) ?\d+, but the payoff is thin\.$/,
+  /Front-loaded [—-] strongest early, fades from S ?\d+\.$/,
+];
+
 function starLabel(rating: number, pref: string | null | undefined): string {
   const stars = `${rating}★`;
   const suffix = pref === 'together' ? ' T' : pref === 'solo' ? ' S' : '';
@@ -127,6 +136,17 @@ async function main() {
         errors.push(`${label}: reason says "Binge ${bm[1]}/5" but predictedBingeability is ${binge}`);
       if (bingeReason.length < 120 || bingeReason.length > 400)
         errors.push(`${label}: predictedBingeabilityReason must be 120-400 chars, got ${bingeReason.length}`);
+      // The ramp clause: four fixed forms, each ending the reason, each naming a
+      // NUMBER rather than "eventually". Enforced here because it is a documented
+      // MUST (CLAUDE.md + the worksheet Step 6) that was previously unchecked.
+      if (!RAMP_FORMS.some((re) => re.test(bingeReason)))
+        errors.push(
+          `${label}: predictedBingeabilityReason must END with one of the four ramp clauses — ` +
+            `"Grabs from ep 1." | "Slow open — picks up from ep N; worth it." | ` +
+            `"Slow open — picks up from ep N, but the payoff is thin." | ` +
+            `"Front-loaded — strongest early, fades from S N." ` +
+            `(N must be a number). Got: "...${bingeReason.slice(-60)}"`
+        );
     }
 
     // --- reason ---

@@ -855,3 +855,60 @@ Distribution refreshed: **217 rated shows**, 4★ count 81 → 82.
 
 **Outstanding:** the 4★ rating needs pushing to Trakt once the app is re-registered
 (ratings are a two-way sync field; `syncRatingToTrakt` would 403 today).
+
+## 2026-09-14 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **The Offer** | — | 3.5★ T | New show from Trakt watchlist; true-story limited series, critic/audience split |
+| **The Offer** | 3.5★ T | 3.5★ T + B3 | Bingeability for new show; strong hook, saggy known-outcome middle |
+
+## 2026-09-16 — Post-air rescan: Widow's Bay (user-raised)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Widow's Bay** | 3.5★ T | 4.5★ S | Post-air rescan: horror genre confirmed, season complete, 14 Emmys; together->solo, 3.5->4.5 |
+
+**Why it was wrong.** The star prediction was written **2026-06-27** (commit `cbfac89`)
+on 70 TMDB votes, no IMDB, no RT and no awards data — its own text says "no buzz yet".
+`predictionsUpdatedAt` read 2026-09-09, but that was the **bingeability-only** write, so
+the star prediction was hidden from the 2026-09-09 rescan — the documented
+`stale-predictions.ts` timestamp caveat, now with a second confirmed instance.
+
+**What changed in the evidence.** Season complete (10 eps); Trakt 8.32/4,536 votes →
+**8.34/7,768**; RT **98% on 107 reviews** (8.5/10 avg), Metacritic 78; **14 Emmys from 19
+nominations** including Outstanding Comedy Series, Lead Actor (Matthew Rhys), Writing
+(Katie Dippold) and Directing (Hiro Murai). Trakt genres now include **horror**, and the
+certification is **TV-MA** — neither present in the local record.
+
+**The watch-mode flip.** The old reason set its own flip condition: "if it plays the
+curse for whimsy it works; if it leans mythology it's solo." It leans mythology — a 1702
+demonic pact, ritual sacrifice, possession, and a finale revealing a generational
+covenant. Both branches actually resolve to solo anyway: **Wellington Paranormal**, the
+whimsy comp the reason itself named, is predicted **solo**. Governing precedent is
+**Ghosts** (predicted 4★ together, actual **3★ solo** — "the premise is too silly for
+Helen").
+
+**Strongest counter-argument, stated and rejected.** The supernatural-comedy cohort is
+this user's weakest (Ghosts 3★, What We Do in the Shadows 3★). Rejected because both are
+*episodic sitcoms* with no mystery engine; Widow's Bay is a serialised question-engine
+show, the class that scores 4.5-5★ (Dark 4.5★, Stranger Things 4.5★, Silo 4.5★).
+**What would flip it back:** an S2 that resolves the covenant early and settles into a
+monster-of-the-week format would pull it toward the Ghosts cohort and back to ~3.5★.
+
+**New-series volatility (-0.3★) deliberately NOT applied**, though the show is 1 season:
+the modifier prices *unproven quality*, and a fully-aired season with 7,768 votes, 98%
+RT and a writing/directing/series Emmy sweep has resolved it. The table's own
+parenthetical ("weaker if core sweet spot") applies — serialised supernatural mystery
+with jaw-drop reveals is the core solo lane. RT itself stayed out of the base (r=0.18,
+"ignore"); the base came from Trakt (r=0.47).
+
+**Cohort screen (no other changes).** Screened all **40** unrated predictions on shows
+from 2025+ with thin evidence at prediction time. Refreshed live Trakt ratings/votes for
+39 via `backfill-trakt-meta.ts` from a browser-session capture. Only **Last Seen** moved
+materially (9.22/9 votes → 8.00/34 votes, base -0.61★) and it recomputes to the same
+**4★ T** — its reason already called it a structural call, and 34 votes is still
+unusable. **Lanterns** recomputes to **4★ S** unchanged. A genre-gap scan across the
+whole together-predicted cohort found Widow's Bay was the **only** show whose local
+genres omitted a Helen-dislike tag; **Star City** keeps 4★ T (its sci-fi tag was known
+and reasoned about, and parent show For All Mankind is a verified 4★ **together**).

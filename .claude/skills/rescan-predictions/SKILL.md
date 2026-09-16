@@ -36,6 +36,13 @@ them via the validated write path, and checks the changes off.
 npx tsx scripts/stale-predictions.ts
 ```
 
+The script excludes predictions **below 3★** from the stale set (`lowExcluded=on`
+in the SUMMARY). That is deliberate: under 3★ the Completion Risk table puts drop
+risk at 65% (2.5★) to 100% (2★), so the call is already "not worth watching" and no
+profile tweak turns it into a recommendation. Do NOT re-derive sub-3★ predictions,
+and do not hand-add them to the screening table. Only if the user explicitly asks
+for the low end, re-run with `--include-low`.
+
 Read the `SUMMARY:` footer line and branch:
 - `pendingChanges=0` → report: "No pending profile changes. To force a rescan,
   hand-append a `- [ ]` entry to docs/profile-changelog.md (format documented in

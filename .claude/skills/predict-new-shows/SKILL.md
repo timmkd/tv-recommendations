@@ -55,15 +55,32 @@ npx tsx scripts/find-shows-needing-predictions.ts
 
 If it prints `0 shows without predictions`, report "nothing to predict" and stop.
 
-### Step 3 — Backfill rating sources
+### Step 3 — Backfill EVERYTHING missing (not just ratings)
+
+A show must never be predicted against a half-populated row, and an imported show
+must never be left without streaming availability. Run BOTH:
 
 ```
 npx tsx scripts/enrich-new-show-ratings.ts
+npx tsx scripts/backfill-show-data.ts
 ```
 
-Read the `SUMMARY:` line. Then re-run
-`npx tsx scripts/find-shows-needing-predictions.ts` — this refreshed output is
-your working list (it now shows Trakt ratings for the enriched shows).
+The second fills, for the shows being predicted, any field that is currently
+empty — TMDB metadata on stub rows, `streamingServices` + `justWatchUrl`, and RT
+scores. It never overwrites a field that already has a value.
+
+Read its `SUMMARY:` line and act on each counter:
+- `needTrakt>0` — Trakt slug/rating/imdbId cannot be fetched while the app
+  registration is gone (403 on every call). Capture them from a logged-in browser
+  session (see the Trakt section of CLAUDE.md) and write them with
+  `npx tsx scripts/backfill-trakt-meta.ts`. Do this BEFORE predicting when the
+  show has no other rating source — it supplies the Step 1 base.
+- `needImdb>0` — `imdbRating` needs `OMDB_API_KEY`; note it and move on.
+- `rtScraperBroken=true` — every `rt=not-found` in that run means UNKNOWN, not
+  absent. Do NOT reason from a missing RT score as if it were a low one.
+
+Then re-run `npx tsx scripts/find-shows-needing-predictions.ts` — this refreshed
+output is your working list.
 
 If `stillNoRatingSource>0`: for those shows only, research a rating via WebFetch
 on imdb.com or wikipedia.org. If a show still has no rating source anywhere,
@@ -95,8 +112,10 @@ npx tsx scripts/apply-predictions.ts data/prediction-batches/<file>.json --dry-r
 
 ### Step 6 — Present (no approval gate)
 
-Present the full prediction table: Title | Predicted | Solo/Together | complete
-reason text — then proceed straight to Step 7 WITHOUT waiting for approval.
+Present the full prediction table: Title | Predicted | Solo/Together | Binge |
+complete reason text — then proceed straight to Step 7 WITHOUT waiting for
+approval. EVERY show you predict gets a bingeability score and reason in the same
+pass (worksheet Step 6) — never leave it for a separate manual run.
 Predictions are the predictor's call (user directive 2026-07-17: "ratings are
 your choice, you are the predictor"). If the user challenges a prediction after
 it's applied, debate it on the evidence — do not fold automatically, and do not

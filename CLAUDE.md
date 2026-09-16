@@ -55,7 +55,7 @@ Database access is centralized through `src/lib/db`:
 - `src/lib/tmdb.ts` - TMDB API client for show search, metadata, and poster images
 - `src/lib/openai.ts` - OpenAI integration for AI-powered recommendations
 - `src/lib/trakt.ts` - Trakt.tv API for importing watch history and two-way sync
-- `src/lib/rottentomatoes.ts` - Rotten Tomatoes scraper for critic scores
+- `src/lib/rottentomatoes.ts` - Rotten Tomatoes scraper for critic scores — **BROKEN as of 2026-09-14**: `getRTRatings()` returns `{}` for every title (verified on Severance, Andor, Slow Horses, The Offer). RT changed its markup. Low urgency (RT correlates 0.18/0.13 — the profile says ignore it), but treat a missing RT score as UNKNOWN, never as a low score
 - `src/lib/justwatch.ts` - JustWatch API for streaming availability (Australian region)
 - `src/lib/db` - Database access via Drizzle ORM
 
@@ -337,10 +337,14 @@ months while its own note recorded that Helen had already bailed.) Audit with a
 up, so a slow start can be navigated rather than guessed at. Four fixed forms, no
 improvising a fifth: `Grabs from ep 1.` / `Slow open — picks up from ep N; worth it.` /
 `Slow open — picks up from ep N, but the payoff is thin.` / `Front-loaded — strongest
-early, fades from S N.` Give a number, never "eventually". The ramp describes the
+early, fades from S N.` Give a number, never "eventually" — `apply-predictions.ts`
+validates this and rejects any other ending. The ramp describes the
 **hook**; the stick-with-it verdict describes the **payoff** — they may disagree, and
 that disagreement is the useful part. See **The ramp** in
 [docs/taste-profile.md](docs/taste-profile.md).
+
+Bingeability is produced in the SAME pass as the star prediction —
+`docs/prediction-worksheet.md` **Step 6**, followed by all three skills.
 
 **Bingeability-only rows** omit `predictedRating` / `predictedRatingReason` /
 `recommendedWatchPreference` and supply just the two bingeability fields; the show
@@ -428,7 +432,7 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `profile-stats.ts` | Distribution, solo/together averages, MAE, bias, within-0.5★ |
 | `bingeability-report.ts [--since <ISO>]` | Scored set, r vs star rating, distribution, prediction accuracy, predicted-only set |
 | `find-shows-needing-predictions.ts` | Shows with no prediction and no rating |
-| `stale-predictions.ts [--since <ISO>]` | Pending profile changes + predictions older than them (see caveat below) |
+| `stale-predictions.ts [--since <ISO>] [--include-low]` | Pending profile changes + predictions older than them (see caveat below). Excludes sub-3★ predictions by default |
 | `check-new-trakt-shows.ts` | Trakt vs local diff — **fails silently, see the Trakt warning above** |
 | `lookup-show.ts <query>` | Find shows by title substring |
 
@@ -438,10 +442,19 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `add-show-by-tmdb.ts <tmdbId> [--status ...]` | Add a show from TMDB alone, no Trakt. Idempotent; never nulls existing fields |
 | `backfill-trakt-meta.ts [--dry-run]` | Write cached Trakt slug/rating/votes/imdbId from a browser-session capture |
 | `resync-watch-status.ts [--dry-run]` | Rewrite `status` from captured Trakt progress, using the **Status/Sync Logic** rule above |
+| `backfill-show-data.ts [--tmdb a,b] [--all-missing] [--dry-run] [--refresh]` | Fill any EMPTY field on a show: TMDB stub metadata, streaming, RT. Defaults to the shows needing predictions. Never overwrites. Reports what it can't fill (Trakt/IMDB) |
 | `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch |
 | `delete-show.ts <tmdbId> [--confirm]` | Tombstone in `deletedShows` + remove. Dry-run by default; warns if rated |
 | `set-subscriptions.ts <slug>...` | Set subscribed services. Pass the FULL list — anything omitted is unsubscribed |
 | `trakt-reauth.ts` | OAuth device flow — **only works once the app is re-registered** |
+
+### Rescan rule: predictions below 3★ are never re-thought
+
+`stale-predictions.ts` filters them out (`lowExcluded=on` in its SUMMARY). Under 3★
+the **Completion Risk** table puts drop risk at 65% (2.5★) to 100% (2★) — the call is
+already "not worth watching", and no profile change turns that into a recommendation.
+Re-deriving them burns effort on shows that will never be watched. `--include-low`
+overrides, for when the user explicitly asks for the low end.
 
 ### Known caveat: `stale-predictions.ts` staleness is timestamp-based
 
@@ -450,6 +463,13 @@ unchecked changelog entry **date** (midnight). Any write that touches
 `predictionsUpdatedAt` — including a **bingeability-only** write, which by design
 leaves star predictions alone — therefore hides those star predictions from the
 next rescan. This has already produced a false `staleCount=2`.
+
+**Second confirmed case (2026-09-16): Widow's Bay.** Its star prediction was written
+2026-06-27 on pre-air data, but the 2026-09-09 bingeability-only write pushed
+`predictionsUpdatedAt` to 2026-09-09 — so the 2026-09-09 rescan never saw it, and a
+3.5★-together call survived the season airing, a 98% RT score and a 14-Emmy sweep
+until the user raised it by hand. Two instances now; the `bingeabilityUpdatedAt`
+column below is the real fix, not a nice-to-have.
 
 When a rescan's stale set looks suspiciously small, re-screen on the pending
 entry's own `affects:` keywords instead, e.g.

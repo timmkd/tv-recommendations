@@ -4,8 +4,34 @@ This is the ONLY procedure for producing a show prediction. It is followed by th
 `/predict-new-shows`, `/rescan-predictions`, and `/review-ratings` skills.
 Prerequisite: read `docs/taste-profile.md` in full BEFORE starting the first show.
 
-For EVERY show, write the worksheet out in your response (all 6 steps, visibly).
-Do not shortcut, even for shows that seem obvious.
+For EVERY show, write the worksheet out in your response (the freshness gate plus
+all 7 steps, visibly). Do not shortcut, even for shows that seem obvious.
+
+## Step 0 — Data freshness gate (run BEFORE Step 1)
+
+Two checks. Both exist because **Widow's Bay** was predicted 3.5★ together on
+2026-06-27 from 70 TMDB votes and no IMDB/RT, then sat unrevised through the season
+airing, a 98% RT score and a 14-Emmy sweep — it should have been 4.5★ **solo**.
+
+**(a) Is the evidence stale?** Re-derive from scratch — do not trust the stored
+prediction — if ANY of these hold:
+
+- the prediction reason contains `no buzz yet`, `no IMDB/RT`, `unproven`,
+  `not yet aired`, `new-series volatility`, or `ratings are unusable`;
+- `tmdbVoteCount < 300` **or** `traktVoteCount < 500` at the time it was written;
+- the show's season had not finished airing when the prediction was written.
+
+`predictionsUpdatedAt` does **NOT** settle this — a bingeability-only write bumps it
+while leaving the star prediction untouched (see the `stale-predictions.ts` caveat in
+CLAUDE.md). Date the star prediction from the batch file or
+`git log -S"<title>" -- docs/prediction-updates.md`, not from the column.
+
+**(b) Are the genres complete?** Local genres come from TMDB and can omit a tag that
+decides the watch mode. Widow's Bay was stored `Drama/Mystery/Comedy` while Trakt had
+**horror**, and horror is what flips it solo. For any show predicted pre-air, check
+Trakt's genre list and certification (`/shows/{slug}?extended=full`) before Step 5.
+A `horror`, `science-fiction`, `fantasy` or `superhero` tag missing locally is a
+watch-mode bug, not a cosmetic one — those are Helen's canonical dislikes.
 
 ## Step 1 — Base rating source
 
@@ -64,7 +90,43 @@ crime → together"). Name the rule — don't decide on vibes. When two rules
 conflict, say which one wins and why, and check the "Key lessons" /
 "Library audit" sections for a precedent.
 
-## Step 6 — Write the reason
+## Step 6 — Bingeability + the ramp
+
+Estimate `predictedBingeability` (integer 1-5) and write
+`predictedBingeabilityReason`. This is a SECOND, INDEPENDENT axis: it measures how
+EASILY the show is watched, not how good it is. Read the **Bingeability** section of
+`docs/taste-profile.md` before your first show.
+
+**It does NOT feed the star rating.** The weights are PROVISIONAL and deliberately
+out of the formula — never revise a Step 4 result because of the score you pick here.
+Estimate it from the same structure the hook proxies use: serialised spine vs pure
+case-of-the-week, episode length, cold-start back-catalogue size, momentum.
+
+Apply the **run-average rule**: drop ONE level from the peak-momentum estimate when
+BOTH hold — (a) the run is >= 4 seasons (or >= 3 with a notorious collapse), AND
+(b) the later-run complaint is about momentum/resolution rather than quality.
+Per-season-closed structures (anthology, one case per series) are exempt.
+
+The reason must:
+
+1. Start exactly `Binge X/5: ` where X matches `predictedBingeability`.
+2. Be 120-400 characters.
+3. **END with a ramp clause** — one of these four fixed forms, no improvising a fifth:
+   - `Grabs from ep 1.`
+   - `Slow open — picks up from ep N; worth it.`
+   - `Slow open — picks up from ep N, but the payoff is thin.`
+   - `Front-loaded — strongest early, fades from S N.`
+   Give a NUMBER, never "eventually" (a season boundary may be `S2`).
+4. Stay consistent with the stick-with-it verdict in the star reason. The ramp is
+   about the HOOK; the verdict is about the PAYOFF. They may disagree — when they
+   do, that disagreement is the useful part, so say it.
+
+`scripts/apply-predictions.ts` enforces 1-3 mechanically.
+
+**Omit both fields** only when the show already carries a bingeability prediction you
+are not changing.
+
+## Step 7 — Write the reason
 
 The reason must satisfy ALL of these (scripts/apply-predictions.ts enforces most):
 
@@ -105,6 +167,8 @@ Each completed worksheet becomes one row in the batch file
   "predictedRating": 4,
   "predictedRatingReason": "Predicted 4★: ...",
   "recommendedWatchPreference": "solo",
+  "predictedBingeability": 4,
+  "predictedBingeabilityReason": "Binge 4/5: ... Grabs from ep 1.",
   "changeNote": "short reason for the change log, <=120 chars"
 }
 ```

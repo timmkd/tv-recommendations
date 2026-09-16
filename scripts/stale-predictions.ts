@@ -23,6 +23,9 @@ const { isNotNull, isNull, desc, and, sql, or } = require('drizzle-orm');
 
 const CHANGELOG_PATH = 'docs/profile-changelog.md';
 
+// Predictions below 3★ are excluded from rescans by default — see the where clause.
+const includeLow = process.argv.includes('--include-low');
+
 function getPendingEntries(): string[] {
   if (!fs.existsSync(CHANGELOG_PATH)) {
     console.error(`ERROR: ${CHANGELOG_PATH} not found. Run from the repo root.`);
@@ -87,6 +90,11 @@ async function main() {
         isNotNull(shows.predictedRating),
         sql`(${shows.dropped} IS NULL OR ${shows.dropped} = 0)`,
         sql`(${shows.hidden} IS NULL OR ${shows.hidden} = 0)`,
+        // Sub-3★ predictions are not worth re-deriving (rule added 2026-09-14).
+        // Below 3★ the Completion Risk table puts drop risk at 65% (2.5★) to 100%
+        // (2★) — the call is already "not worth watching", and no profile tweak
+        // flips that into a recommendation. Pass --include-low to override.
+        ...(includeLow ? [] : [sql`${shows.predictedRating} >= 3`]),
         or(
           isNull(shows.predictionsUpdatedAt),
           sql`${shows.predictionsUpdatedAt} < ${since}`
@@ -112,7 +120,9 @@ async function main() {
     console.log('');
   }
 
-  console.log(`SUMMARY: pendingChanges=${pending.length} staleCount=${stale.length} since=${since ?? 'null'}`);
+  console.log(
+    `SUMMARY: pendingChanges=${pending.length} staleCount=${stale.length} since=${since ?? 'null'} lowExcluded=${includeLow ? 'off' : 'on'}`
+  );
 }
 
 main().catch((e) => {
