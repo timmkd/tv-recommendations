@@ -1089,3 +1089,53 @@ Rating confirmed, reason rewritten.
 reasons naming a streaming service, which rule 7 of the worksheet forbids (three more
 hits were false positives on "bingeable"/"easy binge"). Only the one in this batch was
 fixed. The other 21 are a separate cleanup and need the user's go-ahead.
+
+## 2026-09-16 — Margo's Got Money Troubles re-verified (user-raised)
+
+Rating unchanged at **3.5★ together**; reason strengthened. The user was hoping for 4★
+and asked for a double-check, and raised a hypothesis: that actors they enjoy could
+support a higher rating. Tested, and it does not hold.
+
+**Actor hypothesis — rejected on the user's own data.** Cast credits were intersected
+with the rated library:
+
+| Actor | Rated shows | Avg | Range |
+|---|---|---|---|
+| Nick Offerman | 10 | 3.85★ | **2.5–5★** |
+| Greg Kinnear | 3 | 3.33★ | 3–3.5★ |
+| Marcia Gay Harden | 2 | 4.00★ | 4–4★ |
+| Elle Fanning | 1 | 4.50★ | — |
+| Michelle Pfeiffer | 0 | — | — |
+
+Offerman's spread is wider than the whole prediction scale — Parks & Rec 5★ **and**
+A League of Their Own 2.5★ together, dropped. Kinnear sits below the 3.59★ library
+average. Fanning is n=1 and solo. There is no cast row in the modifier table, and
+`≥ 2 supporting shows` is the bar for adding one — inventing a cast bonus would repeat
+exactly the error that caused this downgrade. **The cast does earn its keep on watch
+mode, not rating:** Offerman plays the grumpy ex-wrestler dad, and Ron Swanson is named
+in the profile as Helen's archetype, with "a dry-wit anchor can pull solo-leaning
+comedy into together". That is already cashed in — it is why this stays together.
+
+**Four independent checks converge on 3.5★:**
+1. Formula — base Trakt 7.63 → 3.315, +0.2 easy-watch (together) = 3.515.
+2. **Comedy+Drama TOGETHER cohort: n=16, avg 3.50★** — arrived at independently of the
+   formula. The cohort is the classic together bimodal: nine at 4★+, but five dropped
+   at 2-3★ (A League of Their Own 2.5, The Flight Attendant 2.5, Sunny 2.5,
+   Mr. & Mrs. Smith 2, Elsbeth 3).
+3. **Creator David E. Kelley: n=2 rated, both together, both exactly 3.5★** (Big Little
+   Lies, The Undoing). Zero variance, and the profile holds creator to be a strong
+   predictor. The old reason never mentioned him. (The Lincoln Lawyer 4★ and Presumed
+   Innocent 3.5★ are also Kelley but are *predictions*, so not evidence.)
+4. **Limited-series route closed** — renewed for S2 in May 2026, confirmed, so the
+   +0.3 limited/complete cannot apply. This was the one input that would have produced
+   4★ (3.815 → 4★), so it was checked directly rather than taken from TMDB metadata.
+
+**The old reason's comps also fail inspection.** Of the four cited as an "Apple TV
+character dramedy" cluster averaging 4.07★: only **Shrinking 4★** is actually a
+together dramedy. **Lessons in Chemistry** is Drama/Romance, **The Morning Show** is
+Drama only, and **Pachinko is SOLO** — a watch-mode mismatch of the same class as the
+DTF St. Louis error. The average was computed over a mislabelled, mode-mixed set.
+
+**What would flip it to 4★:** Trakt would need to reach roughly **8.1** (8.1/2 − 0.5 +
+0.2 = 3.75, the rounding boundary). It sits at 7.63 on 1,680 votes and has been stable
+— 7.62 → 7.63 as votes grew from 1,225. Worth a re-check after S2 airs.
