@@ -1231,3 +1231,9 @@ for all 20, replayable through `apply-predictions.ts`.
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **Apocalypse** | — | 3.5★ T | New watchlist add; reality-competition class anchored on Survivor 4* and Alone 3.5* |
+
+## 2026-09-28 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Line of Fire** | — | 3.5★ T | New: network family conspiracy thriller; Trakt base only 28 votes, held at 3.5★ together |

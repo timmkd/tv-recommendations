@@ -2,13 +2,13 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (218 rated shows)
+## Rating Distribution (219 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
 | 4.5★ | 19 | Loved it - strong signal |
-| 4★ | 82 | Good solid show |
+| 4★ | 83 | Good solid show |
 | 3.5★ | 49 | Enjoy but don't love |
 | 3★ | 37 | Still good |
 | 2-2.5★ | 26 | Dropped or disappointed |
@@ -460,7 +460,7 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 
 ## Prediction Accuracy (May 2026)
 
-**26-show validated sample (Sep 2026):** MAE: 0.54★ (target ~0.5★) | Bias: -0.27★ (formula already corrects via -0.5★ term) | Within 0.5★: 77%
+**27-show validated sample (Sep 2026):** MAE: 0.52★ (target ~0.5★) | Bias: -0.26★ (formula already corrects via -0.5★ term) | Within 0.5★: 78%
 
 **Range restriction (measured Aug 2026):** 128 of 214 rated shows sit at 3.5★ or 4★ — 60% inside a half-star band, with only 5 shows ever at 5★. The star scale has ~1.5★ of usable range in practice, so an MAE of 0.57★ is worse than it looks. This is the main argument for tracking bingeability as a second, less compressed axis (see **Bingeability**).
 
@@ -485,6 +485,7 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 - **Star Trek: Starfleet Academy (exact)**: predicted 3.5★ → rated 3.5★ solo. Validates holding the Trek franchise floor against a cold audience signal (Trakt 6.3) rather than following it down, and the "sci-fi is never Helen's lane" default.
 - **All Her Fault (exact)**: predicted 4★ together → rated 4★ **together**, both rating and watch mode right. Validates the domestic-thriller-together shape end to end: a withheld-answer abduction hook + a relatable mother lead + a contained 8-episode ENDED run, with **no bleak penalty applied** despite child-abduction content. Confirms the "dark but purposeful and contained" carve-out (Adolescence 4★, Little Fires Everywhere 4★) rather than the bleak→solo default.
 - **Malcolm in the Middle: Life's Still Unfair (+0.5)**: predicted 3.5★ → rated 4★ solo, watch mode correct. Under-predicted because nothing in the modifier table rewards **nostalgia revival at very low commitment** — "Super easy binge and fun nostalgia it was very easy to watch quickly". A four-episode revival of a comfort show is closer to the comfort-rewatch register (Parks 5★, Office 5★) than to an unproven new comedy. Calibration note only, n=1 — do not add a modifier until a second revival lands.
+- **The Day of the Jackal (exact; binge 5→4)**: predicted 4★ together → rated 4★ together, both right. Bingeability over-called at 5 on structure alone (assassin-vs-hunter chase, near-miss episode endings): "although it was highly bingeable and we did consume it all quite quickly, it was still easy to put down." **Fast consumption ≠ compulsion** — 5 is reserved for "couldn't stop"; a propulsive chase shape earns 4 unless there is evidence of genuine can't-put-it-down pull. Also: rooting for a morally grey assassin ("the good guys were not necessarily good") worked together because the chase engine propelled it — consistent with *compelling beats likeable*. Binge overlap now n=3 (2 exact, 1 off-by-one at the noisy 4/5 boundary). Calibration note only — no rescan.
 
 ### Library audit (May 2026)
 
