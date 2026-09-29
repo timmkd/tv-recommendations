@@ -2,12 +2,12 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (217 rated shows)
+## Rating Distribution (218 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
-| 4.5★ | 18 | Loved it - strong signal |
+| 4.5★ | 19 | Loved it - strong signal |
 | 4★ | 82 | Good solid show |
 | 3.5★ | 49 | Enjoy but don't love |
 | 3★ | 37 | Still good |
@@ -119,6 +119,8 @@ which is why the slot has stayed empty; it is *not* a limit on the user's scale.
 - **Fizzle** - starts strong, loses momentum (Killing Eve 3★, Tehran 3★, A League of Their Own 2.5★)
 - **Bleak/punishing** - too dark from the start (Happy Valley 2★, MobLand 2.5★)
 - **Procedural fatigue** - format gets boring in S2+ (Elementary 3★, The Resident 3★)
+
+**REJECTED hypothesis (tested 2026-09-23): "low-content-risk comfort shows get under-predicted".** It fit three shows — The Four Seasons (3.5★→4★), Matlock (3.5★→4★), The Other Bennet Sister (4★→4.5★), all together, all +0.5★ — and The Other Bennet Sister's note supports the mechanism (*"easy to watch while kids were around... didn't have to worry what might pop up if a kid walked in"*). **But Manhunt (4★→3.5★) and Quiz (4★→3.5★) are the same comfort class and moved the opposite way**, and the profile already files both as "low intensity, low commitment". Comfort/content-safety does NOT predict the residual direction. Do not re-derive this rule; the +0.5★ trio is better explained by regression toward the 4★ cluster (see **Prediction Accuracy**).
 
 ---
 
@@ -305,18 +307,18 @@ A second rating axis, tracked separately from the star rating since Aug 2026. **
 
 > **STATUS (2026-09-09, rev 2): 80 shows scored — the axis is VALIDATED as a distinct signal, the WEIGHTS are not.** The scored set is deliberately skewed to shows Tim rated 3-5★ (only one show at 3★, none below, no dropped shows), and he has decided **not** to score the low end. Two consequences, both permanent: (1) the negative weights can never be validated, so they are **retired** rather than pending — low-hook risk is carried by the structural modifiers instead; (2) with only 3 of the 80 scored shows holding a stored Trakt score, whether bingeability adds anything **over** IMDB/Trakt is untestable, so the positive weights stay PROVISIONAL and out of the formula.
 >
-> **The axis has one validation point (updated 2026-09-10): n=1, exact.** Malcolm in the Middle: Life's Still Unfair was predicted binge **5** and scored **5** — the first time a stored `predictedBingeability` has ever met a user score, and the note matches the predicted reasoning ("Super easy binge... very easy to watch quickly" vs "four episodes total, the lowest commitment in the entire library"). Before this the overlap was ZERO. **One point derives nothing**: it cannot move the weights, cannot establish MAE, and does not lift the PROVISIONAL status above. Do NOT read the gap between the predicted distribution (mean 3.74; 16% at 5) and the scored distribution (mean 4.19; 44% at 5) as predictor bias: the scored set is **completion-selected** — Tim scores only shows he finished, and finishing is itself selected on high bingeability — while the predicted set is mostly unwatched watchlist. No blanket recalibration is justified from that comparison; only rule-driven, per-show changes are. The overlap grows only as scored shows happen to carry an earlier prediction, so treat each new one as a data point to log, not as licence to re-weight.
+> **The axis has two validation points (updated 2026-09-23): n=2, both exact.** Malcolm in the Middle: Life's Still Unfair (predicted binge **5**, scored **5**) and The Other Bennet Sister (predicted binge **5**, scored **5**) are the only times a stored `predictedBingeability` has ever met a user score. Before 2026-09-10 the overlap was ZERO. **Two points derive nothing**: they cannot move the weights, cannot establish a meaningful MAE (0.00 on n=2 is not validation), and do not lift the PROVISIONAL status above. Do NOT read the gap between the predicted distribution (mean 3.65; 11% at 5) and the scored distribution (mean 4.19; 43% at 5) as predictor bias: the scored set is **completion-selected** — Tim scores only shows he finished, and finishing is itself selected on high bingeability — while the predicted set is mostly unwatched watchlist. No blanket recalibration is justified from that comparison; only rule-driven, per-show changes are. **Why the overlap grows so slowly, and the fix (2026-09-23):** a score can only meet a prediction when a *predicted* show gets watched — roughly one a month. Predicting bingeability for shows already **in progress** converts that trickle into a forward holdout, because those scores land within weeks. Treat each new overlap point as a data point to log, not as licence to re-weight.
 
 ### Why it is a separate axis
 
-Measured on the 80 scored shows (Sep 2026, rev 2):
+Measured on the 84 scored shows (Sep 2026, rev 3):
 
 | Metric | Value |
 |---|---|
-| r (bingeability vs star rating) | **0.58** (r² = 0.34) |
+| r (bingeability vs star rating) | **0.57** (r² = 0.32) |
 | Bingeability spread (sd) | **0.83** — range 2-5 used |
 | Star spread (sd), same shows | **0.36** — nearly all on 4★ |
-| Score distribution | 5: 35 · 4: 26 · 3: 18 · 2: 1 · 1: 0 |
+| Score distribution | 5: 36 · 4: 29 · 3: 18 · 2: 1 · 1: 0 |
 
 **The axes are correlated, NOT orthogonal** — and since the scored set spans only 3-5★, range restriction *attenuates* r, so the true library-wide figure is likely higher. But bingeability still discriminates where the star scale cannot: on shows rated almost identically, it varies more than twice as much. That is the point of it. (Context: 128 of 214 rated shows sit at 3.5★ or 4★, so the star scale has ~1.5★ of usable range.)
 
@@ -371,7 +373,9 @@ Rules for the clause:
 
 **Therefore: a weak hook is only a drag when there is no payoff waiting.** Never cap a prediction for slow-start alone — check the payoff signal first (jaw-drop reveals/resolution is a stated core love). This is exactly what the stick-with-it verdict in the prediction reason exists to express: "weak hook, but commit — the payoff is real" (Dark) vs "weak hook, nothing coming — don't force it" (Monk).
 
-Observed mean star rating by level, for reference (selection-biased, do not read as weights): binge 3 → 3.83★ (n=18) · binge 4 → 4.04★ (n=26) · binge 5 → 4.33★ (n=35).
+Observed mean star rating by level, for reference (selection-biased, do not read as weights): binge 3 → 3.83★ (n=18) · binge 4 → 4.05★ (n=29) · binge 5 → 4.32★ (n=36).
+
+**Episode RUNTIME is an unrecorded binge driver (added 2026-09-23).** Both of the only two validated binge points are short-form, and the user named runtime unprompted: The Other Bennet Sister — *"hugely easy to binge because the episodes were only 30 minutes long, so it was low commitment but still high enjoyment"* (scored 5) — and Malcolm in the Middle, whose own predicted reason leaned on episode count. Note the distinction: **episode COUNT is already used, episode LENGTH is not.** There is no `runtime` column in the schema, so length is hand-waved per show and can never be validated. Until a column exists, state episode length explicitly in any bingeability reason where it is a factor, so the claim is at least auditable. A ~30-minute episode is a genuine commitment reducer independent of season length.
 
 ### Weights — NOT in the formula
 
@@ -456,11 +460,12 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 
 ## Prediction Accuracy (May 2026)
 
-**25-show validated sample (Sep 2026):** MAE: 0.54★ (target ~0.5★) | Bias: -0.30★ (formula already corrects via -0.5★ term) | Within 0.5★: 76%
+**26-show validated sample (Sep 2026):** MAE: 0.54★ (target ~0.5★) | Bias: -0.27★ (formula already corrects via -0.5★ term) | Within 0.5★: 77%
 
 **Range restriction (measured Aug 2026):** 128 of 214 rated shows sit at 3.5★ or 4★ — 60% inside a half-star band, with only 5 shows ever at 5★. The star scale has ~1.5★ of usable range in practice, so an MAE of 0.57★ is worse than it looks. This is the main argument for tracking bingeability as a second, less compressed axis (see **Bingeability**).
 
 **Key lessons:**
+- **The formula loses to "always guess 4★" on point accuracy (measured 2026-09-23, n=23 rated non-dropped shows with a stored prediction).** Formula MAE 0.435★ vs constant-4★ MAE 0.348★; within-0.5★ is TIED at 19/23 (83%); r(predicted, actual) = 0.227, OLS slope 0.37. Dropping the four shows the Aug-31 fixes were derived from widens the gap rather than closing it (0.289★ vs 0.158★). Two honest caveats: MAE measures point accuracy only, not the ranking/flagging job the formula actually does, and n=23 is small and 4★-skewed. **Practical rule: treat a sub-0.5★ difference between two predictions as noise** — do not defend a 3.5★ vs 4★ call on formula arithmetic alone, and do not let a headline MAE of ~0.54★ read as skill when the library clusters at 4★.
 - Happy Valley (-2.5★): Led to "purposeful difficulty" framework
 - Night Manager: predicted 4.5★, S1 felt two eps too long (3.5★), but S2 lifted it to 4★ (net -0.5★) — pacing bloat dents but doesn't sink a spy thriller that recovers
 - The Pitt (-0.5★): Together procedural ceiling at 4★

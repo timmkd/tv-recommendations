@@ -177,10 +177,26 @@ remedy — `trakt-reauth.ts` is dead code kept only for reference.
 stopgap. Anything needing Trakt data goes: open `app.trakt.tv` in Chrome (the user
 logs in), read via the SPA endpoints, write the capture to `.trakt-*.json`, then
 feed it to `scripts/backfill-trakt-meta.ts`. Anything that needs to *write* to
-Trakt is simply gone — local is the sole source of truth for ratings, and
-`syncRatingToTrakt` / `addToDroppedList` / `removeFromWatchlist` will always fail.
-That failure is harmless: those calls are fire-and-forget inside their own
-try/catch in `PUT /api/trakt/shows`, so DB writes still succeed.
+Trakt is gone **from the app's own code** — local is the sole source of truth for
+ratings, and `syncRatingToTrakt` / `addToDroppedList` / `removeFromWatchlist` will
+always fail. That failure is harmless: those calls are fire-and-forget inside their
+own try/catch in `PUT /api/trakt/shows`, so DB writes still succeed. But see below —
+**a live browser session CAN write to Trakt**, so manual repair is possible even
+though automated sync is not.
+
+**A local/Trakt rating mismatch is settled: LOCAL WINS — and is now REPAIRABLE.**
+Local is always the correct value; Trakt's is a stale snapshot. Never ask the user
+which one stands. Since the browser session can write (below), the right move during
+a review with a live session is to **push local → Trakt** rather than just note the
+drift. `rating` remains a user-only field in the LOCAL db — never write it there;
+pushing the already-agreed local value out to Trakt is not the same thing.
+(Settled 2026-09-23 on Game of Thrones: Trakt held 9/10 from **2019-03-11**, local
+held 4★; pushed 8/10, verified.)
+
+**Scale of the gap (measured 2026-09-23):** of 187 local rated non-dropped shows,
+only **16** exist on Trakt with the same rating — **170 were never pushed at all**
+(169 of them have a known Trakt slug). Trakt's rating history is ~9% complete, so
+treat it as an archive, never as a source.
 
 **DANGER — the outage fails silently.** `scripts/check-new-trakt-shows.ts` catches
 the 403, gets zero shows, and prints `=== 0 shows on Trakt but not in local DB ===`
@@ -202,8 +218,20 @@ without checking the lines above it for `Got 0 shows from Trakt`.**
 | Per-show progress | `/shows/{slug}/progress/watched` → `{aired, completed}` |
 | Look up by TMDB id | `/search/tmdb/{id}?type=show&extended=full` |
 
-This is read-only: it cannot push ratings back to Trakt, and it dies when the
-session expires. It is a stopgap, not a replacement for re-registering the app.
+It dies when the session expires, so it is a per-session tool, not a replacement for
+a registered app.
+
+**It is NOT read-only — that earlier claim was wrong, and was never tested.**
+Verified 2026-09-23: `POST https://apiz.trakt.tv/sync/ratings` with the same Bearer
+token + `trakt-api-key` headers returned `201 {"added":{"shows":1}}` and the new
+rating read back correctly. The SPA rates shows with this token, so writes work.
+
+| Need | Endpoint |
+|------|----------|
+| Push a rating | `POST /sync/ratings` body `{shows:[{ids:{trakt:<id>},rating:<1-10>}]}` |
+
+Convert 0.5-5★ → 1-10 by doubling (4★ → 8). Bulk pushes are outward-facing writes to
+the user's real account — **confirm before sending more than a single show.**
 
 ---
 

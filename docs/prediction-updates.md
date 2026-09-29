@@ -1225,3 +1225,9 @@ because `apply-predictions.ts` only checks rows it is writing. Not actioned.
 
 Rollback: `data/snapshots/2026-09-16-platform-sweep-before.json` holds the prior text
 for all 20, replayable through `apply-predictions.ts`.
+
+## 2026-09-23 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Apocalypse** | — | 3.5★ T | New watchlist add; reality-competition class anchored on Survivor 4* and Alone 3.5* |
