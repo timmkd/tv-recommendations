@@ -1237,3 +1237,11 @@ for all 20, replayable through `apply-predictions.ts`.
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **Line of Fire** | — | 3.5★ T | New: network family conspiracy thriller; Trakt base only 28 votes, held at 3.5★ together |
+
+## 2026-09-30 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Six Feet Under** | — | 4★ S | New: prestige family drama; formula 4.5★ held to the solo character-drama 4★ wall |
+| **I May Destroy You** | — | 4★ S | New: Coel limited series; Baby Reindeer-class trauma drama, solo |
+| **Girls** | — | 3.5★ S | New: Dunham dramedy; unlikeable-by-design leads, weak-payoff risk offsets classic bonuses |

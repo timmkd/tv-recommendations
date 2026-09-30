@@ -1,0 +1,32 @@
+[
+  {
+    "tmdbId": 1274,
+    "title": "Six Feet Under",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Family-run funeral home drama, a death every episode, dark humour as the buffer. The formula reads 4.5★ (Trakt 8.6 + complete 5-season arc + 2000s classic) but your solo prestige character-drama class is a flat 4★ wall — Mad Men 4★, Better Call Saul 4★, Barry 4★, Baby Reindeer 4★; every solo 4.5★ is sci-fi, twists or comfort. What flips it to 4.5★: the famous finale — you rate the landing hardest. COMPLETE. Solo: dark prestige with explicit content. Commit to 4-5 episodes; it pays off.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Hour-long episodes, 63 of them, driven by character rather than plot, and S4 is widely called a meander before S5 recovers — a steady watch, not a compulsive one. The payoff is the ending, not the pull. Slow open — picks up from ep 3; worth it.",
+    "changeNote": "New: prestige family drama; formula 4.5★ held to the solo character-drama 4★ wall"
+  },
+  {
+    "tmdbId": 102619,
+    "title": "I May Destroy You",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Michaela Coel writes and stars as a London writer piecing together a night her drink was spiked. Closest comp is Baby Reindeer 4★ — a writer-star turning real trauma into a structurally bold drama — with Fleabag 4★ for the 30-minute UK auteur register. Purposeful difficulty with a cultural moment attached (consent) is your working-darkness shape. Risk: explicit, fragmented, uncomfortable by design. LIMITED, 12 eps, COMPLETE. Solo: sexual-assault subject, same auteur-tone rule as Baby Reindeer. Give it 3-4 episodes.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Twelve ~30-minute episodes with a what-happened-that-night question driving the first half — short and propulsive, but heavy enough that you will want breaks between episodes rather than marathoning it. Grabs from ep 1.",
+    "changeNote": "New: Coel limited series; Baby Reindeer-class trauma drama, solo"
+  },
+  {
+    "tmdbId": 42282,
+    "title": "Girls",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Lena Dunham's comedy-drama about four self-absorbed twenty-somethings in Brooklyn. Fleabag 4★ is the ceiling of messy-woman dramedy for you; Hacks 3.5★ and The Bear 3.5★ are the likelier landing. The characters are insufferable by design and plotting is aimless — character-investment failure is your top drop pattern, so the classic/longevity bonuses are offset by a weak-payoff risk. COMPLETE, 6 seasons. Solo: crude, explicit sex. Give it 3-4 episodes — if Hannah grates by ep 4, don't force it.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Short ~28-minute episodes lower the commitment, but there is no plot spine pulling you forward — it runs on whether you enjoy these people, and the middle seasons drift before S5 steadies. Slow open — picks up from ep 4, but the payoff is thin.",
+    "changeNote": "New: Dunham dramedy; unlikeable-by-design leads, weak-payoff risk offsets classic bonuses"
+  }
+]
