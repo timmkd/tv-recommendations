@@ -5,7 +5,7 @@ The two marker lines are updated ONLY by `scripts/mark-review-done.ts` — never
 You MAY hand-append `- [ ]` entries to the Pending section after manually editing
 `docs/taste-profile.md`; `/rescan-predictions` will pick them up.
 
-**Last ratings review:** 2026-09-29T04:53:00.222Z
+**Last ratings review:** 2026-10-03T02:20:45.616Z
 **Last prediction rescan:** 2026-09-09T13:02:03.201Z
 
 ## Pending prediction rescan
@@ -34,3 +34,4 @@ Examples of well-formed entries:
 - [x] 2026-08-31 | NEW-MODIFIER | Bingeability axis added (1-5, own column + UI): predicted 4-5 = +0.2/+0.3, 1-2 = -0.3/-0.5, never lifts a prediction above 4★. PROVISIONAL — no user-entered scores exist yet, weights derived only from inferred values in review notes. DO NOT apply to predictions until ~20-30 real scores exist and weights are re-derived. | affects: none
 - [x] 2026-09-09 | RULE-CHANGE | Bingeability recalibrated on 78 real scores: axes are correlated (r=0.55) not orthogonal; sustain is necessary-not-sufficient for 4.5★+; hook predicts abandonment, NOT quality — so never cap a prediction for a slow start alone when a payoff signal exists (Dark 4.5★ weak hook vs Monk 3★ weak hook, no payoff). Negative bingeability weights RETIRED; positive weights stay out of the formula. | affects: reason~"slow burn", reason~"slow-burn", reason~"nothing happens"
 - [x] 2026-09-09 | NEW-MODIFIER | Bingeability is a run-AVERAGE across seasons, not a peak: drop one level when the run is 4+ seasons (or 3 with a notorious collapse) AND the later-run complaint is momentum/resolution rather than quality (Westworld 3, Upload 3 vs The Crown 5). Per-season-closed structures exempt. Diagnostic axis only — does not touch star predictions. | affects: reason~"bingeable", reason~"momentum", reason~"cliffhanger", seasons<=1
+- [ ] 2026-10-03 | LESSON | Bingeability also averages down for interleaved STRESS, not just front-loaded decay: The Bear 4★/binge 3 with an effusive note ("love the script… beautifully made") — pressure-cooker prestige drama with slow S1 estimates binge 3, ramp "picks up from S2; worth it", and the 3 holds the star at 4★ rather than lowering it. Also re-confirms sustain-necessary-for-4.5★ at n=22. Diagnostic axis only. | affects: drama, pref=solo, reason~"stressful", reason~"intense", reason~"pressure"
