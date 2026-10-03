@@ -45,6 +45,7 @@ function mergeWithOverlay(traktShow: TraktUserShow, overlay?: ShowOverlay): Show
     notes: overlay?.notes,
     hidden: overlay?.hidden,
     dropped: overlay?.dropped,
+    bookmarked: overlay?.bookmarked,
 
     // External data from overlay cache
     genres: overlay?.genres || [],

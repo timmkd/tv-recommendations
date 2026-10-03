@@ -173,6 +173,7 @@ export default function ShowEditModal({
   const [notes, setNotes] = useState('');
   const [hidden, setHidden] = useState(false);
   const [dropped, setDropped] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
   const [overviewExpanded, setOverviewExpanded] = useState(false);
 
   useEffect(() => {
@@ -193,6 +194,7 @@ export default function ShowEditModal({
       setNotes(initialShow.notes || '');
       setHidden(initialShow.hidden || false);
       setDropped(initialShow.dropped || false);
+      setBookmarked(initialShow.bookmarked || false);
       setLoading(false);
       setError(null);
       return;
@@ -240,6 +242,7 @@ export default function ShowEditModal({
             setNotes(found.notes || '');
             setHidden(found.hidden || false);
             setDropped(found.dropped || false);
+            setBookmarked(found.bookmarked || false);
             setLoading(false);
             return;
           }
@@ -261,6 +264,7 @@ export default function ShowEditModal({
         setNotes(data.notes || '');
         setHidden(data.hidden || false);
         setDropped(data.dropped || false);
+        setBookmarked(data.bookmarked || false);
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Failed to load show');
       } finally {
@@ -289,7 +293,8 @@ export default function ShowEditModal({
             reviewNote: reviewNote || null,
             notes: notes || null,
             hidden,
-            dropped
+            dropped,
+            bookmarked
           }
         : {
             id: show.id,
@@ -301,7 +306,8 @@ export default function ShowEditModal({
             reviewNote: reviewNote || null,
             notes: notes || null,
             hidden,
-            dropped
+            dropped,
+            bookmarked
           };
 
       const response = await fetch(url, {
@@ -325,7 +331,8 @@ export default function ShowEditModal({
         reviewNote,
         notes,
         hidden,
-        dropped
+        dropped,
+        bookmarked
       };
       setShow(updated);
       onSaved?.(updated);
@@ -623,8 +630,9 @@ export default function ShowEditModal({
                       status === 'watching' ? 'bg-blue-900/50 text-blue-300' :
                       'bg-yellow-900/50 text-yellow-300'
                     }`}>
-                      {status === 'completed' ? 'Completed' :
-                       status === 'watching' ? 'Watching' : 'Watchlist'}
+                      {status === 'completed'
+                        ? (show.showStatus && show.showStatus !== 'Ended' && show.showStatus !== 'Canceled' ? 'Caught up' : 'Completed')
+                        : status === 'watching' ? 'Watching' : 'Watchlist'}
                     </span>
                   </div>
                   <div className="flex-1">
@@ -780,6 +788,23 @@ export default function ShowEditModal({
                     />
                   </button>
                   Dropped
+                </label>
+
+                <label className="flex items-center gap-1.5 sm:gap-2 cursor-pointer text-gray-400 hover:text-gray-300">
+                  <button
+                    type="button"
+                    onClick={() => setBookmarked(!bookmarked)}
+                    className={`relative inline-flex h-4 sm:h-5 w-7 sm:w-9 items-center rounded-full transition-colors ${
+                      bookmarked ? 'bg-amber-500' : 'bg-gray-600'
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-2.5 sm:h-3 w-2.5 sm:w-3 transform rounded-full bg-white transition-transform ${
+                        bookmarked ? 'translate-x-3.5 sm:translate-x-5' : 'translate-x-0.5 sm:translate-x-1'
+                      }`}
+                    />
+                  </button>
+                  Bookmarked
                 </label>
               </div>
 

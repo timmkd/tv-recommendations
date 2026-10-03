@@ -39,6 +39,7 @@ export const shows = sqliteTable('shows', {
   // Visibility flags
   hidden: integer('hidden', { mode: 'boolean' }).default(false),
   dropped: integer('dropped', { mode: 'boolean' }).default(false),
+  bookmarked: integer('bookmarked', { mode: 'boolean' }).default(false), // User flag: "come back to this" — local only, never synced
 
   // External IDs
   imdbId: text('imdb_id'),

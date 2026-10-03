@@ -57,6 +57,7 @@ export interface Show {
   // Visibility
   hidden?: boolean;
   dropped?: boolean; // Show was dropped - hidden from views but kept for taste analysis
+  bookmarked?: boolean; // User flag to come back to this show; filterable on /shows
 
   // External data
   imdbId?: string;        // IMDB ID (tt1234567)
@@ -156,6 +157,7 @@ export interface ShowOverlay {
   // Visibility
   hidden?: boolean;
   dropped?: boolean; // Show was dropped - hidden from views but kept for taste analysis
+  bookmarked?: boolean; // User flag to come back to this show; filterable on /shows
 
   // Cached external data
   posterPath?: string;

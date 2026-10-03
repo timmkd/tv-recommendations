@@ -52,7 +52,11 @@ async function main() {
     let next;
     if (p && p.aired > 0 && p.completed >= p.aired) next = 'completed';
     else if (p && p.completed > 0) next = 'watching';
-    else if (wl.has(s.tmdbId)) next = 'watchlist';
+    // Watchlist membership is only evidence for shows not already past it. A
+    // completed show lingering on the Trakt watchlist (Andor, 2026-10-03: 24/24
+    // watched, still listed) must not be demoted — especially when the progress
+    // capture was partial and simply has no row for it.
+    else if (wl.has(s.tmdbId) && s.status !== 'completed') next = 'watchlist';
     else { untouched.push(s); continue; }   // no evidence -> leave as-is
 
     if (s.status === next) unchanged.push(s);

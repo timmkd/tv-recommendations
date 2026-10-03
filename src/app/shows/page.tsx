@@ -14,6 +14,17 @@ const STATUS_LABELS: Record<ShowStatus, { label: string; color: string }> = {
   watchlist: { label: 'Watchlist', color: 'bg-yellow-600' }
 };
 
+// Badge for a card. `completed` covers two cases the stored status does not
+// separate: the series is over, or you've seen every aired episode and more are
+// coming. The second is derived from TMDB's showStatus and shown as "Caught up".
+function statusBadge(show: Show): { label: string; color: string } {
+  if (!show.status) return { label: 'Removed', color: 'bg-gray-600' };
+  if (show.status === 'completed' && show.showStatus && show.showStatus !== 'Ended' && show.showStatus !== 'Canceled') {
+    return { label: 'Caught up', color: 'bg-emerald-800 ring-1 ring-emerald-400/60' };
+  }
+  return STATUS_LABELS[show.status];
+}
+
 // Streaming service brand colors and TMDB logo paths
 const STREAMING_BRANDS: Record<string, { bg: string; activeBg: string; logo: string }> = {
   'netflix': { bg: 'bg-red-900/60', activeBg: 'bg-red-600', logo: '/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg' },
@@ -30,6 +41,14 @@ const STREAMING_BRANDS: Record<string, { bg: string; activeBg: string; logo: str
   'ten-play': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-500', logo: '/8fIieu3ZfmTPu8eozZbtgATcPO5.jpg' },
   'amc-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-600', logo: '/ovmu6uot1XVvsemM2dDySXLiX57.jpg' },
 };
+
+function BookmarkIcon({ filled, className }: { filled: boolean; className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+    </svg>
+  );
+}
 
 type SortOption = 'updated' | 'added' | 'title' | 'title-desc' | 'year' | 'year-asc' | 'rating' | 'predicted' | 'bingeability' | 'rt-critics' | 'rt-audience';
 
@@ -49,7 +68,10 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 
 function ShowsContent() {
   const searchParams = useSearchParams();
-  const statusFilter = searchParams.get('status');
+  // Status is multi-select: ?status=watching,watchlist
+  const statusParam = searchParams.get('status');
+  const statusFilters = (statusParam ? statusParam.split(',') : []).filter((s): s is ShowStatus => s in STATUS_LABELS);
+  const bookmarkedFilter = searchParams.get('bookmarked') === 'true';
   const unratedFilter = searchParams.get('unrated') === 'true';
   const ratedFilter = searchParams.get('rated') === 'true';
   const unpredictedFilter = searchParams.get('unpredicted') === 'true';
@@ -60,6 +82,7 @@ function ShowsContent() {
   const showDropped = searchParams.get('dropped') === 'true';
   const showRemoved = searchParams.get('removed') === 'true';
   const sortParam = (searchParams.get('sort') as SortOption) || 'updated';
+  const viewParam = searchParams.get('view') || 'grid'; // View mode (grid or list)
 
   const [shows, setShows] = useState<Show[]>([]);
   const [loading, setLoading] = useState(true);
@@ -286,8 +309,11 @@ function ShowsContent() {
   } else {
     filtered = filtered.filter(s => !!s.status);
   }
-  if (statusFilter) {
-    filtered = filtered.filter(s => s.status === statusFilter);
+  if (statusFilters.length > 0) {
+    filtered = filtered.filter(s => s.status && statusFilters.includes(s.status));
+  }
+  if (bookmarkedFilter) {
+    filtered = filtered.filter(s => s.bookmarked);
   }
   if (unratedFilter) {
     filtered = filtered.filter(s => s.rating === undefined || s.rating === null);
@@ -323,6 +349,7 @@ function ShowsContent() {
   const hiddenCount = shows.filter(s => s.hidden).length;
   const droppedCount = shows.filter(s => s.dropped).length;
   const removedCount = shows.filter(s => !s.status).length;
+  const bookmarkedCount = shows.filter(s => s.bookmarked && !s.dropped).length;
 
   // Apply sorting
   filtered.sort((a, b) => {
@@ -378,6 +405,23 @@ function ShowsContent() {
 
   const handleShowSaved = (updatedShow: Show) => {
     setShows(prev => prev.map(s => s.id === updatedShow.id ? updatedShow : s));
+  };
+
+  // Bookmark toggle straight from the card; optimistic, reverts on failure
+  const toggleBookmark = async (e: React.MouseEvent, show: Show) => {
+    e.stopPropagation();
+    const next = !show.bookmarked;
+    setShows(prev => prev.map(s => s.id === show.id ? { ...s, bookmarked: next } : s));
+    try {
+      const res = await fetch('/api/trakt/shows', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tmdbId: show.tmdbId, bookmarked: next }),
+      });
+      if (!res.ok) throw new Error('save failed');
+    } catch {
+      setShows(prev => prev.map(s => s.id === show.id ? { ...s, bookmarked: !next } : s));
+    }
   };
 
   const handleShowDeleted = () => {
@@ -522,9 +566,6 @@ function ShowsContent() {
 
   const showsNeedingStreaming = shows.filter(s => isStreamingStale(s)).length;
 
-  // View mode (grid or list)
-  const viewParam = searchParams.get('view') || 'grid';
-
   const fetchStreaming = async () => {
     const showsToFetch = shows.filter(s => isStreamingStale(s));
     if (showsToFetch.length === 0) {
@@ -575,10 +616,27 @@ function ShowsContent() {
     setTimeout(() => setStreamingProgress(null), 5000);
   };
 
-  // Helper to build filter URLs
-  const buildFilterUrl = (params: { status?: string | null; unrated?: boolean; rated?: boolean; unpredicted?: boolean; streaming?: string[] | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; removed?: boolean; sort?: SortOption; view?: 'grid' | 'list' }) => {
+  // Helper to build filter URLs. Every key defaults to its CURRENT value, so
+  // callers pass only the fields they are changing (null clears a field).
+  const buildFilterUrl = (overrides: { statuses?: ShowStatus[] | null; bookmarked?: boolean; unrated?: boolean; rated?: boolean; unpredicted?: boolean; streaming?: string[] | null; watchpref?: 'solo' | 'together' | null; hidden?: boolean; dropped?: boolean; removed?: boolean; sort?: SortOption; view?: 'grid' | 'list' }) => {
+    const params = {
+      statuses: statusFilters,
+      bookmarked: bookmarkedFilter,
+      unrated: unratedFilter,
+      rated: ratedFilter,
+      unpredicted: unpredictedFilter,
+      streaming: streamingFilters,
+      watchpref: watchPrefFilter,
+      hidden: showHidden,
+      dropped: showDropped,
+      removed: showRemoved,
+      sort: sortParam,
+      view: viewParam as 'grid' | 'list',
+      ...overrides,
+    };
     const urlParams = new URLSearchParams();
-    if (params.status) urlParams.set('status', params.status);
+    if (params.statuses && params.statuses.length > 0) urlParams.set('status', params.statuses.join(','));
+    if (params.bookmarked) urlParams.set('bookmarked', 'true');
     if (params.unrated) urlParams.set('unrated', 'true');
     if (params.rated) urlParams.set('rated', 'true');
     if (params.unpredicted) urlParams.set('unpredicted', 'true');
@@ -824,30 +882,49 @@ function ShowsContent() {
 
             {/* Status Filters */}
             <Link
-              href={buildFilterUrl({ unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+              href={buildFilterUrl({ statuses: null, unrated: false, rated: false, unpredicted: false })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
-                !statusFilter && !unratedFilter && !ratedFilter && !unpredictedFilter ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+                statusFilters.length === 0 && !unratedFilter && !ratedFilter && !unpredictedFilter ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
             >
               All
             </Link>
-            {(Object.keys(STATUS_LABELS) as ShowStatus[]).map(status => (
-              <Link
-                key={status}
-                href={buildFilterUrl({ status, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
-                className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
-                  statusFilter === status ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
-                }`}
-              >
-                {STATUS_LABELS[status].label}
-              </Link>
-            ))}
+            {/* Status chips are multi-select: each click toggles that status in/out of the set */}
+            {(Object.keys(STATUS_LABELS) as ShowStatus[]).map(status => {
+              const isActive = statusFilters.includes(status);
+              const next = isActive ? statusFilters.filter(s => s !== status) : [...statusFilters, status];
+              return (
+                <Link
+                  key={status}
+                  href={buildFilterUrl({ statuses: next })}
+                  className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
+                    isActive ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
+                  }`}
+                >
+                  {STATUS_LABELS[status].label}
+                </Link>
+              );
+            })}
+
+            <span className="border-l border-gray-600 h-5 sm:h-6"></span>
+
+            {/* Bookmarked: ON = only bookmarked shows */}
+            <Link
+              href={buildFilterUrl({ bookmarked: !bookmarkedFilter })}
+              className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap flex items-center gap-1 ${
+                bookmarkedFilter ? 'bg-amber-500 text-gray-900' : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              title="Show only bookmarked shows"
+            >
+              <BookmarkIcon filled={bookmarkedFilter} className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              Bookmarked{bookmarkedCount > 0 ? ` (${bookmarkedCount})` : ''}
+            </Link>
 
             <span className="border-l border-gray-600 h-5 sm:h-6"></span>
 
             {/* Special Filters */}
             <Link
-              href={buildFilterUrl({ status: statusFilter, unrated: !unratedFilter, rated: false, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+              href={buildFilterUrl({ unrated: !unratedFilter, rated: false })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                 unratedFilter ? 'bg-yellow-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -856,7 +933,7 @@ function ShowsContent() {
             </Link>
             {/* Rated: the inverse of Unrated — the two are mutually exclusive */}
             <Link
-              href={buildFilterUrl({ status: statusFilter, unrated: false, rated: !ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+              href={buildFilterUrl({ unrated: false, rated: !ratedFilter })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                 ratedFilter ? 'bg-teal-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -864,7 +941,7 @@ function ShowsContent() {
               Rated
             </Link>
             <Link
-              href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: !unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+              href={buildFilterUrl({ unpredicted: !unpredictedFilter })}
               className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                 unpredictedFilter ? 'bg-purple-600' : 'bg-gray-700 hover:bg-gray-600'
               }`}
@@ -873,7 +950,7 @@ function ShowsContent() {
             </Link>
             {hiddenCount > 0 && (
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: !showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                href={buildFilterUrl({ hidden: !showHidden })}
                 className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                   showHidden ? 'bg-orange-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -883,7 +960,7 @@ function ShowsContent() {
             )}
             {droppedCount > 0 && (
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: !showDropped, removed: showRemoved, sort: sortParam })}
+                href={buildFilterUrl({ dropped: !showDropped })}
                 className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                   showDropped ? 'bg-gray-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -893,7 +970,7 @@ function ShowsContent() {
             )}
             {removedCount > 0 && (
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: !showRemoved, sort: sortParam })}
+                href={buildFilterUrl({ removed: !showRemoved })}
                 className={`px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${
                   showRemoved ? 'bg-amber-700' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -903,7 +980,7 @@ function ShowsContent() {
             )}
 
             {/* Clear all filters button */}
-            {(statusFilter || unratedFilter || ratedFilter || unpredictedFilter || streamingFilters.length > 0 || watchPrefFilter || showHidden || showDropped || showRemoved || sortParam !== 'updated' || searchQuery) && (
+            {(statusFilters.length > 0 || bookmarkedFilter || unratedFilter || ratedFilter || unpredictedFilter || streamingFilters.length > 0 || watchPrefFilter || showHidden || showDropped || showRemoved || sortParam !== 'updated' || searchQuery) && (
               <Link
                 href="/shows"
                 onClick={() => setSearchQuery('')}
@@ -922,7 +999,7 @@ function ShowsContent() {
             {allServices.length > 0 && (
               <div className="hidden sm:flex items-center gap-1.5">
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                  href={buildFilterUrl({ streaming: null })}
                   className={`px-2 py-1 rounded text-xs ${
                     streamingFilters.length === 0 ? 'bg-purple-600' : 'bg-gray-700 hover:bg-gray-600'
                   }`}
@@ -930,7 +1007,7 @@ function ShowsContent() {
                   All
                 </Link>
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters.includes('none') ? null : ['none'], watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                  href={buildFilterUrl({ streaming: streamingFilters.includes('none') ? null : ['none'] })}
                   className={`px-2 py-1 rounded text-xs ${
                     streamingFilters.includes('none') ? 'bg-red-600' : 'bg-gray-700 hover:bg-gray-600'
                   }`}
@@ -947,7 +1024,7 @@ function ShowsContent() {
                   return (
                     <Link
                       key={service.slug}
-                      href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: newFilters.length > 0 ? newFilters : null, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                      href={buildFilterUrl({ streaming: newFilters.length > 0 ? newFilters : null })}
                       className={`px-1.5 py-1 rounded-md flex items-center transition-all ${
                         isActive
                           ? 'ring-2 ring-white bg-gray-700'
@@ -975,7 +1052,7 @@ function ShowsContent() {
             {allServices.length > 0 && (
               <div className="flex sm:hidden items-center gap-1">
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters.includes('none') ? null : ['none'], watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                  href={buildFilterUrl({ streaming: streamingFilters.includes('none') ? null : ['none'] })}
                   className={`px-1.5 py-0.5 rounded text-[10px] ${
                     streamingFilters.includes('none') ? 'bg-red-600' : 'bg-gray-700 hover:bg-gray-600'
                   }`}
@@ -992,7 +1069,7 @@ function ShowsContent() {
                   return (
                     <Link
                       key={service.slug}
-                      href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: newFilters.length > 0 ? newFilters : null, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                      href={buildFilterUrl({ streaming: newFilters.length > 0 ? newFilters : null })}
                       className={`p-0.5 rounded-md flex items-center transition-all ${
                         isActive
                           ? 'ring-2 ring-white'
@@ -1020,7 +1097,7 @@ function ShowsContent() {
             <div className="flex items-center gap-1 sm:gap-1.5">
               <span className="text-[10px] sm:text-xs text-gray-500 hidden sm:inline">Watch:</span>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: null, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                href={buildFilterUrl({ watchpref: null })}
                 className={`px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-xs ${
                   !watchPrefFilter ? 'bg-teal-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -1028,7 +1105,7 @@ function ShowsContent() {
                 All
               </Link>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter === 'solo' ? null : 'solo', hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                href={buildFilterUrl({ watchpref: watchPrefFilter === 'solo' ? null : 'solo' })}
                 className={`px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-xs ${
                   watchPrefFilter === 'solo' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -1036,7 +1113,7 @@ function ShowsContent() {
                 Solo
               </Link>
               <Link
-                href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter === 'together' ? null : 'together', hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam })}
+                href={buildFilterUrl({ watchpref: watchPrefFilter === 'together' ? null : 'together' })}
                 className={`px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-xs ${
                   watchPrefFilter === 'together' ? 'bg-pink-600' : 'bg-gray-700 hover:bg-gray-600'
                 }`}
@@ -1050,7 +1127,7 @@ function ShowsContent() {
               <select
                 value={sortParam}
                 onChange={(e) => {
-                  const url = buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: e.target.value as SortOption, view: viewParam as 'grid' | 'list' });
+                  const url = buildFilterUrl({ sort: e.target.value as SortOption });
                   window.location.href = url;
                 }}
                 className="bg-gray-800 border border-gray-700 rounded-lg px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer"
@@ -1064,7 +1141,7 @@ function ShowsContent() {
 
               <div className="flex items-center gap-0.5 sm:gap-1 bg-gray-800 rounded-lg p-0.5">
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam, view: 'grid' })}
+                  href={buildFilterUrl({ view: 'grid' })}
                   className={`p-1 sm:p-1.5 rounded transition-colors ${
                     viewParam === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700'
                   }`}
@@ -1075,7 +1152,7 @@ function ShowsContent() {
                   </svg>
                 </Link>
                 <Link
-                  href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, unpredicted: unpredictedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam, view: 'list' })}
+                  href={buildFilterUrl({ view: 'list' })}
                   className={`p-1 sm:p-1.5 rounded transition-colors ${
                     viewParam === 'list' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700'
                   }`}
@@ -1098,10 +1175,11 @@ function ShowsContent() {
               <table className="w-full">
                 <thead className="bg-gray-900 sticky top-0">
                   <tr>
+                    <th className="px-2 py-3 w-8"></th>
                     <th className="px-2 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-12"></th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam === 'title' ? 'title-desc' : 'title', view: 'list' })}
+                        href={buildFilterUrl({ sort: sortParam === 'title' ? 'title-desc' : 'title', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Title
@@ -1112,7 +1190,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: sortParam === 'year' ? 'year-asc' : 'year', view: 'list' })}
+                        href={buildFilterUrl({ sort: sortParam === 'year' ? 'year-asc' : 'year', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Year
@@ -1124,7 +1202,7 @@ function ShowsContent() {
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'rating', view: 'list' })}
+                        href={buildFilterUrl({ sort: 'rating', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Rating
@@ -1133,7 +1211,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden md:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'predicted', view: 'list' })}
+                        href={buildFilterUrl({ sort: 'predicted', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         Predicted
@@ -1142,7 +1220,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden lg:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'rt-critics', view: 'list' })}
+                        href={buildFilterUrl({ sort: 'rt-critics', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         🍅
@@ -1151,7 +1229,7 @@ function ShowsContent() {
                     </th>
                     <th className="px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden lg:table-cell">
                       <Link
-                        href={buildFilterUrl({ status: statusFilter, unrated: unratedFilter, rated: ratedFilter, streaming: streamingFilters, watchpref: watchPrefFilter, hidden: showHidden, dropped: showDropped, removed: showRemoved, sort: 'rt-audience', view: 'list' })}
+                        href={buildFilterUrl({ sort: 'rt-audience', view: 'list' })}
                         className="flex items-center gap-1 hover:text-white"
                       >
                         🍿
@@ -1171,6 +1249,17 @@ function ShowsContent() {
                         onClick={() => setEditingShowId(show.id)}
                         className="hover:bg-gray-700 cursor-pointer transition-colors"
                       >
+                        {/* Bookmark */}
+                        <td className="px-2 py-2">
+                          <button
+                            onClick={(e) => toggleBookmark(e, show)}
+                            className={show.bookmarked ? 'text-amber-400 hover:text-amber-300' : 'text-gray-600 hover:text-gray-300'}
+                            title={show.bookmarked ? 'Remove bookmark' : 'Bookmark'}
+                            aria-label={show.bookmarked ? 'Remove bookmark' : 'Bookmark'}
+                          >
+                            <BookmarkIcon filled={!!show.bookmarked} className="w-4 h-4" />
+                          </button>
+                        </td>
                         {/* Poster thumbnail */}
                         <td className="px-2 py-2">
                           {show.posterPath ? (
@@ -1204,8 +1293,8 @@ function ShowsContent() {
                         <td className="px-3 py-2 text-gray-400 text-sm hidden sm:table-cell">{show.year}</td>
                         {/* Status */}
                         <td className="px-3 py-2">
-                          <span className={`px-2 py-0.5 rounded text-xs ${show.status ? STATUS_LABELS[show.status].color : 'bg-gray-600'}`}>
-                            {show.status ? STATUS_LABELS[show.status].label : 'Removed'}
+                          <span className={`px-2 py-0.5 rounded text-xs ${statusBadge(show).color}`}>
+                            {statusBadge(show).label}
                           </span>
                         </td>
                         {/* Rating */}
@@ -1288,8 +1377,21 @@ function ShowsContent() {
                 <div
                   key={show.id}
                   onClick={() => setEditingShowId(show.id)}
-                  className="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all group cursor-pointer"
+                  className="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all group cursor-pointer relative"
                 >
+                  {/* Bookmark toggle, top-right of poster. Always visible when set, hover-only otherwise */}
+                  <button
+                    onClick={(e) => toggleBookmark(e, show)}
+                    className={`absolute top-1.5 right-1.5 z-10 p-1 rounded-md transition-opacity ${
+                      show.bookmarked
+                        ? 'bg-amber-500 text-gray-900 opacity-100'
+                        : 'bg-gray-900/70 text-gray-300 opacity-0 group-hover:opacity-100 hover:text-white'
+                    }`}
+                    title={show.bookmarked ? 'Remove bookmark' : 'Bookmark'}
+                    aria-label={show.bookmarked ? 'Remove bookmark' : 'Bookmark'}
+                  >
+                    <BookmarkIcon filled={!!show.bookmarked} className="w-4 h-4" />
+                  </button>
                   {/* Poster */}
                   {show.posterPath ? (
                     <img
@@ -1382,8 +1484,8 @@ function ShowsContent() {
 
                     {/* Status + RT Scores row */}
                     <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-1.5">
-                      <span className={`px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs ${show.status ? STATUS_LABELS[show.status].color : 'bg-gray-600'}`}>
-                        {show.status ? STATUS_LABELS[show.status].label : 'Removed'}
+                      <span className={`px-1 sm:px-1.5 py-0.5 rounded text-[10px] sm:text-xs ${statusBadge(show).color}`}>
+                        {statusBadge(show).label}
                       </span>
                       <RTScores
                         showId={show.id}

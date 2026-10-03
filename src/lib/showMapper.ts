@@ -35,6 +35,7 @@ export function overlayToShow(overlay: ShowOverlay): Show {
     notes: overlay.notes,
     hidden: overlay.hidden,
     dropped: overlay.dropped,
+    bookmarked: overlay.bookmarked,
     genres: overlay.genres || [],
     tmdbRating: overlay.tmdbRating,
     tmdbVoteCount: overlay.tmdbVoteCount,
