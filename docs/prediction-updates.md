@@ -1245,3 +1245,14 @@ for all 20, replayable through `apply-predictions.ts`.
 | **Six Feet Under** | — | 4★ S | New: prestige family drama; formula 4.5★ held to the solo character-drama 4★ wall |
 | **I May Destroy You** | — | 4★ S | New: Coel limited series; Baby Reindeer-class trauma drama, solo |
 | **Girls** | — | 3.5★ S | New: Dunham dramedy; unlikeable-by-design leads, weak-payoff risk offsets classic bonuses |
+
+## 2026-10-03 — Prediction rescan (profile changes: 2026-10-03)
+
+Screened 188 stale predictions; kept 187 unchanged. Pending entry was the
+interleaved-stress bingeability LESSON from The Bear (4★/binge 3, up from
+3.5★/binge 2). Only one live prediction leaned on the old Bear values. Full
+screening table: `data/prediction-batches/2026-10-03-rescan-screening.md`.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Boiling Point** | 3.5★ S | 3.5★ S | 2026-10-03 LESSON (interleaved stress): The Bear comp now 4★/binge 3 — binge 2→3, star held 3.5★, reason refresh |
