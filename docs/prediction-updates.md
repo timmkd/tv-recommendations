@@ -1256,3 +1256,77 @@ screening table: `data/prediction-batches/2026-10-03-rescan-screening.md`.
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **Boiling Point** | 3.5★ S | 3.5★ S | 2026-10-03 LESSON (interleaved stress): The Bear comp now 4★/binge 3 — binge 2→3, star held 3.5★, reason refresh |
+
+## 2026-10-28 — Premature-prediction audit (user-raised) + Trakt resync
+
+User asked for a resync (streaming + watch status) and a re-check of predictions
+made with little or no airtime. Screened every unrated 2025-26 prediction against
+TMDB episode air dates vs the **real** star-prediction date (batch file / log —
+not `predictionsUpdatedAt`, which the 2026-09-16 ramp backfill bumped on ~180
+shows). Shows predicted on ≤4 aired episodes: Stuart (2/10), Last Seen (1/6),
+Apocalypse (2/8), Line of Fire (1/13), Lanterns (4/8). Everything else on the
+user's list had been predicted on a complete season.
+
+Fresh Trakt data pulled via the browser session for all 15 shows
+(`backfill-trakt-meta.ts`); IMDB unavailable (no OMDB key, imdb.com 403s), so
+Trakt is the base throughout.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Stuart Fails to Save the Universe** | 3.5★ S | 3★ S | Post-air recheck: predicted on 2 eps; full S1 out, Trakt fell 7.8→7.4, finale meta/unresolved — 3.5→3★ solo |
+| **Last Seen** | 4★ T | 4★ T | Post-air recheck: predicted on 1 ep/9 votes; now ENDED, 1.2k votes at 7.7, despairing finale — 4★ T holds, refreshed |
+| **Youth** | — | 3.5★ S | New (never predicted): Horgan midlife dramedy; crude-frankness → solo on the Colin from Accounts precedent |
+| **Scarpetta** | 3.5★ T | 3★ T | Post-air recheck: RT audience 51% vs critics 76% (Mystery/Crime: side with audience) — 3.5→3★ T, binge 4→3 |
+| **Half Man** | 4★ S | 4★ S | Post-air recheck: 126-vote caveat gone (1.5k at 8.2), ENDED confirmed — 4★ S holds, reason refreshed |
+| **Lanterns** | 4★ S | 4★ S | Post-air recheck: predicted at 4/8 eps; S1 complete, 9.2k votes at 8.3, divisive finale — 4★ S holds, refreshed |
+| **Line of Fire** | 3.5★ T | 3.5★ T | Mid-season recheck: predicted after 1 ep/28 votes; 6 of 18 aired, 154 votes, critics 87% — 3.5★ T holds, refreshed |
+| **Apocalypse** | 3.5★ T | 3★ T | Mid-season recheck: predicted at 2/8 eps on 4 votes; critics 60%, viewer outrage, sag confirmed — 3.5→3★ T, binge 4→3 |
+| **VisionQuest** | — | 4★ S | New (found on Trakt watched, not local): Marvel completionist lane, WandaVision 4★ parent — 4★ S |
+| **The Haunting of Hill House** | — | 4.5★ S | New (Trakt watchlist add 2026-10-13): reveal-driven complete horror limited, Dark/Stranger Things class — 4.5★ S |
+| **Harry Potter** | — | 3.5★ S | New (Trakt watchlist add 2026-10-25): PRE-AIR structural call, franchise floor 3.5★ S — re-derive after 25 Dec |
+
+**Checked and left unchanged (no write, so `predictionsUpdatedAt` is untouched):**
+Widow's Bay 4.5★ S (already a post-air rescan, Trakt now 8.36 on 10k votes);
+Margo's Got Money Troubles 3.5★ T (re-verified 09-16 on the full season; Trakt
+7.66, unchanged); 12 Monkeys 4★ S (2015-18, complete — nothing new to learn);
+My Brilliant Career 4★ T (444 votes at 7.48, Metacritic 81 "universal acclaim" —
+re-derived to the same number).
+
+**Thin-vote predictions NOT re-derived** (fully aired for months, so the low count is
+permanent, not premature): Waiting for the Out 3★ (76 votes), The Gray House 3★
+(73), Bait 3.5★ (345), Bookish 3.5★ (400), High Country 3.5★ (159).
+
+**Resync results.** Streaming (`resync-streaming.ts`, JustWatch): 389 shows, 17
+changed, incl. Line of Fire netflix→max and Youth →max. Watch status
+(`resync-watch-status.ts` from the 2026-10-28 browser capture, 100 watched / 150
+watchlist / 100 progress rows): 10 moves — The Bear and The Testaments →
+completed; Survivor, Abbott Elementary, The Diplomat, Slow Horses, Nobody Wants
+This completed→watching (new episodes aired); We Were the Lucky Ones, Rooster,
+VisionQuest watchlist→watching. Three shows on Trakt were missing locally and were
+added via `add-show-by-tmdb.ts`: VisionQuest, The Haunting of Hill House, Harry
+Potter (Hill House gained `Horror` from the Trakt genre merge).
+
+**Rating reviewed:** The Testaments 4★ T / binge 5 — predicted 4★ T / binge 5,
+exact on all three axes. Lesson bullet appended to the taste profile; stats
+updated to 220 rated / MAE 0.50★ / 79% within 0.5★. Pure validation, no rescan.
+
+## 2026-10-28 — Harry Potter prior (user-raised)
+
+User: "Harry Potter is one of my favourite things… but it's not aired yet." A loved
+franchise is the Trek/Marvel lane (Lower Decks 4.5★, Loki 4.5★, SNW 4★), so the
+3.5★ "franchise floor" was the wrong class — that floor is for IP merely followed.
+Pre-air flag retained; re-derive after 25 Dec.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Harry Potter** | 3.5★ S | 4★ S | User-raised: stated favourite IP — loved-franchise lane lifts floor 3.5→4★ S; still PRE-AIR |
+
+## 2026-10-28 — Harry Potter watch mode (user-raised)
+
+User: "HP will def be together. Helen and I both enjoy it and we will even watch it
+with the kids." The fantasy→solo default does not apply to a franchise both of them
+love; a family watch is ground truth on mode.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Harry Potter** | 4★ S | 4★ T | User-raised: Helen loves it too, family watch with the kids — solo→together; 4★ holds, still PRE-AIR |

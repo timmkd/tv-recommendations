@@ -2,14 +2,14 @@
 
 For data formats, API routes, and coding patterns, see `CLAUDE.md`.
 
-## Rating Distribution (219 rated shows)
+## Rating Distribution (220 rated shows)
 
 | Rating | Count | Meaning |
 |--------|-------|---------|
 | 5★ | 5 | Exceptional - all-time favorites |
 | 4.5★ | 19 | Loved it - strong signal |
-| 4★ | 83 | Good solid show |
-| 3.5★ | 49 | Enjoy but don't love |
+| 4★ | 85 | Good solid show |
+| 3.5★ | 48 | Enjoy but don't love |
 | 3★ | 37 | Still good |
 | 2-2.5★ | 26 | Dropped or disappointed |
 
@@ -461,7 +461,7 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 
 ## Prediction Accuracy (May 2026)
 
-**27-show validated sample (Sep 2026):** MAE: 0.52★ (target ~0.5★) | Bias: -0.26★ (formula already corrects via -0.5★ term) | Within 0.5★: 78%
+**28-show validated sample (Oct 2026):** MAE: 0.50★ (target ~0.5★) | Bias: -0.25★ (formula already corrects via -0.5★ term) | Within 0.5★: 79%
 
 **Range restriction (measured Aug 2026):** 128 of 214 rated shows sit at 3.5★ or 4★ — 60% inside a half-star band, with only 5 shows ever at 5★. The star scale has ~1.5★ of usable range in practice, so an MAE of 0.57★ is worse than it looks. This is the main argument for tracking bingeability as a second, less compressed axis (see **Bingeability**).
 
@@ -487,6 +487,8 @@ Top: Max, Paramount+, Netflix (3.70-3.75★) | Mid: Disney+, Apple TV+, Stan (3.
 - **All Her Fault (exact)**: predicted 4★ together → rated 4★ **together**, both rating and watch mode right. Validates the domestic-thriller-together shape end to end: a withheld-answer abduction hook + a relatable mother lead + a contained 8-episode ENDED run, with **no bleak penalty applied** despite child-abduction content. Confirms the "dark but purposeful and contained" carve-out (Adolescence 4★, Little Fires Everywhere 4★) rather than the bleak→solo default.
 - **Malcolm in the Middle: Life's Still Unfair (+0.5)**: predicted 3.5★ → rated 4★ solo, watch mode correct. Under-predicted because nothing in the modifier table rewards **nostalgia revival at very low commitment** — "Super easy binge and fun nostalgia it was very easy to watch quickly". A four-episode revival of a comfort show is closer to the comfort-rewatch register (Parks 5★, Office 5★) than to an unproven new comedy. Calibration note only, n=1 — do not add a modifier until a second revival lands.
 - **The Day of the Jackal (exact; binge 5→4)**: predicted 4★ together → rated 4★ together, both right. Bingeability over-called at 5 on structure alone (assassin-vs-hunter chase, near-miss episode endings): "although it was highly bingeable and we did consume it all quite quickly, it was still easy to put down." **Fast consumption ≠ compulsion** — 5 is reserved for "couldn't stop"; a propulsive chase shape earns 4 unless there is evidence of genuine can't-put-it-down pull. Also: rooting for a morally grey assassin ("the good guys were not necessarily good") worked together because the chase engine propelled it — consistent with *compelling beats likeable*. Binge overlap now n=3 (2 exact, 1 off-by-one at the noisy 4/5 boundary). Calibration note only — no rescan.
+- **The Testaments (exact on all three axes; Oct 2026)**: predicted 4★ together / binge 5 → rated 4★ together / binge 5. "Easy watch even when it wasn't an easy watch… lots to be shocked about, in a compelling way… very easy one to continue to come back to." Validates the dark-but-purposeful together carve-out a second time at full length (Handmaid's Tale 4★ was the comp) — a dystopia with a systemic villain and present-day resonance ("a commentary on society") is propulsion for Helen, not bleakness, so no bleak penalty was right. Sequel-to-a-rated-show is the strongest comp class available: both the star and the binge score were inherited directly from the parent and both landed. Binge overlap now n=4 (3 exact, 1 off-by-one). Pure validation — no rule change, no rescan.
+- **Harry Potter is a shared favourite IP — TOGETHER, with the kids (user-raised, Oct 2026)**: "one of my favourite things… Helen and I both enjoy it and we will even watch it with the kids." Treat it like Star Trek and Marvel for rating — the loved-franchise lane (Lower Decks 4.5★, Loki 4.5★, SNW 4★), floor ~4★, not the 3.5★ "followed franchise" floor (Starfleet Academy). But unlike Trek/Marvel it is a **family watch**: the fantasy→solo default is overridden by a franchise Helen loves too. Pre-air prediction set to 4★ together; re-derive once the HBO series airs (25 Dec 2026).
 
 ### Library audit (May 2026)
 
