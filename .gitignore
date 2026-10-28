@@ -50,3 +50,6 @@ data/shows.json.bak
 # Trakt session captures + resync logs (local only, regenerate as needed)
 .trakt-*.json
 .streaming-resync-log.txt
+
+# LLM data packages (regenerate with /export-chatgpt-package; contain review notes in bulk)
+exports/

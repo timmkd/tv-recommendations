@@ -1330,3 +1330,33 @@ love; a family watch is ground truth on mode.
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **Harry Potter** | 4★ S | 4★ T | User-raised: Helen loves it too, family watch with the kids — solo→together; 4★ holds, still PRE-AIR |
+
+## 2026-10-28 — Library sync (/sync-library), second run
+
+User-raised: shows showing no platform that are known to stream. Root cause found
+in `src/lib/justwatch.ts`: JustWatch now reports the free broadcasters (SBS On
+Demand, 10 Play, ABC iview) with `monetizationType: "ads"`, and the filter only
+accepted `"free"`, so every SBS/10 title was dropped. Fixed (accepts `free` or
+`ads` for the broadcaster ids; 10 Play added to the free set; BritBox Apple TV
+channel id 1852 mapped to `britbox`). The Good Place itself is NOT a bug: it left
+Netflix AU on 2026-09-26 and is buy-only (Apple/Amazon/Fetch) — JustWatch is right.
+
+**Streaming** (`resync-streaming.ts`, JustWatch): 392 shows, 26 changed — all
+additions, mostly SBS On Demand (The Americans, The Expanse, Say Nothing, Blue
+Lights, Reservation Dogs, The Dropout, Little Fires Everywhere, The Orville, Daisy
+Jones, A Gentleman in Moscow, What We Do in the Shadows, Alone, Interview with the
+Vampire, The Lowdown, A Spy Among Friends, Am I Being Unreasonable?), 10 Play
+(Survivor, Broadchurch, Race Across the World) and BritBox (Victoria, Catherine the
+Great, Staged, Quiz, Detectorists). Four formerly empty rows filled: Victoria,
+Catherine the Great, Race Across the World, Shoresy, Boiling Point.
+17 remain empty and are genuinely not on a tracked subscription/free service in AU
+per JustWatch: buy-only (The Good Place, Psych, The Alienist, Time, Les Misérables,
+A Small Light, Counterpart, Operation Buffalo, Rosehaven, Star Trek: Prodigy,
+Wellington Paranormal, Roseanne, The Twelve), untracked services (Mr. Robot on
+7plus, KEVIN CAN F**K HIMSELF on AMC+, Waiting for the Out on Crunchyroll), or
+pre-air (Harry Potter).
+**Watch status** (`resync-watch-status.ts` from the 2026-10-28 09:46Z browser
+capture, 100 watched / 150 watchlist / 100 progress rows): 0 moves — yesterday's
+sync still current. **Imported from Trakt:** none. **Tombstoned, not re-imported:**
+Monsters at Work, Zootopia+. **Stalled list:** unchanged (Survivor removed earlier
+today). **Predicted:** nothing new.

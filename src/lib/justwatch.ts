@@ -19,6 +19,7 @@ const PROVIDER_MAP: Record<number, string> = {
   151: 'britbox',
   135: 'abc-iview',
   132: 'sbs-on-demand',
+  1852: 'britbox',           // BritBox Apple TV channel
   1899: 'max',               // HBO Max
   82: 'ten-play',             // 10 Play (free, ad-supported)
   // Additional ad-supported/channel variants (map to same slug)
@@ -256,11 +257,12 @@ export async function getStreamingAvailability(tmdbId: number, title?: string, y
     }));
 
     // Free-tier providers (ad-supported public broadcasters)
-    const FREE_PROVIDERS = new Set([135, 132]); // ABC iview, SBS On Demand
+    const FREE_PROVIDERS = new Set([135, 132, 82]); // ABC iview, SBS On Demand, 10 Play
 
-    // Filter to "flatrate" (subscription) or "free" (for public broadcasters) offers
+    // Filter to "flatrate" (subscription) or "free"/"ads" (public broadcasters — JustWatch
+    // reports ABC/SBS/10 as monetizationType 'ads' since late 2026, not 'free')
     const subscriptionServices = offers
-      .filter(o => o.monetizationType === 'flatrate' || (o.monetizationType === 'free' && FREE_PROVIDERS.has(o.providerId)))
+      .filter(o => o.monetizationType === 'flatrate' || ((o.monetizationType === 'free' || o.monetizationType === 'ads') && FREE_PROVIDERS.has(o.providerId)))
       .map(o => PROVIDER_MAP[o.providerId])
       .filter((slug): slug is string => !!slug);
 
@@ -297,12 +299,12 @@ export async function getStreamingByTitle(title: string, year?: number): Promise
     : results[0];
 
   // Free-tier providers (ad-supported public broadcasters)
-  const FREE_PROVIDERS = new Set([135, 132]); // ABC iview, SBS On Demand
+  const FREE_PROVIDERS = new Set([135, 132, 82]); // ABC iview, SBS On Demand, 10 Play
 
   // If we have offers from search, use those
   if (match.offers.length > 0) {
     const subscriptionServices = match.offers
-      .filter(o => o.monetizationType === 'flatrate' || (o.monetizationType === 'free' && FREE_PROVIDERS.has(o.providerId)))
+      .filter(o => o.monetizationType === 'flatrate' || ((o.monetizationType === 'free' || o.monetizationType === 'ads') && FREE_PROVIDERS.has(o.providerId)))
       .map(o => PROVIDER_MAP[o.providerId])
       .filter((slug): slug is string => !!slug);
 

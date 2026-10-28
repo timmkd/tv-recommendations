@@ -425,9 +425,9 @@ Include `tmdbId` and `posterPath` when possible so poster images display.
 ### Current Subscriptions
 
 The `streamingServices` table (`isSubscribed` column) is the source of truth.
-Confirmed with the user 2026-09-10: **Prime Video, Paramount+, ABC iview,
-SBS On Demand**. (Disney+ was wrongly flagged and has been corrected; the older
-note here claiming Stan and Max was stale.)
+Confirmed with the user 2026-10-28: **Binge, Disney+, Prime Video**. (The
+2026-09-10 list — Prime, Paramount+, ABC iview, SBS — is superseded; the table was
+reset to the new list the same day.)
 
 Set it with `npx tsx scripts/set-subscriptions.ts <full list of slugs>` — it
 unsubscribes anything not named, so always pass the complete list.
@@ -459,6 +459,27 @@ what is watchable now, so keep it accurate, but do not treat it as load-bearing.
 
 For the full taste profile, prediction formula, modifiers, solo/together decision logic, and prediction reason guidelines, see **[docs/taste-profile.md](docs/taste-profile.md)**.
 
+## Skills (`.claude/skills/`)
+
+Six skills cover the recurring work. Each one puts the mechanics in validated
+scripts with `SUMMARY:` / `RESULT:` lines and STOP gates — follow them literally.
+
+| Skill | Use when | Writes |
+|-------|----------|--------|
+| `/sync-library` | "Resync / update everything": streaming availability (JustWatch), watch status + progress from the Trakt browser session, import shows missing locally, hand new ones to `/predict-new-shows` | `status`, `streamingServices`, new rows, `data/stalled-shows.json` |
+| `/predict-new-shows` | Shows with no prediction and no rating | Predictions (via `apply-predictions.ts`) |
+| `/recheck-predictions` | Predictions made before the evidence existed — pre-air, 1–4 episodes, thin votes — now that the season has aired. `scripts/airtime-screen.ts` finds them | Predictions for **unrated** shows only |
+| `/review-ratings` | The user has rated / re-rated shows: learn from accuracy, update the taste profile | `docs/taste-profile.md`, changelog marker |
+| `/rescan-predictions` | After profile changes: propagate them to existing predictions | Predictions |
+| `/export-chatgpt-package` | Build `exports/chatgpt-package-<date>/` (+zip) for an external LLM to write reports; includes a platform report card and an analyst prompt | `exports/` only (gitignored) |
+
+Typical monthly order: `/sync-library` → `/review-ratings` (if anything was rated)
+→ `/recheck-predictions` → `/export-chatgpt-package`.
+
+`data/stalled-shows.json` lists in-progress shows that are abandoned in practice;
+the export excludes them from "worth continuing" counts and `/sync-library` warns
+when one gets new plays.
+
 ## Operational Scripts
 
 Run from the repo root with `npx tsx scripts/<name>.ts`. All read `.env.local`.
@@ -478,13 +499,18 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `bingeability-report.ts [--since <ISO>]` | Scored set, r vs star rating, distribution, prediction accuracy, predicted-only set |
 | `find-shows-needing-predictions.ts` | Shows with no prediction and no rating |
 | `stale-predictions.ts [--since <ISO>] [--include-low]` | Pending profile changes + predictions older than them (see caveat below). Excludes sub-3★ predictions by default |
-| `check-new-trakt-shows.ts` | Trakt vs local diff — **fails silently, see the Trakt warning above** |
+| `check-new-trakt-shows.ts` | Trakt vs local diff — **fails silently, see the Trakt warning above**. Superseded by `trakt-capture-diff.ts` |
+| `trakt-capture-diff.ts [capture.json] [--since date]` | Diff the newest Trakt browser capture against the local DB: missing shows (with slugs, tombstones flagged), unpredicted shows, watched-since list, stalled shows with new plays. Prints `IMPORT_TMDB_IDS:` |
+| `airtime-screen.ts [--tmdb a,b] [--all] [--include-low] [--max-eps N] [--min-age N]` | Premature-prediction screen: dates each star prediction from the batch files (not `predictionsUpdatedAt`), counts TMDB episodes aired then vs now, flags PREMATURE / NEW-EPISODES / THIN-VOTES / STALE-PHRASE / PRE-AIR. Prints `RECHECK_TMDB_IDS:` |
 | `lookup-show.ts <query>` | Find shows by title substring |
+| `set-subscriptions.ts --list` | Print the subscriptions table (read-only) |
 
 ### Maintenance
 | Script | Purpose |
 |--------|---------|
 | `add-show-by-tmdb.ts <tmdbId> [--status ...]` | Add a show from TMDB alone, no Trakt. Idempotent; never nulls existing fields |
+| `split-trakt-capture.ts [capture.json]` | Split a `.trakt-capture-<date>.json` browser capture into `.trakt-progress.json` / `.trakt-watchlist.json` / `.trakt-watched-<date>.json` (the resync inputs). Validates shape, warns on failed progress fetches |
+| `lookup-to-captures.ts [lookup.json]` | Convert a `.trakt-lookup-<date>.json` (per-TMDB-id `/search/tmdb` capture) into `.trakt-genres-<date>.json` + `.trakt-newshows.json` for the two backfill scripts |
 | `backfill-trakt-meta.ts [--dry-run]` | Write cached Trakt slug/rating/votes/imdbId from a browser-session capture |
 | `resync-watch-status.ts [--dry-run]` | Rewrite `status` from captured Trakt progress, using the **Status/Sync Logic** rule above |
 | `backfill-show-data.ts [--tmdb a,b] [--all-missing] [--dry-run] [--refresh]` | Fill any EMPTY field on a show: TMDB stub metadata, streaming, RT. Defaults to the shows needing predictions. Never overwrites. Reports what it can't fill (Trakt/IMDB) |
@@ -492,6 +518,7 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch |
 | `delete-show.ts <tmdbId> [--confirm]` | Tombstone in `deletedShows` + remove. Dry-run by default; warns if rated |
 | `set-subscriptions.ts <slug>...` | Set subscribed services. Pass the FULL list — anything omitted is unsubscribed |
+| `export-chatgpt-package.ts [--zip] [--out dir]` | Read-only. Build the LLM data package (CSVs, docs, batches, generated README + ANALYST-PROMPT). Warns when the capture or streaming data is stale |
 | `trakt-reauth.ts` | OAuth device flow — **only works once the app is re-registered** |
 
 ### Rescan rule: predictions below 3★ are never re-thought

@@ -1,0 +1,18 @@
+{
+  "_comment": "In-progress shows that are abandoned in practice (quiet abandonment, late-run fizzle, rewatch-in-progress \u2014 see taste profile). They keep status=watching but are excluded from 'worth continuing' counts in the export. /sync-library warns when one of these shows new watch activity so it can be removed; add a title when a watching show has had no plays for ~6 months and the user confirms it is not coming back.",
+  "titles": [
+    "Monk",
+    "Ghosts",
+    "The Resident",
+    "Fringe",
+    "Mad Men",
+    "24",
+    "Star Wars: The Clone Wars",
+    "Top of the Lake",
+    "Little America",
+    "Master of None",
+    "Roseanne",
+    "Wellington Paranormal",
+    "Victoria"
+  ]
+}

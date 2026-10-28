@@ -101,37 +101,22 @@ on the evidence, don't fold automatically. Only after approval:
    you intended. On FAIL: `git checkout -- docs/taste-profile.md` and redo once;
    if it fails again, STOP and show the diff.
 
-### Step 5 — Check for new Trakt shows
+### Step 5 — Check for new Trakt shows (delegate to /sync-library)
 
-```
-npx tsx scripts/check-new-trakt-shows.ts
-```
+The Trakt API is permanently gone, so `check-new-trakt-shows.ts` always prints
+`0 shows` and the dev-server `syncFromTrakt` route cannot import anything. Do NOT
+run either. Instead invoke the Skill tool with `sync-library`: it reads the user's
+Trakt account through the logged-in `app.trakt.tv` browser tab, resyncs watch
+status, imports missing shows, and calls `/predict-new-shows` itself.
 
-If 0 missing shows → skip to Step 7 (the DB may still hold un-predicted shows).
+If `/sync-library` STOPs because there is no logged-in Trakt tab, note "Trakt not
+synced — no browser session" in the Step 9 summary and continue to Step 7 with
+what is in the DB.
 
-### Step 6 — Sync from Trakt (dev-server lifecycle — follow exactly)
+### Step 6 — (retired)
 
-The sync endpoint needs the Next.js dev server. Its DB writes happen in the
-background AFTER the HTTP response returns — killing the server too early leaves
-half-saved stub rows.
-
-a. `lsof -i :3000 -sTCP:LISTEN -n -P`
-   - If something is listening: set SERVER_PREEXISTING=yes and use it.
-   - Else: start `npm run dev` as a BACKGROUND task and remember that task id.
-     Poll `curl -s -o /dev/null -w '%{http_code}' --max-time 5 http://localhost:3000/`
-     every 3s until it prints a 2xx or 3xx code (the root redirects, so 307 is
-     healthy; max 10 tries, else STOP and report).
-b. Trigger the sync (response is large — always discard it):
-   `curl -s -o /dev/null "http://localhost:3000/api/trakt/shows?syncFromTrakt=true"`
-c. Re-run `npx tsx scripts/check-new-trakt-shows.ts` every 20s until it reports
-   0 missing shows (max 6 tries, else STOP and report what's still missing).
-d. ENRICHMENT WAIT — do not skip: run
-   `npx tsx scripts/find-shows-needing-predictions.ts`. Every newly imported show
-   must print a non-empty `genres=` value. If any show shows empty genres, wait
-   30s and re-check (max 3 times; if still stubs, STOP and report — do NOT stop
-   the server while stubs remain).
-e. Only if SERVER_PREEXISTING=no: stop the background dev task YOU started, by
-   its task id. NEVER `pkill`, and never touch a server you did not start.
+Kept as a heading so the step numbers below stay stable. The dev-server sync it
+described depended on the dead Trakt API.
 
 ### Step 7 — Predict new shows (delegate)
 
@@ -158,7 +143,7 @@ Report using this template:
 Ratings reviewed: <n> new since <date> (window MAE <x>★, <n> big misses)
 Profile changes: <list, or "none"> — <n> pending rescan entries added
   → run /rescan-predictions to propagate them to existing predictions
-New shows: <n> synced from Trakt, <n> predicted (via /predict-new-shows)
+New shows: <n> synced from Trakt via /sync-library, <n> predicted (via /predict-new-shows)
 Still unrated: <list of completed-but-unrated, or "none">
 Files changed: <output of git diff --stat>
 ```
@@ -171,8 +156,6 @@ convention). Do NOT auto-run /rescan-predictions — only suggest it.
 | Symptom | Action |
 |---|---|
 | `.env.local` or `docs/profile-changelog.md` missing | STOP, tell the user |
-| Port 3000 occupied by something that isn't this app | Show `lsof` output, ask the user |
-| Sync never converges (step 6c exceeds retries) | STOP, list the still-missing shows |
-| Stub shows persist (step 6d exceeds retries) | STOP, leave the server running, report |
+| `/sync-library` stops for a Trakt login | Continue without the sync; say so in the summary |
 | /predict-new-shows invocation fails | Report it; never improvise predictions inline |
 | Profile diff validation fails twice | STOP, show the diff, let the user decide |
