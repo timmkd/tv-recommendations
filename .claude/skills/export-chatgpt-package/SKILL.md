@@ -61,6 +61,10 @@ bug — fix the exporter, never the CSV).
 
 ### Step 3 — Report card
 
+`platform_summary.csv` now carries `grade` and `gradeReason` columns computed by
+`src/lib/platforms.ts` (the same rubric below, the same code as the app's
+`/platforms` page). Use them as the grade; only override with a stated reason.
+
 Read `platform_summary.csv` (sorted by `weightedScore`), and for the per-platform
 notes `platform_shows.csv` filtered to `worthIt4plus = true`, sorted by
 `qualityScore` desc. Write `<out>/report-card-$TODAY.md` with EXACTLY these

@@ -27,6 +27,7 @@ dotenv.config({ path: '.env.local' });
 import fs from 'fs';
 import path from 'path';
 const { db, shows, streamingServices } = require('../src/lib/db');
+const { categorise, buildPlatformRows, summarisePlatforms, PLATFORM_SUMMARY_COLUMNS } = require('../src/lib/platforms');
 
 const { execSync } = require('child_process');
 const args = process.argv.slice(2);
@@ -34,10 +35,7 @@ const today = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toIS
 const OUT = args.includes('--out') ? args[args.indexOf('--out') + 1] : path.join('exports', `chatgpt-package-${today}`);
 const ZIP = args.includes('--zip');
 
-// In-progress shows that are abandoned/stalled in practice (see taste profile:
-// quiet abandonment, late-run fizzle, rewatch-in-progress). Flagged, not removed.
-// Maintained in data/stalled-shows.json (the /sync-library skill warns when one gets new plays).
-const STALLED = new Set(fs.existsSync('data/stalled-shows.json') ? JSON.parse(fs.readFileSync('data/stalled-shows.json', 'utf8')).titles : []);
+// Stalled titles (data/stalled-shows.json) are read by src/lib/platforms.ts.
 const warnings = [];
 
 const csvCell = (v) => {
@@ -86,24 +84,12 @@ async function main() {
     'justWatchUrl', 'traktAired', 'traktCompleted', 'traktLastEpisode', 'traktNextEpisode',
     'overview', 'createdAt', 'updatedAt'];
 
-  const categorise = (s) => {
-    if (s.dropped) return 'dropped';
-    if (s.status === 'completed') return 'completed';
-    const p = progress.get(s.tmdbId);
-    if (s.status === 'watching') {
-      if (STALLED.has(s.title)) return 'stalled';
-      if (p && p.lastEp && p.nextEp && +p.nextEp.split('x')[0] > +p.lastEp.split('x')[0]) return 'new-season-waiting';
-      if (p && p.aired > 0 && p.completed >= p.aired) return 'caught-up';
-      return 'mid-season';
-    }
-    return 'not-started';
-  };
-
+  // watchCategory / worth-it / summary logic is shared with the /platforms page (src/lib/platforms.ts)
   const showRows = all.map((s) => {
     const p = progress.get(s.tmdbId);
     return {
       ...s,
-      watchCategory: categorise(s),
+      watchCategory: categorise(s, p ?? null),
       predictionDelta: s.rating != null && s.predictedRating != null ? +(s.rating - s.predictedRating).toFixed(1) : null,
       onSubscribedService: (s.streamingServices || []).some((x) => subscribed.has(x)),
       traktAired: p?.aired ?? null, traktCompleted: p?.completed ?? null,
@@ -113,56 +99,14 @@ async function main() {
   writeCsv('shows.csv', showRows, showCols);
 
   // ---- platform_shows.csv --------------------------------------------------
-  const platRows = [];
-  for (const s of showRows) {
-    for (const sv of s.streamingServices || []) {
-      const quality = s.rating ?? s.predictedRating ?? null;
-      platRows.push({
-        platform: sv, platformAlias: sv === 'foxtel-now' ? 'alias-of-max (JustWatch legacy HBO mapping)' : '',
-        subscribed: subscribed.has(sv), tmdbId: s.tmdbId, title: s.title, year: s.year,
-        watchCategory: s.watchCategory, watchMode: s.watchPreference || s.recommendedWatchPreference || '',
-        rating: s.rating, predictedRating: s.predictedRating, qualityScore: quality,
-        worthIt4plus: s.watchCategory !== 'completed' && s.watchCategory !== 'dropped' && s.watchCategory !== 'stalled' && quality != null && quality >= 4,
-        exclusiveToPlatform: (s.streamingServices || []).filter((x) => x !== 'foxtel-now').length === 1,
-        numberOfSeasons: s.numberOfSeasons, showStatus: s.showStatus, genres: s.genres,
-        traktCompleted: s.traktCompleted, traktAired: s.traktAired, traktNextEpisode: s.traktNextEpisode,
-      });
-    }
-  }
+  const platRows = buildPlatformRows(showRows, subscribed, progress);
   writeCsv('platform_shows.csv', platRows, ['platform', 'platformAlias', 'subscribed', 'tmdbId', 'title', 'year',
     'watchCategory', 'watchMode', 'rating', 'predictedRating', 'qualityScore', 'worthIt4plus', 'exclusiveToPlatform',
     'numberOfSeasons', 'showStatus', 'genres', 'traktCompleted', 'traktAired', 'traktNextEpisode']);
 
   // ---- platform_summary.csv -----------------------------------------------
-  const plats = [...new Set(platRows.map((r) => r.platform))];
-  const summary = plats.map((pl) => {
-    const rows = platRows.filter((r) => r.platform === pl);
-    const live = rows.filter((r) => !['completed', 'dropped'].includes(r.watchCategory));
-    const worth = live.filter((r) => r.worthIt4plus);
-    const n = (f) => live.filter(f).length;
-    return {
-      platform: pl, subscribed: subscribed.has(pl), aliasOfMax: pl === 'foxtel-now',
-      totalInLibrary: rows.length, completed: rows.filter((r) => r.watchCategory === 'completed').length,
-      dropped: rows.filter((r) => r.watchCategory === 'dropped').length,
-      unfinished: live.length,
-      newSeasonWaiting: n((r) => r.watchCategory === 'new-season-waiting'),
-      midSeason: n((r) => r.watchCategory === 'mid-season'),
-      stalled: n((r) => r.watchCategory === 'stalled'),
-      notStarted: n((r) => r.watchCategory === 'not-started'),
-      worthIt4plus: worth.length,
-      worthIt45plus: worth.filter((r) => r.qualityScore >= 4.5).length,
-      worthIt4only: worth.filter((r) => r.qualityScore >= 4 && r.qualityScore < 4.5).length,
-      tier35: live.filter((r) => r.watchCategory !== 'stalled' && r.qualityScore != null && r.qualityScore >= 3.5 && r.qualityScore < 4).length,
-      worthItExclusive: worth.filter((r) => r.exclusiveToPlatform).length,
-      worthItLive: worth.filter((r) => ['new-season-waiting', 'mid-season', 'caught-up'].includes(r.watchCategory)).length,
-      worthItSolo: worth.filter((r) => r.watchMode === 'solo').length,
-      worthItTogether: worth.filter((r) => r.watchMode === 'together').length,
-      worthItSingleSeason: worth.filter((r) => (r.numberOfSeasons || 1) <= 1).length,
-      worthItSeasonsTotal: worth.reduce((a, r) => a + (r.numberOfSeasons || 1), 0),
-      weightedScore: worth.reduce((a, r) => a + (r.qualityScore >= 4.5 ? 3 : 2), 0) + live.filter((r) => r.watchCategory !== 'stalled' && r.qualityScore >= 3.5 && r.qualityScore < 4).length,
-    };
-  }).sort((a, b) => b.weightedScore - a.weightedScore);
-  writeCsv('platform_summary.csv', summary, Object.keys(summary[0]));
+  const summary = summarisePlatforms(platRows, subscribed);
+  writeCsv('platform_summary.csv', summary, PLATFORM_SUMMARY_COLUMNS);
 
   // ---- subscriptions.csv --------------------------------------------------
   writeCsv('subscriptions.csv', services.map((s) => ({ slug: s.slug, name: s.name, subscribed: !!s.isSubscribed })), ['slug', 'name', 'subscribed']);
@@ -214,7 +158,7 @@ Start with \`ANALYST-PROMPT.md\` (the brief) and \`docs/taste-profile.md\` (the 
 |---|---|
 | \`shows.csv\` | **The master table.** One row per show (${all.length}), every column. Includes completed and dropped shows. |
 | \`platform_shows.csv\` | One row per show × streaming platform (${platRows.length}). Use for per-platform analysis. |
-| \`platform_summary.csv\` | Per-platform counts: unfinished, worth-it, exclusive, solo/together, weighted score. |
+| \`platform_summary.csv\` | Per-platform counts: unfinished, worth-it, exclusive, solo/together, weighted score, plus the rubric \`grade\` and \`gradeReason\` (same logic as the app's /platforms page). |
 | \`subscriptions.csv\` | Streaming services and which are currently subscribed (${subsNames}). |
 | \`trakt_progress.csv\` | Per-show episodes aired vs completed from Trakt (watched shows only, ${capture ? capture.progress.length : 0} rows). |
 | \`trakt_watched.csv\` | Trakt play counts and last-watched timestamps. |

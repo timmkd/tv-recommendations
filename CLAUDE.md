@@ -58,6 +58,7 @@ Database access is centralized through `src/lib/db`:
 - `src/lib/rottentomatoes.ts` - Rotten Tomatoes scraper for critic scores — **BROKEN as of 2026-09-14**: `getRTRatings()` returns `{}` for every title (verified on Severance, Andor, Slow Horses, The Offer). RT changed its markup. Low urgency (RT correlates 0.18/0.13 — the profile says ignore it), but treat a missing RT score as UNKNOWN, never as a low score
 - `src/lib/justwatch.ts` - JustWatch API for streaming availability (Australian region)
 - `src/lib/db` - Database access via Drizzle ORM
+- `src/lib/platforms.ts` - **The one definition of the platform report**: `watchCategory`, "worth it" (unfinished, not stalled, quality ≥ 4★ where quality = rating else prediction), per-platform summary numbers, the letter-grade rubric, and the watch-next ordering. Pure functions; used by both the `/platforms` page (`src/lib/platforms-report.ts` loads the DB) and `scripts/export-chatgpt-package.ts`, so the CSVs and the page can never disagree. Reads `data/stalled-shows.json` via a static import. Episode progress is optional: the page runs status-only (every watching show = `mid-season`, "in progress"), the exporter passes the Trakt capture so it also gets `new-season-waiting` / `caught-up`
 
 ### API Routes
 
@@ -333,6 +334,12 @@ See also the prediction-reason guidelines in
 [docs/taste-profile.md](docs/taste-profile.md).
 
 ---
+
+## Pages
+
+- `/shows` - the library grid/list with filters (status, streaming, watch mode, bookmarks)
+- `/platforms` - the platform report card as a live page (added 2026-11-02): watch-next on subscribed services split solo/together, the grade table, and a per-platform shelf (in progress vs cold starts, 3.5★ tail). Server-rendered from the DB on every request. **Status-only today** — it cannot show episode progress or tell "mid-season" from "new season waiting"; adding `traktAired`/`traktCompleted`/`traktNextEpisode` columns to `shows` and having `/sync-library` write them is the planned second step
+- `/recommendations` - static-JSON + OpenAI recommendations; the user reports no longer using it
 
 ## Generating Recommendations
 
