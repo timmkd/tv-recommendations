@@ -214,7 +214,7 @@ without checking the lines above it for `Got 0 shows from Trakt`.**
 |------|----------|
 | Watchlist | `/users/me/watchlist/show?extended=full` |
 | Ratings | `/users/me/ratings/shows` |
-| Watched shows | `/users/me/watched/shows` (note: **never** returns a `seasons` array) |
+| Watched shows | `/users/me/watched/shows?page=N&limit=250` — **paginates at 100 by default** (found 2026-10-31; three captures silently held 100 of 245). Follow `x-pagination-page-count`. Note: **never** returns a `seasons` array |
 | Per-show progress | `/shows/{slug}/progress/watched` → `{aired, completed}` |
 | Look up by TMDB id | `/search/tmdb/{id}?type=show&extended=full` |
 

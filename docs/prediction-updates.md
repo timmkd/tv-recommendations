@@ -1360,3 +1360,18 @@ capture, 100 watched / 150 watchlist / 100 progress rows): 0 moves — yesterday
 sync still current. **Imported from Trakt:** none. **Tombstoned, not re-imported:**
 Monsters at Work, Zootopia+. **Stalled list:** unchanged (Survivor removed earlier
 today). **Predicted:** nothing new.
+
+## 2026-10-31 — Library sync (/sync-library)
+
+**Streaming** (`resync-streaming.ts`, JustWatch): 392 shows, 3 changed — Unforgotten, Sherwood and Interview with the Vampire all lost `abc-iview`; no platform gained.
+**Watch status** (`resync-watch-status.ts` from the 2026-10-31 browser capture, 245 watched / 151 watchlist / 245 progress rows): 2 moves — The Terminal List → watching (8/16, new season aired), Lupin → watching (17/25, new part aired).
+**Imported from Trakt:** Small Prophets (watchlist). **Tombstoned, not re-imported:** Monsters at Work, Zootopia+, Dream Productions, Rugrats, Aladdin, SS-GB.
+**Stalled list:** unchanged.
+**Predicted:** handled by /predict-new-shows — 1 show (below).
+**Capture fix:** `/users/me/watched/shows` now paginates at 100 by default; the 2026-10-28 captures silently held only 100 of 245 watched shows. The skill's snippet now requests `limit=250` and follows `x-pagination-page-count`.
+
+## 2026-10-31 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Small Prophets** | — | 3.5★ S | New: Crook gentle magical-realist comedy; Ghosts-class solo hook risk, held at 3.5★ |

@@ -70,8 +70,10 @@ async () => {
   const token = JSON.parse(localStorage[k]).access_token;
   const H = { 'Authorization': 'Bearer ' + token, 'trakt-api-key': clientId, 'trakt-api-version': '2' };
   const get = async (p) => { const r = await fetch('https://apiz.trakt.tv' + p, { headers: H }); if (!r.ok) throw new Error(p + ' ' + r.status); return { body: await r.json(), pages: +(r.headers.get('x-pagination-page-count') || 1) }; };
-  const w = await get('/users/me/watched/shows');
-  const watched = w.body.map(x => ({ tmdb: x.show.ids.tmdb, trakt: x.show.ids.trakt, slug: x.show.ids.slug, title: x.show.title, plays: x.plays, last: x.last_watched_at }));
+  // /users/me/watched/shows paginates at 100 by default (found 2026-10-31: three captures silently held 100 of 245 shows). Always pass limit and follow the page count.
+  const w1 = await get('/users/me/watched/shows?page=1&limit=250');
+  let wb = w1.body; for (let p = 2; p <= w1.pages; p++) wb = wb.concat((await get('/users/me/watched/shows?page=' + p + '&limit=250')).body);
+  const watched = wb.map(x => ({ tmdb: x.show.ids.tmdb, trakt: x.show.ids.trakt, slug: x.show.ids.slug, title: x.show.title, plays: x.plays, last: x.last_watched_at }));
   let watchlist = []; const p1 = await get('/users/me/watchlist/show?page=1&limit=100');
   watchlist = p1.body; for (let p = 2; p <= p1.pages; p++) watchlist = watchlist.concat((await get('/users/me/watchlist/show?page=' + p + '&limit=100')).body);
   watchlist = watchlist.map(x => ({ tmdb: x.show.ids.tmdb, trakt: x.show.ids.trakt, slug: x.show.ids.slug, title: x.show.title, year: x.show.year, listed: x.listed_at }));
@@ -89,6 +91,11 @@ Then split it into the files the resync scripts read:
 ```
 npx tsx scripts/split-trakt-capture.ts
 ```
+
+Sanity-check the `SUMMARY:` line: `watched=` must NOT be exactly 100 — that is
+the default page size, and it means the snippet above was run without
+`limit=250` / page-following and silently truncated. 200, 300 etc. are fine.
+`progress=` must equal `watched=` minus `errs=`.
 
 Branch on its lines: `RESULT: FAIL` (not a capture / every progress fetch failed →
 session dead, ask the user to log in again) → STOP. Any `WARNING:` about missing
