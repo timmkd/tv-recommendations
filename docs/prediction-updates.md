@@ -1428,3 +1428,16 @@ lesson and kept.
 | **Say Nothing** | 4★ T | 4★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |
 | **Task** | 4.5★ T | 4.5★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |
 | **Blue Lights** | 3.5★ T | 3.5★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |
+
+## 2026-11-04 — Ramp rule refined (user-raised, The Leftovers)
+
+User: the predicted number should rank which show is best to *start*, so a show that
+climbs to 4★ after one weaker season should outrank a flat 3.5★. Rule refined: the
+number is the end-state rating and the text names the weak stretch's rating; the
+-0.5★ cold-start cost applies only to ramps of 2+ seasons. Only two predictions
+carried the penalty, so only they are touched.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **The Leftovers** | 3.5★ S | 4★ S | One-season ramp keeps end-state 4★; "S1 likely 3.5★" stated |
+| **Person of Interest** | 4★ S | 4★ S | Two-season ramp keeps -0.5★; "S1-2 play like a 3★ procedural" stated |

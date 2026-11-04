@@ -6,7 +6,7 @@ You MAY hand-append `- [ ]` entries to the Pending section after manually editin
 `docs/taste-profile.md`; `/rescan-predictions` will pick them up.
 
 **Last ratings review:** 2026-11-04T03:16:58.103Z
-**Last prediction rescan:** 2026-11-04T03:21:10.115Z
+**Last prediction rescan:** 2026-11-04T03:57:23.232Z
 
 ## Pending prediction rescan
 
@@ -38,3 +38,4 @@ Examples of well-formed entries:
 - [x] 2026-11-04 | LESSON | Heavy-but-purposeful together drama no longer caps binge at 4 (We Were the Lucky Ones pred 4 -> scored 5; Testaments 5, Handmaid's 5) | affects: drama, pref=together, reason~"caps consecutive viewing", reason~"heavy subject matter"
 - [x] 2026-11-04 | LESSON | Hacks re-rated 3.5★ -> 4★ solo; reasons anchored on "Hacks 3.5★" are stale by 0.5★ (Platonic, Girls, Rake, Youth) | affects: comedy, pref=solo, reason~"Hacks 3.5"
 - [x] 2026-11-04 | RULE-CHANGE | Multi-season ramp penalty for cold starts: -0.5★ when the good stretch starts at S2+ (none -> -0.5★ provisional), ramp "picks up from S N", prediction text must state the end-state payoff | affects: reason~"picks up from S", reason~"later seasons", reason~"first season", reason~"season 1", reason~"gets better"
+- [x] 2026-11-04 | RULE-CHANGE | Multi-season ramp refined: number = end-state rating, text must state the weak-stretch rating ("S1 likely 3.5★"); -0.5★ only when the ramp is 2+ seasons (old: -0.5★ for any S2+ ramp -> new: one-season ramp free) | affects: reason~"picks up from S", reason~"cold start"
