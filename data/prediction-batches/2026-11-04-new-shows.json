@@ -1,0 +1,22 @@
+[
+  {
+    "tmdbId": 292741,
+    "title": "Nocturne",
+    "predictedRating": 3,
+    "predictedRatingReason": "Predicted 3★: Lars Kepler's Sandman adaptation — a detective and an undercover protégé race a jailed serial killer (Stephen Graham) for a missing victim. Trakt 8.0 is only 78 votes with 2 of 10 episodes aired, so the base is soft; critics split (Metacritic 70, 'by-the-numbers Nordic noir', 'convoluted'). Studying-evil drama is your risk lane: Mindhunter 2.5★ dropped as 'too intense and a bit boring'. Kepler twists are the upside. Returning, S1 airing. Solo — serial killer is never Helen's. Commit to 4 episodes.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Serialised manhunt with a ticking missing-victim clock gives it a real spine, but 55-minute episodes, a bleak register and a reportedly convoluted cross-cut structure make it steady rather than compulsive. Reviewers rate the opening stretch as the strongest part. Grabs from ep 1.",
+    "changeNote": "New show: thin-vote serial-killer thriller, solo"
+  },
+  {
+    "tmdbId": 114479,
+    "title": "The Acolyte",
+    "predictedRating": 2.5,
+    "predictedRatingReason": "Predicted 2.5★: High Republic Star Wars mystery — a Jedi Master hunts a former pupil's twin through a string of Jedi murders. Trakt 5.6 on 5,400 votes is the coldest Star Wars signal in your library, below Ahsoka 3★ and Obi-Wan Kenobi 3.5★, and it was CANCELLED after one season on an unresolved cliffhanger, which you hate (Big Door Prize 2.5★). The franchise floor can't lift it past that. Below 3★ the drop risk is ~65%. Solo — Star Wars and sci-fi are never Helen's. 2 episodes is enough to know.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Eight 40-minute episodes with a murder-mystery spine make it a quick, low-commitment watch, but ep 3 is a full flashback that stalls the momentum and the season ends on threads that will never be resolved. Ep 5's duel is the widely praised peak. Slow open — picks up from ep 5, but the payoff is thin.",
+    "changeNote": "New show: cancelled Star Wars, coldest franchise signal, solo"
+  }
+]

@@ -1375,3 +1375,33 @@ today). **Predicted:** nothing new.
 | Show | Old | New | Reason for Change |
 | ---- | --- | --- | ----------------- |
 | **Small Prophets** | — | 3.5★ S | New: Crook gentle magical-realist comedy; Ghosts-class solo hook risk, held at 3.5★ |
+
+## 2026-11-04 — New show predictions (/predict-new-shows)
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Nocturne** | — | 3★ S | New show: thin-vote serial-killer thriller, solo |
+| **The Acolyte** | — | 2.5★ S | New show: cancelled Star Wars, coldest franchise signal, solo |
+
+Nocturne is a premature prediction: 2 of 10 episodes aired, 78 Trakt votes. Recheck
+once the season finishes (`/recheck-predictions` will flag it as PREMATURE / THIN-VOTES).
+
+## 2026-11-04 — Library sync (/sync-library)
+
+**Streaming** (`resync-streaming.ts`, JustWatch): 393 shows, 1 changed — Staged
+dropped Stan (now Prime Video + BritBox).
+**Watch status** (`resync-watch-status.ts` from the 2026-11-04 browser capture,
+245 watched / 153 watchlist / 245 progress rows): 3 moves — We Were the Lucky Ones →
+completed; The Gilded Age → watching (25/26); Stick → watching (10/12).
+**Imported from Trakt:** Nocturne, The Acolyte (both watchlist; Nocturne gained
+`Thriller` from the genre merge). **Tombstoned, not re-imported:** Monsters at Work,
+Zootopia+, Dream Productions, Rugrats, Aladdin, SS-GB.
+**Stalled list:** unchanged.
+**Predicted:** 2 shows via /predict-new-shows.
+
+**Ratings reviewed:** We Were the Lucky Ones 4.5★ T / binge 5 (predicted 4.5★ T /
+binge 4 — star and mode exact, binge under-called, ramp wrong); Hacks re-rated 3.5★
+→ 4★ solo. Taste profile: stats to 221 rated / MAE 0.48★; three lesson bullets
+(Lucky Ones, Hacks, user-raised "rating = final impression, prediction = start
+decision" with a provisional -0.5★ multi-season-ramp penalty); final-impression
+sub-bullet in Bingeability. Three pending rescan entries logged.
