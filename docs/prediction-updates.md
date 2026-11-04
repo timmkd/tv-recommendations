@@ -1405,3 +1405,26 @@ binge 4 — star and mode exact, binge under-called, ramp wrong); Hacks re-rated
 (Lucky Ones, Hacks, user-raised "rating = final impression, prediction = start
 decision" with a provisional -0.5★ multi-season-ramp penalty); final-impression
 sub-bullet in Bingeability. Three pending rescan entries logged.
+
+## 2026-11-04 — Prediction rescan (profile changes: 2026-11-04 ×3)
+
+Screened 191 stale predictions; 25 matched a pending entry, 10 written, 181 kept
+unchanged. Multi-season ramp penalty applied only to cold starts whose good stretch
+begins at S2+ (Person of Interest, The Leftovers); Star Wars: The Clone Wars is in
+progress so exempt; front-loaded shows are not ramps. Heavy-subject binge cap: the
+four together dramas citing it had their reasons rewritten, scores held at 4 (the
+4/5 boundary is noise); solo antihero shows (Ozark, The Penguin) are outside the
+lesson and kept.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **Person of Interest** | 4.5★ S | 4★ S | 2026-11-04 multi-season ramp: payoff starts S3 on a cold start, -0.5★ |
+| **The Leftovers** | 4★ S | 3.5★ S | 2026-11-04 multi-season ramp: voice arrives S2 on a cold start, -0.5★ |
+| **Rake** | 4★ S | 4★ S | reason refresh: 2026-11-04 Hacks comp now 4★ |
+| **Girls** | 3.5★ S | 3.5★ S | reason refresh: 2026-11-04 Hacks comp now 4★ (and Bear 3.5★ comp dropped) |
+| **Platonic** | 3.5★ S | 3.5★ S | reason refresh: 2026-11-04 Hacks comp now 4★ |
+| **Youth** | 3.5★ S | 3.5★ S | reason refresh: 2026-11-04 Hacks comp now 4★ |
+| **Sherwood** | 3.5★ T | 3.5★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |
+| **Say Nothing** | 4★ T | 4★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |
+| **Task** | 4.5★ T | 4.5★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |
+| **Blue Lights** | 3.5★ T | 3.5★ T + B4 | binge reason refresh: 2026-11-04 heavy subject no longer caps binge |

@@ -1,0 +1,82 @@
+[
+  {
+    "tmdbId": 1411,
+    "title": "Person of Interest",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Jonathan Nolan's AI thriller starts as case-of-the-week, then pivots into superintelligence mythology with some of TV's best long-arc payoffs (the Samaritan war is jaw-drop territory). Trakt 8.4, COMPLETE five seasons with a beloved ending. The formula says 4.5★, but the good stretch only starts around S3: two seasons of procedural grind first is a -0.5★ cost on a cold start. Dark 4.5★ also starts slow, but by episodes, not seasons. Commit through S2; the end state is 4.5★ material. Solo: procedural-to-mythology is your lane.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Split personality. S1-2 are case-of-the-week, the weakest hook shape in your data (Monk, Elsbeth, Elementary all 3★), and the AI mythology that delivers the payoff takes ~two seasons to arrive. High sustain once there, but a long low-hook runway — a bigger ask than Dark's slow start. Slow open — picks up from S3; worth it.",
+    "changeNote": "2026-11-04 multi-season ramp: payoff starts S3 on a cold start, -0.5★"
+  },
+  {
+    "tmdbId": 54344,
+    "title": "The Leftovers",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Damon Lindelof's grief drama after 2% of the world vanishes, with Justin Theroux and Carrie Coon. Thought-provoking depth in the Severance 5★ lane, COMPLETE in 3 seasons with an acclaimed ending. The catch is the order: S1 is an airless grief study, and the show only finds its voice in S2, which with S3 is widely ranked among the best TV of its decade. A two-season-deep payoff costs -0.5★ on a cold start. Commit through S1 if the premise holds you. Solo: philosophical, draining and ambiguous, not Helen's register.",
+    "recommendedWatchPreference": "solo",
+    "predictedBingeability": 3,
+    "predictedBingeabilityReason": "Binge 3/5: Emotionally punishing meditation on grief with deliberately withheld answers — Lindelof prioritises ambiguity over resolution. Powerful and cumulative, but individual episodes are draining, so it watches in ones. High sustain, low hook. Slow open — picks up from S2; worth it.",
+    "changeNote": "2026-11-04 multi-season ramp: voice arrives S2 on a cold start, -0.5★"
+  },
+  {
+    "tmdbId": 34379,
+    "title": "Rake",
+    "predictedRating": 4,
+    "predictedRatingReason": "Predicted 4★: Australian legal comedy-drama with Richard Roxburgh as a brilliant, self-destructive barrister. IMDB 8.2 → base 3.6, Australian stated preference +0.5★ = 4.1. 5 seasons COMPLETE. Similar to Hacks 4★: a sharp, abrasive lead who is hard to like but carried by the writing. Hacks took two seasons to win you over; Rake is episodic enough to judge fast. Solo: crude humour and a dark character study are not Helen's register. Give it 3 episodes. If Cleaver's chaos amuses rather than grates, it holds.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: 2026-11-04 Hacks comp now 4★"
+  },
+  {
+    "tmdbId": 42282,
+    "title": "Girls",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Lena Dunham's comedy-drama about four self-absorbed twenty-somethings in Brooklyn. Fleabag 4★ is the ceiling of messy-woman dramedy for you. Hacks 4★ is the cautionary comp: it reached 4★ only after two seasons you kept going with on acclaim alone. Girls has insufferable-by-design characters and aimless plotting, so character-investment failure, your top drop pattern, offsets the classic bonus. COMPLETE, 6 seasons. Solo: crude, explicit sex. Give it 3-4 episodes. If Hannah grates by ep 4, don't force it.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: 2026-11-04 Hacks comp now 4★ (and Bear 3.5★ comp dropped)"
+  },
+  {
+    "tmdbId": 112211,
+    "title": "Platonic",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Seth Rogen and Rose Byrne comedy about a rekindled platonic friendship 'destabilizing their lives' (RT ~96%). Rogen's adult, crude comedic style is SOLO for you, the same call as The Studio. Hacks 4★ is the edgy-duo ceiling, but it got there through sharper writing over five seasons; Platonic is lighter and messier. Returning series. SOLO. 2 episodes is enough to know. If the Rogen/Byrne chemistry carries the discomfort it sustains; if the cringe outweighs it, it stalls.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: 2026-11-04 Hacks comp now 4★"
+  },
+  {
+    "tmdbId": 285418,
+    "title": "Youth",
+    "predictedRating": 3.5,
+    "predictedRatingReason": "Predicted 3.5★: Sharon Horgan writes and stars as a 50-year-old divorcee chasing sex and love while caring for ailing parents and a grown son. Eight 40-minute episodes. Trakt 7.7 on thin votes with near-unanimous critics; formula 3.4. Comps are the solo dramedy cluster: Hacks 4★ and Fleabag 4★ set the ceiling, but both earned it through sharper writing than a one-season debut has shown. The sex-forward premise trips the Colin from Accounts precedent, moved to solo over crude language. Returning. Solo; give it 3-4 episodes.",
+    "recommendedWatchPreference": "solo",
+    "changeNote": "reason refresh: 2026-11-04 Hacks comp now 4★"
+  },
+  {
+    "tmdbId": 155243,
+    "title": "Sherwood",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: A manhunt through a mining community across six episodes, so the case engine is genuine. Held at 4 by its deliberate, community-portrait pacing: the miners'-strike politics slow the chase between episodes. The grim tone is not the cap, since purposeful heavy together dramas still binge at 5. Grabs from ep 1.",
+    "changeNote": "binge reason refresh: 2026-11-04 heavy subject no longer caps binge"
+  },
+  {
+    "tmdbId": 245256,
+    "title": "Say Nothing",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Nine-episode true-crime history built on a disappearance and its cover-up, so it carries a real mystery spine. Held at 4 by its decades-spanning, two-timeline chronicle structure, which resets momentum between eras, not by the Troubles subject matter, which purposeful together dramas carry fine. Grabs from ep 1.",
+    "changeNote": "binge reason refresh: 2026-11-04 heavy subject no longer caps binge"
+  },
+  {
+    "tmdbId": 228305,
+    "title": "Task",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Mare of Easttown's creator running a manhunt engine across a seven-episode first season. Held at 4 by Ingelsby's slow, character-first texture: the cops and the robbers get equal time, so the chase breathes rather than races. Bleakness alone does not cap a purposeful together drama. Grabs from ep 1.",
+    "changeNote": "binge reason refresh: 2026-11-04 heavy subject no longer caps binge"
+  },
+  {
+    "tmdbId": 218344,
+    "title": "Blue Lights",
+    "predictedBingeability": 4,
+    "predictedBingeabilityReason": "Binge 4/5: Six-episode Belfast seasons with serialised threat arcs and real tension, character-driven rather than case-of-the-week filler. Held at 4 by the three-season back catalogue and the procedural-fatigue risk, not the grim register: heavy but purposeful together dramas still binge at 5. Grabs from ep 1.",
+    "changeNote": "binge reason refresh: 2026-11-04 heavy subject no longer caps binge"
+  }
+]

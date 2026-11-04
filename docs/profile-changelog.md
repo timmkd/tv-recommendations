@@ -6,7 +6,7 @@ You MAY hand-append `- [ ]` entries to the Pending section after manually editin
 `docs/taste-profile.md`; `/rescan-predictions` will pick them up.
 
 **Last ratings review:** 2026-11-04T03:16:58.103Z
-**Last prediction rescan:** 2026-10-03T03:58:09.577Z
+**Last prediction rescan:** 2026-11-04T03:21:10.115Z
 
 ## Pending prediction rescan
 
@@ -35,6 +35,6 @@ Examples of well-formed entries:
 - [x] 2026-09-09 | RULE-CHANGE | Bingeability recalibrated on 78 real scores: axes are correlated (r=0.55) not orthogonal; sustain is necessary-not-sufficient for 4.5★+; hook predicts abandonment, NOT quality — so never cap a prediction for a slow start alone when a payoff signal exists (Dark 4.5★ weak hook vs Monk 3★ weak hook, no payoff). Negative bingeability weights RETIRED; positive weights stay out of the formula. | affects: reason~"slow burn", reason~"slow-burn", reason~"nothing happens"
 - [x] 2026-09-09 | NEW-MODIFIER | Bingeability is a run-AVERAGE across seasons, not a peak: drop one level when the run is 4+ seasons (or 3 with a notorious collapse) AND the later-run complaint is momentum/resolution rather than quality (Westworld 3, Upload 3 vs The Crown 5). Per-season-closed structures exempt. Diagnostic axis only — does not touch star predictions. | affects: reason~"bingeable", reason~"momentum", reason~"cliffhanger", seasons<=1
 - [x] 2026-10-03 | LESSON | Bingeability also averages down for interleaved STRESS, not just front-loaded decay: The Bear 4★/binge 3 with an effusive note ("love the script… beautifully made") — pressure-cooker prestige drama with slow S1 estimates binge 3, ramp "picks up from S2; worth it", and the 3 holds the star at 4★ rather than lowering it. Also re-confirms sustain-necessary-for-4.5★ at n=22. Diagnostic axis only. | affects: drama, pref=solo, reason~"stressful", reason~"intense", reason~"pressure"
-- [ ] 2026-11-04 | LESSON | Heavy-but-purposeful together drama no longer caps binge at 4 (We Were the Lucky Ones pred 4 -> scored 5; Testaments 5, Handmaid's 5) | affects: drama, pref=together, reason~"caps consecutive viewing", reason~"heavy subject matter"
-- [ ] 2026-11-04 | LESSON | Hacks re-rated 3.5★ -> 4★ solo; reasons anchored on "Hacks 3.5★" are stale by 0.5★ (Platonic, Girls, Rake, Youth) | affects: comedy, pref=solo, reason~"Hacks 3.5"
-- [ ] 2026-11-04 | RULE-CHANGE | Multi-season ramp penalty for cold starts: -0.5★ when the good stretch starts at S2+ (none -> -0.5★ provisional), ramp "picks up from S N", prediction text must state the end-state payoff | affects: reason~"picks up from S", reason~"later seasons", reason~"first season", reason~"season 1", reason~"gets better"
+- [x] 2026-11-04 | LESSON | Heavy-but-purposeful together drama no longer caps binge at 4 (We Were the Lucky Ones pred 4 -> scored 5; Testaments 5, Handmaid's 5) | affects: drama, pref=together, reason~"caps consecutive viewing", reason~"heavy subject matter"
+- [x] 2026-11-04 | LESSON | Hacks re-rated 3.5★ -> 4★ solo; reasons anchored on "Hacks 3.5★" are stale by 0.5★ (Platonic, Girls, Rake, Youth) | affects: comedy, pref=solo, reason~"Hacks 3.5"
+- [x] 2026-11-04 | RULE-CHANGE | Multi-season ramp penalty for cold starts: -0.5★ when the good stretch starts at S2+ (none -> -0.5★ provisional), ramp "picks up from S N", prediction text must state the end-state payoff | affects: reason~"picks up from S", reason~"later seasons", reason~"first season", reason~"season 1", reason~"gets better"
