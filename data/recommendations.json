@@ -1,244 +1,207 @@
 {
-  "generatedAt": "2026-01-11T02:46:09.493Z",
+  "generatedAt": "2026-11-04T04:00:00.000Z",
   "subscribedServices": [
-    "stan",
-    "prime-video",
-    "max",
-    "abc-iview",
-    "sbs-on-demand"
+    "binge",
+    "disney-plus",
+    "prime-video"
   ],
   "soloProfile": {
-    "summary": "You're drawn to psychological depth, mind-bending narratives, and exceptional acting. Severance (5★), Foundation (4.5★), Black Mirror (4.5★), and Silo (4.5★) showcase your love for thoughtful sci-fi. Comfort workplace comedies (Parks & Rec 5★, The Office 5★) are rewatched endlessly. Star Trek completionist (Lower Decks 4.5★). Marvel completionist when quality is there (Loki 4.5★). Sharp satire lands well (The Great 4.5★, Barry 4★). Pacing matters - you drop shows that drag or get cancelled unresolved.",
+    "summary": "Solo is for psychological sci-fi, jaw-drop reveals, workplace comedy, dark satire, and anything Helen would bounce off: superhero, sci-fi/fantasy, crude humour, slow cerebral drama.",
     "loves": [
-      "Psychological sci-fi (Severance 5★, Black Mirror 4.5★, Dark 4.5★, Silo 4.5★, Foundation 4.5★, Stranger Things 4.5★)",
-      "Comfort workplace comedies (Parks & Rec 5★, The Office 5★, Brooklyn Nine-Nine 4.5★, Abbott Elementary 4★)",
-      "Star Trek universe (Lower Decks 4.5★, Strange New Worlds 4★, Discovery 4★)",
-      "Marvel/superhero completionist (Loki 4.5★, WandaVision 4★, What If...? 4★)",
-      "Sharp satire/dark comedy (The Great 4.5★, Barry 4★, Fleabag 4★)",
-      "Great pacing and acting (Murderbot 4.5★ - 'great pacing, acting')",
-      "True story dramas (Dopesick 4★ - 'love based on true stories')",
-      "Australian content (Newsreader 3.5★ - 'great acting and love australian stuff')"
+      "Mystery boxes that resolve (Severance, Dark, Silo)",
+      "Jaw-drop reveals and twists",
+      "Office-lineage workplace comedy",
+      "Star Trek and Marvel completionism",
+      "Australian content",
+      "Dry, sharp dark comedy (Barry, The Great)"
     ],
     "avoids": [
-      "Cancelled shows without resolution (Big Door Prize 2.5★, Wheel of Time 4★ - 'So gutted this was cancelled')",
-      "Declining quality (Arrested Development 4★ - 's05 was rubbish')",
-      "Slow/dragging episodes (Daredevil 3★ - 'episodes dragged a little')",
-      "Weak Marvel entries (Ms. Marvel 2.5★, Secret Invasion 3★)"
+      "Cancelled shows with unresolved endings",
+      "Open-ended mystery boxes that never pay off (Westworld)",
+      "Slow and intense with no payoff (Mindhunter)",
+      "Shows that only get good after two or more seasons"
     ],
     "topShows": [
       "Severance 5★",
       "Parks and Recreation 5★",
       "The Office 5★",
-      "Silo 4.5★",
-      "Black Mirror 4.5★",
-      "Foundation 4.5★",
-      "Loki 4.5★",
-      "The Great 4.5★",
-      "Star Trek: Lower Decks 4.5★"
+      "Dark 4.5★",
+      "Brooklyn Nine-Nine 4.5★",
+      "Pluribus 4.5★",
+      "Lower Decks 4.5★"
     ]
   },
   "togetherProfile": {
-    "summary": "With Helen, spy thrillers are the sweet spot (Slow Horses 4.5★, Bodyguard 4★, The Americans 4★, The Diplomat 4★). Period dramas work brilliantly (The Crown 4.5★, Bridgerton 4★). Prestige true-story limited series land perfectly (Chernobyl 5★, Adolescence 4★). Light mystery-comedy for easy watching (Only Murders 4★, Shrinking 4★). Easy watch rom-coms work (Nobody Wants This 4★). Helen dislikes superhero content, crude humor, slow pacing, and shows that get boring.",
+    "summary": "Together works on momentum: spy and crime thrillers, prestige true stories, period drama and warm, relatable comedy. Dark is fine when it is purposeful and moves; slow, bleak or silly is where Helen drops out.",
     "loves": [
-      "Spy thrillers (Slow Horses 4.5★, Bodyguard 4★, The Americans 4★, Homeland 4★, The Diplomat 4★)",
-      "Period dramas (The Crown 4.5★, Bridgerton 4★, The Gilded Age 4★, A Gentleman in Moscow 4★)",
-      "Prestige true stories (Chernobyl 5★, Lessons in Chemistry 4.5★, Unorthodox 4★)",
-      "British prestige mystery (Sherlock 4.5★ - 'One of the best shows... Love the acting. Moriarty was brilliant')",
-      "Prestige limited series with great cinematography (Adolescence 4★ - 'Beautifully shot and brilliantly acted')",
-      "Light mystery-comedy (Only Murders 4★, Shrinking 4★)",
-      "Easy watch rom-coms (Nobody Wants This 4★ - 'Love a good easy watch')",
-      "WWII + True Story + Uplifting (A Small Light 4★, All the Light We Cannot See 4★)"
+      "Spy and crime thrillers (Slow Horses, Bodyguard)",
+      "Prestige true stories, especially WWII with hope",
+      "Period drama (The Crown, The Gilded Age)",
+      "Dry, grounded wit over zany humour",
+      "Procedurals with a serialised spine"
     ],
     "avoids": [
-      "Superhero content ('helen doesn't like superhero shows')",
-      "Crude humor (The Boys 4★, What We Do in the Shadows 3★ - 'too crude for Helen')",
-      "Slow pacing (Severance - 'too slow for helen', Fargo - 'bit slow paced for Helen')",
-      "Drawn out mysteries (The Agency 3.5★ - 'a little slow paced', Paradise 3.5★ - 'a little drawn out')",
-      "Shows that get boring (Elsbeth 3★ - 'got boring', Night Agent 3★ - 'so boring in 2nd season')"
+      "Superhero, sci-fi and fantasy",
+      "Bleak shows with no purpose (Happy Valley)",
+      "Silly or quirky comedy",
+      "Shows that fizzle mid-run",
+      "Crude humour"
     ],
     "topShows": [
       "Chernobyl 5★",
       "The West Wing 5★",
       "Slow Horses 4.5★",
-      "Lessons in Chemistry 4.5★",
       "The Crown 4.5★",
-      "The Diplomat 4★",
-      "Adolescence 4★",
+      "The Rookie 4.5★",
+      "We Were the Lucky Ones 4.5★",
       "Sherlock 4.5★"
     ]
   },
   "solo": [
     {
-      "title": "Mr. Robot",
+      "title": "The Expanse",
       "year": 2015,
-      "tmdbId": 62560,
-      "posterPath": "/kv1nRqgebSsREnd7vdC2pSGjpLo.jpg",
-      "reason": "Predicted 4.5★: Psychological hacker thriller with Severance-level unreliable narrator. Rami Malek extraordinary. COMPLETE 4-season run with acclaimed ending. On Prime Video.",
-      "streamingServices": [
-        "prime-video",
-        "foxtel-now",
-        "binge"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "The Leftovers",
-      "year": 2014,
-      "tmdbId": 54344,
-      "posterPath": "/eFFjGpYmCb5mBqXRjLfZLkWXhLe.jpg",
-      "reason": "Predicted 4.5★: Damon Lindelof (Lost) psychological drama about grief after 2% of humanity vanishes. Same existential dread as Severance (5★), extraordinary acting. COMPLETE 3 seasons on Max. Widely considered one of the best shows ever made.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "new",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "Watchmen",
-      "year": 2019,
-      "tmdbId": 79788,
-      "posterPath": "/m8rWq3j73ZGhDuSCZWMMoE9ePH1.jpg",
-      "reason": "Predicted 4.5★ (96% RT): HBO superhero deconstruction with Severance-level complexity. LIMITED SERIES - complete story, no cancellation risk. Prestige genre-bending. On Max.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "The Sopranos",
-      "year": 1999,
-      "tmdbId": 1398,
-      "posterPath": "/rTc7ZXdroqjkKivFPvCPX0Ru7uw.jpg",
-      "reason": "Predicted 4.5★ (IMDB 9.2): The prestige TV pioneer - complex character study like Better Call Saul (4★). COMPLETE 6 seasons. Helen 'wasn't a fan' = perfect solo. On Prime Video & Max.",
-      "streamingServices": [
-        "prime-video",
-        "max"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "Succession",
-      "year": 2018,
-      "tmdbId": 76331,
-      "posterPath": "/z0XiwdrCQ9yVIr4O0pxzaAYRxdW.jpg",
-      "reason": "Predicted 4.5★ (IMDB 8.8): Emmy-sweeping family power drama - razor-sharp writing like The Great (4.5★). COMPLETE 4-season run with acclaimed ending. On Max.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "Patriot",
-      "year": 2015,
-      "tmdbId": 65567,
-      "posterPath": "/owuq5hLs2i8GDtCGu0dSGoj7rrm.jpg",
-      "reason": "Predicted 4.5★: Cult dark comedy spy drama - melancholic intelligence officer covers as industrial piping salesman. Tonally unique like Barry (4★). COMPLETE 2 seasons, cult following. On Prime Video.",
+      "tmdbId": 63639,
+      "posterPath": "/8djpxDeWpINnGhjpFXQjnBe6zbx.jpg",
+      "reason": "Top of your solo start list. The protomolecule arc is a slow-release mystery box with real jaw-drop payoffs, six complete seasons and an ending that lands — your Foundation and Silo lane exactly. On Prime Video.",
       "streamingServices": [
         "prime-video"
       ],
       "confidence": "high",
-      "source": "new",
       "predictedRating": 4.5
     },
     {
-      "title": "True Detective",
-      "year": 2014,
-      "tmdbId": 46648,
-      "posterPath": "/cuV2O5ZyDLHSOWzg3nLVljp1ubw.jpg",
-      "reason": "Predicted 4.5★ (IMDB 8.8): Season 1 with McConaughey/Harrelson is exceptional prestige TV. Complex slow-burn crime anthology. On Max.",
+      "title": "The Paper",
+      "year": 2025,
+      "tmdbId": 253941,
+      "posterPath": "/ySA5MvhoxTdezNUMe0ifPmhxH4w.jpg",
+      "reason": "In progress and rated 4★ — you said it found its footing after a few episodes and might go higher. Easy-watch workplace comedy in your Office-lineage lane; finish what's aired. On Binge.",
       "streamingServices": [
-        "max"
+        "binge"
       ],
       "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4.5
+      "predictedRating": 4.0
     },
     {
-      "title": "Station Eleven",
+      "title": "Abbott Elementary",
       "year": 2021,
-      "tmdbId": 114695,
-      "posterPath": "/bC0GZVXc7e4s8tRdMNGDjjjyuK8.jpg",
-      "reason": "Predicted 4.5★: Post-apocalyptic literary sci-fi. NOT an action survival show - poetic meditation on art and human connection. Same thoughtful depth as Severance (5★). LIMITED SERIES complete on Max.",
+      "tmdbId": 125935,
+      "posterPath": "/nBe1e3JJEZ6veGrVXNF0fRoLu56.jpg",
+      "reason": "In progress and rated 4★. Low-commitment half-hours for whenever you want a comfort comedy between heavier shows. On Disney+.",
       "streamingServices": [
-        "max"
+        "disney-plus"
       ],
       "confidence": "high",
-      "source": "new",
-      "predictedRating": 4.5
+      "predictedRating": 4.0
     },
     {
-      "title": "The Wire",
-      "year": 2002,
-      "tmdbId": 1438,
-      "posterPath": "/4lbclFySvugI51fwsyxBTOm4DqK.jpg",
-      "reason": "Predicted 4.5★ (IMDB 9.3): Widely considered the greatest TV drama ever. Baltimore crime epic examining institutions. COMPLETE 5 seasons. Slow-burn but rewarding. On Max.",
+      "title": "VisionQuest",
+      "year": 2026,
+      "tmdbId": 213375,
+      "posterPath": "/xK27l5uwaVyZSlENWnmLlWwDQNS.jpg",
+      "reason": "You're two episodes in. The close of the WandaVision trilogy, with critics calling it humane and hopeful — keep going while it's fresh. On Disney+.",
       "streamingServices": [
-        "max"
+        "disney-plus"
       ],
       "confidence": "medium",
-      "source": "new",
-      "predictedRating": 4.5
+      "predictedRating": 4.0
     },
     {
-      "title": "Boardwalk Empire",
+      "title": "Mr Inbetween",
+      "year": 2018,
+      "tmdbId": 81358,
+      "posterPath": "/1FkONly4j7hxi6Pz5CmuhRN1Ops.jpg",
+      "reason": "In progress. Australian hitman dramedy with bone-dry wit and short episodes — Barry 4★ is the comp. Three seasons, complete. On Binge.",
+      "streamingServices": [
+        "binge"
+      ],
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "12 Monkeys",
+      "year": 2015,
+      "tmdbId": 60948,
+      "posterPath": "/w5u1PqBYfDyfrlkxADTA38jYG3I.jpg",
+      "reason": "Time-loop thriller that becomes a payoff machine, building to a finale that famously sticks the landing, with twisty episode-end hooks from the start. Four seasons, complete. On Prime Video.",
+      "streamingServices": [
+        "prime-video"
+      ],
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Devs",
+      "year": 2020,
+      "tmdbId": 81349,
+      "posterPath": "/uv63iNWOh69bSJYJQZjiX6n8B3m.jpg",
+      "reason": "Alex Garland's determinism thriller — eight episodes, fully resolved, in the Severance and Dark lane. Slow and cerebral, so a solo watch. On Disney+.",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Justified",
       "year": 2010,
-      "tmdbId": 34415,
-      "posterPath": "/rpSBgJQccjWHNzplyNVgKfVkDpR.jpg",
-      "reason": "Predicted 4★ (IMDB 8.6): Scorsese HBO prohibition-era crime drama. Steve Buscemi excellent. Period prestige production like Peaky Blinders (4★). COMPLETE 5 seasons. On Max.",
+      "tmdbId": 1436,
+      "posterPath": "/ie1quhMk09lDtvtAyQAHTu09R9Z.jpg",
+      "reason": "Dry, deadpan Elmore Leonard crime with a real serialised spine in Raylan versus Boyd. Six seasons that end well. On Disney+ and Binge.",
       "streamingServices": [
-        "max"
+        "disney-plus",
+        "binge"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "medium",
+      "predictedRating": 4.0
     },
     {
-      "title": "Peaky Blinders",
-      "year": 2013,
-      "tmdbId": 60574,
-      "posterPath": "/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
-      "reason": "Predicted 4★ (IMDB 8.7): British gangster period drama with Cillian Murphy. Stylish and propulsive. COMPLETE 6 seasons. On Stan.",
+      "title": "The Night Of",
+      "year": 2016,
+      "tmdbId": 66276,
+      "posterPath": "/q13XJHdnsmxQL9rXRcnNDrZGHjO.jpg",
+      "reason": "Eight-episode murder case that becomes a takedown of the justice system. Contained, complete and gripping. On Prime Video.",
       "streamingServices": [
-        "netflix"
+        "prime-video"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "medium",
+      "predictedRating": 4.0
     },
     {
-      "title": "House of the Dragon",
-      "year": 2022,
-      "tmdbId": 94997,
-      "posterPath": "/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg",
-      "reason": "Predicted 4★ (IMDB 8.3): GOT prequel - you rated Game of Thrones 4★. Quality fantasy production, ongoing series. On Max.",
+      "title": "Six Feet Under",
+      "year": 2001,
+      "tmdbId": 1274,
+      "posterPath": "/sCgzLaVlFy8KxtxRPvt1V5MNTDb.jpg",
+      "reason": "A prestige classic with a famous final episode. Heavy subject matter with dark humour as the buffer; expect a 4★ watch, not a binge. On Prime Video.",
       "streamingServices": [
-        "max"
+        "prime-video"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "medium",
+      "predictedRating": 4.0
     },
     {
-      "title": "The Penguin",
-      "year": 2024,
-      "tmdbId": 194764,
-      "posterPath": "/vOWcqC4oDQws1doDWLO7d3dh5qc.jpg",
-      "reason": "Predicted 4★ (IMDB 8.6): Colin Farrell Batman spin-off. Not typical superhero - more Sopranos-style crime drama. LIMITED SERIES, HBO prestige. On Max.",
+      "title": "Rake",
+      "year": 2010,
+      "tmdbId": 34379,
+      "posterPath": "/fEZ7l6pKP0ORZ26VsBjeEnRPKG5.jpg",
+      "reason": "Australian legal comedy-drama with Richard Roxburgh as a gloriously self-destructive barrister. Hacks 4★ is the comp, but this is episodic enough to judge in three episodes. On Prime Video.",
       "streamingServices": [
-        "max"
+        "prime-video"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Marvel's Jessica Jones",
+      "year": 2015,
+      "tmdbId": 38472,
+      "posterPath": "/paf9wL3mOW9LT3ZjRxXqJcjeMEv.jpg",
+      "reason": "Rated 4★ and paused on purpose — your note says you want to catch up on the other Marvel Netflix shows first. Pick it back up once those are done. On Disney+.",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "confidence": "low",
+      "predictedRating": 4.0
     }
   ],
   "together": [
@@ -247,200 +210,123 @@
       "year": 2001,
       "tmdbId": 4613,
       "posterPath": "/8JMXquNmdMUy2n2RgW8gfOM0O3l.jpg",
-      "reason": "Predicted 5★ (IMDB 9.4): HBO WWII masterpiece - identical formula to Chernobyl (5★). True story, prestige production, 10-episode limited series. On Max.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 5
-    },
-    {
-      "title": "The Pacific",
-      "year": 2010,
-      "tmdbId": 1002,
-      "posterPath": "/x8DXGQ8o7evxNHbFNPqTw8eJN07.jpg",
-      "reason": "Predicted 4.5★ (IMDB 8.3): Band of Brothers companion series - Pacific theater WWII. Same Spielberg/Hanks production. True story limited series on Max. Perfect Helen pairing.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "new",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "The Night Manager",
-      "year": 2016,
-      "tmdbId": 61859,
-      "posterPath": "/f99GnEDXsfF3sicqZzSqjzQutAB.jpg",
-      "reason": "Predicted 4.5★ (IMDB 8.0): Tom Hiddleston/Hugh Laurie spy thriller - PERFECT for Helen (Slow Horses 4.5★, Bodyguard 4★ pattern). 6-episode limited series. On Prime Video.",
+      "reason": "The strongest together start in your library: Chernobyl's structural twin — true-story WWII prestige, ten episodes, complete. Heavy, but purposeful and hopeful, the shape that just landed 4.5★ with We Were the Lucky Ones. On Prime Video.",
       "streamingServices": [
         "prime-video"
       ],
       "confidence": "high",
-      "source": "watchlist",
+      "predictedRating": 5.0
+    },
+    {
+      "title": "The Rookie",
+      "year": 2018,
+      "tmdbId": 79744,
+      "posterPath": "/70kTz0OmjjZe7zHvIDrq2iKW7PJ.jpg",
+      "reason": "In progress and rated 4.5★ — your top-rated together show still airing. Keep up with the current season. On Disney+.",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "confidence": "high",
       "predictedRating": 4.5
     },
     {
-      "title": "Masters of the Air",
+      "title": "Broadchurch",
+      "year": 2013,
+      "tmdbId": 1427,
+      "posterPath": "/2NhBFUTg5KVBmGwafxtLwVdsqrr.jpg",
+      "reason": "In progress and rated 4★ with binge 5. Finish the remaining series — it's the together crime sweet spot. On Prime Video and Binge.",
+      "streamingServices": [
+        "prime-video",
+        "binge"
+      ],
+      "confidence": "high",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Line of Duty",
+      "year": 2012,
+      "tmdbId": 43982,
+      "posterPath": "/pBAp7VfKVQKQIiLRJHZSMGtyXAB.jpg",
+      "reason": "From Bodyguard's creator (4★ together) — propulsive anti-corruption thriller built on legendary interrogation scenes. Each season is a self-contained case, so you can stop cleanly. On Binge.",
+      "streamingServices": [
+        "binge"
+      ],
+      "confidence": "high",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Unforgotten",
+      "year": 2015,
+      "tmdbId": 62505,
+      "posterPath": "/bfysfq7JDBWKLpkKPaOU2FpfmB.jpg",
+      "reason": "Cold-case British crime with Nicola Walker; each series is a self-contained case. The Broadchurch lane, gentler. On Binge.",
+      "streamingServices": [
+        "binge"
+      ],
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Ludwig",
       "year": 2024,
-      "tmdbId": 111110,
-      "posterPath": "/rSAmgcoA74371rplbqM27yVsd3y.jpg",
-      "reason": "Predicted 4.5★ (IMDB 7.8): Band of Brothers spiritual successor - WWII bomber crews. Austin Butler stars. True story Apple TV+ production. Borrow or trial for this one.",
-      "streamingServices": [],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "The Pitt",
-      "year": 2025,
-      "tmdbId": 250307,
-      "posterPath": "/yfaIbd8dqaafUKYaXMnQokpyAkd.jpg",
-      "reason": "Predicted 4★ (IMDB 8.9): Noah Wyle ER-style medical drama. Real-time single-shift format. Exceptional early reception - highest rated new show. On Max.",
+      "tmdbId": 243360,
+      "posterPath": "/pzLfjlJHXGsEqtaCwBLFekRSH0q.jpg",
+      "reason": "David Mitchell as a grumpy puzzle-setter impersonating his detective twin — cosy case-of-the-week with the dry-wit lead Helen loves. On Binge.",
       "streamingServices": [
-        "max"
+        "binge"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "medium",
+      "predictedRating": 4.0
     },
     {
-      "title": "Mare of Easttown",
-      "year": 2021,
-      "tmdbId": 103768,
-      "posterPath": "/d3fWpnWXJlcnAgQxaeFNtS8dCdR.jpg",
-      "reason": "Predicted 4.5★: Kate Winslet small-town detective mystery. Gripping whodunit with excellent acting. LIMITED SERIES complete. Perfect Helen crime drama. On Max.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "new",
-      "predictedRating": 4.5
-    },
-    {
-      "title": "The White Lotus",
-      "year": 2021,
-      "tmdbId": 111803,
-      "posterPath": "/dKaXOVoWZrGxpMBYkEmVgmX4mbb.jpg",
-      "reason": "Predicted 4★ (IMDB 8.0): HBO prestige dark comedy at luxury resorts. Each season is self-contained. Sharp social satire, beautiful settings. On Max.",
-      "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "new",
-      "predictedRating": 4
-    },
-    {
-      "title": "The Tattooist of Auschwitz",
+      "title": "High Potential",
       "year": 2024,
-      "tmdbId": 222405,
-      "posterPath": "/nAdgX2CmkrNaRTJelFlBkpRQO0b.jpg",
-      "reason": "Predicted 4★ (IMDB 8.0): WWII Holocaust true story with love story element. Fits your Chernobyl/A Small Light pattern perfectly. Limited series, complete story. On Stan.",
+      "tmdbId": 226637,
+      "posterPath": "/xCtaUDBUP1iKqtoqpHfeH1T2pWF.jpg",
+      "reason": "Procedural with a serialised spine — a single mum with an exceptional mind, plus the mystery of her missing husband. Easy weeknight watch. On Disney+.",
       "streamingServices": [
-        "stan"
+        "disney-plus"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Friday Night Lights",
+      "year": 2006,
+      "tmdbId": 4278,
+      "posterPath": "/Eu7MzZY1DldJ683z7vLkILHNRD.jpg",
+      "reason": "Ignore the football: it's a grounded marriage-and-family drama built around Coach and Tami Taylor. Five complete seasons. On Prime Video and Binge.",
+      "streamingServices": [
+        "prime-video",
+        "binge"
+      ],
+      "confidence": "medium",
+      "predictedRating": 4.0
+    },
+    {
+      "title": "Say Nothing",
+      "year": 2024,
+      "tmdbId": 245256,
+      "posterPath": "/bAF3gTGuFNDdzGUIAnDqi5nbFf3.jpg",
+      "reason": "Nine-episode true story of the Troubles built on a disappearance and its cover-up. Grim but purposeful, with a real mystery spine. On Disney+.",
+      "streamingServices": [
+        "disney-plus"
+      ],
+      "confidence": "medium",
+      "predictedRating": 4.0
     },
     {
       "title": "Wolf Hall",
       "year": 2015,
-      "tmdbId": 62271,
-      "posterPath": "/bz7IkLU5jxMNJCCMqiXiJGOkRSK.jpg",
-      "reason": "Predicted 4★: Mark Rylance as Thomas Cromwell in Tudor England. Prestige BBC period drama, Hilary Mantel adaptation. Perfect for The Crown (4.5★) fans. On Max.",
+      "tmdbId": 61697,
+      "posterPath": "/dGuiMtUQBGxM3ZWosphO2MdYw8o.jpg",
+      "reason": "Mark Rylance as Thomas Cromwell — The Crown's together lane, complete across two runs. Slower and more austere, so one for a focused evening. On Binge and Prime Video.",
       "streamingServices": [
-        "max"
-      ],
-      "confidence": "high",
-      "source": "new",
-      "predictedRating": 4
-    },
-    {
-      "title": "The Gold",
-      "year": 2023,
-      "tmdbId": 218351,
-      "posterPath": "/9JY9Gza4HQhXjIPXg9uSy8FeiSM.jpg",
-      "reason": "Predicted 4★ (IMDB 7.4): BBC Brink's-Mat heist true story - Hugh Bonneville, Jack Lowden. Your 'based on true stories' love + British crime drama for Helen. On Stan.",
-      "streamingServices": [
-        "stan"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
-    },
-    {
-      "title": "Rosehaven",
-      "year": 2016,
-      "tmdbId": 68248,
-      "posterPath": "/dQpsurcTmqPr64bVMEbzmTzmV4r.jpg",
-      "reason": "Predicted 4★ (100% RT!): Tasmanian workplace comedy - combines your Australian content love with Parks & Rec warmth. Perfect light together viewing. On Prime Video.",
-      "streamingServices": [
+        "binge",
         "prime-video"
       ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
-    },
-    {
-      "title": "Apple Cider Vinegar",
-      "year": 2024,
-      "tmdbId": 206588,
-      "posterPath": "/bm0D92xrcwfnEKPUOGmz3IZCGwF.jpg",
-      "reason": "Predicted 4★ (IMDB 7.2): Australian true crime about wellness influencer fraud. Your Australian + True Crime + Limited series trifecta. On Stan.",
-      "streamingServices": [
-        "stan"
-      ],
-      "confidence": "high",
-      "source": "watchlist",
-      "predictedRating": 4
-    },
-    {
-      "title": "Platonic",
-      "year": 2023,
-      "tmdbId": 155180,
-      "posterPath": "/hk8DiKSzPPPfQoDr7kMjQl0VlIM.jpg",
-      "reason": "Predicted 4★ (IMDB 7.2): Seth Rogen/Rose Byrne reconnecting friends comedy. Easy watching like Nobody Wants This (4★). Funny and heartfelt. Ongoing on Apple TV+ (not subscribed, borrow access).",
-      "streamingServices": [],
-      "confidence": "medium",
-      "source": "watchlist",
-      "predictedRating": 4
-    },
-    {
-      "title": "Quiz",
-      "year": 2020,
-      "tmdbId": 99013,
-      "posterPath": "/r3NqLpg8F1qCq6b3LgD1LGpoxvP.jpg",
-      "reason": "Predicted 4★: True story of Who Wants to Be a Millionaire cheating scandal. British true story mini-series. Michael Sheen stars. On Stan.",
-      "streamingServices": [
-        "stan"
-      ],
-      "confidence": "high",
-      "source": "new",
-      "predictedRating": 4
-    },
-    {
-      "title": "Presumed Innocent",
-      "year": 2024,
-      "tmdbId": 213498,
-      "posterPath": "/rqFGnYXhxd3a3lbqiGhKdlp7T3P.jpg",
-      "reason": "Predicted 4★ (IMDB 7.7): Jake Gyllenhaal legal thriller remake. Gripping courtroom drama. Ongoing on Apple TV+ (not subscribed, borrow access).",
-      "streamingServices": [],
-      "confidence": "medium",
-      "source": "watchlist",
-      "predictedRating": 4
-    },
-    {
-      "title": "Your Friends & Neighbors",
-      "year": 2024,
-      "tmdbId": 248890,
-      "posterPath": "/ukUkLgMbJqZHD4qIf9Xp3PYgKHb.jpg",
-      "reason": "Predicted 4★ (IMDB 7.7): Mystery comedy about suburban secrets. Only Murders in the Building vibes for Helen. On Apple TV+ (not subscribed, borrow access).",
-      "streamingServices": [],
-      "confidence": "medium",
-      "source": "watchlist",
-      "predictedRating": 4
+      "confidence": "low",
+      "predictedRating": 4.0
     }
   ]
 }
