@@ -339,7 +339,7 @@ See also the prediction-reason guidelines in
 
 - `/shows` - the library grid/list with filters (status, streaming, watch mode, bookmarks)
 - `/platforms` - the platform report card as a live page (added 2026-11-02): watch-next on subscribed services split solo/together, the grade table, and a per-platform shelf (in progress vs cold starts, 3.5★ tail). Server-rendered from the DB on every request. Reads episode progress from `shows.traktAired/traktCompleted/traktLastEpisode/traktNextEpisode/traktProgressAt` (written by `scripts/sync-progress.ts`) and per-season availability from `shows.seasonStreaming` (written by `scripts/resync-streaming.ts`). Cards show stars **and bingeability**, and the binge figure's tooltip holds the ramp clause. Both data sets go stale between `/sync-library` runs
-- `/recommendations` - static-JSON + OpenAI recommendations; the user reports no longer using it
+- `/recommendations` - hand-written `data/recommendations.json` (+ OpenAI). The user does read it (raised The Paper S2 there 2026-11-05). At render time every entry goes through the same season rule as Watch Next (`getShowAvailability()`): entries whose next season isn't on a subscribed service are hidden with a one-line reason, and the platform badges are replaced with the services that actually carry the next season
 
 ## Generating Recommendations
 
@@ -450,6 +450,7 @@ what is watchable now, so keep it accurate, but do not treat it as load-bearing.
 ### Guidelines
 
 **What NOT to recommend:**
+- Shows whose **next season** isn't on a subscribed service. Check `nextSeasonOn` via the platform logic (`/platforms` Watch Next / Waiting), not the show-level `streamingServices`. The Paper (S2 not in AU), Abbott (S6 not in AU) and The Rookie listed under Disney+ (stops at S6) were all wrongly recommended on 2026-11-04. The page now hides them anyway, but write the file correctly
 - Shows with status "completed" (no rewatches unless explicitly asked)
 - Shows with status "dropped" (already decided against these)
 

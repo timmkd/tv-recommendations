@@ -361,11 +361,45 @@ export function platformsByShow(rows: PlatformShowRow[]): Record<number, string[
   return out;
 }
 
+export type BlockReason = 'caught-up' | 'not-in-au' | 'other-services';
+
 export interface WaitingShow {
   row: PlatformShowRow;
   /** Where the next season is (foxtel-now shown as max); [] = not in AU yet. Empty for caught-up shows. */
   nextSeasonOn: string[];
-  reason: 'caught-up' | 'not-in-au' | 'other-services';
+  reason: BlockReason;
+}
+
+/** Why a row's next season can't be watched here, and where it is instead. */
+function blockedInfo(r: PlatformShowRow): { reason: BlockReason; nextSeasonOn: string[] } {
+  const on = [...new Set((r.nextSeasonOn ?? []).map((x) => (x === MAX_ALIAS ? 'max' : x)))];
+  const reason: BlockReason = r.watchCategory === 'caught-up' ? 'caught-up' : on.length ? 'other-services' : 'not-in-au';
+  return { reason, nextSeasonOn: on };
+}
+
+export interface ShowAvailability {
+  /** Subscribed platforms (Max alias excluded) that carry the season you need next. */
+  watchableOn: string[];
+  /** Set when the show is on a subscribed platform but none of them carries the next season. */
+  blocked: { reason: BlockReason; nextSeason: number | null; nextSeasonOn: string[] } | null;
+}
+
+/**
+ * Per-show availability on the user's subscribed services — the same rule as
+ * Watch Next, without the quality filter. Used by /recommendations to hide or
+ * re-label hand-written recommendations whose next season isn't watchable.
+ */
+export function availabilityByShow(rows: PlatformShowRow[], subscribed: Set<string>): Map<number, ShowAvailability> {
+  const out = new Map<number, ShowAvailability>();
+  const byShow = new Map<number, PlatformShowRow[]>();
+  for (const r of rows) (byShow.get(r.tmdbId) ?? byShow.set(r.tmdbId, []).get(r.tmdbId)!).push(r);
+  for (const [tmdbId, list] of byShow) {
+    const subs = list.filter((r) => subscribed.has(r.platform) && r.platform !== MAX_ALIAS);
+    const watchableOn = subs.filter((r) => r.availableHere).map((r) => r.platform);
+    const blocked = subs.length && !watchableOn.length ? { ...blockedInfo(subs[0]), nextSeason: subs[0].nextSeason } : null;
+    out.set(tmdbId, { watchableOn, blocked });
+  }
+  return out;
 }
 
 /**
@@ -382,9 +416,7 @@ export function waitingRows(rows: PlatformShowRow[], subscribed: Set<string>): W
     if (!subs.length || subs.some((r) => r.worthIt4plus)) continue;
     const r = subs[0];
     if (!isWorthIt(r.watchCategory, r.qualityScore)) continue; // excluded for quality/status, not availability
-    const on = [...new Set((r.nextSeasonOn ?? []).map((x) => (x === MAX_ALIAS ? 'max' : x)))];
-    const reason = r.watchCategory === 'caught-up' ? 'caught-up' : on.length ? 'other-services' : 'not-in-au';
-    out.push({ row: r, nextSeasonOn: on, reason });
+    out.push({ row: r, ...blockedInfo(r) });
   }
   return out.sort((a, b) => byQualityThenTitle(a.row, b.row));
 }

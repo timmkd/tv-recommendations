@@ -6,8 +6,8 @@
  */
 import { db, shows, streamingServices } from '@/lib/db';
 import {
-  buildPlatformRows, summarisePlatforms, watchNext, waitingRows, platformsByShow, MAX_ALIAS,
-  type PlatformShowRow, type PlatformSummary, type WaitingShow,
+  buildPlatformRows, summarisePlatforms, watchNext, waitingRows, platformsByShow, availabilityByShow, MAX_ALIAS,
+  type PlatformShowRow, type PlatformSummary, type WaitingShow, type ShowAvailability,
 } from '@/lib/platforms';
 
 export interface PlatformReport {
@@ -53,4 +53,12 @@ export async function getPlatformReport(): Promise<PlatformReport> {
     progressAt,
     alsoOn: platformsByShow(rows),
   };
+}
+
+/** tmdbId → where the season you need next is watchable on your services (see availabilityByShow). */
+export async function getShowAvailability(): Promise<Map<number, ShowAvailability>> {
+  const all = await db.select().from(shows);
+  const services = await db.select().from(streamingServices);
+  const subscribed = new Set(services.filter((s) => s.isSubscribed).map((s) => s.slug));
+  return availabilityByShow(buildPlatformRows(all, subscribed), subscribed);
 }

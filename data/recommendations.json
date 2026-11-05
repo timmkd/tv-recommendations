@@ -3,7 +3,8 @@
   "subscribedServices": [
     "binge",
     "disney-plus",
-    "prime-video"
+    "prime-video",
+    "7plus"
   ],
   "soloProfile": {
     "summary": "Solo is for psychological sci-fi, jaw-drop reveals, workplace comedy, dark satire, and anything Helen would bounce off: superhero, sci-fi/fantasy, crude humour, slow cerebral drama.",
@@ -69,30 +70,6 @@
       ],
       "confidence": "high",
       "predictedRating": 4.5
-    },
-    {
-      "title": "The Paper",
-      "year": 2025,
-      "tmdbId": 253941,
-      "posterPath": "/ySA5MvhoxTdezNUMe0ifPmhxH4w.jpg",
-      "reason": "In progress and rated 4★ — you said it found its footing after a few episodes and might go higher. Easy-watch workplace comedy in your Office-lineage lane; finish what's aired. On Binge.",
-      "streamingServices": [
-        "binge"
-      ],
-      "confidence": "high",
-      "predictedRating": 4.0
-    },
-    {
-      "title": "Abbott Elementary",
-      "year": 2021,
-      "tmdbId": 125935,
-      "posterPath": "/nBe1e3JJEZ6veGrVXNF0fRoLu56.jpg",
-      "reason": "In progress and rated 4★. Low-commitment half-hours for whenever you want a comfort comedy between heavier shows. On Disney+.",
-      "streamingServices": [
-        "disney-plus"
-      ],
-      "confidence": "high",
-      "predictedRating": 4.0
     },
     {
       "title": "VisionQuest",
@@ -222,9 +199,9 @@
       "year": 2018,
       "tmdbId": 79744,
       "posterPath": "/70kTz0OmjjZe7zHvIDrq2iKW7PJ.jpg",
-      "reason": "In progress and rated 4.5★ — your top-rated together show still airing. Keep up with the current season. On Disney+.",
+      "reason": "In progress and rated 4.5★ — your top-rated together show still airing. Pick up from S7 E9 — S7 and S8 are on 7plus (Disney+ stops at S6).",
       "streamingServices": [
-        "disney-plus"
+        "7plus"
       ],
       "confidence": "high",
       "predictedRating": 4.5

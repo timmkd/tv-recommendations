@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { promises as fs } from 'fs';
 import path from 'path';
 import RecommendationsList from './RecommendationsList';
+import { getShowAvailability } from '@/lib/platforms-report';
+import type { ShowAvailability } from '@/lib/platforms';
 
 export const dynamic = 'force-dynamic';
 
@@ -50,7 +52,10 @@ const SERVICE_COLORS: Record<string, string> = {
   'hbo-max': 'bg-purple-600',
   'abc-iview': 'bg-green-600',
   'sbs-on-demand': 'bg-red-700',
-  'ten-play': 'bg-blue-500'
+  'ten-play': 'bg-blue-500',
+  '7plus': 'bg-red-600',
+  '9now': 'bg-sky-600',
+  max: 'bg-purple-600'
 };
 
 const SERVICE_NAMES: Record<string, string> = {
@@ -64,8 +69,38 @@ const SERVICE_NAMES: Record<string, string> = {
   'hbo-max': 'HBO Max',
   'abc-iview': 'ABC iview',
   'sbs-on-demand': 'SBS On Demand',
-  'ten-play': '10 Play'
+  'ten-play': '10 Play',
+  '7plus': '7plus',
+  '9now': '9Now',
+  max: 'Max'
 };
+
+interface HiddenRec { rec: Recommendation; blocked: NonNullable<ShowAvailability['blocked']> }
+
+/**
+ * recommendations.json is hand-written and goes stale. Run every entry through
+ * the same season rule as /platforms Watch Next: hide shows whose next season
+ * isn't on a subscribed service, and list the platforms that actually carry it.
+ * Unknown shows (not in the DB, no availability data) pass through unchanged.
+ */
+function applyAvailability(recs: Recommendation[], avail: Map<number, ShowAvailability> | null) {
+  const shown: Recommendation[] = [];
+  const hidden: HiddenRec[] = [];
+  for (const r of recs) {
+    const a = r.tmdbId != null ? avail?.get(r.tmdbId) : undefined;
+    if (a?.blocked) hidden.push({ rec: r, blocked: a.blocked });
+    else if (a?.watchableOn.length) shown.push({ ...r, streamingServices: a.watchableOn });
+    else shown.push(r);
+  }
+  return { shown, hidden };
+}
+
+function hiddenWhy({ blocked }: HiddenRec): string {
+  const name = (s: string) => SERVICE_NAMES[s] || s;
+  if (blocked.reason === 'caught-up') return 'caught up, waiting on a new season';
+  if (blocked.reason === 'not-in-au') return `S${blocked.nextSeason} not streaming in Australia yet`;
+  return `S${blocked.nextSeason} only on ${blocked.nextSeasonOn.map(name).join(', ')}`;
+}
 
 async function getRecommendations(): Promise<RecommendationsData | null> {
   try {
@@ -88,7 +123,8 @@ export default async function RecommendationsPage({
 
   // Support both 'together' and legacy 'with-wife' keys
   const togetherRecs = data?.together || data?.['with-wife'] || [];
-  const recommendations = context === 'solo' ? (data?.solo || []) : togetherRecs;
+  const avail = await getShowAvailability().catch(() => null);
+  const { shown: recommendations, hidden } = applyAvailability(context === 'solo' ? (data?.solo || []) : togetherRecs, avail);
   const tasteProfile = context === 'solo' ? data?.soloProfile : data?.togetherProfile;
   const generatedAt = data?.generatedAt ? new Date(data.generatedAt).toLocaleDateString() : null;
 
@@ -145,11 +181,18 @@ export default async function RecommendationsPage({
           />
         ) : (
           <div className="bg-gray-800 rounded-lg p-6 text-center">
-            <p className="text-gray-400 mb-4">No recommendations available yet.</p>
+            <p className="text-gray-400 mb-4">No recommendations available{hidden.length ? ' on your services right now' : ' yet'}.</p>
             <p className="text-gray-500 text-sm">
               Ask Claude to generate recommendations based on your shows!
             </p>
           </div>
+        )}
+
+        {hidden.length > 0 && (
+          <p className="mt-4 text-sm text-gray-500">
+            <span className="text-gray-400">Hidden — the next season isn&rsquo;t on your services:</span>{' '}
+            {hidden.map((h) => `${h.rec.title} (${hiddenWhy(h)})`).join(' · ')}
+          </p>
         )}
 
         {/* Taste Profile */}
