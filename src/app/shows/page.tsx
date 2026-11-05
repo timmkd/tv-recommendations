@@ -40,6 +40,9 @@ const STREAMING_BRANDS: Record<string, { bg: string; activeBg: string; logo: str
   'sbs-on-demand': { bg: 'bg-red-900/60', activeBg: 'bg-red-600', logo: '/cR4okiAS0zcXb4ufs3mi4PImXPB.jpg' },
   'ten-play': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-500', logo: '/8fIieu3ZfmTPu8eozZbtgATcPO5.jpg' },
   'amc-plus': { bg: 'bg-blue-900/60', activeBg: 'bg-blue-600', logo: '/ovmu6uot1XVvsemM2dDySXLiX57.jpg' },
+  '7plus': { bg: 'bg-red-900/60', activeBg: 'bg-red-600', logo: '/nhp23IYeFqZm4J2ZseUzSPuZ1UM.png' },        // TMDB provider 246
+  '9now': { bg: 'bg-sky-900/60', activeBg: 'bg-sky-600', logo: '/vI485YpeCXQTapVyG1nKihS0Uzp.png' },         // TMDB provider 378
+  'foxtel-now': { bg: 'bg-orange-900/60', activeBg: 'bg-orange-600', logo: '/qRZkZY5kgqXaLr4QFp7ON0wG5rB.png' }, // TMDB provider 134 (JustWatch's legacy Max alias)
 };
 
 function BookmarkIcon({ filled, className }: { filled: boolean; className?: string }) {
