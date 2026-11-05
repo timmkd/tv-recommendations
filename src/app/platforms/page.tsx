@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getPlatformReport } from '@/lib/platforms-report';
-import { FREE_PLATFORMS, LIVE_CATEGORIES, worthItRows, tier35Rows, type Grade, type PlatformShowRow, type PlatformSummary } from '@/lib/platforms';
+import { FREE_PLATFORMS, LIVE_CATEGORIES, worthItRows, tier35Rows, type Grade, type PlatformShowRow, type PlatformSummary, type WaitingShow } from '@/lib/platforms';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +13,7 @@ const FALLBACK_NAMES: Record<string, string> = {
   'netflix': 'Netflix', 'stan': 'Stan', 'binge': 'Binge', 'disney-plus': 'Disney+', 'prime-video': 'Prime Video',
   'paramount-plus': 'Paramount+', 'apple-tv-plus': 'Apple TV+', 'max': 'Max', 'foxtel-now': 'Foxtel Now',
   'britbox': 'BritBox', 'abc-iview': 'ABC iview', 'sbs-on-demand': 'SBS On Demand', 'ten-play': '10 Play', 'amc-plus': 'AMC+',
+  '7plus': '7plus', '9now': '9Now',
 };
 
 function isLive(r: PlatformShowRow) { return LIVE_CATEGORIES.includes(r.watchCategory); }
@@ -23,6 +24,18 @@ function Score({ r }: { r: PlatformShowRow }) {
   return (
     <span className={rated ? 'text-yellow-300' : 'text-gray-300'} title={rated ? 'Your rating' : 'Predicted'}>
       {rated ? '' : '~'}{r.qualityScore}★
+    </span>
+  );
+}
+
+function Binge({ r }: { r: PlatformShowRow }) {
+  const own = r.bingeability;
+  const value = own ?? r.predictedBingeability;
+  if (value == null) return null;
+  const tip = `${own != null ? 'Your bingeability' : 'Predicted bingeability'}${r.bingeRamp ? ` — ${r.bingeRamp}` : ''}`;
+  return (
+    <span className={own != null ? 'text-teal-300' : 'text-teal-500'} title={tip}>
+      {own != null ? '' : '~'}{value}/5 binge
     </span>
   );
 }
@@ -55,8 +68,10 @@ function NextCard({ r, name }: { r: PlatformShowRow; name: (slug: string) => str
         <div className="font-medium text-white truncate">{r.title} <span className="text-gray-500 font-normal">{r.year}</span></div>
         <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs">
           <Score r={r} />
+          <Binge r={r} />
           <LiveBadge r={r} />
           <span className="text-gray-400">{name(r.platform)}</span>
+          {r.traktNextEpisode && isLive(r) && <span className="text-gray-500">next {r.traktNextEpisode}</span>}
         </div>
         <div className="mt-1 text-[11px] text-gray-500">
           {r.numberOfSeasons ? `${r.numberOfSeasons} season${r.numberOfSeasons === 1 ? '' : 's'}` : ''}
@@ -67,6 +82,25 @@ function NextCard({ r, name }: { r: PlatformShowRow; name: (slug: string) => str
   );
 }
 
+function WaitingRow({ w, name }: { w: WaitingShow; name: (slug: string) => string }) {
+  const r = w.row;
+  const where = w.reason === 'caught-up'
+    ? 'caught up — waiting on a new season'
+    : w.reason === 'not-in-au'
+      ? `S${r.nextSeason} not streaming in Australia yet`
+      : `S${r.nextSeason} only on ${w.nextSeasonOn.map(name).join(', ')}`;
+  return (
+    <li className="flex items-center gap-2 py-1.5 border-b border-gray-800 last:border-0 text-sm">
+      <Score r={r} />
+      <span className="text-xs"><Binge r={r} /></span>
+      <span className="text-white truncate">{r.title}</span>
+      <ModeBadge mode={r.watchMode} />
+      {r.traktNextEpisode && <span className="text-[11px] text-gray-500">next {r.traktNextEpisode}</span>}
+      <span className="ml-auto text-[11px] text-gray-400 text-right">{where}</span>
+    </li>
+  );
+}
+
 type AlsoOn = Record<number, string[]>;
 
 function ShelfRow({ r, alsoOnMap, name }: { r: PlatformShowRow; alsoOnMap: AlsoOn; name: (slug: string) => string }) {
@@ -74,6 +108,7 @@ function ShelfRow({ r, alsoOnMap, name }: { r: PlatformShowRow; alsoOnMap: AlsoO
   return (
     <li className="flex items-center gap-2 py-1.5 border-b border-gray-800 last:border-0 text-sm">
       <Score r={r} />
+      <span className="text-xs"><Binge r={r} /></span>
       <span className="text-white truncate">{r.title}</span>
       <span className="text-gray-500 text-xs">{r.year}</span>
       <ModeBadge mode={r.watchMode} />
@@ -144,10 +179,10 @@ export default async function PlatformsPage() {
         <p className="text-sm text-gray-400 mt-1">
           Subscribed: <span className="text-gray-200">{subscribedNames}</span>.
           {' '}&ldquo;Worth it&rdquo; = unfinished, not stalled, and 4★ or better (your rating if rated, otherwise the prediction, shown with ~).
-          {' '}Live = status watching; episode progress is not synced to the app yet, so a live show may be mid-season or waiting on a new season.
+          {' '}A show only counts where the season you need next is actually streaming: season 1 for a cold start, the next episode&rsquo;s season when in progress.
         </p>
         <p className="text-xs text-gray-500 mt-1">
-          {report.showCount} shows · streaming availability {streamingAge == null ? 'never refreshed' : `refreshed ${streamingAge} day${streamingAge === 1 ? '' : 's'} ago`}
+          {report.showCount} shows · episode progress {report.progressAt ? `from the ${report.progressAt.slice(0, 10)} Trakt capture` : 'never synced'} · streaming availability {streamingAge == null ? 'never refreshed' : `refreshed ${streamingAge} day${streamingAge === 1 ? '' : 's'} ago`}
           {streamingAge != null && streamingAge > 14 ? ' — run /sync-library' : ''}
           {' '}· Foxtel Now is left out: JustWatch still lists it for HBO titles that are on Max, and it is not a service you would subscribe to.
         </p>
@@ -176,6 +211,14 @@ export default async function PlatformsPage() {
               </div>
             )}
           </div>
+        )}
+        {report.waiting.length > 0 && (
+          <details className="mt-4 rounded-lg ring-1 ring-gray-700 bg-gray-800/40">
+            <summary className="cursor-pointer select-none px-3 py-2 text-sm text-gray-300">
+              Waiting <span className="text-gray-500">({report.waiting.length}) — 4★+ on your services, but the next season isn&rsquo;t</span>
+            </summary>
+            <ul className="px-3 pb-2">{report.waiting.map((w) => <WaitingRow key={w.row.tmdbId} w={w} name={name} />)}</ul>
+          </details>
         )}
         <p className="text-xs text-gray-500 mt-2">
           Live shows first, then by score. <Link href="/shows?status=watchlist&unrated=true&sort=predicted" className="text-blue-400 hover:underline">Open the full watchlist →</Link>

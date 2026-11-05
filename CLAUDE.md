@@ -58,7 +58,7 @@ Database access is centralized through `src/lib/db`:
 - `src/lib/rottentomatoes.ts` - Rotten Tomatoes scraper for critic scores — **BROKEN as of 2026-09-14**: `getRTRatings()` returns `{}` for every title (verified on Severance, Andor, Slow Horses, The Offer). RT changed its markup. Low urgency (RT correlates 0.18/0.13 — the profile says ignore it), but treat a missing RT score as UNKNOWN, never as a low score
 - `src/lib/justwatch.ts` - JustWatch API for streaming availability (Australian region)
 - `src/lib/db` - Database access via Drizzle ORM
-- `src/lib/platforms.ts` - **The one definition of the platform report**: `watchCategory`, "worth it" (unfinished, not stalled, quality ≥ 4★ where quality = rating else prediction), per-platform summary numbers, the letter-grade rubric, and the watch-next ordering. Pure functions; used by both the `/platforms` page (`src/lib/platforms-report.ts` loads the DB) and `scripts/export-chatgpt-package.ts`, so the CSVs and the page can never disagree. Reads `data/stalled-shows.json` via a static import. Episode progress is optional: the page runs status-only (every watching show = `mid-season`, "in progress"), the exporter passes the Trakt capture so it also gets `new-season-waiting` / `caught-up`
+- `src/lib/platforms.ts` - **The one definition of the platform report**: `watchCategory`, "worth it" (unfinished, not stalled, quality ≥ 4★ where quality = rating else prediction), per-platform summary numbers, the letter-grade rubric, and the watch-next ordering. Pure functions; used by both the `/platforms` page (`src/lib/platforms-report.ts` loads the DB) and `scripts/export-chatgpt-package.ts`, so the CSVs and the page can never disagree. Reads `data/stalled-shows.json` via a static import. Episode progress comes from the `trakt*` columns on the page and from the Trakt capture in the exporter. **Season-aware (2026-11-04):** a show only counts as watchable on a platform when that platform carries the season you need *next* — S1 for a cold start, the next episode's season when in progress — per `shows.seasonStreaming`. Unknown availability counts as available: only a season JustWatch lists with no AU offers counts as "not in AU yet". A season JustWatch doesn't list at all is unknown, because numbering differs (Twin Peaks S3, Bluey). Season data that disagrees with `streamingServices` (a platform in no season list) is ignored as stale. Shows filtered out this way go to `waitingRows()` (the page's "Waiting" panel). **Caught-up** shows go there too and drop out of the worth-it/live counts until the next `/sync-library` captures new progress. Every streaming writer (`resync-streaming.ts`, `backfill-show-data.ts`, `/api/trakt/streaming`, `/api/trakt/sync`) now writes `seasonStreaming` alongside `streamingServices`. Found because The Rookie S7–8, Abbott S6 and The Paper S2 all sat on Watch Next under services that only had earlier seasons
 
 ### API Routes
 
@@ -338,7 +338,7 @@ See also the prediction-reason guidelines in
 ## Pages
 
 - `/shows` - the library grid/list with filters (status, streaming, watch mode, bookmarks)
-- `/platforms` - the platform report card as a live page (added 2026-11-02): watch-next on subscribed services split solo/together, the grade table, and a per-platform shelf (in progress vs cold starts, 3.5★ tail). Server-rendered from the DB on every request. **Status-only today** — it cannot show episode progress or tell "mid-season" from "new season waiting"; adding `traktAired`/`traktCompleted`/`traktNextEpisode` columns to `shows` and having `/sync-library` write them is the planned second step
+- `/platforms` - the platform report card as a live page (added 2026-11-02): watch-next on subscribed services split solo/together, the grade table, and a per-platform shelf (in progress vs cold starts, 3.5★ tail). Server-rendered from the DB on every request. Reads episode progress from `shows.traktAired/traktCompleted/traktLastEpisode/traktNextEpisode/traktProgressAt` (written by `scripts/sync-progress.ts`) and per-season availability from `shows.seasonStreaming` (written by `scripts/resync-streaming.ts`). Cards show stars **and bingeability**, and the binge figure's tooltip holds the ramp clause. Both data sets go stale between `/sync-library` runs
 - `/recommendations` - static-JSON + OpenAI recommendations; the user reports no longer using it
 
 ## Generating Recommendations
@@ -427,14 +427,15 @@ Include `tmdbId` and `posterPath` when possible so poster images display.
 
 ### Service Slugs
 
-`netflix`, `stan`, `binge`, `disney-plus`, `prime-video`, `paramount-plus`, `apple-tv-plus`, `max`, `foxtel-now`, `britbox`, `abc-iview`, `sbs-on-demand`, `ten-play`
+`netflix`, `stan`, `binge`, `disney-plus`, `prime-video`, `paramount-plus`, `apple-tv-plus`, `max`, `foxtel-now`, `britbox`, `abc-iview`, `sbs-on-demand`, `ten-play`, `7plus`, `9now`
 
 ### Current Subscriptions
 
 The `streamingServices` table (`isSubscribed` column) is the source of truth.
-Confirmed with the user 2026-10-28: **Binge, Disney+, Prime Video**. (The
-2026-09-10 list — Prime, Paramount+, ABC iview, SBS — is superseded; the table was
-reset to the new list the same day.)
+Confirmed with the user 2026-10-28: **Binge, Disney+, Prime Video**, plus
+**7plus** added 2026-11-04 (the user: "Channel 7, which I do have" — free-to-air,
+but marked subscribed so The Rookie S7–8 count). (The 2026-09-10 list — Prime,
+Paramount+, ABC iview, SBS — is superseded.)
 
 Set it with `npx tsx scripts/set-subscriptions.ts <full list of slugs>` — it
 unsubscribes anything not named, so always pass the complete list.
@@ -522,7 +523,9 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `resync-watch-status.ts [--dry-run]` | Rewrite `status` from captured Trakt progress, using the **Status/Sync Logic** rule above |
 | `backfill-show-data.ts [--tmdb a,b] [--all-missing] [--dry-run] [--refresh]` | Fill any EMPTY field on a show: TMDB stub metadata, streaming, RT. Defaults to the shows needing predictions. Never overwrites. Reports what it can't fill (Trakt/IMDB) |
 | `merge-trakt-genres.ts [--check] [--tmdb a,b] [--dry-run] [--touch-updated-at]` | Merge Trakt genre tags into local genres. **Additive only**; reads every `.trakt-genres*.json` capture. TMDB's TV set cannot express Horror/Thriller/Romance/Superhero/History/Musical. `--check` reports which shows lack capture data and prints their slugs. Wired into `/predict-new-shows` Step 3b |
-| `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch |
+| `resync-streaming.ts` | Refresh streaming availability for all non-dropped shows via JustWatch, including per-season `seasonStreaming` (`seasons=N/M` in its DONE line) |
+| `sync-progress.ts [--dry-run]` | Write episode progress (`traktAired/Completed/LastEpisode/NextEpisode/ProgressAt`) from `.trakt-progress.json`. Shows without a capture row are left alone |
+| `add-season-availability-columns.ts` | One-off idempotent migration (2026-11-04): the `seasonStreaming` + `trakt*` progress columns, and the `7plus` / `9now` service rows |
 | `delete-show.ts <tmdbId> [--confirm]` | Tombstone in `deletedShows` + remove. Dry-run by default; warns if rated |
 | `set-subscriptions.ts <slug>...` | Set subscribed services. Pass the FULL list — anything omitted is unsubscribed |
 | `export-chatgpt-package.ts [--zip] [--out dir]` | Read-only. Build the LLM data package (CSVs, docs, batches, generated README + ANALYST-PROMPT). Warns when the capture or streaming data is stale |

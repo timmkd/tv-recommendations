@@ -179,6 +179,8 @@ export interface ShowOverlay {
   streamingServices?: string[];
   streamingFetchedAt?: string;
   justWatchUrl?: string;
+  /** Per-season services from JustWatch. Only written when a caller sets it (null clears it = unknown). */
+  seasonStreaming?: Record<string, string[]> | null;
 
   // Structured metadata for filtering
   origin?: ShowOrigin;

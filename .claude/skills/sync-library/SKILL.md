@@ -42,7 +42,11 @@ npx tsx scripts/resync-streaming.ts 2>&1 | tail -3
 grep '^CHANGED' .streaming-resync-log.txt
 ```
 
-Read `DONE. processed=N changed=N (filled empty=N, went empty=N)`. List every
+Read `DONE. processed=N changed=N (filled empty=N, went empty=N) seasons=N/M`.
+`seasons` is how many shows got per-season availability (the /platforms Watch Next
+filter). Expect ~95%. If it is far lower, JustWatch's `seasons` field has
+broken. Say so in the summary; the page then falls back to show-level
+availability, so nothing breaks, but it stops filtering. List every
 `CHANGED` line in the summary. Two things to know when reading them:
 - `foxtel-now` is JustWatch's legacy label for HBO titles that are really on
   **Max**. Binge has had no HBO since April 2025. Never report Foxtel Now as a
@@ -177,6 +181,15 @@ npx tsx scripts/resync-watch-status.ts
 ```
 
 Confirm `RESULT: OK (N statuses written)`.
+
+Then write episode progress (which season you are up to) for the /platforms page:
+
+```
+npx tsx scripts/sync-progress.ts
+```
+
+Confirm `RESULT: OK`. It only writes the five `trakt*` progress columns, never
+status or user fields, so no dry-run gate is needed.
 
 ### Step 6 — Predict anything new (delegate)
 

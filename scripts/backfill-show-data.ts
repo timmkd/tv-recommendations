@@ -120,14 +120,17 @@ async function main() {
     // --- streaming ---
     if (refresh || isEmptyList(s.streamingServices)) {
       let services = [],
-        url;
+        url,
+        seasons = null;
       try {
         const r1 = await getStreamingAvailability(s.tmdbId, s.title, s.year);
         services = r1.services;
         url = r1.justWatchUrl;
+        seasons = r1.seasons ?? null;
         if (!services.length) {
           const r2 = await getStreamingByTitle(s.title, s.year);
           services = r2.services;
+          seasons = r2.seasons ?? null;
         }
       } catch (e) {
         notes.push(`jw-ERR(${e.message})`);
@@ -135,6 +138,7 @@ async function main() {
       set.streamingFetchedAt = new Date().toISOString();
       if (services.length) {
         set.streamingServices = services;
+        set.seasonStreaming = seasons; // kept in step with streamingServices (null = unknown)
         if (url) set.justWatchUrl = url;
         notes.push(`streaming=[${services.join(',')}]`);
         filledStreaming++;

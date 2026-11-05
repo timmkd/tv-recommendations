@@ -100,9 +100,12 @@ async function main() {
 
   // ---- platform_shows.csv --------------------------------------------------
   const platRows = buildPlatformRows(showRows, subscribed, progress);
-  writeCsv('platform_shows.csv', platRows, ['platform', 'platformAlias', 'subscribed', 'tmdbId', 'title', 'year',
-    'watchCategory', 'watchMode', 'rating', 'predictedRating', 'qualityScore', 'worthIt4plus', 'exclusiveToPlatform',
-    'numberOfSeasons', 'showStatus', 'genres', 'traktCompleted', 'traktAired', 'traktNextEpisode']);
+  // nextSeasonOn: keep "unknown" (null) and "not in AU" ([]) distinguishable in the CSV
+  const platCsvRows = platRows.map((r) => ({ ...r, nextSeasonOn: r.nextSeasonOn == null ? (r.nextSeason == null ? null : 'unknown') : r.nextSeasonOn.length ? r.nextSeasonOn : 'none-in-AU' }));
+  writeCsv('platform_shows.csv', platCsvRows, ['platform', 'platformAlias', 'subscribed', 'tmdbId', 'title', 'year',
+    'watchCategory', 'watchMode', 'rating', 'predictedRating', 'qualityScore', 'bingeability', 'predictedBingeability', 'worthIt4plus', 'exclusiveToPlatform',
+    'numberOfSeasons', 'showStatus', 'genres', 'traktCompleted', 'traktAired', 'traktNextEpisode',
+    'nextSeason', 'nextSeasonOn', 'availableHere']);
 
   // ---- platform_summary.csv -----------------------------------------------
   const summary = summarisePlatforms(platRows, subscribed);
@@ -179,7 +182,7 @@ Start with \`ANALYST-PROMPT.md\` (the brief) and \`docs/taste-profile.md\` (the 
 
 - \`tmdbId\`, \`traktSlug\`, \`imdbId\` — external ids. \`title\`, \`year\`, \`genres\` (pipe-separated; includes Trakt-only tags like Horror/Thriller/Superhero), \`numberOfSeasons\`, \`showStatus\` (TMDB: Ended / Returning Series / Canceled / In Production), \`overview\`.
 - \`status\` — library status: \`watchlist\` (not started), \`watching\`, \`completed\`. Synced from Trakt progress.
-- \`watchCategory\` — derived: \`not-started\`, \`mid-season\`, \`new-season-waiting\` (caught up on a season, next season available), \`caught-up\`, \`stalled\` (in progress but abandoned in practice — see taste profile "quiet abandonment" / "late-run fizzle"; list in the repo's data/stalled-shows.json), \`completed\`, \`dropped\`. Counts: ${JSON.stringify(cats)}.
+- \`watchCategory\` — derived: \`not-started\`, \`mid-season\`, \`new-season-waiting\` (finished a season, next season has aired — check \`availableHere\` for whether it streams in AU), \`caught-up\`, \`stalled\` (in progress but abandoned in practice — see taste profile "quiet abandonment" / "late-run fizzle"; list in the repo's data/stalled-shows.json), \`completed\`, \`dropped\`. Counts: ${JSON.stringify(cats)}.
 - \`dropped\` — decided against; hidden in the app but kept for taste analysis. \`hidden\`, \`bookmarked\` — app flags.
 - \`origin\`, \`format\`, \`contentFlags\` — optional classification fields (sparse).
 - **User fields (ground truth):** \`watchPreference\` (solo/together — who actually watched it), \`watchPreferenceNote\`, \`rating\` (0.5–5 stars, half steps), \`bingeability\` (1–5 integer: how easily watched, NOT how good), \`ratedAt\`, \`reviewNote\` (free text — the richest signal), \`notes\`.
@@ -191,7 +194,8 @@ Start with \`ANALYST-PROMPT.md\` (the brief) and \`docs/taste-profile.md\` (the 
 
 ## Column dictionary — platform_shows.csv / platform_summary.csv
 
-- \`qualityScore\` = \`rating\` if rated, else \`predictedRating\`. \`worthIt4plus\` = unfinished, not stalled, score ≥ 4.
+- \`qualityScore\` = \`rating\` if rated, else \`predictedRating\`. \`worthIt4plus\` = unfinished, not stalled, score ≥ 4, **and this platform carries the season you need next** (\`availableHere\`). Caught-up shows are never worth-it (nothing to watch yet).
+- \`nextSeason\` = the season you need next (1 for an unstarted show, the next episode's season when in progress; empty = caught up or unknown). \`nextSeasonOn\` = services carrying it (pipe-separated), \`unknown\` when JustWatch has no data for that season, \`none-in-AU\` when JustWatch lists the season with no AU offers. \`availableHere\` = this row's platform carries \`nextSeason\` (true when unknown).
 - \`exclusiveToPlatform\` = available on exactly one platform (ignoring foxtel-now).
 - \`weightedScore\` (summary) = 3 per 4.5★+ show, 2 per 4★ show, 1 per 3.5★ show, unfinished only.
 
@@ -219,7 +223,7 @@ You are analysing one viewer's TV library (${all.length} shows, ${rated.length} 
 Read in this order: README.md (what each column means), docs/taste-profile.md (how the viewer rates and the prediction rules), then the CSVs. Treat every number in the CSVs as the source of truth and every markdown report in the package (report-card-*.md, if present) as one earlier analyst's opinion, not ground truth.
 
 Hard facts to respect:
-- Current paid subscriptions: ${subsNames}. \`foxtel-now\` rows are really Max — never count Foxtel Now as a separate platform.
+- Current subscriptions: ${subsNames} (7plus, 9Now, ABC iview, SBS On Demand and 10 Play are free-to-air; one listed here means the user watches it). \`foxtel-now\` rows are really Max — never count Foxtel Now as a separate platform.
 - \`rating\` is the viewer's real score; \`predictedRating\` is a model guess with MAE ≈ 0.5★. Where both exist, \`predictionDelta\` shows the miss.
 - Missing Rotten Tomatoes / IMDb values mean "unknown", never "low". \`traktRating\` is the working external score.
 - \`watchCategory = stalled\` shows are in progress on paper but abandoned in practice; do not recommend resuming them unless the viewer asks.

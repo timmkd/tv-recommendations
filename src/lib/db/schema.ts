@@ -59,6 +59,17 @@ export const shows = sqliteTable('shows', {
   streamingServices: text('streaming_services', { mode: 'json' }).$type<string[]>(),
   streamingFetchedAt: text('streaming_fetched_at'),
   justWatchUrl: text('justwatch_url'),
+  // Per-season availability from JustWatch: { "1": ["netflix", "disney-plus"], "8": ["7plus"] }.
+  // A season listed with [] is on nothing in AU. Written by scripts/resync-streaming.ts.
+  seasonStreaming: text('season_streaming', { mode: 'json' }).$type<Record<string, string[]>>(),
+
+  // Episode progress from the Trakt browser capture (scripts/sync-progress.ts).
+  // Episode codes are "SxE", e.g. "7x9". nextEpisode null = caught up (or not started).
+  traktAired: integer('trakt_aired'),
+  traktCompleted: integer('trakt_completed'),
+  traktLastEpisode: text('trakt_last_episode'),
+  traktNextEpisode: text('trakt_next_episode'),
+  traktProgressAt: text('trakt_progress_at'),
 
   // Structured metadata for filtering
   origin: text('origin').$type<'australian' | 'british' | 'american' | 'korean' | 'japanese' | 'canadian' | 'other'>(),

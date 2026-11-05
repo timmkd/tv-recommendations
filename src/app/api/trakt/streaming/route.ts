@@ -68,22 +68,26 @@ export async function POST(request: NextRequest) {
     for (const show of showsToFetch) {
       try {
         let services: string[] = [];
+        let seasonStreaming: Record<string, string[]> | null = null;
 
         // Try 1: JustWatch by TMDB id — accurate source that filters subscription/free
         // vs rent/buy. (Trakt's watchnow/au endpoint currently returns empty for AU, so
         // it's demoted to a last resort below.)
         const streamingData = await getStreamingAvailability(show.tmdbId, show.title, show.year);
         services = streamingData.services;
+        seasonStreaming = streamingData.seasons ?? null;
 
         // Try 2: JustWatch by title only (if TMDB match failed)
         if (services.length === 0 && show.title) {
           const titleData = await getStreamingByTitle(show.title, show.year);
           services = titleData.services;
+          seasonStreaming = titleData.seasons ?? null;
         }
 
         // Try 3: Trakt watchnow (last resort — usually empty for AU)
         if (services.length === 0 && show.slug) {
           services = await getShowStreaming(show.slug, 'au');
+          seasonStreaming = null; // Trakt has no per-season data
         }
 
         // Get existing overlay and update streaming data
@@ -94,7 +98,8 @@ export async function POST(request: NextRequest) {
           ...existing,
           title: show.title,
           streamingServices: services,
-          streamingFetchedAt: new Date().toISOString()
+          streamingFetchedAt: new Date().toISOString(),
+          seasonStreaming,
         });
 
         results[show.tmdbId] = services;

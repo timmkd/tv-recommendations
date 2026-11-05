@@ -71,11 +71,13 @@ notes `platform_shows.csv` filtered to `worthIt4plus = true`, sorted by
 sections:
 
 1. **Header** — date, what "worth it" means (unfinished, not stalled, quality
-   score ≥ 4★ where score = rating if rated else predicted), the current
+   score ≥ 4★ where score = rating if rated else predicted, AND the platform
+   carries the season you need next — `availableHere`), the current
    subscriptions from `subscriptions.csv`, and the `foxtel-now` = Max note.
 2. **Grade table** — `Platform | Grade | 4★+ worth it | Exclusive | Live now |
    Solo / Together | Status`. Omit `foxtel-now`. Status = Subscribed / Not
-   subscribed / Free (ABC iview, SBS On Demand, 10 Play are free).
+   subscribed / Free (ABC iview, SBS On Demand, 10 Play, 7plus, 9Now are free-to-air; a free
+   one the user has listed in subscriptions.csv counts as Subscribed).
    Grading rubric — start from `worthIt4plus`:
    ≥20 A · 15–19 A- · 11–14 B+ · 8–10 B · 6–7 C+ · 4–5 C · 2–3 D+ · 0–1 D.
    Then adjust ONE step, stating why in the per-platform note:

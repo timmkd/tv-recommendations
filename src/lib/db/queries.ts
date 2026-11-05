@@ -316,6 +316,8 @@ function overlayToDbShow(overlay: ShowOverlay): Omit<typeof shows.$inferInsert, 
     streamingServices: overlay.streamingServices ?? null,
     streamingFetchedAt: overlay.streamingFetchedAt ?? null,
     justWatchUrl: overlay.justWatchUrl ?? null,
+    // Left untouched unless the caller set it, so rating/notes saves never wipe season data.
+    ...(overlay.seasonStreaming !== undefined ? { seasonStreaming: overlay.seasonStreaming } : {}),
     origin: overlay.origin ?? null,
     format: overlay.format ?? null,
     contentFlags: overlay.contentFlags ?? null,

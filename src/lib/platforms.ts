@@ -7,10 +7,16 @@
  * platform_summary.csv). Grading rubric mirrors the export-chatgpt-package
  * skill's report-card step.
  *
- * Episode progress (aired/completed/next episode) is optional: it only exists
- * in the local Trakt browser capture today. Without it, every watching show is
- * categorised as `mid-season` ("in progress"), which is still enough for the
- * live/cold split the grade turns on.
+ * Episode progress (aired/completed/next episode) comes from the Trakt browser
+ * capture — passed in by the exporter, or read from the shows.trakt* columns
+ * that scripts/sync-progress.ts writes (the /platforms page). Without it, every
+ * watching show is categorised as `mid-season` ("in progress").
+ *
+ * Season availability: a show only counts as watchable on a platform when that
+ * platform carries the season you need NEXT (season 1 for a cold start, the
+ * season of the next episode for a show in progress), per shows.seasonStreaming
+ * from JustWatch. Unknown availability counts as available — never drop a show
+ * on missing data. Shows filtered out this way land in waitingRows().
  */
 import stalledFile from '../../data/stalled-shows.json';
 
@@ -34,6 +40,9 @@ export interface ReportShow {
   dropped?: boolean | null;
   rating?: number | null;
   predictedRating?: number | null;
+  bingeability?: number | null;
+  predictedBingeability?: number | null;
+  predictedBingeabilityReason?: string | null;
   watchPreference?: 'solo' | 'together' | null;
   recommendedWatchPreference?: 'solo' | 'together' | null;
   numberOfSeasons?: number | null;
@@ -41,6 +50,11 @@ export interface ReportShow {
   genres?: string[] | null;
   streamingServices?: string[] | null;
   justWatchUrl?: string | null;
+  seasonStreaming?: Record<string, string[]> | null;
+  traktAired?: number | null;
+  traktCompleted?: number | null;
+  traktLastEpisode?: string | null;
+  traktNextEpisode?: string | null;
 }
 
 export interface PlatformShowRow {
@@ -56,6 +70,10 @@ export interface PlatformShowRow {
   rating: number | null;
   predictedRating: number | null;
   qualityScore: number | null;
+  bingeability: number | null;
+  predictedBingeability: number | null;
+  /** The ramp clause that ends every bingeability reason ("Slow open — picks up from ep 3; worth it."). */
+  bingeRamp: string | null;
   worthIt4plus: boolean;
   exclusiveToPlatform: boolean;
   numberOfSeasons: number | null;
@@ -65,6 +83,12 @@ export interface PlatformShowRow {
   traktAired: number | null;
   traktNextEpisode: string | null;
   justWatchUrl: string | null;
+  /** The season you need next: 1 for a cold start, the next episode's season when in progress; null = nothing to watch / unknown. */
+  nextSeason: number | null;
+  /** Services carrying nextSeason (Max alias included); null = unknown. */
+  nextSeasonOn: string[] | null;
+  /** Whether THIS platform carries nextSeason (true when unknown). */
+  availableHere: boolean;
 }
 
 export interface PlatformSummary {
@@ -104,7 +128,7 @@ const GRADE_SCALE: Grade[] = ['D', 'D+', 'C', 'C+', 'B', 'B+', 'A-', 'A'];
  * grade table and from watch-next — but its rows stay in platform_shows.csv.
  */
 export const MAX_ALIAS = 'foxtel-now';
-export const FREE_PLATFORMS = new Set(['abc-iview', 'sbs-on-demand', 'ten-play']);
+export const FREE_PLATFORMS = new Set(['abc-iview', 'sbs-on-demand', 'ten-play', '7plus', '9now']);
 export const LIVE_CATEGORIES: WatchCategory[] = ['new-season-waiting', 'mid-season', 'caught-up'];
 
 export const STALLED_TITLES: Set<string> = new Set((stalledFile as { titles: string[] }).titles);
@@ -120,6 +144,54 @@ export function categorise(s: ReportShow, progress?: ProgressInfo | null): Watch
     return 'mid-season';
   }
   return 'not-started';
+}
+
+/** Progress from the shows.trakt* columns (written by scripts/sync-progress.ts). */
+export function progressFromShow(s: ReportShow): ProgressInfo | null {
+  if (s.traktAired == null || s.traktCompleted == null) return null;
+  return { aired: s.traktAired, completed: s.traktCompleted, lastEp: s.traktLastEpisode ?? null, nextEp: s.traktNextEpisode ?? null };
+}
+
+/** The season the user needs next, or null when there is nothing to watch (caught up) or it is unknown. */
+export function nextSeasonFor(category: WatchCategory, p: ProgressInfo | null): number | null {
+  if (category === 'not-started') return 1;
+  if (category === 'caught-up') return null;
+  if (category === 'mid-season' || category === 'new-season-waiting') {
+    const n = p?.nextEp ? parseInt(p.nextEp.split('x')[0], 10) : NaN;
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
+
+/**
+ * Which services carry `season`, from JustWatch's per-season offers. Only an
+ * explicitly listed season counts: [] means JustWatch lists the season with no
+ * AU offers ("not in AU yet" — Abbott S6, The Paper S2). A season JustWatch does
+ * not list at all is null = unknown, because Trakt/TMDB and JustWatch number
+ * seasons differently (Twin Peaks: The Return is S3 on Trakt but a separate
+ * JustWatch title; Bluey runs one season ahead). Never remove a show on that.
+ */
+export function servicesForSeason(seasonStreaming: Record<string, string[]> | null | undefined, season: number | null): string[] | null {
+  if (season == null || !seasonStreaming) return null;
+  return seasonStreaming[String(season)] ?? null;
+}
+
+/**
+ * Season data is only trusted when it agrees with the show-level list: every
+ * platform the show is on must appear in at least one season. A platform in
+ * no season list means streamingServices was refreshed by a path that did not
+ * refresh seasonStreaming (drift) — ignore the season data, i.e. "unknown".
+ */
+export function seasonDataInSync(seasonStreaming: Record<string, string[]> | null | undefined, services: string[]): boolean {
+  if (!seasonStreaming) return false;
+  const inSeasons = new Set(Object.values(seasonStreaming).flat());
+  return services.every((sv) => inSeasons.has(sv));
+}
+
+/** The fixed-form ramp clause at the end of a bingeability reason, or null. */
+export function rampClause(reason: string | null | undefined): string | null {
+  const m = reason?.match(/(Grabs from ep 1\.|Slow open — .*|Front-loaded — .*)$/);
+  return m ? m[1].trim() : null;
 }
 
 export function qualityScore(s: ReportShow): number | null {
@@ -139,11 +211,15 @@ export function buildPlatformRows(
   for (const s of shows) {
     const services = s.streamingServices || [];
     if (!services.length) continue;
-    const p = progress.get(s.tmdbId) ?? null;
+    const p = progress.get(s.tmdbId) ?? progressFromShow(s);
     const category = categorise(s, p);
     const quality = qualityScore(s);
     const exclusive = services.filter((x) => x !== MAX_ALIAS).length === 1;
+    const nextSeason = nextSeasonFor(category, p);
+    const nextSeasonOn = seasonDataInSync(s.seasonStreaming, services) ? servicesForSeason(s.seasonStreaming, nextSeason) : null;
     for (const sv of services) {
+      // Caught up = nothing to watch anywhere until a new season airs.
+      const availableHere = category === 'caught-up' ? false : nextSeasonOn == null ? true : nextSeasonOn.includes(sv);
       rows.push({
         platform: sv,
         platformAlias: sv === MAX_ALIAS ? 'alias-of-max (JustWatch legacy HBO mapping)' : '',
@@ -152,11 +228,14 @@ export function buildPlatformRows(
         watchCategory: category,
         watchMode: s.watchPreference || s.recommendedWatchPreference || '',
         rating: s.rating ?? null, predictedRating: s.predictedRating ?? null, qualityScore: quality,
-        worthIt4plus: isWorthIt(category, quality),
+        bingeability: s.bingeability ?? null, predictedBingeability: s.predictedBingeability ?? null,
+        bingeRamp: rampClause(s.predictedBingeabilityReason),
+        worthIt4plus: isWorthIt(category, quality) && availableHere,
         exclusiveToPlatform: exclusive,
         numberOfSeasons: s.numberOfSeasons ?? null, showStatus: s.showStatus ?? null, genres: s.genres ?? null,
         traktCompleted: p?.completed ?? null, traktAired: p?.aired ?? null, traktNextEpisode: p?.nextEp ?? null,
         justWatchUrl: s.justWatchUrl ?? null,
+        nextSeason, nextSeasonOn, availableHere,
       });
     }
   }
@@ -199,10 +278,10 @@ export function worthItRows(rows: PlatformShowRow[]): PlatformShowRow[] {
   return rows.filter((r) => r.worthIt4plus).sort(byQualityThenTitle);
 }
 
-/** The 3.5★ tail: unfinished, not stalled, 3.5 ≤ quality < 4. */
+/** The 3.5★ tail: unfinished, not stalled, next season available here, 3.5 ≤ quality < 4. */
 export function tier35Rows(rows: PlatformShowRow[]): PlatformShowRow[] {
   return unfinishedRows(rows)
-    .filter((r) => r.watchCategory !== 'stalled' && r.qualityScore != null && r.qualityScore >= 3.5 && r.qualityScore < 4)
+    .filter((r) => r.watchCategory !== 'stalled' && r.availableHere && r.qualityScore != null && r.qualityScore >= 3.5 && r.qualityScore < 4)
     .sort((a, b) => (a.title || '').localeCompare(b.title || ''));
 }
 
@@ -272,12 +351,40 @@ export function watchNext(rows: PlatformShowRow[], subscribed: Set<string>): Pla
     || (a.title || '').localeCompare(b.title || ''));
 }
 
-/** tmdbId → platforms the show sits on (Max alias dropped), built once for the "also on" notes. */
+/** tmdbId → platforms that carry the season you need next (Max alias dropped), for the "also on" notes. */
 export function platformsByShow(rows: PlatformShowRow[]): Record<number, string[]> {
   const out: Record<number, string[]> = {};
   for (const r of rows) {
-    if (r.platform === MAX_ALIAS) continue;
+    if (r.platform === MAX_ALIAS || !r.availableHere) continue;
     (out[r.tmdbId] ??= []).push(r.platform);
   }
   return out;
+}
+
+export interface WaitingShow {
+  row: PlatformShowRow;
+  /** Where the next season is (foxtel-now shown as max); [] = not in AU yet. Empty for caught-up shows. */
+  nextSeasonOn: string[];
+  reason: 'caught-up' | 'not-in-au' | 'other-services';
+}
+
+/**
+ * The counterpart to watchNext(): shows that WOULD be on it (4★+, unfinished,
+ * not stalled, on a subscribed service) but whose next season is not on any
+ * subscribed service — or that are caught up with nothing to watch.
+ */
+export function waitingRows(rows: PlatformShowRow[], subscribed: Set<string>): WaitingShow[] {
+  const byShow = new Map<number, PlatformShowRow[]>();
+  for (const r of rows) (byShow.get(r.tmdbId) ?? byShow.set(r.tmdbId, []).get(r.tmdbId)!).push(r);
+  const out: WaitingShow[] = [];
+  for (const list of byShow.values()) {
+    const subs = list.filter((r) => subscribed.has(r.platform) && r.platform !== MAX_ALIAS);
+    if (!subs.length || subs.some((r) => r.worthIt4plus)) continue;
+    const r = subs[0];
+    if (!isWorthIt(r.watchCategory, r.qualityScore)) continue; // excluded for quality/status, not availability
+    const on = [...new Set((r.nextSeasonOn ?? []).map((x) => (x === MAX_ALIAS ? 'max' : x)))];
+    const reason = r.watchCategory === 'caught-up' ? 'caught-up' : on.length ? 'other-services' : 'not-in-au';
+    out.push({ row: r, nextSeasonOn: on, reason });
+  }
+  return out.sort((a, b) => byQualityThenTitle(a.row, b.row));
 }

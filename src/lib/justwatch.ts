@@ -22,6 +22,8 @@ const PROVIDER_MAP: Record<number, string> = {
   1852: 'britbox',           // BritBox Apple TV channel
   1899: 'max',               // HBO Max
   82: 'ten-play',             // 10 Play (free, ad-supported)
+  246: '7plus',               // 7plus (free, ad-supported)
+  378: '9now',                // 9Now (free, ad-supported)
   // Additional ad-supported/channel variants (map to same slug)
   1796: 'netflix',           // Netflix Standard with Ads
   2100: 'prime-video',       // Amazon Prime Video with Ads
@@ -56,6 +58,27 @@ interface StreamingResult {
   services: string[];  // Our slug format
   allOffers: JustWatchOffer[];
   justWatchUrl?: string;
+  /** Per-season services, e.g. { "1": ["netflix"], "8": ["7plus"] }. [] = on nothing. Absent when unknown. */
+  seasons?: Record<string, string[]>;
+}
+
+// Free-tier providers (ad-supported public/commercial broadcasters)
+const FREE_PROVIDERS = new Set([135, 132, 82, 246, 378]); // ABC iview, SBS On Demand, 10 Play, 7plus, 9Now
+
+/**
+ * Raw GraphQL offers → our slugs. Keeps "flatrate" (subscription) plus the free
+ * broadcasters, which JustWatch reports as 'free' or 'ads' (ABC/SBS/10/7/9 as
+ * 'ads' since late 2026). Rent/buy never count.
+ */
+interface RawOffer { monetizationType?: string; package?: { packageId?: number } }
+
+function offersToServices(rawOffers: RawOffer[] | null | undefined): string[] {
+  const slugs = (rawOffers || [])
+    .map((o) => ({ id: o.package?.packageId ?? -1, type: o.monetizationType?.toLowerCase() }))
+    .filter((o) => o.type === 'flatrate' || ((o.type === 'free' || o.type === 'ads') && FREE_PROVIDERS.has(o.id)))
+    .map((o) => PROVIDER_MAP[o.id])
+    .filter((slug): slug is string => !!slug);
+  return [...new Set(slugs)];
 }
 
 interface JustWatchShow {
@@ -188,6 +211,15 @@ export async function getStreamingAvailability(tmdbId: number, title?: string, y
                 clearName
               }
             }
+            ... on Show {
+              seasons {
+                content(country: $country, language: $language) { seasonNumber }
+                offers(country: $country, platform: WEB) {
+                  monetizationType
+                  package { packageId }
+                }
+              }
+            }
           }
         }
       }
@@ -256,18 +288,17 @@ export async function getStreamingAvailability(tmdbId: number, title?: string, y
       presentationType: offer.presentationType,
     }));
 
-    // Free-tier providers (ad-supported public broadcasters)
-    const FREE_PROVIDERS = new Set([135, 132, 82]); // ABC iview, SBS On Demand, 10 Play
+    const uniqueServices = offersToServices(matchedNode.offers);
 
-    // Filter to "flatrate" (subscription) or "free"/"ads" (public broadcasters — JustWatch
-    // reports ABC/SBS/10 as monetizationType 'ads' since late 2026, not 'free')
-    const subscriptionServices = offers
-      .filter(o => o.monetizationType === 'flatrate' || ((o.monetizationType === 'free' || o.monetizationType === 'ads') && FREE_PROVIDERS.has(o.providerId)))
-      .map(o => PROVIDER_MAP[o.providerId])
-      .filter((slug): slug is string => !!slug);
-
-    // Dedupe
-    const uniqueServices = [...new Set(subscriptionServices)];
+    let seasons: Record<string, string[]> | undefined;
+    if (Array.isArray(matchedNode.seasons) && matchedNode.seasons.length) {
+      seasons = {};
+      for (const season of matchedNode.seasons) {
+        const n = season.content?.seasonNumber;
+        if (n == null) continue;
+        seasons[String(n)] = offersToServices(season.offers);
+      }
+    }
 
     const fullPath = matchedNode.content?.fullPath;
     const justWatchUrl = fullPath
@@ -278,6 +309,7 @@ export async function getStreamingAvailability(tmdbId: number, title?: string, y
       services: uniqueServices,
       allOffers: offers,
       justWatchUrl,
+      seasons,
     };
   } catch (error) {
     console.error('JustWatch availability error:', error);
@@ -298,10 +330,7 @@ export async function getStreamingByTitle(title: string, year?: number): Promise
     ? results.find(r => r.originalReleaseYear === year) || results[0]
     : results[0];
 
-  // Free-tier providers (ad-supported public broadcasters)
-  const FREE_PROVIDERS = new Set([135, 132, 82]); // ABC iview, SBS On Demand, 10 Play
-
-  // If we have offers from search, use those
+  // If we have offers from search, use those (FREE_PROVIDERS is module-level, shared with offersToServices)
   if (match.offers.length > 0) {
     const subscriptionServices = match.offers
       .filter(o => o.monetizationType === 'flatrate' || ((o.monetizationType === 'free' || o.monetizationType === 'ads') && FREE_PROVIDERS.has(o.providerId)))

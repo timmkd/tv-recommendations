@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       trakt?: { success: boolean; status?: ShowStatus; aired?: number; completed?: number; addedToWatchlist?: boolean; traktRating?: number; traktVoteCount?: number; error?: string };
       tmdb?: { success: boolean; posterPath?: string; genres?: string[]; error?: string };
       rt?: { success: boolean; criticsScore?: number; audienceScore?: number; error?: string };
-      streaming?: { success: boolean; services?: string[]; error?: string };
+      streaming?: { success: boolean; services?: string[]; seasons?: Record<string, string[]> | null; error?: string };
       imdb?: { success: boolean; rating?: number; votes?: number; error?: string };
     } = {};
 
@@ -178,6 +178,7 @@ export async function POST(request: NextRequest) {
     // 4. Get streaming availability (with fallbacks)
     try {
       let services: string[] = [];
+      let seasons: Record<string, string[]> | null = null;
 
       // Try 1: Trakt streaming endpoint (most reliable - uses slug)
       if (traktSlug) {
@@ -188,17 +189,20 @@ export async function POST(request: NextRequest) {
       if (services.length === 0) {
         const streamingData = await getStreamingAvailability(tmdbId);
         services = streamingData.services;
+        seasons = streamingData.seasons ?? null;
       }
 
       // Try 3: JustWatch by title (final fallback)
       if (services.length === 0 && title) {
         const titleData = await getStreamingByTitle(title, year);
         services = titleData.services;
+        seasons = titleData.seasons ?? null;
       }
 
       results.streaming = {
         success: true,
-        services
+        services,
+        seasons,
       };
     } catch (error) {
       results.streaming = { success: false, error: error instanceof Error ? error.message : 'Streaming fetch failed' };
@@ -227,6 +231,8 @@ export async function POST(request: NextRequest) {
       // Streaming data
       streamingServices: results.streaming?.services?.length ? results.streaming.services : existing?.streamingServices,
       streamingFetchedAt: results.streaming?.success ? new Date().toISOString() : existing?.streamingFetchedAt,
+      // Per-season data only replaced when this fetch produced services; otherwise left as it was.
+      ...(results.streaming?.services?.length ? { seasonStreaming: results.streaming.seasons ?? null } : {}),
       // Trakt ratings
       traktRating: results.trakt?.traktRating ?? existing?.traktRating,
       traktVoteCount: results.trakt?.traktVoteCount ?? existing?.traktVoteCount,
