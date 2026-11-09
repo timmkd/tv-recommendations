@@ -63,7 +63,7 @@ Read the `SUMMARY:` footer line and branch:
    Mark RECOMPUTE if ANY of these hold (and nothing else — do not re-litigate
    predictions no pending entry touches):
    a. The show's stored REASON text cites a rule/phrase that a pending entry
-      changed (match the entry's `reason~"..."` keywords against the REASON).
+      changed (match the entry's `reason~"..."` keywords against the REASON and BINGE lines — ramp-clause phrases such as "Grabs from ep 1" live only in BINGE).
    b. The show's attributes match the entry's `affects:` keywords
       (genre, `pref=`, `origin=`, `seasons<=N`, `format=`).
    c. The show's `recommendedWatchPreference` conflicts with a changed

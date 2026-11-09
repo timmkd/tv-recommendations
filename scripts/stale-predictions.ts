@@ -80,6 +80,8 @@ async function main() {
       rtAudienceScore: shows.rtAudienceScore,
       predictedRating: shows.predictedRating,
       predictedRatingReason: shows.predictedRatingReason,
+      predictedBingeability: shows.predictedBingeability,
+      predictedBingeabilityReason: shows.predictedBingeabilityReason,
       recommendedWatchPreference: shows.recommendedWatchPreference,
       predictionsUpdatedAt: shows.predictionsUpdatedAt,
     })
@@ -116,6 +118,8 @@ async function main() {
       `   IMDB ${s.imdbRating ?? '-'} | Trakt ${s.traktRating ?? '-'} | TMDB ${s.tmdbRating ?? '-'} | RT ${s.rtCriticsScore ?? '-'}/${s.rtAudienceScore ?? '-'}`
     );
     console.log(`   REASON: ${s.predictedRatingReason ?? '(none)'}`);
+    // Ramp-clause entries (affects: reason~"Grabs from ep 1") match on this line, not REASON.
+    if (s.predictedBingeabilityReason) console.log(`   BINGE: ${s.predictedBingeabilityReason}`);
     if (s.overview) console.log(`   overview: ${s.overview.slice(0, 240)}`);
     console.log('');
   }

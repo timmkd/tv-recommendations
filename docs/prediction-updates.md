@@ -1459,3 +1459,51 @@ calls and watch modes held.
 | **Devs** | 4★ S | 4★ S | Ramp recheck: no ep-3 lift in per-ep scores, critics say middle sags — pickup moved ep 3→ep 7; 4★ S holds |
 | **VisionQuest** | 4★ S | 4★ S | Mid-season recheck: 7/8 aired, eps 4+ score higher, critics name ep 4 the turn — Grabs→Slow open ep 4; 4★ S |
 | **Say Nothing** | 4★ T | 4★ T | Ramp recheck: flat-high per-ep scores, opens on the abduction — Grabs holds; base arithmetic fixed (3.6→3.4) |
+
+## 2026-11-09 — Prediction rescan (profile changes: 2026-11-08)
+
+Screened 187 stale predictions; 128 ended in `Grabs from ep 1.` and were re-derived from
+per-episode TMDB scores (`scripts/episode-scores.ts --classify`) plus one review search
+each. 32 written, 155 kept unchanged; 99 of the 128 Grabs clauses held up on the evidence.
+22 now have a slow open and 7 are front-loaded. Separately, 5 bingeability numbers moved
+because the evidence contradicted their stated reasons, and Harry Potter is marked as a
+pre-air estimate. Three star reasons were refreshed with the same number: Counterpart,
+The Offer and Unforgotten. They contradicted the new ramp, and two of them had wrong
+base arithmetic. The screen alone over-calls "picks up" (later episodes are scored
+mostly by survivors), so no clause changed on data without review support. Full
+screening table: `data/prediction-batches/2026-11-09-rescan-screening.md`.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **12 Monkeys** | 4★ S | 4★ S + B4 | 2026-11-08 ramp-from-evidence: eps 2-4 dip, reviews say S1 locks in mid-season — Grabs→Slow open ep 5 |
+| **A Knight of the Seven Kingdoms** | 3.5★ S | 3.5★ S + B4 | 2026-11-08 ramp-from-evidence: slow premiere per critics, scores climb 7.7→9.1 — Grabs→Slow open ep 2 |
+| **A Murder at the End of the World** | 3.5★ S | 3.5★ S + B3 | 2026-11-08 ramp-from-evidence: first 2 eps 'long and slow', dull middle — binge 4→3, Grabs→Slow open ep 3 thin |
+| **Counterpart** | 4★ S | 4★ S | 2026-11-08 ramp-from-evidence: eps 2-4 sag, Den of Geek 'rewarded 3-4 eps in' — Grabs→Slow open ep 5; base 3.75→3.55 |
+| **DTF St. Louis** | 4★ S | 4★ S + B4 | 2026-11-08 ramp-from-evidence: pilot 6.2 vs ~7.1 after, critics 'rewarded from ep 2' — Grabs→Slow open ep 2 |
+| **Detectorists** | 3.5★ S | 3.5★ S + B3 | 2026-11-08 ramp-from-evidence: pilot lowest, scores climb every ep, viewers 'weak start' — Grabs→Slow open ep 2 |
+| **Down Cemetery Road** | 4★ T | 4★ T + B4 | 2026-11-08 ramp-from-evidence: pilot 6.3 vs ~7.1 after, critics 'deliberate, uneven' — Grabs→Slow open ep 2 |
+| **Dying for Sex** | 3★ T | 3★ T + B4 | 2026-11-08 ramp-from-evidence: 'isn't very good before it becomes great', lift at ep 3 — Grabs→Slow open ep 3 |
+| **I May Destroy You** | 4★ S | 4★ S + B4 | 2026-11-08 ramp-from-evidence: ep 1 'unfocused and scattered', 'give it a couple of weeks' — Grabs→Slow open ep 3 |
+| **Line of Duty** | 4★ T | 4★ T + B5 | 2026-11-08 ramp-from-evidence: pilot 6.8, climbs from ep 3; S1 the modest season — Grabs→Slow open ep 3 |
+| **Mare of Easttown** | 4.5★ T | 4.5★ T + B5 | 2026-11-08 ramp-from-evidence: pilot is setup, 'slow at first' (TVLine), lowest score — Grabs→Slow open ep 2 |
+| **Marvel's The Defenders** | 3★ S | 3★ S + B4 | 2026-11-08 ramp-from-evidence: 'frustratingly slow start', team-up ep 3 tops S1 — Grabs→Slow open ep 3 thin |
+| **Nocturne** | 3★ S | 3★ S + B3 | 2026-11-08 ramp-from-evidence: AV Club: 2-hr pilot is setup, later 'brisk' — Grabs→Slow open ep 2 |
+| **Psych** | 3★ T | 3★ T + B3 | 2026-11-08 ramp-from-evidence: S1 mixed reviews, eps 2-4 sag, lift from ep 8 — Grabs→Slow open ep 8 thin |
+| **Shining Girls** | 3.5★ S | 3.5★ S + B3 | 2026-11-08 ramp-from-evidence: 'frustratingly slow start', coheres mid-ep 3 — binge 4→3, Grabs→Slow open ep 4 thin |
+| **Smoke** | 3★ T | 3★ T + B3 | 2026-11-08 ramp-from-evidence: slow first eps, 'momentum burns out' (AV Club) — binge 4→3, Grabs→Slow open ep 4 thin |
+| **Succession** | 4.5★ S | 4.5★ S + B4 | 2026-11-08 ramp-from-evidence: eps 2-3 lowest, 'gets good a few eps in' (Ringer) — Grabs→Slow open ep 4 |
+| **Task** | 4.5★ T | 4.5★ T + B4 | 2026-11-08 ramp-from-evidence: 'pace slow, set-up too long', ep 1 pace warning — Grabs→Slow open ep 2 |
+| **The Lincoln Lawyer** | 4★ T | 4★ T + B4 | 2026-11-08 ramp-from-evidence: 'needs a few episodes to hit its stride', climbs from ep 4 — Grabs→Slow open ep 4 |
+| **The Offer** | 3.5★ T | 3.5★ T | 2026-11-08 ramp-from-evidence: eps 1-2 7.1, ep 3+ 8.0+; old reason said 'not a weak hook' — Grabs→Slow open ep 3 |
+| **The Penguin** | 4★ S | 4★ S + B4 | 2026-11-08 ramp-from-evidence: pilot 3/5 (Den of Geek), 'first two eps slow' — Grabs→Slow open ep 3 |
+| **The Righteous Gemstones** | 3.5★ S | 3.5★ S + B4 | 2026-11-08 ramp-from-evidence: pilot lowest, 'a few episodes to find calibration' — Grabs→Slow open ep 3 |
+| **Arcane** | 4★ S | 4★ S + B4 | 2026-11-08 ramp-from-evidence: S1 8.7→S2 8.1, critics 'uneven, rushed' — Grabs→Front-loaded S2 |
+| **Hijack** | 3.5★ T | 3.5★ T + B5 | 2026-11-08 ramp-from-evidence: S1 7.0→S2 6.4, 'diminishing returns' — Grabs→Front-loaded S2 |
+| **House of the Dragon** | 4★ S | 4★ S + B4 | 2026-11-08 ramp-from-evidence: S1 7.5→S2 7.1→S3 6.8, S2 'lethargic pacing' — Grabs→Front-loaded S2 |
+| **Money Heist** | 3.5★ T | 3.5★ T + B4 | 2026-11-08 ramp-from-evidence: 'began to stall' (momentum, not quality), 7.9→7.4 — binge 5→4, Grabs→Front-loaded S2 |
+| **Roseanne** | 3★ S | 3★ S + B3 | 2026-11-08 ramp-from-evidence: S7-8 sketches/parodies, S9 'unwatchable' — Grabs→Front-loaded S7 |
+| **Unforgotten** | 4★ T | 4★ T | 2026-11-08 ramp-from-evidence: S1-3 peak, S4 lead change divisive — Grabs→Front-loaded S4; base 3.65→3.45 |
+| **Wednesday** | 3.5★ S | 3.5★ S + B5 | 2026-11-08 ramp-from-evidence: S1 8.4→S2 7.6, 'meandering' (Playlist) — Grabs→Front-loaded S2 |
+| **Good American Family** | 3.5★ T | 3.5★ T + B3 | 2026-11-08 ramp-from-evidence: pilot strongest, pacing the common complaint — Grabs holds, binge 4→3 |
+| **The Perfect Couple** | 3★ T | 3★ T + B4 | 2026-11-08 ramp-from-evidence: start good, 'drags painfully between' (USA Today) — Grabs holds, binge 5→4 |
+| **Harry Potter** | 4★ T | 4★ T + B4 | 2026-11-08 ramp-from-evidence: pre-air, no episode data — clause kept, marked as a structural estimate |
