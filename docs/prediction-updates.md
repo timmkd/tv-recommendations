@@ -1441,3 +1441,21 @@ carried the penalty, so only they are touched.
 | ---- | --- | --- | ----------------- |
 | **The Leftovers** | 3.5★ S | 4★ S | One-season ramp keeps end-state 4★; "S1 likely 3.5★" stated |
 | **Person of Interest** | 4★ S | 4★ S | Two-season ramp keeps -0.5★; "S1-2 play like a 3★ procedural" stated |
+
+## 2026-11-08 — Ramp recheck, Disney+ shortlist (user-raised: "Grabs from ep 1" everywhere)
+
+User suspected `Grabs from ep 1.` was algorithmic repetition. Largely true: it ends
+143 of 210 bingeability reasons, and 126 of the 179 rows in the 2026-09-16 ramp
+backfill, which was written from format, not per-episode evidence. Re-derived the
+five unrated Disney+ worth-it shows from TMDB per-episode scores
+(`scripts/episode-scores.ts`) plus reviews. Three of four "Grabs" clauses were wrong.
+The one non-Grabs clause (Devs, ep 3) also had no evidence behind it. All five star
+calls and watch modes held.
+
+| Show | Old | New | Reason for Change |
+| ---- | --- | --- | ----------------- |
+| **High Potential** | 4★ T | 4★ T | Ramp recheck: pilot is S1's best ep, S2 scores lower all season + Roman-stall reviews — Grabs→Front-loaded S2 |
+| **Justified** | 4★ S | 4★ S | Ramp recheck: S1 eps 2-8 episodic, scores jump at ep 9 (S2 the peak) — Grabs→Slow open ep 9; 4★ S holds |
+| **Devs** | 4★ S | 4★ S | Ramp recheck: no ep-3 lift in per-ep scores, critics say middle sags — pickup moved ep 3→ep 7; 4★ S holds |
+| **VisionQuest** | 4★ S | 4★ S | Mid-season recheck: 7/8 aired, eps 4+ score higher, critics name ep 4 the turn — Grabs→Slow open ep 4; 4★ S |
+| **Say Nothing** | 4★ T | 4★ T | Ramp recheck: flat-high per-ep scores, opens on the abduction — Grabs holds; base arithmetic fixed (3.6→3.4) |

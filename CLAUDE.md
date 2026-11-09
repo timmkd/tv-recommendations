@@ -512,6 +512,7 @@ Most support `--dry-run`; prefer it first on anything that writes.
 | `trakt-capture-diff.ts [capture.json] [--since date]` | Diff the newest Trakt browser capture against the local DB: missing shows (with slugs, tombstones flagged), unpredicted shows, watched-since list, stalled shows with new plays. Prints `IMPORT_TMDB_IDS:` |
 | `airtime-screen.ts [--tmdb a,b] [--all] [--include-low] [--max-eps N] [--min-age N]` | Premature-prediction screen: dates each star prediction from the batch files (not `predictionsUpdatedAt`), counts TMDB episodes aired then vs now, flags PREMATURE / NEW-EPISODES / THIN-VOTES / STALE-PHRASE / PRE-AIR. Prints `RECHECK_TMDB_IDS:` |
 | `lookup-show.ts <query>` | Find shows by title substring |
+| `episode-scores.ts <tmdbId>[,...] [--seasons 1,2]` | Per-episode TMDB scores + season means: the evidence for a bingeability ramp clause (worksheet Step 6). Read-only |
 | `set-subscriptions.ts --list` | Print the subscriptions table (read-only) |
 
 ### Maintenance

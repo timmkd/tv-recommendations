@@ -372,6 +372,21 @@ Rules for the clause:
   consistent within a show.
 - **Never dock the star rating for a slow start alone** — the ceiling rule and the
   payoff check below still govern. The ramp is navigation, not a penalty.
+- **Read the ramp off the data, never off the format (user-raised, Nov 2026).**
+  *"I'm noticing you're putting… grabs from ep 1, and I'm wondering if that's just an
+  algorithmic repetition."* It was. `Grabs from ep 1.` ended 143 of 210 reasons and
+  126 of the 179 rows in the 2026-09-16 backfill, which inferred the ramp from genre
+  and format. Checking four Disney+ "Grabs" calls against per-episode scores, three
+  were wrong. **Justified**: episodic until ep 9, S2 is the peak. **VisionQuest**:
+  climbs from ep 4. **High Potential**: S2 scores lower all season, so it is
+  front-loaded. Devs' "picks up from ep 3" had no support either: the pickup is ep 7.
+  **Rule:** run `npx tsx scripts/episode-scores.ts <tmdbId>`, read the shape (pilot vs
+  the rest, a step up at ep N, a later season's mean below S1's), and confirm it with
+  one review search. `Grabs from ep 1.` is a finding, used only when the pilot scores
+  at or above the run with no early dip. A "strong pilot, then a weak stretch" show is
+  not Grabs. Write `Slow open — picks up from ep N` for the episode where the run
+  recovers, and say in the body that the pilot lands (Justified). Per-episode votes
+  are thin (10-50), so treat a 0.1-0.2 wobble as noise and look for a sustained step.
 
 **Therefore: a weak hook is only a drag when there is no payoff waiting.** Never cap a prediction for slow-start alone — check the payoff signal first (jaw-drop reveals/resolution is a stated core love). This is exactly what the stick-with-it verdict in the prediction reason exists to express: "weak hook, but commit — the payoff is real" (Dark) vs "weak hook, nothing coming — don't force it" (Monk).
 

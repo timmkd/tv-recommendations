@@ -120,6 +120,11 @@ The reason must:
    - `Slow open — picks up from ep N, but the payoff is thin.`
    - `Front-loaded — strongest early, fades from S N.`
    Give a NUMBER, never "eventually" (a season boundary may be `S2`).
+   **Pick the form from evidence:** run `npx tsx scripts/episode-scores.ts <tmdbId>`
+   and read the per-episode shape, then confirm with one review search. Never pick
+   it from genre/format. `Grabs from ep 1.` requires a pilot that scores at or above
+   the run with no early dip. See "Read the ramp off the data" in the taste profile.
+   For a pre-air show with no episode data, say "pre-air" in the reason body.
 4. Stay consistent with the stick-with-it verdict in the star reason. The ramp is
    about the HOOK; the verdict is about the PAYOFF. They may disagree — when they
    do, that disagreement is the useful part, so say it.
